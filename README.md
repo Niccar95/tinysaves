@@ -1,3 +1,7 @@
+## TinySaves 
+
+TinySaves is a savings goal application designed for users who are new to saving, encouraging small, regular contributions. Users can set personalized savings goals with amounts and optional deadlines, track their progress through a visual progress bar, and update their savings. The app features milestones with badges, statistics showing progress over time, and challenges to save small amounts daily or weekly. Users can also manage their profiles, categorize goals with icons, and receive motivational messages for consistent saving.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
