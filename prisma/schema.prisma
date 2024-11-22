@@ -12,3 +12,58 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  userId String @id @default(auto()) @map("_id") @db.ObjectId
+  name String 
+  email String @unique
+  image String?
+  hashedPassword String
+  goals Goals[]        
+  userBadges UserBadges[]     
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Goals {
+  goalId String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  targetAmount Int
+  milestones Milestones[]
+  progress Int
+  isComplete Boolean
+  userId String
+  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Milestones {
+  milestoneId String @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  amount Int
+  dueDate DateTime
+  goalId String
+  goals Goals @relation(fields: [goalId], references: [goalId], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Badges {
+  badgeId String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  criteria String
+  badgeUsers UserBadges[]    
+  createdAt DateTime @default(now())
+}
+
+
+model UserBadges {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  badgeId String @db.ObjectId
+  user User @relation(fields: [userId], references: [userId])
+  badge Badges @relation(fields: [badgeId], references: [badgeId])
+  createdAt DateTime @default(now())
+  @@unique([userId, badgeId])  
+}
