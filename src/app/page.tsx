@@ -2,6 +2,7 @@
 import React, { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 
 const Login = () => {
   const [userName, setUserName] = useState<string>("");
@@ -53,7 +54,7 @@ const Login = () => {
 
         {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
 
-        <button type="submit">Login</button>
+        <button type="submit">Log in</button>
 
         {loader && (
           <div className="spinnerWrapper">
@@ -61,6 +62,8 @@ const Login = () => {
           </div>
         )}
       </form>
+
+      <Link href="/registration">Don&apos;t have an account?</Link>
     </>
   );
 };
