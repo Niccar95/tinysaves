@@ -55,7 +55,7 @@ const Page = () => {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ formData }),
+        body: JSON.stringify(formData),
       });
 
       router.push("/");
