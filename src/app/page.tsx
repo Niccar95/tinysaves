@@ -25,7 +25,7 @@ const Login = () => {
     if (result?.error) {
       setErrorMessage("Invalid username or password.");
     } else {
-      router.push("/home");
+      router.push("/dashboard");
     }
   };
 
