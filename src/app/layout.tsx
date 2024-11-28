@@ -16,10 +16,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SessionProvider>
-          {pathname !== "/" && pathname !== "/registration" && (
-            <Navbar></Navbar>
-          )}
-          <main>{children}</main>
+          <header></header>
+
+          <main>
+            {pathname !== "/" && pathname !== "/registration" && (
+              <Navbar></Navbar>
+            )}
+            {children}
+          </main>
           <footer></footer>
         </SessionProvider>
       </body>

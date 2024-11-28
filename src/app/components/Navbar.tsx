@@ -13,13 +13,27 @@ const Navbar = () => {
 
   return (
     <>
-      <nav>
-        <Link href="/dashboard">Dashboard</Link>
-        <Link href="/myGoals">My goals</Link>
-        <Link href="/myBadges">My badges</Link>
-        <Link href="/myStats">My stats</Link>
-        <Link href="/myProfile">My profile</Link>
-        <button onClick={handleLogout}>Log out</button>
+      <nav className="sidebar">
+        <ul>
+          <li>
+            <Link href="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <Link href="/goals">My goals</Link>
+          </li>
+          <li>
+            <Link href="/badges">My badges</Link>
+          </li>
+          <li>
+            <Link href="/stats">My stats</Link>
+          </li>
+          <li>
+            <Link href="/profile">My profile</Link>
+          </li>
+          <li>
+            <button onClick={handleLogout}>Log out</button>
+          </li>
+        </ul>
       </nav>
     </>
   );

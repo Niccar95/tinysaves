@@ -1,15 +1,13 @@
-"use client";
-
 import React from "react";
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <section className="content">
-        <h1>Dashboard</h1>
+        <h1>My profile</h1>
       </section>
     </>
   );
 };
 
-export default page;
+export default Page;
