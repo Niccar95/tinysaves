@@ -16,26 +16,36 @@ const Navbar = () => {
       <nav className="sidebar">
         <ul>
           <li>
-            <Link href="/dashboard">Dashboard</Link>
+            <Link className="navLink" href="/dashboard">
+              Dashboard
+            </Link>
           </li>
           <li>
-            <Link href="/goals">My goals</Link>
+            <Link className="navLink" href="/goals">
+              My goals
+            </Link>
           </li>
           <li>
-            <Link href="/badges">My badges</Link>
+            <Link className="navLink" href="/badges">
+              My badges
+            </Link>
           </li>
           <li>
-            <Link href="/stats">My stats</Link>
+            <Link className="navLink" href="/stats">
+              My stats
+            </Link>
           </li>
           <li>
-            <Link href="/profile">My profile</Link>
-          </li>
-          <li>
-            <button className="logoutButton" onClick={handleLogout}>
-              Log out
-            </button>
+            <Link className="navLink" href="/profile">
+              My profile
+            </Link>
           </li>
         </ul>
+        <div>
+          <button className="logoutButton" onClick={handleLogout}>
+            Log out
+          </button>
+        </div>
       </nav>
     </>
   );

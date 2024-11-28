@@ -2,8 +2,11 @@
 @use "./variables" as *;
 
 .sidebar {  
-    border: solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 1rem;
+    background-color: #7DA6D7;
 
     @include desktop() {
         width: 20%;
@@ -14,5 +17,15 @@
        flex-direction: column;
        gap: 2rem;
        list-style: none;
+
+       @include desktop() {
+        gap: 3rem;
+    }
+
+       .navLink {
+        font-weight: $link-font-weight;
+        color: #2A3D56;
+        text-decoration: none;
+       }
     }
 }

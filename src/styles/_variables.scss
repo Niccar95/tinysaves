@@ -17,12 +17,13 @@ $heading-font-size: 32px;
 
 $base-font-weight: normal;
 $heading-font-weight: bold;
+$link-font-weight: 700;
 
 //Colors
 
 $primary-color: white;
-$accent-color: #1821CB;
-//$body-background: ;
+$primary-button-color: #1821CB;
+$light-body-background: #E4F1FF;
 
 $primary-text-color: black;
 $secondary-text-color: white;
@@ -30,9 +31,9 @@ $tertiary-text-color: #454545;
 
 $link-color: #1f02ad;
 
-$button-hover-color: #050da5;
-$input-border-color: #79AEFF;
+$primary-button-hover-color: #050da5;
+$border-color: #79AEFF;
 
 //Effects
 
-$shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);

@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
 import Navbar from "./components/Navbar";
 import "./../styles/globals.scss";
+import Image from "next/image";
+import icon from "../../public/icon.svg";
 
 export default function RootLayout({
   children,
@@ -16,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SessionProvider>
-          <header></header>
+          <header>
+            <Image src={icon} alt="icon" height="100" width="100"></Image>
+          </header>
 
           <main>
             {pathname !== "/" && pathname !== "/registration" && (

@@ -5,12 +5,28 @@
     border: none;
     border-radius: 15px;
     height: 40px;
-    background-color: $accent-color;
+    background-color: $primary-button-color;
     color: $secondary-text-color;
     cursor: pointer;
 
     &:hover {
-        background-color: $button-hover-color;
+        background-color: $primary-button-hover-color;
+    }
+}
+
+
+.logoutButton {
+    width: 100%;
+    border-radius: 15px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border: solid 2px $border-color;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+        border: solid 3px $border-color; 
     }
 }
 

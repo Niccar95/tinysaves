@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import Joi from "joi";
+import Spinner from "../components/Spinner";
 
 const schema = Joi.object({
   name: Joi.string().min(3).required().label("Name"),
@@ -20,7 +21,7 @@ const schema = Joi.object({
 
 const Page = () => {
   const router = useRouter();
-
+  const [loader, setLoader] = useState<boolean>(false);
   const [formData, setFormData] = useState<{
     name: string;
     email: string;
@@ -32,7 +33,6 @@ const Page = () => {
     password: "",
     repeatPassword: "",
   });
-
   const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,10 +42,12 @@ const Page = () => {
 
   const registerUser = async (e: FormEvent) => {
     e.preventDefault();
+    setLoader(true);
 
     const { error } = schema.validate(formData, { abortEarly: false });
     if (error) {
       setError(error.details.map((err) => err.message).join(", "));
+      setLoader(false);
       return;
     }
 
@@ -62,6 +64,7 @@ const Page = () => {
     } catch (error) {
       console.log("Could not create account", error);
     }
+    setLoader(false);
   };
 
   return (
@@ -111,6 +114,13 @@ const Page = () => {
             formData.password === formData.repeatPassword && (
               <div style={{ color: "green" }}>Passwords match!</div>
             )}
+
+          {loader && (
+            <div className="spinnerWrapper">
+              <Spinner />
+            </div>
+          )}
+
           <button className="registerButton" type="submit">
             Register
           </button>
