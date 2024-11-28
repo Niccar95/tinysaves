@@ -1,11 +1,11 @@
-@use "./mixins";
+@use "./mixins" as *;
 @use "./variables" as *;
 
 .sidebar {  
     border: solid black;
     padding: 1rem;
 
-    @include mixins.desktop() {
+    @include desktop() {
         width: 20%;
     }
 

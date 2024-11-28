@@ -1,0 +1,17 @@
+@use "./variables" as *;
+@use "./mixins.scss" as *;
+
+.registerButton, .loginButton {
+    border: none;
+    border-radius: 15px;
+    height: 40px;
+    background-color: $accent-color;
+    color: $secondary-text-color;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $button-hover-color;
+    }
+}
+
+

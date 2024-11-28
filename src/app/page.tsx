@@ -32,38 +32,42 @@ const Login = () => {
 
   return (
     <>
-      <h1>Log in</h1>
-      <form onSubmit={handleLogin}>
-        <label htmlFor="userName">Username:</label>
-        <input
-          id="userName"
-          className="textInput"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        ></input>
+      <section className="content">
+        <h1>Log in</h1>
+        <form onSubmit={handleLogin}>
+          <label htmlFor="userName">Username:</label>
+          <input
+            id="userName"
+            className="textInput"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          ></input>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          id="password"
-          className="textInput"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
+          <label htmlFor="password">Password:</label>
+          <input
+            id="password"
+            className="textInput"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          ></input>
 
-        {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
+          {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
 
-        <button type="submit">Log in</button>
+          <button className="loginButton" type="submit">
+            Log in
+          </button>
 
-        {loader && (
-          <div className="spinnerWrapper">
-            <div className="spinner"></div>
-          </div>
-        )}
-      </form>
+          {loader && (
+            <div className="spinnerWrapper">
+              <div className="spinner"></div>
+            </div>
+          )}
+        </form>
 
-      <Link href="/registration">Don&apos;t have an account?</Link>
+        <Link href="/registration">Don&apos;t have an account?</Link>
+      </section>
     </>
   );
 };

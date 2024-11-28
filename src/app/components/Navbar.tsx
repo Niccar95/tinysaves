@@ -31,7 +31,9 @@ const Navbar = () => {
             <Link href="/profile">My profile</Link>
           </li>
           <li>
-            <button onClick={handleLogout}>Log out</button>
+            <button className="logoutButton" onClick={handleLogout}>
+              Log out
+            </button>
           </li>
         </ul>
       </nav>

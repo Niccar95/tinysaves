@@ -66,50 +66,56 @@ const Page = () => {
 
   return (
     <>
-      <form onSubmit={registerUser}>
-        <label htmlFor="userName">Create a username</label>
-        <input
-          id="userName"
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        <label htmlFor="userEmail">Type your email</label>
-        <input
-          id="userEmail"
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
+      <section className="content">
+        <h1>Register</h1>
+        <form onSubmit={registerUser}>
+          <label htmlFor="userName">Create a username:</label>
+          <input
+            id="userName"
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          <label htmlFor="userEmail">Type your email:</label>
+          <input
+            id="userEmail"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
 
-        <label htmlFor="userPassword">Create a strong password</label>
-        <input
-          id="userPassword"
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
+          <label htmlFor="userPassword">Create a strong password:</label>
+          <input
+            id="userPassword"
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
 
-        <label htmlFor="repeatedUserPassword">Repeat your password</label>
+          <label htmlFor="repeatedUserPassword">Repeat your password:</label>
 
-        <input
-          id="repeatedUserPassword"
-          type="password"
-          name="repeatPassword"
-          value={formData.repeatPassword}
-          onChange={handleChange}
-        />
+          <input
+            id="repeatedUserPassword"
+            type="password"
+            name="repeatPassword"
+            value={formData.repeatPassword}
+            onChange={handleChange}
+          />
 
-        {error && <div style={{ color: "red" }}>{error}</div>}
+          {error && <div style={{ color: "red" }}>{error}</div>}
 
-        {formData.password && formData.password === formData.repeatPassword && (
-          <div style={{ color: "green" }}>Passwords match!</div>
-        )}
-        <button type="submit">Register</button>
-      </form>
+          {formData.password &&
+            formData.password === formData.repeatPassword && (
+              <div style={{ color: "green" }}>Passwords match!</div>
+            )}
+          <button className="registerButton" type="submit">
+            Register
+          </button>
+        </form>
+      </section>
     </>
   );
 };
