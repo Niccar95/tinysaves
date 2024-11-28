@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 
 const Login = () => {
-  const [userName, setUserName] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [loader, setLoader] = useState<boolean>(false);
@@ -17,7 +17,7 @@ const Login = () => {
 
     const result = await signIn("credentials", {
       redirect: false,
-      userName,
+      name,
       password,
     });
 
@@ -39,8 +39,8 @@ const Login = () => {
           id="userName"
           className="textInput"
           type="text"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         ></input>
 
         <label htmlFor="password">Password:</label>
