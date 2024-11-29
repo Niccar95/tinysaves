@@ -1,0 +1,14 @@
+@use "./mixins" as *;
+
+.progressBar {
+    text-align: center;
+    border: solid black;
+    padding: 1rem;
+    border-radius: 15px;
+
+    @include desktop() {
+        width: 30%;
+    }
+
+
+}

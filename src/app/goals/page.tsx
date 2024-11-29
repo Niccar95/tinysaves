@@ -1,6 +1,5 @@
 import React from "react";
 import GoalList from "../components/GoalList";
-
 import { getServerSession } from "next-auth";
 import { authOptions } from "./../api/auth/[...nextauth]/route";
 import prisma from "../db";

@@ -100,7 +100,9 @@ const SavingsForm = () => {
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
           ></input>
-          <button type="submit">Add goal</button>
+          <button type="submit" className="submitButton">
+            Add goal
+          </button>
         </form>
       </section>
     </>

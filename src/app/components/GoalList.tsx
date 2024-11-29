@@ -10,7 +10,7 @@ interface GoalListProps {
 const GoalList = ({ goals }: GoalListProps) => {
   return (
     <>
-      <section>
+      <section className="content">
         {goals.map((goal) => (
           <GoalCard key={goal.goalId} goal={goal}></GoalCard>
         ))}

@@ -9,7 +9,7 @@ interface GoalProps {
 const GoalCard = ({ goal }: GoalProps) => {
   return (
     <>
-      <article>
+      <article className="goalCard">
         <h2>{goal.title}</h2>
         <ProgressBar
           progress={goal.progress}
