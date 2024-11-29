@@ -2,17 +2,24 @@
 
 import React from "react";
 import SavingsForm from "../components/SavingsForm";
+import { useSession } from "next-auth/react";
 
-const page = () => {
+const Dashboard = () => {
+  const { data: session } = useSession();
+
+  const userName = session?.user?.name;
+
   return (
     <>
       <section className="content">
         <h1>Dashboard</h1>
 
-        <SavingsForm></SavingsForm>
+        {session !== null && <h2>Welcome {userName || "User"}!</h2>}
+
+        <SavingsForm />
       </section>
     </>
   );
 };
 
-export default page;
+export default Dashboard;

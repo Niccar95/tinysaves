@@ -4,14 +4,14 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async (req: NextRequest) => {
   try {
     const { title, targetAmount, dueDate, userId } = await req.json();
-    if (!title || !targetAmount || !dueDate)
+    if (!title || !targetAmount || !userId)
       return NextResponse.json({ message: "Invalid data" }, { status: 422 });
 
     const goal = await prisma.goals.create({
       data: {
         title,
         targetAmount,
-        dueDate,
+        dueDate: dueDate ? new Date(dueDate) : null,
         progress: 0,
         isComplete: false,
         userId: userId,
