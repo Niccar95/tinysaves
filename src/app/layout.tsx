@@ -19,12 +19,17 @@ export default function RootLayout({
       <body>
         <SessionProvider>
           <header>
+            <link
+              rel="preload"
+              href="/_next/static/media/logo.4119ef2c.svg"
+              as="image"
+            />
             <Image
               src={logo}
               alt="icon"
               height="100"
               width="100"
-              priority={false}
+              priority
             ></Image>
           </header>
 

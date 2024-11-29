@@ -3,6 +3,7 @@
 import { Goals } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
+import GoalCard from "./GoalCard";
 
 const GoalList = () => {
   const [goals, setGoals] = useState<Goals[]>([]);
@@ -24,13 +25,13 @@ const GoalList = () => {
       };
       fetchGoals();
     }
-  });
+  }, [userId]);
 
   return (
     <>
       <section>
         {goals.map((goal) => (
-          <div key={goal.goalId}>{goal.title}</div>
+          <GoalCard key={goal.goalId} goal={goal}></GoalCard>
         ))}
       </section>
     </>
