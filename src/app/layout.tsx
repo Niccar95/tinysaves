@@ -5,7 +5,7 @@ import { SessionProvider } from "next-auth/react";
 import Navbar from "./components/Navbar";
 import "./../styles/globals.scss";
 import Image from "next/image";
-import icon from "../../public/icon.svg";
+import logo from "../../public/logo.svg";
 
 export default function RootLayout({
   children,
@@ -19,7 +19,7 @@ export default function RootLayout({
       <body>
         <SessionProvider>
           <header>
-            <Image src={icon} alt="icon" height="100" width="100"></Image>
+            <Image src={logo} alt="icon" height="100" width="100"></Image>
           </header>
 
           <main>
