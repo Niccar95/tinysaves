@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 
 const Dashboard = () => {
   const { data: session } = useSession();
-
   const userName = session?.user?.name;
 
   return (
