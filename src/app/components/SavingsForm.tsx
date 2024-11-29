@@ -78,7 +78,6 @@ const SavingsForm = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            required
           ></input>
           {errors.title && <div style={{ color: "red" }}>{errors.title}</div>}
 
@@ -90,7 +89,6 @@ const SavingsForm = () => {
             onChange={(e) => setTargetAmount(e.target.value)}
             min="0"
             inputMode="decimal"
-            required
           ></input>
           {errors.targetAmount && (
             <div style={{ color: "red" }}>{errors.targetAmount}</div>

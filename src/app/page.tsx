@@ -9,12 +9,12 @@ const Login = () => {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [loader, setLoader] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    setLoader(true);
+    setLoading(true);
 
     const result = await signIn("credentials", {
       redirect: false,
@@ -22,7 +22,7 @@ const Login = () => {
       password,
     });
 
-    setLoader(false);
+    setLoading(false);
 
     if (result?.error) {
       setErrorMessage("Invalid username or password.");
@@ -56,7 +56,7 @@ const Login = () => {
 
           {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
 
-          {loader && (
+          {loading && (
             <div className="spinnerWrapper">
               <Spinner />
             </div>
