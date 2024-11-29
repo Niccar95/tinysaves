@@ -29,6 +29,7 @@ model Goals {
   goalId String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   targetAmount Int
+  dueDate DateTime? 
   milestones Milestones[]
   progress Int
   isComplete Boolean
