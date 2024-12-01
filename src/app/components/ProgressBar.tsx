@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 interface ProgressDataProps {
   progress: number;
@@ -13,15 +13,21 @@ const ProgressBar = ({
   isComplete,
   targetAmount,
 }: ProgressDataProps) => {
-  const [progressData, setProgressData] = useState<number>(progress);
-  const [fullAmount, setFullAmount] = useState<number>(targetAmount);
-  const [completed, setCompleted] = useState<boolean>(isComplete);
-
   return (
     <>
-      <div className="progressBar">
-        {progressData} / {fullAmount}
-      </div>
+      {!isComplete && (
+        <div className="progressBar">
+          {progress} / {targetAmount}
+        </div>
+      )}
+
+      {isComplete && (
+        <div className="progressBar">
+          <p>
+            <b>Goal reached!</b>
+          </p>
+        </div>
+      )}
     </>
   );
 };

@@ -9,15 +9,16 @@ interface GoalProps {
 }
 
 const GoalCard = ({ goal }: GoalProps) => {
-  const [isEditing, setisEditing] = useState<boolean>(false);
-
-  const [progress, setProgress] = useState<number>(goal.progress);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(0);
+  const [displayProgress, setDisplayProgress] = useState<number>(goal.progress);
+  const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
 
   const handleOpenForm = () => {
     if (!isEditing) {
-      setisEditing(true);
+      setIsEditing(true);
     } else {
-      setisEditing(false);
+      setIsEditing(false);
     }
   };
 
@@ -38,8 +39,13 @@ const GoalCard = ({ goal }: GoalProps) => {
       });
 
       if (response.ok) {
-        setisEditing(false);
+        const data = await response.json();
+
+        setDisplayProgress(data.goal.progress);
+        setIsComplete(data.goal.isComplete);
+
         setProgress(0);
+        setIsEditing(false);
       }
     } catch (error) {
       console.error("Failed to create goal", error);
@@ -53,8 +59,8 @@ const GoalCard = ({ goal }: GoalProps) => {
 
         <section className="progressSection">
           <ProgressBar
-            progress={goal.progress}
-            isComplete={goal.isComplete}
+            progress={displayProgress}
+            isComplete={isComplete}
             targetAmount={goal.targetAmount}
           ></ProgressBar>
           <button className="addButton" onClick={handleOpenForm}>
