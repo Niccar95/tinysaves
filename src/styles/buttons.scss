@@ -20,7 +20,7 @@
     border-radius: 15px;
     height: 40px;
     background-color: white;
-    color: black;
+    color: $primary-text-color;
     border: solid 2px $border-color;
     cursor: pointer;
 
@@ -28,6 +28,26 @@
         text-decoration: underline;
         border: solid 3px $border-color; 
     }
+}
+
+
+.addButton {
+        border-radius: 15px;
+        height: 50px;
+        width: 200px;
+        background-color: white;
+        color: $primary-text-color;
+        border: solid 4px $border-color;
+        cursor: pointer;
+
+        @include desktop() {
+            height: 100%;
+        }
+
+        &:hover {
+            opacity: 0.8;
+            border: solid 5px $border-color; 
+        }
 }
 
 

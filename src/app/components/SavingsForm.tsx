@@ -42,7 +42,7 @@ const SavingsForm = () => {
     const numericTargetAmount = parseFloat(targetAmount);
 
     try {
-      const response = await fetch(`/api/goals`, {
+      const response = await fetch("/api/goals", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
