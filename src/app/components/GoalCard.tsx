@@ -17,7 +17,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
 
   const [openToolBar, setOpenToolBar] = useState<boolean>(false);
 
-  const [progress, setProgress] = useState<number>(0);
+  const [progress, setProgress] = useState<number | undefined>(undefined);
   const [displayProgress, setDisplayProgress] = useState<number>(goal.progress);
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
 
@@ -59,7 +59,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
         setDisplayProgress(data.goal.progress);
         setIsComplete(data.goal.isComplete);
 
-        setProgress(0);
+        setProgress(undefined);
         setIsEditing(false);
       }
     } catch (error) {
@@ -99,8 +99,12 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
                 id="progress"
                 type="number"
                 min="0"
-                value={progress}
-                onChange={(e) => setProgress(+e.target.value)}
+                value={progress ?? ""}
+                onChange={(e) =>
+                  setProgress(
+                    e.target.value === "" ? undefined : +e.target.value
+                  )
+                }
               ></input>
               <button className="updateButton">Update</button>
             </form>
