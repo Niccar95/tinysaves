@@ -14,8 +14,12 @@ const ToolBar = ({ goal, deleteGoal }: GoalProps) => {
   return (
     <>
       <section className="toolBar">
-        <button className="actionButton">Customise</button>
+        <button className="actionButton">
+          <i className="bi bi-palette"></i>
+          Customise
+        </button>
         <button onClick={handleDeleteGoal} className="actionButton">
+          <i className="bi bi-trash3"></i>
           Delete goal
         </button>
       </section>

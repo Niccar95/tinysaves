@@ -84,7 +84,8 @@ const SavingsForm = () => {
   return (
     <>
       <button className="addGoalButton" onClick={addNewGoal}>
-        Add new goal <i className="bi bi-plus-circle"></i>
+        <i className="bi bi-plus-circle"></i>
+        Add new goal
       </button>
 
       {!isFormHidden && (

@@ -41,11 +41,12 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <div>
+        <section className="logoutButtonSection">
           <button className="logoutButton" onClick={handleLogout}>
+            <i className="bi bi-box-arrow-left"></i>
             Log out
           </button>
-        </div>
+        </section>
       </nav>
     </>
   );
