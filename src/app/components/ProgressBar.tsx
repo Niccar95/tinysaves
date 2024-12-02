@@ -15,8 +15,6 @@ const ProgressBar = ({
 
   const dynamicProgress = `${percentage}%`;
 
-  console.log(percentage);
-
   return (
     <>
       {!isComplete && (

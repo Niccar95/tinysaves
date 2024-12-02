@@ -3,13 +3,20 @@
 import { Goals } from "@prisma/client";
 import React, { FormEvent, useState } from "react";
 import ProgressBar from "./ProgressBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import ToolBar from "./ToolBar";
 
 interface GoalProps {
   goal: Goals;
+  deleteGoal: (goalId: string) => void;
 }
 
-const GoalCard = ({ goal }: GoalProps) => {
+const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const [openToolBar, setOpenToolBar] = useState<boolean>(false);
+
   const [progress, setProgress] = useState<number>(0);
   const [displayProgress, setDisplayProgress] = useState<number>(goal.progress);
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
@@ -19,6 +26,14 @@ const GoalCard = ({ goal }: GoalProps) => {
       setIsEditing(true);
     } else {
       setIsEditing(false);
+    }
+  };
+
+  const handleOpenToolBar = () => {
+    if (!openToolBar) {
+      setOpenToolBar(true);
+    } else {
+      setOpenToolBar(false);
     }
   };
 
@@ -63,10 +78,18 @@ const GoalCard = ({ goal }: GoalProps) => {
             isComplete={isComplete}
             targetAmount={goal.targetAmount}
           ></ProgressBar>
-          <button className="addButton" onClick={handleOpenForm}>
-            Update progress
-          </button>
+
+          <section className="actionSection">
+            <button className="addButton" onClick={handleOpenForm}>
+              Update progress
+            </button>
+            <button className="toolsButton" onClick={handleOpenToolBar}>
+              <FontAwesomeIcon icon={faEllipsis} />
+            </button>
+          </section>
         </section>
+
+        {openToolBar && <ToolBar goal={goal} deleteGoal={deleteGoal} />}
 
         {isEditing && (
           <section className="progressFormSection">

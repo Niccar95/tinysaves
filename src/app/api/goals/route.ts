@@ -50,3 +50,24 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 };
+
+export const DELETE = async (req: NextRequest) => {
+  try {
+    const { goalId } = await req.json();
+    if (!goalId)
+      return NextResponse.json({ message: "Invalid data" }, { status: 422 });
+
+    const goal = await prisma.goals.delete({
+      where: {
+        goalId,
+      },
+    });
+    return NextResponse.json(
+      { message: "Successfully deleted savings goal", goal },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ message: "Server error" }, { status: 500 });
+  }
+};

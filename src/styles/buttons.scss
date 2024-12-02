@@ -31,7 +31,7 @@
 }
 
 
-.addButton {
+.addButton, .toolsButton, .actionButton {
         border-radius: 15px;
         height: 50px;
         width: 200px;
@@ -39,15 +39,14 @@
         color: $primary-text-color;
         border: solid 4px $border-color;
         cursor: pointer;
-
-        @include desktop() {
-            height: 100%;
-        }
-
         &:hover {
             opacity: 0.8;
             border: solid 5px $border-color; 
         }
+}
+
+.toolsButton {
+    width: 70px;
 }
 
 
