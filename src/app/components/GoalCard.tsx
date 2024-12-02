@@ -3,8 +3,6 @@
 import { Goals } from "@prisma/client";
 import React, { FormEvent, useState } from "react";
 import ProgressBar from "./ProgressBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import ToolBar from "./ToolBar";
 
 interface GoalProps {
@@ -84,7 +82,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
               Update progress
             </button>
             <button className="toolsButton" onClick={handleOpenToolBar}>
-              <FontAwesomeIcon icon={faEllipsis} />
+              <i className="bi bi-three-dots"></i>
             </button>
           </section>
         </section>

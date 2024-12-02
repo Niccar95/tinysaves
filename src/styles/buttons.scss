@@ -31,13 +31,14 @@
 }
 
 
-.addButton, .toolsButton, .actionButton {
+.addButton, .toolsButton, .actionButton, .addGoalButton  {
         border-radius: 15px;
         height: 50px;
         width: 200px;
         background-color: white;
         color: $primary-text-color;
         border: solid 4px $border-color;
+        font-weight: $button-font-weight;
         cursor: pointer;
         &:hover {
             opacity: 0.8;
@@ -48,5 +49,7 @@
 .toolsButton {
     width: 70px;
 }
+
+
 
 

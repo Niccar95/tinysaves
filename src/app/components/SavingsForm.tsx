@@ -11,7 +11,7 @@ const schema = Joi.object({
     "string.empty": "This is a required field",
   }),
   targetAmount: Joi.number().greater(0).required().messages({
-    "number.base": "Target amount must be a valid number and cannot be empty",
+    "number.base": "Target amount must be a valid number",
     "number.greater": "Target amount should be greater than 0",
   }),
   dueDate: Joi.string().allow("").optional(),
@@ -25,6 +25,8 @@ const SavingsForm = () => {
   const [targetAmount, setTargetAmount] = useState<string>("");
   const [dueDate, setDueDate] = useState<string>("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [successMessage, setSuccessMessage] = useState<string>("");
+  const [isFormHidden, setIsFormHidden] = useState<boolean>(true);
 
   const handleCreateGoal = async (e: FormEvent) => {
     e.preventDefault();
@@ -56,20 +58,37 @@ const SavingsForm = () => {
       });
 
       if (response.ok) {
-        console.log("Savings goal created successfully!");
+        setSuccessMessage("Savings goal created successfully!");
+        setTitle("");
+        setTargetAmount("");
+        setDueDate("");
+        setErrors({});
       } else {
+        setSuccessMessage("");
         console.log("Failed to create goal!");
       }
     } catch (error) {
+      setSuccessMessage("");
       console.error("Failed to create goal", error);
+    }
+  };
+
+  const addNewGoal = () => {
+    if (isFormHidden) {
+      setIsFormHidden(false);
+    } else {
+      setIsFormHidden(true);
     }
   };
 
   return (
     <>
-      <section className="savingsForm">
-        <h2>Add your savings goal</h2>
-        <form onSubmit={handleCreateGoal}>
+      <button className="addGoalButton" onClick={addNewGoal}>
+        Add new goal <i className="bi bi-plus-circle"></i>
+      </button>
+
+      {!isFormHidden && (
+        <form className="addGoalForm" onSubmit={handleCreateGoal}>
           <label htmlFor="title">
             What savings goal would you like to set?
           </label>
@@ -100,11 +119,17 @@ const SavingsForm = () => {
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
           ></input>
+
+          {successMessage && (
+            <div style={{ color: "green", marginBottom: "1rem" }}>
+              {successMessage}
+            </div>
+          )}
           <button type="submit" className="submitButton">
             Add goal
           </button>
         </form>
-      </section>
+      )}
     </>
   );
 };

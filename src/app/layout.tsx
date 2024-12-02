@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
 import Navbar from "./components/Navbar";
 import "./../styles/globals.scss";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import Image from "next/image";
 import logo from "../../public/logo.svg";
 
