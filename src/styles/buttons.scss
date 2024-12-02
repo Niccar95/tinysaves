@@ -1,7 +1,7 @@
 @use "./variables" as *;
 @use "./mixins.scss" as *;
 
-.registerButton, .loginButton, .submitButton {
+.registerButton, .loginButton, .submitButton, .updateButton {
     border: none;
     border-radius: 15px;
     height: 40px;

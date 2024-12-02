@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 interface ProgressDataProps {
   progress: number;
   isComplete: boolean;
@@ -13,10 +11,22 @@ const ProgressBar = ({
   isComplete,
   targetAmount,
 }: ProgressDataProps) => {
+  const percentage = (progress / targetAmount) * 100;
+
+  const dynamicProgress = `${percentage}%`;
+
+  console.log(percentage);
+
   return (
     <>
       {!isComplete && (
         <div className="progressBar">
+          <div
+            className="progress"
+            style={{
+              width: `${dynamicProgress}`,
+            }}
+          ></div>
           {progress} / {targetAmount}
         </div>
       )}

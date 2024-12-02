@@ -1,14 +1,28 @@
 @use "./mixins" as *;
 
 .progressBar {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     border: solid black;
-    padding: 1rem;
+    height: 50px;
+    padding: 0.5rem;
     border-radius: 15px;
 
     @include desktop() {
+        height: 70px;
         width: 30%;
     }
 
-
+    .progress {
+        position: absolute;
+        background-color: blue;
+        left: 0.5rem;
+        top: 0.5rem;
+        bottom: 0.5rem;
+        border-radius: 15px;
+        z-index: -1;
+        transition: width 0.3s ease;
+    }
 }

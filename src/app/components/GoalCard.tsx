@@ -79,7 +79,7 @@ const GoalCard = ({ goal }: GoalProps) => {
                 value={progress}
                 onChange={(e) => setProgress(+e.target.value)}
               ></input>
-              <button>Update</button>
+              <button className="updateButton">Update</button>
             </form>
           </section>
         )}
