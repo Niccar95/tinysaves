@@ -19,6 +19,8 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [displayProgress, setDisplayProgress] = useState<number>(goal.progress);
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
 
+  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
   const handleOpenForm = () => {
     if (!isEditing) {
       setIsEditing(true);
@@ -39,7 +41,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/goals/progress", {
+      const response = await fetch(`${baseUrl}/api/goals/progress`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

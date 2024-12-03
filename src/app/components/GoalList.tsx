@@ -10,6 +10,7 @@ interface GoalListProps {
 
 const GoalList = ({ goals }: GoalListProps) => {
   const [savingGoals, setGoals] = useState<Goals[]>(goals);
+  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
   const deleteGoal = async (deletedGoalId: string) => {
     try {
@@ -18,7 +19,7 @@ const GoalList = ({ goals }: GoalListProps) => {
       );
       setGoals(updatedGoals);
 
-      const response = await fetch("/api/goals", {
+      const response = await fetch(`${baseUrl}/api/goals`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

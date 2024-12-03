@@ -35,6 +35,8 @@ const Page = () => {
   });
   const [error, setError] = useState<string | null>(null);
 
+  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setError(null);
@@ -52,7 +54,7 @@ const Page = () => {
     }
 
     try {
-      await fetch("/api/register", {
+      await fetch(`${baseUrl}/api/register`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
