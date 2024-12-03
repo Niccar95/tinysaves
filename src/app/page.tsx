@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
 
-    const result = await signIn("Credentials", {
+    const result = await signIn("credentials", {
       redirect: false,
       name,
       password,

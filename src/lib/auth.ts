@@ -6,7 +6,7 @@ import { AuthOptions } from "next-auth";
 export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
+      name: "credentials",
       credentials: {
         name: { label: "Username", type: "text" },
         email: { label: "Email", type: "text" },
