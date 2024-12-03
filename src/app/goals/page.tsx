@@ -1,8 +1,8 @@
 import React from "react";
 import GoalList from "../components/GoalList";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./../api/auth/[...nextauth]/route";
 import prisma from "../db";
+import { authOptions } from "@/lib/auth";
 
 const GoalsPage = async () => {
   const session = await getServerSession(authOptions);

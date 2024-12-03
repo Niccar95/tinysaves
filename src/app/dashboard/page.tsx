@@ -1,7 +1,7 @@
 import React from "react";
 import SavingsForm from "../components/SavingsForm";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 
 const Dashboard = async () => {
   const session = await getServerSession(authOptions);
