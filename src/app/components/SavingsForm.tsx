@@ -28,6 +28,8 @@ const SavingsForm = () => {
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [isFormHidden, setIsFormHidden] = useState<boolean>(true);
 
+  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
   const handleCreateGoal = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -44,7 +46,7 @@ const SavingsForm = () => {
     const numericTargetAmount = parseFloat(targetAmount);
 
     try {
-      const response = await fetch("/api/goals", {
+      const response = await fetch(`${baseUrl}/api/goals`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
