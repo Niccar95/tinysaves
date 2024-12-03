@@ -6,7 +6,7 @@ import Link from "next/link";
 import Spinner from "./components/Spinner";
 
 const Login = () => {
-  const [name, setName] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -18,7 +18,7 @@ const Login = () => {
 
     const result = await signIn("credentials", {
       redirect: false,
-      name,
+      username,
       password,
     });
 
@@ -41,8 +41,8 @@ const Login = () => {
             id="userName"
             className="textInput"
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           ></input>
 
           <label htmlFor="password">Password:</label>
