@@ -106,7 +106,7 @@ const SavingsForm = () => {
           <label htmlFor="targetAmount">How much would you like to save?</label>
           <input
             id="targetAmount"
-            type="number"
+            type="text"
             value={targetAmount}
             onChange={(e) => setTargetAmount(e.target.value)}
             min="0"

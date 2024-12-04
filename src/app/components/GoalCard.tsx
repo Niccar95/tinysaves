@@ -15,7 +15,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
 
   const [openToolBar, setOpenToolBar] = useState<boolean>(false);
 
-  const [progress, setProgress] = useState<number | undefined>(undefined);
+  const [progress, setProgress] = useState<string>("");
   const [displayProgress, setDisplayProgress] = useState<number>(goal.progress);
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
 
@@ -40,6 +40,8 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const handleUpdateProgress = async (e: FormEvent) => {
     e.preventDefault();
 
+    const numericTargetAmount = parseFloat(progress);
+
     try {
       const response = await fetch(`${baseUrl}/api/goals/progress`, {
         method: "PATCH",
@@ -48,7 +50,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
         },
         body: JSON.stringify({
           goalId: goal.goalId,
-          progress: progress,
+          progress: numericTargetAmount,
           targetAmount: goal.targetAmount,
         }),
       });
@@ -59,7 +61,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
         setDisplayProgress(data.goal.progress);
         setIsComplete(data.goal.isComplete);
 
-        setProgress(undefined);
+        setProgress("");
         setIsEditing(false);
       }
     } catch (error) {
@@ -93,14 +95,10 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
               <label htmlFor="progress">Update your savings progress: </label>
               <input
                 id="progress"
-                type="number"
+                type="text"
                 min="0"
                 value={progress ?? ""}
-                onChange={(e) =>
-                  setProgress(
-                    e.target.value === "" ? undefined : +e.target.value
-                  )
-                }
+                onChange={(e) => setProgress(e.target.value)}
               ></input>
               <button className="updateButton">Update</button>
             </form>

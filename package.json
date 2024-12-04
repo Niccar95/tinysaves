@@ -13,6 +13,7 @@
     "@prisma/client": "^5.22.0",
     "bcrypt": "^5.1.1",
     "bootstrap-icons": "^1.11.3",
+    "chart.js": "^4.4.7",
     "joi": "^17.13.3",
     "next": "^15.0.3",
     "next-auth": "^4.24.10",
