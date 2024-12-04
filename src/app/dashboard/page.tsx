@@ -16,7 +16,6 @@ const Dashboard = async () => {
     <>
       <section className="content">
         <h1>Dashboard</h1>
-        <h1>sxcxs</h1>
 
         {session !== null && <h2>Welcome {userName || "User"}!</h2>}
 
