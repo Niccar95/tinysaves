@@ -9,6 +9,7 @@
 @use "./cards.scss";
 @use "./toolBars.scss";
 @use "./icons.scss";
+@use "./hamburger.scss";
 
 * {
   box-sizing: border-box;
@@ -33,14 +34,23 @@ body {
 
 
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 2rem 1rem 2rem 1rem;
   background-color: #A0C8F0;
   border-bottom: solid 1px white;
 }
 
 main {
+  position: relative;
   display: flex; 
+  flex-direction: column;
   flex-grow: 1;
+
+  @include desktop() {
+    flex-direction: row;
+  }
 
   .content {
     display: flex;

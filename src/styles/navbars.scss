@@ -1,17 +1,6 @@
 @use "./mixins" as *;
 @use "./variables" as *;
 
-.sidebar {  
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: #7DA6D7;
-
-    @include desktop() {
-        width: 20%;
-    }
-
     ul {
        display: flex;
        flex-direction: column;
@@ -28,4 +17,3 @@
         text-decoration: none;
        }
     }
-}

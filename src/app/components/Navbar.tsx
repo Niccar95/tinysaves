@@ -2,41 +2,68 @@
 
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [burgerClass, setBurgerClass] = useState("burgerBar unclicked");
+  const [menuClass, setMenuClass] = useState("menu hidden");
+  const [isMenuClicked, setIsMenuClicked] = useState(false);
   const handleLogout = () => {
     signOut({
       callbackUrl: "/",
     });
   };
 
+  const updateMenu = () => {
+    if (!isMenuClicked) {
+      setBurgerClass("burgerBar clicked");
+      setMenuClass("menu visible");
+    } else {
+      setBurgerClass("burgerBar unclicked");
+      setMenuClass("menu hidden");
+    }
+    setIsMenuClicked(!isMenuClicked);
+  };
+
+  const closeMenu = () => {
+    setBurgerClass("burgerBar unclicked");
+    setMenuClass("menu hidden");
+    setIsMenuClicked(false);
+  };
+
   return (
     <>
-      <nav className="sidebar">
+      <section className="hamburgerSection">
+        <div className="hamburgerMenu" onClick={updateMenu}>
+          <div className={burgerClass}></div>
+          <div className={burgerClass}></div>
+          <div className={burgerClass}></div>
+        </div>
+      </section>
+      <nav className={menuClass}>
         <ul>
           <li>
-            <Link className="navLink" href="/dashboard">
+            <Link className="navLink" href="/dashboard" onClick={closeMenu}>
               Dashboard
             </Link>
           </li>
           <li>
-            <Link className="navLink" href="/goals">
+            <Link className="navLink" href="/goals" onClick={closeMenu}>
               My goals
             </Link>
           </li>
           <li>
-            <Link className="navLink" href="/badges">
+            <Link className="navLink" href="/badges" onClick={closeMenu}>
               My badges
             </Link>
           </li>
           <li>
-            <Link className="navLink" href="/stats">
+            <Link className="navLink" href="/stats" onClick={closeMenu}>
               My stats
             </Link>
           </li>
           <li>
-            <Link className="navLink" href="/profile">
+            <Link className="navLink" href="/profile" onClick={closeMenu}>
               My profile
             </Link>
           </li>
