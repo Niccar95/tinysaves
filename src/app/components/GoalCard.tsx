@@ -72,13 +72,11 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
       <article className="goalCard">
         <h2>{goal.title}</h2>
 
-        <section className="progressSection">
-          <ProgressBar
-            progress={displayProgress}
-            isComplete={isComplete}
-            targetAmount={goal.targetAmount}
-          ></ProgressBar>
-        </section>
+        <ProgressBar
+          progress={displayProgress}
+          isComplete={isComplete}
+          targetAmount={goal.targetAmount}
+        ></ProgressBar>
 
         <section className="actionSection">
           <button className="addButton" onClick={handleOpenForm}>
@@ -88,9 +86,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
             <i className="bi bi-three-dots"></i>
           </button>
         </section>
-
         {openToolBar && <ToolBar goal={goal} deleteGoal={deleteGoal} />}
-
         {isEditing && (
           <section className="progressFormSection">
             <form onSubmit={handleUpdateProgress}>

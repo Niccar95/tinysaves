@@ -9,9 +9,8 @@
     border-radius: 15px;
 
     .progressSection {
-        display: flex; 
-        gap: 2rem;
-
+        width: 100%;
+        
         @include desktop() {
             display: flex;
             flex-direction: row;
