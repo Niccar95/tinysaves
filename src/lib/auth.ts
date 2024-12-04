@@ -39,7 +39,7 @@ export const authOptions: AuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.userId = user.id;
-        token.avatar = user.image;
+        token.image = user.image;
       }
       return token;
     },
