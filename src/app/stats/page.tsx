@@ -2,6 +2,7 @@ import React from "react";
 import prisma from "../db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import Charts from "../components/Charts";
 
 const Page = async () => {
   const session = await getServerSession(authOptions);
@@ -35,12 +36,13 @@ const Page = async () => {
     <>
       <section className="content">
         <h1>My stats</h1>
-
         <h2>Amount of added goals: {allGoals.length}</h2>
         <h2>Completed goals: {completedGoals.length}</h2>
         <h2>Percentage of completed goals: {completedPercentage}</h2>
         <h2>Amount of money saved: {totalSaved}</h2>
       </section>
+
+      <Charts />
     </>
   );
 };
