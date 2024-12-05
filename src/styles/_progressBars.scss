@@ -5,10 +5,10 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    border: solid black;
+    border: solid 1px #79AEFF;
     height: 50px;
     padding: 0.5rem;
-    border-radius: 15px;
+    border-radius: 20px;
 
     @include desktop() {
         height: 70px;
@@ -18,10 +18,16 @@
     .progress {
         position: absolute;
         background-color: blue;
+        background: linear-gradient(
+            90deg,
+            rgba(58, 123, 213, 1) 0%,
+            rgba(0, 210, 255, 1) 50%,
+            rgba(58, 213, 174, 1) 100%
+          );
         left: 0.5rem;
         top: 0.5rem;
         bottom: 0.5rem;
-        border-radius: 15px;
+        border-radius: 20px;
         z-index: -1;
         transition: width 0.3s ease;
     }

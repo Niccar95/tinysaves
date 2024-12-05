@@ -1,4 +1,44 @@
-.doughnutChartContainer {
-    width: 200px;
-    height: 200px;
+@use "./mixins" as *;
+
+.statSummarySection {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1), 0px 0px 30px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+
 }
+
+
+.chartSection {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1), 0px 0px 30px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+
+    @include desktop() {
+        flex-direction: row;
+    }
+
+
+
+    .doughnutChartContainer {
+        width: 300px;
+        height: 300px;
+    }
+
+    .lineChartContainer {
+        width: 100%;
+   
+
+        @include desktop() {
+            width: 600px;
+            height: 600px;
+           
+        }
+    }
+}
+
