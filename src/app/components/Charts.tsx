@@ -1,28 +1,35 @@
 "use client";
 
 import React from "react";
-import { ArcElement, Chart } from "chart.js";
+import { Chart, registerables } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
-Chart.register(ArcElement);
+Chart.register(...registerables);
 
-const test = {
-  labels: ["Red", "Blue", "Yellow"],
-  datasets: [
-    {
-      label: "My First Dataset",
-      data: [300, 50, 100],
-      backgroundColor: [
-        "rgb(255, 99, 132)",
-        "rgb(54, 162, 235)",
-        "rgb(255, 205, 86)",
-      ],
-      hoverOffset: 4,
-    },
-  ],
-};
+interface ChartProps {
+  completedGoals: number;
+  totalGoals: number;
+  totalSaved: number;
+  completedPercentage: number;
+}
 
-const Charts = () => {
+const Charts = ({
+  completedGoals,
+  totalGoals,
+  totalSaved,
+  completedPercentage,
+}: ChartProps) => {
+  const test = {
+    labels: ["Not completed", "Completed"],
+    datasets: [
+      {
+        label: "Goals Completion",
+        data: [completedGoals, totalGoals - completedGoals],
+        backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
+        hoverOffset: 4,
+      },
+    ],
+  };
   return (
     <>
       <div className="doughnutChartContainer">

@@ -40,9 +40,13 @@ const Page = async () => {
         <h2>Completed goals: {completedGoals.length}</h2>
         <h2>Percentage of completed goals: {completedPercentage}</h2>
         <h2>Amount of money saved: {totalSaved}</h2>
+        <Charts
+          completedGoals={completedGoals.length}
+          totalGoals={allGoals.length}
+          totalSaved={totalSaved}
+          completedPercentage={completedPercentage}
+        />
       </section>
-
-      <Charts />
     </>
   );
 };
