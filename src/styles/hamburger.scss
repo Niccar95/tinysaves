@@ -37,7 +37,7 @@
     top: 63px;
     bottom: 0;
     left: -100%;
-    z-index: 100;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -49,9 +49,9 @@
 
     @include desktop() {
         position: fixed;
-        height: 100vh;
+        height: auto;
         width: 15%;
-        top: 0;
+        top: 100px;
         left: 0; 
         opacity: 1;
         transition: none; 

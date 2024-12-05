@@ -20,7 +20,7 @@ export default function RootLayout({
       <body>
         <SessionProvider>
           <header>
-            <Image src={logo} alt="icon" height="100" width="100"></Image>
+            <Image className="logo" src={logo} alt="icon"></Image>
           </header>
           <main>
             {pathname !== "/" && pathname !== "/registration" && (

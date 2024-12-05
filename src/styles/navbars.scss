@@ -7,11 +7,6 @@
        flex-direction: column;
        list-style: none;
 
-       @include desktop() {
-         margin-top: 100px;
-         
-       }
-
 
     li {
       padding: 1.5rem; 
