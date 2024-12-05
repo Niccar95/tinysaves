@@ -6,64 +6,64 @@ import { useState } from "react";
 
 const Navbar = () => {
   const [burgerClass, setBurgerClass] = useState("burgerBar unclicked");
-  const [menuClass, setMenuClass] = useState("menu hidden");
-  const [isMenuClicked, setIsMenuClicked] = useState(false);
+  const [navClass, setNavClass] = useState("navBar hidden");
+  const [isNavClicked, setIsNavClicked] = useState(false);
   const handleLogout = () => {
     signOut({
       callbackUrl: "/",
     });
   };
 
-  const updateMenu = () => {
-    if (!isMenuClicked) {
+  const updateNavBar = () => {
+    if (!isNavClicked) {
       setBurgerClass("burgerBar clicked");
-      setMenuClass("menu visible");
+      setNavClass("navBar visible");
     } else {
       setBurgerClass("burgerBar unclicked");
-      setMenuClass("menu hidden");
+      setNavClass("navBar hidden");
     }
-    setIsMenuClicked(!isMenuClicked);
+    setIsNavClicked(!isNavClicked);
   };
 
-  const closeMenu = () => {
+  const closeNavBar = () => {
     setBurgerClass("burgerBar unclicked");
-    setMenuClass("menu hidden");
-    setIsMenuClicked(false);
+    setNavClass("navBar hidden");
+    setIsNavClicked(false);
   };
 
   return (
     <>
       <section className="hamburgerSection">
-        <div className="hamburgerMenu" onClick={updateMenu}>
+        <div className="hamburgerMenu" onClick={updateNavBar}>
           <div className={burgerClass}></div>
           <div className={burgerClass}></div>
           <div className={burgerClass}></div>
         </div>
       </section>
-      <nav className={menuClass}>
+      <nav className={navClass}>
         <ul>
           <li>
-            <Link className="navLink" href="/dashboard" onClick={closeMenu}>
+            <Link className="navLink" href="/dashboard" onClick={closeNavBar}>
               Dashboard
             </Link>
           </li>
           <li>
-            <Link className="navLink" href="/goals" onClick={closeMenu}>
+            <Link className="navLink" href="/goals" onClick={closeNavBar}>
               My goals
             </Link>
           </li>
           <li>
-            <Link className="navLink" href="/badges" onClick={closeMenu}>
+            <Link className="navLink" href="/badges" onClick={closeNavBar}>
               My badges
             </Link>
           </li>
           <li>
-            <Link className="navLink" href="/stats" onClick={closeMenu}>
+            <Link className="navLink" href="/stats" onClick={closeNavBar}>
               My stats
             </Link>
           </li>
           <li>
-            <Link className="navLink" href="/profile" onClick={closeMenu}>
+            <Link className="navLink" href="/profile" onClick={closeNavBar}>
               My profile
             </Link>
           </li>

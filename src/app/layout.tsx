@@ -22,7 +22,6 @@ export default function RootLayout({
           <header>
             <Image src={logo} alt="icon" height="100" width="100"></Image>
           </header>
-
           <main>
             {pathname !== "/" && pathname !== "/registration" && (
               <Navbar></Navbar>

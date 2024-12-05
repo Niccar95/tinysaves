@@ -2,15 +2,26 @@
 @use "./variables" as *;
 
     ul {
+
        display: flex;
        flex-direction: column;
-       gap: 2rem;
        list-style: none;
 
        @include desktop() {
-        gap: 3rem;
+         margin-top: 100px;
+         
+       }
+
+
+    li {
+      padding: 1.5rem; 
     }
 
+
+    li:hover {
+      background-color: #5f90cc;
+    }
+   
        .navLink {
         font-weight: $link-font-weight;
         color: #2A3D56;

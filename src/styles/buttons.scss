@@ -16,7 +16,7 @@
 
 
 .logoutButton {
-    height: 40px;
+    padding: 1.5rem;
     font-weight: $button-font-weight;
     background-color: transparent;
     color: $primary-text-color;
@@ -25,6 +25,7 @@
 
     &:hover {
         text-decoration: underline;
+        
     }
 }
 
