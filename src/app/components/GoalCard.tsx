@@ -84,27 +84,38 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
         ></ProgressBar>
 
         <section className="actionSection">
-          {(daysRemaining === null || daysRemaining > 0) && (
-            <button className="addButton" onClick={handleOpenForm}>
-              Update progress
-            </button>
-          )}
+          {(daysRemaining === null || daysRemaining > 0) &&
+            displayProgress < goal.targetAmount && (
+              <button className="addButton" onClick={handleOpenForm}>
+                <i className="bi bi-coin"></i>
+                Update progress
+              </button>
+            )}
 
-          {(daysRemaining === null || daysRemaining > 0) && (
-            <button className="toolsButton" onClick={handleOpenToolBar}>
-              <i className="bi bi-three-dots"></i>
-            </button>
-          )}
+          {(daysRemaining === null || daysRemaining > 0) &&
+            displayProgress < goal.targetAmount && (
+              <button className="toolsButton" onClick={handleOpenToolBar}>
+                <i className="bi bi-three-dots"></i>
+              </button>
+            )}
         </section>
 
         {goal.dueDate !== null &&
           daysRemaining !== null &&
           daysRemaining >= 0 && (
             <>
-              <p>Due date: {formattedDate}</p>
-              <p>Days remaining: {daysRemaining}</p>
+              <p>
+                <i className="bi bi-calendar-date"></i>
+                Final date: {formattedDate}
+              </p>
+              <p>
+                <i className="bi bi-clock"></i>
+                {daysRemaining} days remaining
+              </p>
             </>
           )}
+
+        {goal.dueDate == null && <p>No due date</p>}
 
         {daysRemaining !== null && daysRemaining <= 0 && (
           <p>Due date reached!</p>
