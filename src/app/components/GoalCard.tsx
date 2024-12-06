@@ -21,9 +21,19 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
 
   const formattedDate = goal.dueDate
-    ? DateTime.fromISO(goal.dueDate.toISOString()).toFormat("dd LLL yyyy")
+    ? DateTime.fromJSDate(new Date(goal.dueDate)).toFormat("dd LLL yyyy")
     : null;
-  console.log(formattedDate);
+
+  const dueDate = goal.dueDate
+    ? DateTime.fromJSDate(new Date(goal.dueDate))
+    : null;
+
+  const daysRemaining =
+    dueDate && dueDate.isValid
+      ? dueDate.diff(DateTime.now(), "days").days
+      : null;
+
+  console.log("Days Remaining:", daysRemaining);
 
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
