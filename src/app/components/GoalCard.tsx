@@ -100,23 +100,6 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
             )}
         </section>
 
-        {goal.dueDate !== null &&
-          daysRemaining !== null &&
-          daysRemaining >= 0 && (
-            <>
-              <p>
-                <i className="bi bi-calendar-date"></i>
-                Final date: {formattedDate}
-              </p>
-              <p>
-                <i className="bi bi-clock"></i>
-                {daysRemaining} days remaining
-              </p>
-            </>
-          )}
-
-        {goal.dueDate == null && <p>No due date</p>}
-
         {daysRemaining !== null && daysRemaining <= 0 && (
           <p>Due date reached!</p>
         )}
@@ -138,6 +121,23 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
             </form>
           </section>
         )}
+
+        {goal.dueDate !== null &&
+          daysRemaining !== null &&
+          daysRemaining >= 0 && (
+            <section className="progressInfoSection">
+              <p>
+                <i className="bi bi-calendar-date"></i>
+                Final date: {formattedDate}
+              </p>
+              <p>
+                <i className="bi bi-clock"></i>
+                {daysRemaining} days remaining
+              </p>
+            </section>
+          )}
+
+        {goal.dueDate == null && <p>No due date</p>}
       </article>
     </>
   );

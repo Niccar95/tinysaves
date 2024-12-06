@@ -1,12 +1,15 @@
 @use "./mixins" as *;
+@use "./variables" as *;
 
 .goalCard {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     padding: 1.5rem;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1), 0px 0px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: $shadow;
     border-radius: 15px;
+    transition: height 0.3s ease;
+
 
     .progressSection {
         display: flex;
@@ -25,4 +28,9 @@
         gap: 1rem;
     }
 
+    .progressInfoSection {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
 }

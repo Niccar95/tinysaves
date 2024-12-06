@@ -36,8 +36,8 @@ const Page = async () => {
   return (
     <>
       <section className="content">
+        <h1>My stats</h1>
         <section className="statSummarySection">
-          <h1>My stats</h1>
           <p>Amount of added goals: {summaryData.totalGoals}</p>
           <p>Completed goals: {summaryData.completedGoals}</p>
           <p>
