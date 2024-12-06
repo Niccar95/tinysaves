@@ -4,7 +4,7 @@ import { Goals } from "@prisma/client";
 import React, { FormEvent, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import ToolBar from "./ToolBar";
-import { DateTime } from "luxon";
+import { processDueDate } from "@/utils/dateUtils";
 
 interface GoalProps {
   goal: Goals;
@@ -20,20 +20,9 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [displayProgress, setDisplayProgress] = useState<number>(goal.progress);
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
 
-  const formattedDate = goal.dueDate
-    ? DateTime.fromJSDate(new Date(goal.dueDate)).toFormat("dd LLL yyyy")
-    : null;
-
-  const dueDate = goal.dueDate
-    ? DateTime.fromJSDate(new Date(goal.dueDate))
-    : null;
-
-  const daysRemaining =
-    dueDate && dueDate.isValid
-      ? Math.round(dueDate.diff(DateTime.now(), "days").days)
-      : null;
-
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
+  const { formattedDate, daysRemaining } = processDueDate(goal.dueDate);
 
   const handleOpenForm = () => {
     if (!isEditing) {
@@ -108,12 +97,14 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
           )}
         </section>
 
-        {dueDate !== null && daysRemaining !== null && daysRemaining >= 0 && (
-          <>
-            <p>Due date: {formattedDate}</p>
-            <p>Days remaining: {daysRemaining}</p>
-          </>
-        )}
+        {goal.dueDate !== null &&
+          daysRemaining !== null &&
+          daysRemaining >= 0 && (
+            <>
+              <p>Due date: {formattedDate}</p>
+              <p>Days remaining: {daysRemaining}</p>
+            </>
+          )}
 
         {daysRemaining !== null && daysRemaining <= 0 && (
           <p>Due date reached!</p>

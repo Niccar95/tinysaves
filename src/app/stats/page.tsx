@@ -6,7 +6,7 @@ import Charts from "../components/Charts";
 import {
   calculateLineChartData,
   calculateSummaryData,
-} from "@/utils/dataUtils";
+} from "@/utils/statsUtils";
 
 const Page = async () => {
   const session = await getServerSession(authOptions);

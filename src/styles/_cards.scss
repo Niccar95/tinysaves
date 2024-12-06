@@ -9,10 +9,12 @@
     border-radius: 15px;
 
     .progressSection {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
         width: 100%;
         
         @include desktop() {
-            display: flex;
             flex-direction: row;
             gap: 2rem;
         }
