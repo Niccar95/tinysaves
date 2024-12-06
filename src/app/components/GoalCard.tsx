@@ -4,6 +4,7 @@ import { Goals } from "@prisma/client";
 import React, { FormEvent, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import ToolBar from "./ToolBar";
+import { DateTime } from "luxon";
 
 interface GoalProps {
   goal: Goals;
@@ -18,6 +19,11 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [progress, setProgress] = useState<string>("");
   const [displayProgress, setDisplayProgress] = useState<number>(goal.progress);
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
+
+  const formattedDate = goal.dueDate
+    ? DateTime.fromISO(goal.dueDate.toISOString()).toFormat("dd LLL yyyy")
+    : null;
+  console.log(formattedDate);
 
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
@@ -88,6 +94,8 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
             <i className="bi bi-three-dots"></i>
           </button>
         </section>
+
+        {goal.dueDate !== null && <p>Due date: {formattedDate}</p>}
         {openToolBar && <ToolBar goal={goal} deleteGoal={deleteGoal} />}
         {isEditing && (
           <section className="progressFormSection">
