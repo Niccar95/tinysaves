@@ -5,11 +5,32 @@ import React, { FormEvent, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import ToolBar from "./ToolBar";
 import { processDueDate } from "@/utils/dateUtils";
+import Joi from "joi";
 
 interface GoalProps {
   goal: Goals;
   deleteGoal: (goalId: string) => void;
 }
+
+const schema = Joi.object({
+  progress: Joi.string()
+    .custom((value, helpers) => {
+      const numericValue = parseFloat(value);
+      if (isNaN(numericValue)) {
+        return helpers.error("number.base");
+      }
+      if (numericValue <= 0) {
+        return helpers.error("number.greater");
+      }
+      return value;
+    })
+    .required()
+    .messages({
+      "string.empty": "This is a required field",
+      "number.base": "Target amount must be a valid number",
+      "number.greater": "Target amount must be greater than 0",
+    }),
+});
 
 const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -19,6 +40,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [progress, setProgress] = useState<string>("");
   const [displayProgress, setDisplayProgress] = useState<number>(goal.progress);
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
@@ -42,6 +64,16 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
 
   const handleUpdateProgress = async (e: FormEvent) => {
     e.preventDefault();
+
+    const { error } = schema.validate({ progress });
+
+    if (error) {
+      const newErrors = Object.fromEntries(
+        error.details.map(({ path, message }) => [path[0], message])
+      );
+      setErrors(newErrors);
+      return;
+    }
 
     const numericTargetAmount = parseFloat(progress);
 
@@ -117,6 +149,10 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
                 value={progress ?? ""}
                 onChange={(e) => setProgress(e.target.value)}
               ></input>
+
+              {errors.progress && (
+                <div style={{ color: "red" }}>{errors.progress}</div>
+              )}
               <button className="updateButton">Update</button>
             </form>
           </section>
