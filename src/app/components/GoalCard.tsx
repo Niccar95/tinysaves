@@ -30,7 +30,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
 
   const daysRemaining =
     dueDate && dueDate.isValid
-      ? dueDate.diff(DateTime.now(), "days").days
+      ? Math.round(dueDate.diff(DateTime.now(), "days").days)
       : null;
 
   console.log("Days Remaining:", daysRemaining);
@@ -105,7 +105,13 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
           </button>
         </section>
 
-        {goal.dueDate !== null && <p>Due date: {formattedDate}</p>}
+        {goal.dueDate !== null && (
+          <>
+            <p>Due date: {formattedDate}</p>
+            <p>Days remaining: {daysRemaining}</p>
+          </>
+        )}
+
         {openToolBar && <ToolBar goal={goal} deleteGoal={deleteGoal} />}
         {isEditing && (
           <section className="progressFormSection">
