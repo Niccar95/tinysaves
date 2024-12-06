@@ -2,7 +2,9 @@
 
 import Joi from "joi";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import React, { FormEvent, useState } from "react";
+import money from "/public/moneyIcon.svg";
 
 const schema = Joi.object({
   title: Joi.string().min(3).required().messages({
@@ -10,10 +12,23 @@ const schema = Joi.object({
       "Your savings goal name should have a minimum length of 3 characters",
     "string.empty": "This is a required field",
   }),
-  targetAmount: Joi.number().greater(0).required().messages({
-    "number.base": "Target amount must be a valid number",
-    "number.greater": "Target amount should be greater than 0",
-  }),
+  targetAmount: Joi.string()
+    .custom((value, helpers) => {
+      const numericValue = parseFloat(value);
+      if (isNaN(numericValue)) {
+        return helpers.error("number.base");
+      }
+      if (numericValue <= 0) {
+        return helpers.error("number.greater");
+      }
+      return value;
+    })
+    .required()
+    .messages({
+      "string.empty": "This is a required field",
+      "number.base": "Target amount must be a valid number",
+      "number.greater": "Target amount must be greater than 0",
+    }),
   dueDate: Joi.string().allow("").optional(),
 });
 
@@ -92,6 +107,10 @@ const SavingsForm = () => {
 
       {!isFormHidden && (
         <form className="addGoalForm" onSubmit={handleCreateGoal}>
+          <section className="topSection">
+            <h2>Time to Save!</h2>
+            <Image className="moneyIcon" src={money} alt="icon"></Image>
+          </section>
           <label htmlFor="title">
             What savings goal would you like to set?
           </label>

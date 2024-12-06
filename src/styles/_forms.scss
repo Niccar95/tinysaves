@@ -23,5 +23,12 @@ form {
     border-radius: 15px;
     padding: 2rem;
     box-shadow: $shadow;
+
+
+    .topSection {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
 }
 

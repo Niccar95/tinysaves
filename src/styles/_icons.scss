@@ -1,3 +1,5 @@
+@use "./mixins.scss" as *;
+
 .bi-trash3, .bi-palette, .bi-plus-circle, .bi-box-arrow-left, .bi-clock, .bi-calendar-date, .bi-coin {
     margin-right: 8px;
   }
@@ -5,6 +7,18 @@
   .logo {
     height: 50px;
     width: 50px;
+  }
+
+  .moneyIcon {
+    height: 70px;
+    width: 70px;
+
+    @include desktop() {
+      height: 100px;
+      width: 100px;
+      
+    }
+
   }
 
  

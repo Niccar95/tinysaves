@@ -18,7 +18,6 @@ const Dashboard = async () => {
         <h1>Dashboard</h1>
 
         {session !== null && <h2>Welcome {userName || "User"}!</h2>}
-
         <SavingsForm />
       </section>
     </>
