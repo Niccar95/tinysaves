@@ -33,8 +33,6 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
       ? Math.round(dueDate.diff(DateTime.now(), "days").days)
       : null;
 
-  console.log("Days Remaining:", daysRemaining);
-
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
   const handleOpenForm = () => {
@@ -97,22 +95,32 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
         ></ProgressBar>
 
         <section className="actionSection">
-          <button className="addButton" onClick={handleOpenForm}>
-            Update progress
-          </button>
-          <button className="toolsButton" onClick={handleOpenToolBar}>
-            <i className="bi bi-three-dots"></i>
-          </button>
+          {(daysRemaining === null || daysRemaining > 0) && (
+            <button className="addButton" onClick={handleOpenForm}>
+              Update progress
+            </button>
+          )}
+
+          {(daysRemaining === null || daysRemaining > 0) && (
+            <button className="toolsButton" onClick={handleOpenToolBar}>
+              <i className="bi bi-three-dots"></i>
+            </button>
+          )}
         </section>
 
-        {goal.dueDate !== null && (
+        {dueDate !== null && daysRemaining !== null && daysRemaining >= 0 && (
           <>
             <p>Due date: {formattedDate}</p>
             <p>Days remaining: {daysRemaining}</p>
           </>
         )}
 
+        {daysRemaining !== null && daysRemaining <= 0 && (
+          <p>Due date reached!</p>
+        )}
+
         {openToolBar && <ToolBar goal={goal} deleteGoal={deleteGoal} />}
+
         {isEditing && (
           <section className="progressFormSection">
             <form onSubmit={handleUpdateProgress}>
