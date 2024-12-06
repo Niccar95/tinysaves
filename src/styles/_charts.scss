@@ -26,19 +26,25 @@
 
 
     .doughnutChartContainer {
-        width: 300px;
-        height: 300px;
+        width: 200px;
+        height: 200px;
+
+
+        @include desktop() {
+            width: 300px;
+            height: 300px;
+        }
+        
     }
 
     .lineChartContainer {
         width: 100%;
-   
+
 
         @include desktop() {
             width: 600px;
-            height: 600px;
-           
         }
+
     }
 }
 

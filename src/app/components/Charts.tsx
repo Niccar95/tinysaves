@@ -7,20 +7,20 @@ import { Doughnut, Line } from "react-chartjs-2";
 Chart.register(...registerables);
 
 interface ChartProps {
-  completedGoals: number;
-  totalGoals: number;
-  totalSaved: number;
-  completedPercentage: number;
-  creationDates: string[];
+  summaryData: {
+    completedGoals: number;
+    totalGoals: number;
+    totalSaved: number;
+    completedPercentage: number;
+  };
+  lineChartData: {
+    labels: string[];
+    values: number[];
+  };
 }
 
-const Charts = ({
-  completedGoals,
-  totalGoals,
-  totalSaved,
-  completedPercentage,
-  creationDates,
-}: ChartProps) => {
+const Charts = ({ summaryData, lineChartData }: ChartProps) => {
+  const { completedGoals, totalGoals } = summaryData;
   const doughNutData = {
     labels: ["Completed", "Not completed"],
     datasets: [
@@ -33,23 +33,12 @@ const Charts = ({
     ],
   };
 
-  const dateCounts = creationDates.reduce(
-    (acc: { [key: string]: number }, date: string) => {
-      acc[date] = (acc[date] || 0) + 1;
-      return acc;
-    },
-    {} as { [key: string]: number }
-  );
-
-  const lineLabels = Object.keys(dateCounts);
-  const lineDataValues = Object.values(dateCounts);
-
   const lineData = {
-    labels: lineLabels,
+    labels: lineChartData.labels,
     datasets: [
       {
-        label: "Added goals",
-        data: lineDataValues,
+        label: "Added goals by date",
+        data: lineChartData.values,
         fill: false,
         borderColor: "rgb(75, 192, 192)",
         tension: 0.1,

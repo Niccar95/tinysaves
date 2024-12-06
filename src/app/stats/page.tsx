@@ -3,6 +3,10 @@ import prisma from "../db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Charts from "../components/Charts";
+import {
+  calculateLineChartData,
+  calculateSummaryData,
+} from "@/utils/dataUtils";
 
 const Page = async () => {
   const session = await getServerSession(authOptions);
@@ -26,34 +30,23 @@ const Page = async () => {
   }
 
   const allGoals = await prisma.goals.findMany({ where: { userId } });
-  const completedGoals = allGoals.filter((goal) => goal.isComplete);
-  const completedPercentage = (completedGoals.length / allGoals.length) * 100;
-  const totalSaved = allGoals.reduce((total, goal) => total + goal.progress, 0);
-
-  const creationDates = allGoals.map((goal) =>
-    new Date(goal.createdAt).toLocaleDateString()
-  );
-
-  console.log(allGoals);
-  console.log(creationDates);
+  const summaryData = calculateSummaryData(allGoals);
+  const lineChartData = calculateLineChartData(allGoals);
 
   return (
     <>
       <section className="content">
         <section className="statSummarySection">
           <h1>My stats</h1>
-          <p>Amount of added goals: {allGoals.length}</p>
-          <p>Completed goals: {completedGoals.length}</p>
-          <p>Percentage of completed goals: {completedPercentage}</p>
-          <p>Amount of money saved: {totalSaved}</p>
+          <p>Amount of added goals: {summaryData.totalGoals}</p>
+          <p>Completed goals: {summaryData.completedGoals}</p>
+          <p>
+            Percentage of completed goals:{" "}
+            {summaryData.completedPercentage.toFixed(2)}%
+          </p>
+          <p>Amount of money saved: {summaryData.totalSaved}</p>
         </section>
-        <Charts
-          completedGoals={completedGoals.length}
-          totalGoals={allGoals.length}
-          totalSaved={totalSaved}
-          completedPercentage={completedPercentage}
-          creationDates={creationDates}
-        />
+        <Charts summaryData={summaryData} lineChartData={lineChartData} />
       </section>
     </>
   );
