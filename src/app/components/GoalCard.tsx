@@ -44,6 +44,8 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
 
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
+  console.log(`Base URL being used: ${baseUrl}`);
+
   const { formattedDate, daysRemaining } = processDueDate(goal.dueDate);
 
   const handleOpenForm = () => {
