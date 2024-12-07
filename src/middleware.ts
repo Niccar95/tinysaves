@@ -17,16 +17,21 @@
 // export const config = {
 //   matcher: ["/dashboard", "/goals", "/badges", "/stats", "/profile"],
 // };
+
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
-const allowedOrigins = ["https://tinysaves.vercel.app", "https://*.vercel.app"]; // Allow Vercel preview domains
+const allowedOrigins = ["https://tinysaves.vercel.app", "https://*.vercel.app"];
 const corsOptions = {
   "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
 export async function middleware(req: NextRequest) {
+  if (req.url.includes("/api/auth")) {
+    return NextResponse.next();
+  }
+
   const isPreflight = req.method === "OPTIONS";
 
   const origin = req.headers.get("origin") ?? "";
