@@ -42,7 +42,8 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000";
 
   console.log(`Base URL being used YEEE: ${baseUrl}`);
 
@@ -155,7 +156,9 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
               {errors.progress && (
                 <div style={{ color: "red" }}>{errors.progress}</div>
               )}
-              <button className="updateButton">Update</button>
+              <button type="submit" className="updateButton">
+                Update
+              </button>
             </form>
           </section>
         )}
