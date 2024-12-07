@@ -10,7 +10,8 @@ interface GoalListProps {
 
 const GoalList = ({ goals }: GoalListProps) => {
   const [savingGoals, setGoals] = useState<Goals[]>(goals);
-  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000";
 
   const deleteGoal = async (deletedGoalId: string) => {
     try {
