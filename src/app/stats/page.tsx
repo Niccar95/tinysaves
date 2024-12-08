@@ -38,13 +38,23 @@ const Page = async () => {
       <section className="content">
         <h1>My stats</h1>
         <section className="statSummarySection">
-          <p>Amount of added goals: {summaryData.totalGoals}</p>
-          <p>Completed goals: {summaryData.completedGoals}</p>
+          <h2>Complete overview</h2>
           <p>
-            Percentage of completed goals:{" "}
+            <span className="boldLabel">Your added goals:</span>{" "}
+            {summaryData.totalGoals}
+          </p>
+          <p>
+            <span className="boldLabel">Completed goals:</span>{" "}
+            {summaryData.completedGoals}
+          </p>
+          <p>
+            <span className="boldLabel"> Percentage of completed goals:</span>{" "}
             {summaryData.completedPercentage.toFixed(2)}%
           </p>
-          <p>Amount of money saved: {summaryData.totalSaved}</p>
+          <p>
+            <span className="boldLabel"> Amount of money saved: </span>{" "}
+            {summaryData.totalSaved}
+          </p>
         </section>
         <Charts summaryData={summaryData} lineChartData={lineChartData} />
       </section>
