@@ -37,7 +37,7 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
     labels: lineChartData.labels,
     datasets: [
       {
-        label: "Added goals by date",
+        label: "Goals added by date",
         data: lineChartData.values,
         fill: false,
         borderColor: "rgb(75, 192, 192)",
@@ -46,15 +46,40 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
     ],
   };
 
+  const lineChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          autoSkip: true,
+          maxTicksLimit: 10,
+        },
+      },
+      y: {
+        ticks: {
+          autoSkip: true,
+          maxTicksLimit: 10,
+          stepSize: 1,
+        },
+        beginAtZero: true,
+      },
+    },
+  };
+
   return (
     <>
       <section className="chartSection">
         <div className="doughnutChartContainer">
           <Doughnut data={doughNutData} />
         </div>
-
         <div className="lineChartContainer">
-          <Line data={lineData} />
+          <Line data={lineData} options={lineChartOptions} />
         </div>
       </section>
     </>
