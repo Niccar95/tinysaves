@@ -21,6 +21,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [displayProgress, setDisplayProgress] = useState<number>(goal.progress);
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  //const [currency, setCurrency] = useState<string>(goal.currency);
 
   const baseUrl =
     process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000";
@@ -96,6 +97,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
           progress={displayProgress}
           isComplete={isComplete}
           targetAmount={goal.targetAmount}
+          currency={goal.currency}
         ></ProgressBar>
 
         <section className="actionSection">

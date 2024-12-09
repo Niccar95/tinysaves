@@ -7,12 +7,14 @@ interface ProgressDataProps {
   progress: number;
   isComplete: boolean;
   targetAmount: number;
+  currency: string;
 }
 
 const ProgressBar = ({
   progress,
   isComplete,
   targetAmount,
+  currency,
 }: ProgressDataProps) => {
   const percentage = (progress / targetAmount) * 100;
 
@@ -31,7 +33,7 @@ const ProgressBar = ({
                 width: `${dynamicProgress}`,
               }}
             ></div>
-            {progress} / {targetAmount}
+            {progress} / {targetAmount} {currency}
           </div>
         )}
 
