@@ -1,59 +1,11 @@
 "use client";
 
-import Joi from "joi";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { FormEvent, useState } from "react";
 import money from "/public/moneyIcon.svg";
-import { DateTime } from "luxon";
 
-const schema = Joi.object({
-  title: Joi.string().min(3).required().messages({
-    "string.min":
-      "Your savings goal name should have a minimum length of 3 characters",
-    "string.empty": "This is a required field",
-  }),
-  targetAmount: Joi.string()
-    .custom((value, helpers) => {
-      const numericValue = parseFloat(value);
-      if (isNaN(numericValue)) {
-        return helpers.error("number.base");
-      }
-      if (numericValue <= 0) {
-        return helpers.error("number.greater");
-      }
-      return value;
-    })
-    .required()
-    .messages({
-      "string.empty": "This is a required field",
-      "number.base": "Target amount must be a valid number",
-      "number.greater": "Target amount must be greater than 0",
-    }),
-  dueDate: Joi.string()
-    .allow("")
-    .optional()
-    .custom((value, helpers) => {
-      if (!value) return value;
-
-      const today = DateTime.now().startOf("day");
-      const dueDate = DateTime.fromISO(value);
-
-      if (dueDate < today) {
-        return helpers.error("date.isPast");
-      }
-
-      if (dueDate.hasSame(today, "day")) {
-        return helpers.error("date.isToday");
-      }
-
-      return value;
-    })
-    .messages({
-      "date.isPast": "The due date cannot be in the past",
-      "date.isToday": "The due date cannot be today's date",
-    }),
-});
+import { goalForm } from "@/utils/validationSchemas";
 
 const SavingsForm = () => {
   const { data: session } = useSession();
@@ -72,7 +24,7 @@ const SavingsForm = () => {
   const handleCreateGoal = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { error } = schema.validate(
+    const { error } = goalForm.validate(
       { title, targetAmount, dueDate },
       { abortEarly: false }
     );

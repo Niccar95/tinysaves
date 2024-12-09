@@ -1,24 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import Joi from "joi";
 import Spinner from "../components/Spinner";
-
-// Joi Schema
-const schema = Joi.object({
-  name: Joi.string().min(3).required().label("Name"),
-  email: Joi.string()
-    .email({ tlds: { allow: false } })
-    .required()
-    .label("Email"),
-  password: Joi.string().min(6).required().label("Password"),
-  repeatPassword: Joi.valid(Joi.ref("password"))
-    .required()
-    .label("Repeat Password")
-    .messages({
-      "any.only": "Passwords must match",
-    }),
-});
+import { register } from "@/utils/validationSchemas";
 
 const Page = () => {
   const router = useRouter();
@@ -47,7 +31,7 @@ const Page = () => {
     e.preventDefault();
     setLoader(true);
 
-    const { error } = schema.validate(formData, { abortEarly: false });
+    const { error } = register.validate(formData, { abortEarly: false });
 
     if (error) {
       const newErrors = Object.fromEntries(
@@ -119,6 +103,10 @@ const Page = () => {
           {errors.repeatPassword && (
             <div style={{ color: "red" }}>{errors.repeatPassword}</div>
           )}
+          {formData.password &&
+            formData.password === formData.repeatPassword && (
+              <div style={{ color: "green" }}>Passwords match!</div>
+            )}
           {loader && (
             <div className="spinnerWrapper">
               <Spinner />

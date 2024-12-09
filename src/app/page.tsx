@@ -4,16 +4,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import Spinner from "./components/Spinner";
-import Joi from "joi";
-
-const schema = Joi.object({
-  name: Joi.string().required().messages({
-    "string.empty": "This is a required field",
-  }),
-  password: Joi.string().required().messages({
-    "string.empty": "This is a required field",
-  }),
-});
+import { login } from "@/utils/validationSchemas";
 
 const Login = () => {
   const [name, setName] = useState<string>("");
@@ -26,10 +17,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
 
-    const { error } = schema.validate(
-      { name, password },
-      { abortEarly: false }
-    );
+    const { error } = login.validate({ name, password }, { abortEarly: false });
 
     if (error) {
       const newErrors = Object.fromEntries(

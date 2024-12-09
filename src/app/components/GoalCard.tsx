@@ -5,32 +5,12 @@ import React, { FormEvent, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import ToolBar from "./ToolBar";
 import { processDueDate } from "@/utils/dateUtils";
-import Joi from "joi";
+import { goalProgress } from "@/utils/validationSchemas";
 
 interface GoalProps {
   goal: Goals;
   deleteGoal: (goalId: string) => void;
 }
-
-const schema = Joi.object({
-  progress: Joi.string()
-    .custom((value, helpers) => {
-      const numericValue = parseFloat(value);
-      if (isNaN(numericValue)) {
-        return helpers.error("number.base");
-      }
-      if (numericValue <= 0) {
-        return helpers.error("number.greater");
-      }
-      return value;
-    })
-    .required()
-    .messages({
-      "string.empty": "This is a required field",
-      "number.base": "Target amount must be a valid number",
-      "number.greater": "Target amount must be greater than 0",
-    }),
-});
 
 const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -68,7 +48,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const handleUpdateProgress = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { error } = schema.validate({ progress });
+    const { error } = goalProgress.validate({ progress });
 
     if (error) {
       const newErrors = Object.fromEntries(
