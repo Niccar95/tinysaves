@@ -19,7 +19,8 @@ const SavingsForm = () => {
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [isFormHidden, setIsFormHidden] = useState<boolean>(true);
 
-  const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000";
 
   const handleCreateGoal = async (e: FormEvent) => {
     e.preventDefault();
