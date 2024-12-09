@@ -29,7 +29,7 @@
     }
 }
 
-.addButton, .toolsButton, .actionButton, .addGoalButton  {
+.addButton, .toolsButton, .actionButton, .addGoalButton, .editButton  {
     font-size: 0.9rem;
     border-radius: 15px;
     height: 40px;
@@ -50,6 +50,23 @@
     width: 70px;
 }
 
+
+.addImageButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+
+    }
+}
 
 
 

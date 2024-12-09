@@ -1,6 +1,9 @@
 @use "./mixins.scss" as *;
 
-.bi-trash3, .bi-palette, .bi-plus-circle, .bi-box-arrow-left, .bi-clock, .bi-calendar-date, .bi-coin {
+.bi-trash3, .bi-palette, .bi-plus-circle, 
+.bi-box-arrow-left, 
+.bi-clock, .bi-calendar-date, 
+.bi-coin, .bi-pencil {
     margin-right: 8px;
   }
 
@@ -19,6 +22,11 @@
       
     }
 
+  }
+
+  .addImageIcon {
+    margin: 0;
+    font-size: 80px;
   }
 
  

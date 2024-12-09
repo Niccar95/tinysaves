@@ -1,13 +1,13 @@
 import React from "react";
 
-const BadgesPage = () => {
+const EditUserPage = () => {
   return (
     <>
       <section className="content">
-        <h1>My badges</h1>
+        <h1>Edit profile</h1>
       </section>
     </>
   );
 };
 
-export default BadgesPage;
+export default EditUserPage;

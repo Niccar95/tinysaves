@@ -8,13 +8,13 @@ import {
   calculateSummaryData,
 } from "@/utils/statsUtils";
 
-const Page = async () => {
+const StatsPage = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session) {
     return (
       <div>
-        <h1>Please log in to view your stats</h1>
+        <h1>You need to be logged in to access this page</h1>
       </div>
     );
   }
@@ -62,4 +62,4 @@ const Page = async () => {
   );
 };
 
-export default Page;
+export default StatsPage;
