@@ -4,17 +4,39 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import Spinner from "./components/Spinner";
+import Joi from "joi";
+
+const schema = Joi.object({
+  name: Joi.string().required().messages({
+    "string.empty": "This is a required field",
+  }),
+  password: Joi.string().required().messages({
+    "string.empty": "This is a required field",
+  }),
+});
 
 const Login = () => {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const router = useRouter();
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
+    const { error } = schema.validate({ name, password });
+
+    if (error) {
+      const newErrors = Object.fromEntries(
+        error.details.map(({ path, message }) => [path[0], message])
+      );
+
+      setErrors(newErrors);
+      setLoading(false);
+      return;
+    }
 
     const result = await signIn("credentials", {
       redirect: false,
@@ -25,7 +47,7 @@ const Login = () => {
     setLoading(false);
 
     if (result?.error) {
-      setErrorMessage("Invalid username or password.");
+      setErrors({ general: "Invalid username or password" });
     } else {
       router.push("/dashboard");
     }
@@ -44,6 +66,7 @@ const Login = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           ></input>
+          {errors.name && <div style={{ color: "red" }}>{errors.name}</div>}
 
           <label htmlFor="password">Password:</label>
           <input
@@ -54,7 +77,13 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           ></input>
 
-          {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
+          {errors.password && (
+            <div style={{ color: "red" }}>{errors.password}</div>
+          )}
+
+          {errors.general && (
+            <div style={{ color: "red" }}>{errors.general}</div>
+          )}
 
           {loading && (
             <div className="spinnerWrapper">
