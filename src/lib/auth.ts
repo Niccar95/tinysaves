@@ -24,7 +24,12 @@ export const authOptions: AuthOptions = {
           user.hashedPassword &&
           (await bcrypt.compare(credentials.password, user.hashedPassword))
         ) {
-          return { id: user.userId, name: user.name, image: user.image };
+          return {
+            id: user.userId,
+            name: user.name,
+            image: user.image,
+            email: user.email,
+          };
         }
         return null;
       },
@@ -39,6 +44,7 @@ export const authOptions: AuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.userId = user.id;
+        token.email = user.email;
         token.image = user.image;
       }
       return token;
@@ -48,6 +54,7 @@ export const authOptions: AuthOptions = {
       if (session.user) {
         session.user.id = token.userId as string;
         session.user.image = token.image as string;
+        session.user.email = token.email as string;
       }
       return session;
     },

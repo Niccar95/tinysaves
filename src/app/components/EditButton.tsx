@@ -7,7 +7,7 @@ const EditButton = () => {
   const router = useRouter();
 
   const handleEditClick = () => {
-    router.push("/editProfile");
+    router.push("/profile/edit");
   };
   return (
     <>

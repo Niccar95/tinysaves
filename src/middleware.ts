@@ -21,6 +21,6 @@ export const config = {
     "/badges",
     "/stats",
     "/profile",
-    "/editProfile",
+    "/profile/edit",
   ],
 };

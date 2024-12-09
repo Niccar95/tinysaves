@@ -18,7 +18,7 @@ const ToolBar = ({ goal, deleteGoal }: GoalProps) => {
           <i className="bi bi-palette"></i>
           Customise
         </button>
-        <button onClick={handleDeleteGoal} className="actionButton">
+        <button onClick={handleDeleteGoal} className="actionButton delete">
           <i className="bi bi-trash3"></i>
           Delete goal
         </button>
