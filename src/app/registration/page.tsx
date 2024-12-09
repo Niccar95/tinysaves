@@ -4,6 +4,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import Joi from "joi";
 import Spinner from "../components/Spinner";
 
+// Joi Schema
 const schema = Joi.object({
   name: Joi.string().min(3).required().label("Name"),
   email: Joi.string()
@@ -33,13 +34,13 @@ const Page = () => {
     password: "",
     repeatPassword: "",
   });
-  const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError(null);
+    setErrors({ ...errors, [e.target.name]: "" });
   };
 
   const registerUser = async (e: FormEvent) => {
@@ -47,8 +48,12 @@ const Page = () => {
     setLoader(true);
 
     const { error } = schema.validate(formData, { abortEarly: false });
+
     if (error) {
-      setError(error.details.map((err) => err.message).join(", "));
+      const newErrors = Object.fromEntries(
+        error.details.map(({ path, message }) => [path[0], message])
+      );
+      setErrors(newErrors);
       setLoader(false);
       return;
     }
@@ -82,6 +87,7 @@ const Page = () => {
             value={formData.name}
             onChange={handleChange}
           />
+          {errors.name && <div style={{ color: "red" }}>{errors.name}</div>}{" "}
           <label htmlFor="userEmail">Type your email:</label>
           <input
             id="userEmail"
@@ -90,7 +96,7 @@ const Page = () => {
             value={formData.email}
             onChange={handleChange}
           />
-
+          {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}{" "}
           <label htmlFor="userPassword">Create a strong password:</label>
           <input
             id="userPassword"
@@ -99,9 +105,10 @@ const Page = () => {
             value={formData.password}
             onChange={handleChange}
           />
-
+          {errors.password && (
+            <div style={{ color: "red" }}>{errors.password}</div>
+          )}
           <label htmlFor="repeatedUserPassword">Repeat your password:</label>
-
           <input
             id="repeatedUserPassword"
             type="password"
@@ -109,20 +116,14 @@ const Page = () => {
             value={formData.repeatPassword}
             onChange={handleChange}
           />
-
-          {error && <div style={{ color: "red" }}>{error}</div>}
-
-          {formData.password &&
-            formData.password === formData.repeatPassword && (
-              <div style={{ color: "green" }}>Passwords match!</div>
-            )}
-
+          {errors.repeatPassword && (
+            <div style={{ color: "red" }}>{errors.repeatPassword}</div>
+          )}
           {loader && (
             <div className="spinnerWrapper">
               <Spinner />
             </div>
           )}
-
           <button className="registerButton" type="submit">
             Register
           </button>

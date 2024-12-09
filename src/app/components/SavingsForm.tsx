@@ -72,7 +72,10 @@ const SavingsForm = () => {
   const handleCreateGoal = async (e: FormEvent) => {
     e.preventDefault();
 
-    const { error } = schema.validate({ title, targetAmount, dueDate });
+    const { error } = schema.validate(
+      { title, targetAmount, dueDate },
+      { abortEarly: false }
+    );
 
     if (error) {
       const newErrors = Object.fromEntries(
@@ -142,7 +145,10 @@ const SavingsForm = () => {
             id="title"
             type="text"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              setErrors({ ...errors, title: "" });
+            }}
           ></input>
           {errors.title && <div style={{ color: "red" }}>{errors.title}</div>}
 
@@ -151,7 +157,10 @@ const SavingsForm = () => {
             id="targetAmount"
             type="text"
             value={targetAmount}
-            onChange={(e) => setTargetAmount(e.target.value)}
+            onChange={(e) => {
+              setTargetAmount(e.target.value);
+              setErrors({ ...errors, targetAmount: "" });
+            }}
             min="0"
             inputMode="decimal"
           ></input>
@@ -163,7 +172,10 @@ const SavingsForm = () => {
             id="dueDate"
             type="date"
             value={dueDate}
-            onChange={(e) => setDueDate(e.target.value)}
+            onChange={(e) => {
+              setDueDate(e.target.value);
+              setErrors({ ...errors, dueDate: "" });
+            }}
           ></input>
           {errors.dueDate && (
             <div style={{ color: "red" }}>{errors.dueDate}</div>

@@ -26,7 +26,10 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
 
-    const { error } = schema.validate({ name, password });
+    const { error } = schema.validate(
+      { name, password },
+      { abortEarly: false }
+    );
 
     if (error) {
       const newErrors = Object.fromEntries(
@@ -64,7 +67,10 @@ const Login = () => {
             className="textInput"
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              setErrors({ ...errors, name: "" });
+            }}
           ></input>
           {errors.name && <div style={{ color: "red" }}>{errors.name}</div>}
 
@@ -74,7 +80,10 @@ const Login = () => {
             className="textInput"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setErrors({ ...errors, password: "" });
+            }}
           ></input>
 
           {errors.password && (

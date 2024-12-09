@@ -150,7 +150,10 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
                 type="text"
                 min="0"
                 value={progress ?? ""}
-                onChange={(e) => setProgress(e.target.value)}
+                onChange={(e) => {
+                  setProgress(e.target.value);
+                  setErrors({ ...errors, progress: "" });
+                }}
               ></input>
 
               {errors.progress && (
