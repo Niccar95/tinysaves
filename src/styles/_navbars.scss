@@ -1,25 +1,64 @@
 @use "./mixins" as *;
 @use "./variables" as *;
 
+ 
+.navBar {
+  position: absolute;
+  top: 63px;
+  bottom: 0;
+  left: -100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 500px;
+  background-color: #7DA6D7;
+  transition: ease-in-out 0.5s;
+
+
+  @include desktop() {
+      position: fixed;
+      height: auto;
+      width: 15%;
+      top: 100px;
+      left: 0; 
+      opacity: 1;
+      transition: none; 
+    }
+
     ul {
 
-       display: flex;
-       flex-direction: column;
-       list-style: none;
+      display: flex;
+      flex-direction: column;
+      list-style: none;
 
 
-    li {
-      padding: 1.5rem; 
-    }
+   li {
+     padding: 1.5rem; 
+   }
 
 
-    li:hover {
-      background-color: #5f90cc;
-    }
-   
-       .navLink {
-        font-weight: $link-font-weight;
-        color: #2A3D56;
-        text-decoration: none;
-       }
-    }
+   li:hover {
+     background-color: #5f90cc;
+   }
+  
+      .navLink {
+       font-weight: $link-font-weight;
+       color: #2A3D56;
+       text-decoration: none;
+      }
+   }
+}
+
+.visible {
+  left: 0;
+  opacity: 1;
+}
+
+.hidden {
+  @include desktop() {
+      left: 0;
+      opacity:1;
+     }
+}
