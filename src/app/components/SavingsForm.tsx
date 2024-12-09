@@ -13,6 +13,7 @@ const SavingsForm = () => {
 
   const [title, setTitle] = useState<string>("");
   const [targetAmount, setTargetAmount] = useState<string>("");
+  const [currency, setCurrency] = useState<string>("SEK");
   const [dueDate, setDueDate] = useState<string>("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [successMessage, setSuccessMessage] = useState<string>("");
@@ -49,6 +50,7 @@ const SavingsForm = () => {
           title,
           targetAmount: numericTargetAmount,
           dueDate: dueDate || null,
+          currency,
           userId,
         }),
       });
@@ -58,6 +60,7 @@ const SavingsForm = () => {
         setTitle("");
         setTargetAmount("");
         setDueDate("");
+        setCurrency("SEK");
         setErrors({});
       } else {
         setSuccessMessage("");
@@ -119,6 +122,20 @@ const SavingsForm = () => {
           {errors.targetAmount && (
             <div style={{ color: "red" }}>{errors.targetAmount}</div>
           )}
+
+          <label htmlFor="currency">Choose a currency:</label>
+          <select
+            name="currency"
+            id="currency"
+            value={currency}
+            onChange={(e) => setCurrency(e.target.value)}
+          >
+            <option value="SEK">SEK</option>
+            <option value="EUR">€</option>
+            <option value="GBP">£</option>
+            <option value="USD">$</option>
+          </select>
+
           <label htmlFor="dueDate">When is the due date? (optional)</label>
           <input
             id="dueDate"
