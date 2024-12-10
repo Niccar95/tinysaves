@@ -19,6 +19,7 @@ model User {
   email String @unique
   image String?
   hashedPassword String
+  displayName String?
   goals Goals[]        
   userBadges UserBadges[]     
   createdAt DateTime @default(now())

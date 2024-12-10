@@ -1,4 +1,4 @@
-## TinySaves 
+## TinySaves
 
 TinySaves is a savings goal application designed for users who are new to saving, encouraging small, regular contributions. Users can set personalized savings goals with amounts and optional deadlines, track their progress through a visual progress bar, and update their savings. The app features milestones with badges, statistics showing progress over time, and challenges to save small amounts daily or weekly. Users can also manage their profiles, categorize goals with icons, and receive motivational messages for consistent saving.
 
@@ -38,3 +38,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Setting Up Prisma Database
+
+Before you start:
+
+- Ensure you have Node.js installed on your machine.
+- Have npm or yarn for package management.
+- Set up a database (PostgreSQL, MySQL, SQLite, MongoDB, etc.).
+- Prisma CLI will be installed as part of the setup process.

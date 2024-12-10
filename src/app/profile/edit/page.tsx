@@ -14,15 +14,12 @@ const EditUserPage = async () => {
     );
   }
 
-  const name = session?.user.name || "";
-  const email = session?.user.email || "";
-
   return (
     <>
       <section className="content">
         <h1>Edit profile</h1>
 
-        <EditProfileForm name={name} email={email} />
+        <EditProfileForm displayName={""} />
       </section>
     </>
   );
