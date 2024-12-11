@@ -74,8 +74,15 @@ h1{
 
 h2 {
   font-family: $heading-font-family;
-  font-weight: $heading-font-weight;
-  font-size: 20px;
+  font-weight: $secondary-heading-font-weight;
+  font-size: $secondary-heading-font-size;
+}
+
+h3 {
+  font-family: $heading-font-family;
+  color: $tertiary-text-color;
+  font-weight: $secondary-heading-font-weight;
+  font-size: $tertiary-heading-font-size;
 }
 
 

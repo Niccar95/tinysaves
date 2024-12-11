@@ -4,6 +4,7 @@ import React from "react";
 import EditButton from "../components/EditButton";
 import Image from "next/image";
 import logo from "/public/logo.svg";
+import star from "/public/star.svg";
 
 const ProfilePage = async () => {
   const session = await getServerSession(authOptions);
@@ -17,6 +18,7 @@ const ProfilePage = async () => {
   }
 
   const userName = session.user?.name;
+  const displayName = session.user.displayName || "";
   const userAvatar = session.user.image || logo;
 
   return (
@@ -36,7 +38,16 @@ const ProfilePage = async () => {
               height="50"
             />
           </div>
-          <h2>{userName}</h2>
+          <section className="profileInfoSection">
+            <div className="profileTagsContainer">
+              <h2 className="userNameTag">{userName}</h2>
+              <h3>{displayName}</h3>
+            </div>
+            <div className="badgesContainer">
+              <h4 className="badgesTag">Earned badges:</h4>
+              <Image src={star} alt="star" className="badgesCountIcon" />
+            </div>
+          </section>
         </article>
       </section>
     </>

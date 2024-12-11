@@ -43,9 +43,40 @@
     border-radius: 15px;
 
     @include desktop() {
+        width: 50%;
         flex-direction: row;
+        gap: 1.5rem;
+    }  
+    
+    
+    .profileInfoSection {
+        display: flex;
+        flex-direction: column;
         gap: 2rem;
-    }   
+
+        .userNameTag {
+            border-bottom: solid rgb(142, 142, 142);
+            margin-bottom: 0.5rem;
+
+            @include desktop() {
+                min-width: 100px;
+            }  
+            
+        }
+
+        .badgesTag {
+            font-family: $heading-font-family;
+            font-size: $tertiary-heading-font-size;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+
+        .badgesCountIcon { 
+            height: 50px;
+            width: 50px;
+        }
+    }
 }
 
 .userImageContainer {

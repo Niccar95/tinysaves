@@ -5,9 +5,11 @@ import Image from "next/image";
 import React, { FormEvent, useState } from "react";
 import piggyBank from "/public/piggyBank.svg";
 import logo from "/public/logo.svg";
+import { useRouter } from "next/navigation";
 
 const EditProfileForm = () => {
   const { data: session, update } = useSession();
+  const router = useRouter();
   const [userDisplayName, setUserDisplayName] = useState<string>(
     session?.user.displayName || ""
   );
@@ -56,6 +58,8 @@ const EditProfileForm = () => {
 
       setUserDisplayName(user.displayName);
       setAvatarImage(user.image);
+
+      router.push("/profile");
     } catch (error) {
       console.error("Error updating user", error);
     }
