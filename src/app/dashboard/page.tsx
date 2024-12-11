@@ -2,6 +2,7 @@ import React from "react";
 import SavingsForm from "../components/SavingsForm";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import Image from "next/image";
 
 const Dashboard = async () => {
   const session = await getServerSession(authOptions);
@@ -11,13 +12,25 @@ const Dashboard = async () => {
   }
 
   const userName = session.user?.name;
+  const displayAvatar = session.user.image || "";
 
   return (
     <>
       <section className="content">
         <h1>Dashboard</h1>
 
-        {session !== null && <h2>Welcome {userName || "User"}!</h2>}
+        <section className="greetingSection">
+          <div className="userImageContainer small">
+            <Image
+              src={displayAvatar}
+              alt="User Avatar"
+              className="avatarPreview"
+              width="50"
+              height="50"
+            />
+          </div>
+          {session !== null && <h2>Welcome {userName || ""}!</h2>}
+        </section>
         <SavingsForm />
       </section>
     </>
