@@ -6,6 +6,7 @@ import React, { FormEvent, useState } from "react";
 import piggyBank from "/public/piggyBank.svg";
 import coffeeCup from "/public/coffeeCup.svg";
 import hamburger from "/public/hamburger.svg";
+import sunglasses from "/public/sunglasses.svg";
 import logo from "/public/logo.svg";
 import { useRouter } from "next/navigation";
 
@@ -109,9 +110,16 @@ const EditProfileForm = () => {
           <Image
             className="avatar"
             src={hamburger}
-            alt="coffeeCup"
+            alt="hamburger"
             width="50"
             onClick={() => addAvatar("/hamburger.svg")}
+          ></Image>
+          <Image
+            className="avatar"
+            src={sunglasses}
+            alt="sunglasses"
+            width="50"
+            onClick={() => addAvatar("/sunglasses.svg")}
           ></Image>
         </section>
       )}
