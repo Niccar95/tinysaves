@@ -1,48 +1,63 @@
 "use client";
-import React, { useState } from "react";
 
-interface EditUserFormProps {
-  displayName: string;
-}
+import { useSession } from "next-auth/react";
+import React, { FormEvent, useState } from "react";
 
-const EditProfileForm = ({ displayName }: EditUserFormProps) => {
-  const [userDisplayName, setUserDisplayName] = useState<string>(displayName);
-  const handleEditProfile = async () => {
+const EditProfileForm = () => {
+  const { data: session, update } = useSession();
+  const [userDisplayName, setUserDisplayName] = useState<string>(
+    session?.user.displayName || ""
+  );
+
+  const handleEditProfile = async (e: FormEvent) => {
+    e.preventDefault();
+
     try {
-      await fetch("/api/edit", {
+      const response = await fetch("/api/edit", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userDisplayName,
+          userId: session?.user.id,
+          displayName: userDisplayName,
         }),
       });
+
+      if (!response.ok) {
+        console.error("Failed to update profile");
+        return;
+      }
+
+      const { user } = await response.json();
+
+      await update({
+        ...session,
+        user: {
+          ...session?.user,
+          displayName: user.displayName,
+        },
+      });
+
+      setUserDisplayName(user.displayName);
     } catch (error) {
-      console.log("Error trying to edit user", error);
+      console.error("Error updating user", error);
     }
   };
 
   return (
-    <>
-      <form onSubmit={handleEditProfile}>
-        <label htmlFor="changeName">Add display name: </label>
-        <div className="inputContainer">
-          <input
-            id="changeName"
-            type="text"
-            value={userDisplayName}
-            onChange={(e) => setUserDisplayName(e.target.value)}
-            disabled
-          />
-          <i className="bi bi-pencil"></i>
-        </div>
-
-        <button type="submit" className="saveButton">
-          Save changes
-        </button>
-      </form>
-    </>
+    <form onSubmit={handleEditProfile}>
+      <label htmlFor="changeName">Edit your display name: </label>
+      <input
+        id="changeName"
+        type="text"
+        value={userDisplayName}
+        onChange={(e) => setUserDisplayName(e.target.value)}
+      />
+      <button type="submit" className="saveButton">
+        Save changes
+      </button>
+    </form>
   );
 };
 

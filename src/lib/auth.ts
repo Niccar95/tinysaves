@@ -29,6 +29,7 @@ export const authOptions: AuthOptions = {
             name: user.name,
             image: user.image,
             email: user.email,
+            displayName: user.displayName,
           };
         }
         return null;
@@ -41,11 +42,15 @@ export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
+      if (trigger === "update") {
+        return { ...token, ...session.user };
+      }
       if (user) {
         token.userId = user.id;
         token.email = user.email;
         token.image = user.image;
+        token.displayName = user.displayName;
       }
       return token;
     },
@@ -55,6 +60,7 @@ export const authOptions: AuthOptions = {
         session.user.id = token.userId as string;
         session.user.image = token.image as string;
         session.user.email = token.email as string;
+        session.user.displayName = token.displayName as string | null;
       }
       return session;
     },
