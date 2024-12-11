@@ -2,6 +2,8 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import React from "react";
 import EditButton from "../components/EditButton";
+import Image from "next/image";
+import logo from "/public/logo.svg";
 
 const ProfilePage = async () => {
   const session = await getServerSession(authOptions);
@@ -15,6 +17,7 @@ const ProfilePage = async () => {
   }
 
   const userName = session.user?.name;
+  const userAvatar = session.user.image || logo;
 
   return (
     <>
@@ -25,9 +28,13 @@ const ProfilePage = async () => {
 
         <article className="profileCard">
           <div className="userImageContainer">
-            <button className="addImageButton">
-              <i className="bi bi-plus-circle addImageIcon"></i>
-            </button>
+            <Image
+              src={userAvatar}
+              alt="User Avatar"
+              className="avatarPreview"
+              width="50"
+              height="50"
+            />
           </div>
           <h2>{userName}</h2>
         </article>

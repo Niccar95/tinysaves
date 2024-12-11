@@ -1,13 +1,26 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import React, { FormEvent, useState } from "react";
+import piggyBank from "/public/piggyBank.svg";
+import logo from "/public/logo.svg";
 
 const EditProfileForm = () => {
   const { data: session, update } = useSession();
   const [userDisplayName, setUserDisplayName] = useState<string>(
     session?.user.displayName || ""
   );
+
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const [avatarImage, setAvatarImage] = useState<string | null>(
+    session?.user.image || null
+  );
+
+  const addAvatar = (image: string) => {
+    setAvatarImage(image);
+  };
 
   const handleEditProfile = async (e: FormEvent) => {
     e.preventDefault();
@@ -21,6 +34,7 @@ const EditProfileForm = () => {
         body: JSON.stringify({
           userId: session?.user.id,
           displayName: userDisplayName,
+          image: avatarImage,
         }),
       });
 
@@ -36,28 +50,68 @@ const EditProfileForm = () => {
         user: {
           ...session?.user,
           displayName: user.displayName,
+          image: user.image,
         },
       });
 
       setUserDisplayName(user.displayName);
+      setAvatarImage(user.image);
     } catch (error) {
       console.error("Error updating user", error);
     }
   };
 
+  const openAvatarSelection = () => {
+    if (!isEditing) {
+      setIsEditing(true);
+    } else {
+      setIsEditing(false);
+    }
+  };
+
   return (
-    <form onSubmit={handleEditProfile}>
-      <label htmlFor="changeName">Edit your display name: </label>
-      <input
-        id="changeName"
-        type="text"
-        value={userDisplayName}
-        onChange={(e) => setUserDisplayName(e.target.value)}
-      />
-      <button type="submit" className="saveButton">
-        Save changes
-      </button>
-    </form>
+    <>
+      <div className="userImageContainer">
+        <Image
+          src={avatarImage || logo}
+          alt="User Avatar"
+          className="avatarPreview"
+          width="50"
+          height="50"
+        />
+        <button className="addImageButton" onClick={openAvatarSelection}>
+          <i className="bi bi-pencil addImageIcon"></i>
+        </button>
+      </div>
+
+      {isEditing && (
+        <section className="avatarSelection">
+          <Image
+            className="avatar"
+            src={piggyBank}
+            alt="piggyBank"
+            width="50"
+            onClick={() => addAvatar("/piggyBank.svg")}
+          ></Image>
+        </section>
+      )}
+
+      <form onSubmit={handleEditProfile}>
+        <label htmlFor="changeName">Edit your display name: </label>
+        <div className="inputContainer">
+          <input
+            id="changeName"
+            type="text"
+            value={userDisplayName}
+            onChange={(e) => setUserDisplayName(e.target.value)}
+          />
+          <i className="bi bi-pencil"></i>
+        </div>
+        <button type="submit" className="saveButton">
+          Save changes
+        </button>
+      </form>
+    </>
   );
 };
 

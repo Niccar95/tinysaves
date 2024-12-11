@@ -14,15 +14,23 @@ export const PATCH = async (req: NextRequest) => {
       );
     }
 
-    const { displayName, userId } = await req.json();
+    const { displayName, image, userId } = await req.json();
 
-    if (!displayName || !userId) {
-      return NextResponse.json({ message: "Invalid data" }, { status: 422 });
+    if (!userId) {
+      return NextResponse.json(
+        { message: "Invalid user data" },
+        { status: 422 }
+      );
     }
+
+    const updateData: { displayName?: string; image?: string } = {};
+
+    if (displayName) updateData.displayName = displayName;
+    if (image) updateData.image = image;
 
     const userDetails = await prisma.user.update({
       where: { userId },
-      data: { displayName },
+      data: updateData,
     });
 
     return NextResponse.json(
