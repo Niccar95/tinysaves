@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { FormEvent, useState } from "react";
 import piggyBank from "/public/piggyBank.svg";
+import coffeeCup from "/public/coffeeCup.svg";
 import logo from "/public/logo.svg";
 import { useRouter } from "next/navigation";
 
@@ -96,6 +97,13 @@ const EditProfileForm = () => {
             alt="piggyBank"
             width="50"
             onClick={() => addAvatar("/piggyBank.svg")}
+          ></Image>
+          <Image
+            className="avatar"
+            src={coffeeCup}
+            alt="coffeeCup"
+            width="50"
+            onClick={() => addAvatar("/coffeeCup.svg")}
           ></Image>
         </section>
       )}

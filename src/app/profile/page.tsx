@@ -45,7 +45,10 @@ const ProfilePage = async () => {
             </div>
             <div className="badgesContainer">
               <h4 className="badgesTag">Earned badges:</h4>
-              <Image src={star} alt="star" className="badgesCountIcon" />
+              <div className="badgesIconContainer">
+                <Image src={star} alt="star" className="badgesCountIcon" />
+                <h3 className="badgeCount">0</h3>
+              </div>
             </div>
           </section>
         </article>
