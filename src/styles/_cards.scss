@@ -84,6 +84,9 @@
     }
 }
 
+
+
+
 .userImageContainer {
     position: relative;
     border-radius: 50%;
@@ -118,4 +121,19 @@
         }
     }
 
+}
+
+
+
+.latestGoalCard {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: $shadow;
+    border-radius: 15px;
+
+    @include desktop() {
+        width: 320px;
+    }
 }

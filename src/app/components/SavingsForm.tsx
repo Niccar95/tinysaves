@@ -6,9 +6,11 @@ import React, { FormEvent, useState } from "react";
 import money from "/public/moneyIcon.svg";
 
 import { goalForm } from "@/utils/validationSchemas";
+import { useRouter } from "next/navigation";
 
 const SavingsForm = () => {
   const { data: session } = useSession();
+  const router = useRouter();
   const userId = session?.user?.id;
 
   const [title, setTitle] = useState<string>("");
@@ -62,6 +64,7 @@ const SavingsForm = () => {
         setDueDate("");
         setCurrency("SEK");
         setErrors({});
+        router.push("/goals");
       } else {
         setSuccessMessage("");
         console.log("Failed to create goal!");

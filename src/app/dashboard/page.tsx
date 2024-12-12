@@ -28,29 +28,27 @@ const Dashboard = async () => {
   return (
     <>
       <Messages />
-      <section className="content">
-        <h1>Dashboard</h1>
-
-        <section className="greetingSection">
-          <div className="userImageContainer small">
-            <Image
-              src={displayAvatar}
-              alt="User Avatar"
-              className="avatarPreview"
-              width="50"
-              height="50"
-            />
+      <div className="content dashboard">
+        <section className="goalSetupSection">
+          <h1>Dashboard</h1>
+          <div className="greetingContainer">
+            <div className="userImageContainer small">
+              <Image
+                src={displayAvatar}
+                alt="User Avatar"
+                className="avatarPreview"
+                width="50"
+                height="50"
+              />
+            </div>
+            {session !== null && <h2>Welcome {userName || ""}!</h2>}
           </div>
-          {session !== null && <h2>Welcome {userName || ""}!</h2>}
+          <SavingsForm />
         </section>
-        <SavingsForm />
-
-        {latestGoal ? (
-          <LatestGoalCard goal={latestGoal} />
-        ) : (
-          <p>No added goal yet.</p>
-        )}
-      </section>
+        <section className="overviewSection">
+          {latestGoal && <LatestGoalCard latestGoal={latestGoal} />}
+        </section>
+      </div>
     </>
   );
 };
