@@ -1,0 +1,30 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+.tipsBox {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: $shadow;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    background-color: whitesmoke;
+
+    @include desktop() {
+        position: absolute;
+        width: 400px;
+        height: 100px;
+        right: 2rem;
+        top: 2rem;
+
+    }
+}
+
+
+.fadeIn {
+    opacity: 1; 
+  }
+  
+  .fadeOut {
+    opacity: 0;
+  }

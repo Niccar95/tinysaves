@@ -12,6 +12,8 @@ const Navbar = () => {
     signOut({
       callbackUrl: "/",
     });
+
+    localStorage.removeItem("messagesVisible");
   };
 
   const updateNavBar = () => {

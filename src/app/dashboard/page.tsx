@@ -3,6 +3,7 @@ import SavingsForm from "../components/SavingsForm";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Image from "next/image";
+import Messages from "../components/Messages";
 
 const Dashboard = async () => {
   const session = await getServerSession(authOptions);
@@ -16,6 +17,7 @@ const Dashboard = async () => {
 
   return (
     <>
+      <Messages />
       <section className="content">
         <h1>Dashboard</h1>
 
