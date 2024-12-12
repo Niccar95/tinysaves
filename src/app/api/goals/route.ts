@@ -1,6 +1,35 @@
 import prisma from "@/app/db";
 import { NextRequest, NextResponse } from "next/server";
 
+export const GET = async (req: NextRequest) => {
+  try {
+    const { userId } = await req.json();
+    if (!userId)
+      return NextResponse.json({ message: "Invalid data" }, { status: 422 });
+
+    const goals = await prisma.goals.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+
+    if (goals.length === 0) {
+      return NextResponse.json(
+        { message: "No goals found for this user" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { message: "Goals found", goals },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ message: "Server error" }, { status: 500 });
+  }
+};
+
 export const POST = async (req: NextRequest) => {
   try {
     const { title, targetAmount, currency, dueDate, userId } = await req.json();

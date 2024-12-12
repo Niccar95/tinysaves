@@ -12,9 +12,13 @@ const Messages = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const [fade, setFade] = useState<boolean>(true);
-  const [isVisible, setIsVisible] = useState<boolean>(() => {
-    return localStorage.getItem("messagesVisible") !== "false";
-  });
+  const [isVisible, setIsVisible] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const storedVisibility = localStorage.getItem("messagesVisible");
+
+    setIsVisible(storedVisibility !== "false");
+  }, []);
 
   useEffect(() => {
     if (isVisible) {
