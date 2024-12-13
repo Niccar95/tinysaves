@@ -97,77 +97,84 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
       </button>
 
       {!isFormHidden && (
-        <form className="addGoalForm" onSubmit={handleCreateGoal}>
-          <section className="topSection">
-            <h2>Time to Save!</h2>
-            <Image className="moneyIcon" src={money} alt="icon"></Image>
-          </section>
-          <label htmlFor="title">
-            What savings goal would you like to set?
-          </label>
-          <input
-            id="title"
-            type="text"
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-              setErrors({ ...errors, title: "" });
-            }}
-          ></input>
-          {errors.title && <div style={{ color: "red" }}>{errors.title}</div>}
+        <div className="modalBackdrop" onClick={() => setIsFormHidden(true)}>
+          <div className="modalContent" onClick={(e) => e.stopPropagation()}>
+            <form className="addGoalForm" onSubmit={handleCreateGoal}>
+              <section className="topSection">
+                <h2>Time to Save!</h2>
+                <Image className="moneyIcon" src={money} alt="icon"></Image>
+              </section>
+              <div className="inputContainer">
+                <label htmlFor="title">Your savings goal:</label>
 
-          <label htmlFor="targetAmount">How much would you like to save?</label>
-          <input
-            id="targetAmount"
-            type="text"
-            value={targetAmount}
-            onChange={(e) => {
-              setTargetAmount(e.target.value);
-              setErrors({ ...errors, targetAmount: "" });
-            }}
-            min="0"
-            inputMode="decimal"
-          ></input>
-          {errors.targetAmount && (
-            <div style={{ color: "red" }}>{errors.targetAmount}</div>
-          )}
+                <input
+                  id="title"
+                  type="text"
+                  value={title}
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                    setErrors({ ...errors, title: "" });
+                  }}
+                ></input>
+                {errors.title && (
+                  <div style={{ color: "red" }}>{errors.title}</div>
+                )}
 
-          <label htmlFor="currency">Choose a currency:</label>
-          <select
-            name="currency"
-            id="currency"
-            value={currency}
-            onChange={(e) => setCurrency(e.target.value)}
-          >
-            <option value="SEK">SEK</option>
-            <option value="EUR">€</option>
-            <option value="GBP">£</option>
-            <option value="USD">$</option>
-          </select>
+                <label htmlFor="targetAmount">Target amount to save:</label>
+                <input
+                  id="targetAmount"
+                  type="text"
+                  value={targetAmount}
+                  onChange={(e) => {
+                    setTargetAmount(e.target.value);
+                    setErrors({ ...errors, targetAmount: "" });
+                  }}
+                  min="0"
+                  inputMode="decimal"
+                ></input>
+                {errors.targetAmount && (
+                  <div style={{ color: "red" }}>{errors.targetAmount}</div>
+                )}
 
-          <label htmlFor="dueDate">When is the due date? (optional)</label>
-          <input
-            id="dueDate"
-            type="date"
-            value={dueDate}
-            onChange={(e) => {
-              setDueDate(e.target.value);
-              setErrors({ ...errors, dueDate: "" });
-            }}
-          ></input>
-          {errors.dueDate && (
-            <div style={{ color: "red" }}>{errors.dueDate}</div>
-          )}
+                <label htmlFor="currency">Select currency:</label>
+                <select
+                  name="currency"
+                  id="currency"
+                  value={currency}
+                  onChange={(e) => setCurrency(e.target.value)}
+                >
+                  <option value="SEK">SEK</option>
+                  <option value="EUR">€</option>
+                  <option value="GBP">£</option>
+                  <option value="USD">$</option>
+                </select>
 
-          {successMessage && (
-            <div style={{ color: "green", marginBottom: "1rem" }}>
-              {successMessage}
-            </div>
-          )}
-          <button type="submit" className="submitButton">
-            Add goal
-          </button>
-        </form>
+                <label htmlFor="dueDate">Goal due date (optional):</label>
+                <input
+                  id="dueDate"
+                  type="date"
+                  value={dueDate}
+                  onChange={(e) => {
+                    setDueDate(e.target.value);
+                    setErrors({ ...errors, dueDate: "" });
+                  }}
+                ></input>
+                {errors.dueDate && (
+                  <div style={{ color: "red" }}>{errors.dueDate}</div>
+                )}
+              </div>
+
+              {successMessage && (
+                <div style={{ color: "green", marginBottom: "1rem" }}>
+                  {successMessage}
+                </div>
+              )}
+              <button type="submit" className="submitButton">
+                Add goal
+              </button>
+            </form>
+          </div>
+        </div>
       )}
     </>
   );

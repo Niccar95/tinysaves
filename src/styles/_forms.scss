@@ -24,25 +24,52 @@ form {
     }
 }
 
-
-.addGoalForm {
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: $shadow;
-
-
-    .topSection {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-}
-
-.inputContainer {
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
-    gap: 0.5rem;
+    justify-content: center;
     align-items: center;
-}
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out;
+
+
+
+    .modalContent { 
+        width: 300px;
+        border-radius: 15px;
+        transition: transform 0.3s ease-in-out;
+
+        .addGoalForm {
+            background-color: $light-body-background; 
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: $shadow;
+        
+            .topSection {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            
+            .inputContainer {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+          
+            }
+        }
+    }
+    }
+  
+
+  
+  
+ 
 
 
 
