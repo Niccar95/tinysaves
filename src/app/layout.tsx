@@ -1,20 +1,15 @@
-"use client";
-
-import { usePathname } from "next/navigation";
-import { SessionProvider } from "next-auth/react";
-import Navbar from "./components/Navbar";
 import "./../styles/globals.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Image from "next/image";
 import logo from "../../public/logo.svg";
+import SessionProvider from "./components/providers/SessionProvider";
+import ConditionalNavbar from "./components/ConditionalNavbar";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-
   return (
     <html lang="en">
       <body>
@@ -23,9 +18,8 @@ export default function RootLayout({
             <Image className="logo" src={logo} alt="icon"></Image>
           </header>
           <main>
-            {pathname !== "/" && pathname !== "/registration" && (
-              <Navbar></Navbar>
-            )}
+            <ConditionalNavbar />
+
             {children}
           </main>
           <footer></footer>
