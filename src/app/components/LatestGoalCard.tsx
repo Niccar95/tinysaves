@@ -1,32 +1,62 @@
 "use client";
 
 import { Goals } from "@prisma/client";
-import { CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import { useCallback, useEffect, useState } from "react";
+import SavingsForm from "./SavingsForm";
+import Spinner from "./Spinner";
+import GoalCardContent from "./GoalCardContent";
 
 interface LatestGoalProps {
-  latestGoal: Goals;
+  userId: string;
 }
 
-const LatestGoalCard = ({ latestGoal }: LatestGoalProps) => {
-  const percentage = (latestGoal.progress / latestGoal.targetAmount) * 100;
+const LatestGoalCard = ({ userId }: LatestGoalProps) => {
+  const [latestGoal, setLatestGoal] = useState<Goals | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [hasGoals, setHasGoals] = useState<boolean>(true);
 
-  const roundedPercentage = Math.round(percentage);
+  const fetchLatestGoal = useCallback(async () => {
+    if (!hasGoals) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`/api/goals?userId=${userId}`);
+      const data = await response.json();
+
+      if (response.ok && data.latestGoal) {
+        setLatestGoal(data.latestGoal);
+        setHasGoals(true);
+        console.log("Fetched latest goal:", data.latestGoal);
+      } else {
+        setLatestGoal(null);
+        setHasGoals(false);
+      }
+    } catch (err) {
+      console.error("Error fetching latest goal:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [userId, hasGoals]);
+
+  useEffect(() => {
+    fetchLatestGoal();
+  }, [fetchLatestGoal]);
+
+  const handleGoalSubmission = () => {
+    setHasGoals(true);
+    fetchLatestGoal();
+  };
 
   return (
     <>
       <article className="latestGoalCard">
-        <div>
-          <h2 className="latestGoalHeading">Latest Goal: </h2>
-          <h3>{latestGoal.title}</h3>
-        </div>
-
-        <div style={{ width: 100, height: 100 }}>
-          <CircularProgressbar
-            value={roundedPercentage}
-            text={`${roundedPercentage}%`}
-          />
-        </div>
+        <SavingsForm onSubmitSuccess={handleGoalSubmission} />
+        {isLoading && <Spinner />}
+        {latestGoal && <GoalCardContent latestGoal={latestGoal} />}
+        {!latestGoal && <div>No goals added yet</div>}
       </article>
     </>
   );

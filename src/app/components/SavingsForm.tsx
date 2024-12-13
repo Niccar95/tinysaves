@@ -6,11 +6,14 @@ import React, { FormEvent, useState } from "react";
 import money from "/public/moneyIcon.svg";
 
 import { goalForm } from "@/utils/validationSchemas";
-import { useRouter } from "next/navigation";
 
-const SavingsForm = () => {
+interface ISavingsFormProps {
+  onSubmitSuccess: () => void;
+}
+
+const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
   const { data: session } = useSession();
-  const router = useRouter();
+
   const userId = session?.user?.id;
 
   const [title, setTitle] = useState<string>("");
@@ -64,7 +67,8 @@ const SavingsForm = () => {
         setDueDate("");
         setCurrency("SEK");
         setErrors({});
-        router.push("/goals");
+
+        onSubmitSuccess();
       } else {
         setSuccessMessage("");
         console.log("Failed to create goal!");
@@ -73,6 +77,8 @@ const SavingsForm = () => {
       setSuccessMessage("");
       console.error("Failed to create goal", error);
     }
+
+    setIsFormHidden(true);
   };
 
   const addNewGoal = () => {

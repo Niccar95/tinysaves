@@ -3,25 +3,28 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   try {
-    const { userId } = await req.json();
+    const { searchParams } = req.nextUrl;
+    const userId = searchParams.get("userId");
+
     if (!userId)
       return NextResponse.json({ message: "Invalid data" }, { status: 422 });
 
-    const goals = await prisma.goals.findMany({
-      where: {
-        userId: userId,
+    const latestGoal = await prisma.goals.findFirst({
+      where: { userId: userId },
+      orderBy: {
+        createdAt: "desc",
       },
     });
 
-    if (goals.length === 0) {
+    if (!latestGoal) {
       return NextResponse.json(
         { message: "No goals found for this user" },
-        { status: 404 }
+        { status: 200 }
       );
     }
 
     return NextResponse.json(
-      { message: "Goals found", goals },
+      { message: "Goals found", latestGoal },
       { status: 200 }
     );
   } catch (error) {

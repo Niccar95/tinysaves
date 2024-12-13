@@ -120,20 +120,20 @@
             transform: scale(1.2);
         }
     }
-
 }
-
-
 
 .latestGoalCard {
     display: flex;
     flex-direction: row;
-    gap: 1.5rem;
     padding: 1.5rem;
     box-shadow: $shadow;
     border-radius: 15px;
 
     @include desktop() {
-        width: 320px;
+        gap: 1.5rem;
+    }
+
+    .latestGoalHeading {
+        margin-bottom: 10px;
     }
 }

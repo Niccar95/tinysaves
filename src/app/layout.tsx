@@ -19,7 +19,6 @@ export default async function RootLayout({
           </header>
           <main>
             <ConditionalNavbar />
-
             {children}
           </main>
           <footer></footer>
