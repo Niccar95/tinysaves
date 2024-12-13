@@ -40,13 +40,15 @@ const GoalList = ({ goals }: GoalListProps) => {
 
   return (
     <>
-      {savingGoals.map((goal) => (
-        <GoalCard
-          key={goal.goalId}
-          goal={goal}
-          deleteGoal={() => deleteGoal(goal.goalId)}
-        ></GoalCard>
-      ))}
+      <div className="goalListWrapper">
+        {savingGoals.map((goal) => (
+          <GoalCard
+            key={goal.goalId}
+            goal={goal}
+            deleteGoal={() => deleteGoal(goal.goalId)}
+          ></GoalCard>
+        ))}
+      </div>
     </>
   );
 };

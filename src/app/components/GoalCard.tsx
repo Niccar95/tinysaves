@@ -4,7 +4,7 @@ import { Goals } from "@prisma/client";
 import React, { FormEvent, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import ToolBar from "./ToolBar";
-import { processDueDate } from "@/utils/dateUtils";
+import { processCreatedAtDate, processDueDate } from "@/utils/dateUtils";
 import { goalProgress } from "@/utils/validationSchemas";
 
 interface GoalProps {
@@ -27,6 +27,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
     process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000";
 
   const { formattedDate, daysRemaining } = processDueDate(goal.dueDate);
+  const { formattedCreatedAtDate } = processCreatedAtDate(goal.createdAt);
 
   const handleOpenForm = () => {
     if (!isEditing) {
@@ -90,6 +91,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
     <>
       <article className="goalCard">
         <h2>{goal.title}</h2>
+        <p className="createdAtTag">Added on {formattedCreatedAtDate}</p>
 
         <ProgressBar
           progress={displayProgress}

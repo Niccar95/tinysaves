@@ -1,7 +1,25 @@
 @use "./mixins" as *;
 @use "./variables" as *;
 
+
+.goalListWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+
+    @include desktop() {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+       gap: 2rem;
+    
+}
+
+
+
 .goalCard {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -17,10 +35,22 @@
         
         @include desktop() {
             flex-direction: row;
-            gap: 2rem;
+            align-items: center;
+            gap: 1.5rem;
         }
 
     }
+
+    .createdAtTag {
+        position: absolute;
+        right: 2rem;
+        font-size: 14px;
+        font-weight: 500;
+        color: $tertiary-text-color;
+    }
+
+
+
     .actionSection {
         display: flex;      
         gap: 1rem;
@@ -31,6 +61,7 @@
         flex-direction: column;
         gap: 0.8rem;
     }
+}
 }
 
 

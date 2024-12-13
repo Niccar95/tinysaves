@@ -16,3 +16,19 @@ export const processDueDate = (dueDate: Date | null) => {
 
   return { formattedDate, daysRemaining };
 };
+
+export const processCreatedAtDate = (createdAt: Date | null) => {
+  if (!createdAt) {
+    return { formattedCreatedAtDate: null };
+  }
+
+  const luxonDate = DateTime.fromJSDate(new Date(createdAt));
+
+  if (!luxonDate.isValid) {
+    return { formattedCreatedAtDate: null };
+  }
+
+  const formattedCreatedAtDate = luxonDate.toFormat("dd LLL yyyy");
+
+  return { formattedCreatedAtDate };
+};

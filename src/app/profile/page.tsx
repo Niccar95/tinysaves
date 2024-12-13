@@ -24,7 +24,7 @@ const ProfilePage = async () => {
   return (
     <>
       <section className="content">
-        <h1>My Profile</h1>
+        <h1>My profile</h1>
 
         <EditButton />
 
