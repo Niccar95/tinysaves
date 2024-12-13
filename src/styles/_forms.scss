@@ -40,16 +40,23 @@ form {
 
 
     .modalContent { 
-        width: 300px;
+     
         border-radius: 15px;
         transition: transform 0.3s ease-in-out;
 
+        
         .addGoalForm {
+            width: 300px;
             background-color: $light-body-background; 
             border-radius: 15px;
-            padding: 2rem;
+            padding: 1rem 2rem;
             box-shadow: $shadow;
-        
+            
+            @include desktop() {
+            padding: 2rem;
+            width: 400px;
+            }
+            
             .topSection {
                 display: flex;
                 justify-content: space-evenly;

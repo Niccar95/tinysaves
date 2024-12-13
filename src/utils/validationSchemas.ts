@@ -27,8 +27,7 @@ export const login = Joi.object({
 
 export const goalForm = Joi.object({
   title: Joi.string().min(3).required().messages({
-    "string.min":
-      "Your savings goal name should have a minimum length of 3 characters",
+    "string.min": "Goal name must be at least 3 characters",
     "string.empty": "This is a required field",
   }),
   targetAmount: Joi.string()

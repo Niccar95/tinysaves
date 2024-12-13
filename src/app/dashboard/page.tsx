@@ -2,8 +2,9 @@ import React from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Image from "next/image";
-import Messages from "../components/Messages";
+
 import LatestGoalCard from "../components/LatestGoalCard";
+import Tips from "../components/Tips";
 
 const Dashboard = async () => {
   const session = await getServerSession(authOptions);
@@ -18,7 +19,7 @@ const Dashboard = async () => {
 
   return (
     <>
-      <Messages />
+      <Tips />
       <div className="content dashboard">
         <section className="goalSetupSection">
           <h1>Dashboard</h1>

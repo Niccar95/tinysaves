@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-const Messages = () => {
+const Tips = () => {
   const tips = [
     "New to saving? Get started by adding a short term goal.",
     "Check out your stats page to see a summary of your progress so far.",
@@ -56,4 +56,4 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+export default Tips;

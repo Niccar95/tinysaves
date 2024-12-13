@@ -2,20 +2,24 @@
 @use "./mixins" as *;
 
 .tipsBox {
-    position: relative;
-    padding: 1.5rem;
-    border-radius: 15px;
-    box-shadow: $shadow;
-    opacity: 1;
-    transition: opacity 0.5s ease;
-    background-color: whitesmoke;
+  width: 300px;
+  position: absolute;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: $shadow;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  background-color: whitesmoke;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1;
+  
 
     @include desktop() {
-        position: absolute;
         width: 400px;
         height: 100px;
         right: 2rem;
-        top: 2rem;
+        bottom: 2rem;
 
     }
 }
@@ -27,4 +31,16 @@
   
   .fadeOut {
     opacity: 0;
+  }
+
+
+  .successMessage {
+    color: green;
+    font-size: 14px;
+  }
+
+
+  .errorMessage {
+    color: red;
+    font-size: 14px;
   }

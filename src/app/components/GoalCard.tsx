@@ -137,7 +137,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
               ></input>
 
               {errors.progress && (
-                <div style={{ color: "red" }}>{errors.progress}</div>
+                <div className="errorMessage">{errors.progress}</div>
               )}
               <button type="submit" className="updateButton">
                 Update

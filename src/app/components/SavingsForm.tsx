@@ -117,7 +117,7 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
                   }}
                 ></input>
                 {errors.title && (
-                  <div style={{ color: "red" }}>{errors.title}</div>
+                  <div className="errorMessage">{errors.title}</div>
                 )}
 
                 <label htmlFor="targetAmount">Target amount to save:</label>
@@ -133,7 +133,7 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
                   inputMode="decimal"
                 ></input>
                 {errors.targetAmount && (
-                  <div style={{ color: "red" }}>{errors.targetAmount}</div>
+                  <div className="errorMessage">{errors.targetAmount}</div>
                 )}
 
                 <label htmlFor="currency">Select currency:</label>
@@ -160,14 +160,12 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
                   }}
                 ></input>
                 {errors.dueDate && (
-                  <div style={{ color: "red" }}>{errors.dueDate}</div>
+                  <div className="errorMessage">{errors.dueDate}</div>
                 )}
               </div>
 
               {successMessage && (
-                <div style={{ color: "green", marginBottom: "1rem" }}>
-                  {successMessage}
-                </div>
+                <div className="successMessage">{successMessage}</div>
               )}
               <button type="submit" className="submitButton">
                 Add goal

@@ -60,7 +60,7 @@ const Login = () => {
               setErrors({ ...errors, name: "" });
             }}
           ></input>
-          {errors.name && <div style={{ color: "red" }}>{errors.name}</div>}
+          {errors.name && <div className="errorMessage">{errors.name}</div>}
 
           <label htmlFor="password">Password:</label>
           <input
@@ -75,11 +75,11 @@ const Login = () => {
           ></input>
 
           {errors.password && (
-            <div style={{ color: "red" }}>{errors.password}</div>
+            <div className="errorMessage">{errors.password}</div>
           )}
 
           {errors.general && (
-            <div style={{ color: "red" }}>{errors.general}</div>
+            <div className="errorMessage">{errors.general}</div>
           )}
 
           {loading && (

@@ -71,7 +71,7 @@ const Page = () => {
             value={formData.name}
             onChange={handleChange}
           />
-          {errors.name && <div style={{ color: "red" }}>{errors.name}</div>}{" "}
+          {errors.name && <div className="errorMessage">{errors.name}</div>}{" "}
           <label htmlFor="userEmail">Type your email:</label>
           <input
             id="userEmail"
@@ -80,7 +80,7 @@ const Page = () => {
             value={formData.email}
             onChange={handleChange}
           />
-          {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}{" "}
+          {errors.email && <div className="errorMessage">{errors.email}</div>}{" "}
           <label htmlFor="userPassword">Create a strong password:</label>
           <input
             id="userPassword"
@@ -90,7 +90,7 @@ const Page = () => {
             onChange={handleChange}
           />
           {errors.password && (
-            <div style={{ color: "red" }}>{errors.password}</div>
+            <div className="errorMessage">{errors.password}</div>
           )}
           <label htmlFor="repeatedUserPassword">Repeat your password:</label>
           <input
@@ -101,11 +101,11 @@ const Page = () => {
             onChange={handleChange}
           />
           {errors.repeatPassword && (
-            <div style={{ color: "red" }}>{errors.repeatPassword}</div>
+            <div className="errorMessage">{errors.repeatPassword}</div>
           )}
           {formData.password &&
             formData.password === formData.repeatPassword && (
-              <div style={{ color: "green" }}>Passwords match!</div>
+              <div className="successMessage">Passwords match!</div>
             )}
           {loader && (
             <div className="spinnerWrapper">
