@@ -13,10 +13,7 @@
         grid-template-columns: repeat(2, 1fr);
 
        gap: 2rem;
-    
-}
-
-
+    }
 
 .goalCard {
     display: flex;
@@ -50,23 +47,23 @@
             font-size: 14px;
             font-weight: 500;
             color: $tertiary-text-color;
-    
-           
-    
         }
     }
-
-
 
     .actionSection {
         display: flex;      
         gap: 1rem;
     }
 
-    .progressInfoSection {
+    .dueDateInfoSection {
         display: flex;
         flex-direction: column;
         gap: 0.8rem;
+
+        .dueDateTag {
+            font-size: 14px;
+            font-weight: 500;
+        }
     }
 }
 }
@@ -121,9 +118,6 @@
 
     }
 }
-
-
-
 
 .userImageContainer {
     position: relative;

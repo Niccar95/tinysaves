@@ -156,12 +156,12 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
           daysRemaining !== null &&
           daysRemaining >= 0 &&
           !goal.isComplete && (
-            <section className="progressInfoSection">
-              <p>
+            <section className="dueDateInfoSection">
+              <p className="dueDateTag">
                 <i className="bi bi-calendar-date"></i>
                 Final date: {formattedDate}
               </p>
-              <p>
+              <p className="dueDateTag">
                 <i className="bi bi-clock"></i>
                 {daysRemaining} days remaining
               </p>
