@@ -106,35 +106,38 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
               </section>
               <div className="inputContainer">
                 <label htmlFor="title">Your savings goal:</label>
-
-                <input
-                  id="title"
-                  type="text"
-                  value={title}
-                  onChange={(e) => {
-                    setTitle(e.target.value);
-                    setErrors({ ...errors, title: "" });
-                  }}
-                ></input>
-                {errors.title && (
-                  <div className="errorMessage">{errors.title}</div>
-                )}
+                <div className="inputWrapper">
+                  <input
+                    id="title"
+                    type="text"
+                    value={title}
+                    onChange={(e) => {
+                      setTitle(e.target.value);
+                      setErrors({ ...errors, title: "" });
+                    }}
+                  ></input>
+                  {errors.title && (
+                    <div className="errorMessage">{errors.title}</div>
+                  )}
+                </div>
 
                 <label htmlFor="targetAmount">Target amount to save:</label>
-                <input
-                  id="targetAmount"
-                  type="text"
-                  value={targetAmount}
-                  onChange={(e) => {
-                    setTargetAmount(e.target.value);
-                    setErrors({ ...errors, targetAmount: "" });
-                  }}
-                  min="0"
-                  inputMode="decimal"
-                ></input>
-                {errors.targetAmount && (
-                  <div className="errorMessage">{errors.targetAmount}</div>
-                )}
+                <div className="inputWrapper">
+                  <input
+                    id="targetAmount"
+                    type="text"
+                    value={targetAmount}
+                    onChange={(e) => {
+                      setTargetAmount(e.target.value);
+                      setErrors({ ...errors, targetAmount: "" });
+                    }}
+                    min="0"
+                    inputMode="decimal"
+                  ></input>
+                  {errors.targetAmount && (
+                    <div className="errorMessage">{errors.targetAmount}</div>
+                  )}
+                </div>
 
                 <label htmlFor="currency">Select currency:</label>
                 <select
@@ -150,24 +153,27 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
                 </select>
 
                 <label htmlFor="dueDate">Goal due date (optional):</label>
-                <input
-                  id="dueDate"
-                  type="date"
-                  value={dueDate}
-                  onChange={(e) => {
-                    setDueDate(e.target.value);
-                    setErrors({ ...errors, dueDate: "" });
-                  }}
-                ></input>
-                {errors.dueDate && (
-                  <div className="errorMessage">{errors.dueDate}</div>
-                )}
+
+                <div className="inputWrapper">
+                  <input
+                    id="dueDate"
+                    type="date"
+                    value={dueDate}
+                    onChange={(e) => {
+                      setDueDate(e.target.value);
+                      setErrors({ ...errors, dueDate: "" });
+                    }}
+                  ></input>
+                  {errors.dueDate && (
+                    <div className="errorMessage">{errors.dueDate}</div>
+                  )}
+                </div>
               </div>
 
               {successMessage && (
                 <div className="successMessage">{successMessage}</div>
               )}
-              <button type="submit" className="submitButton">
+              <button type="submit" className="submitButton margin">
                 Add goal
               </button>
             </form>

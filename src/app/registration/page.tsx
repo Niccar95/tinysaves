@@ -64,45 +64,53 @@ const Page = () => {
         <h1>Register</h1>
         <form onSubmit={registerUser}>
           <label htmlFor="userName">Create a username:</label>
-          <input
-            id="userName"
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          {errors.name && <div className="errorMessage">{errors.name}</div>}{" "}
+          <div>
+            <input
+              id="userName"
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+            {errors.name && <div className="errorMessage">{errors.name}</div>}{" "}
+          </div>
           <label htmlFor="userEmail">Type your email:</label>
-          <input
-            id="userEmail"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <div className="errorMessage">{errors.email}</div>}{" "}
+          <div>
+            <input
+              id="userEmail"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            {errors.email && <div className="errorMessage">{errors.email}</div>}{" "}
+          </div>
           <label htmlFor="userPassword">Create a strong password:</label>
-          <input
-            id="userPassword"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          {errors.password && (
-            <div className="errorMessage">{errors.password}</div>
-          )}
+          <div>
+            <input
+              id="userPassword"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            {errors.password && (
+              <div className="errorMessage">{errors.password}</div>
+            )}
+          </div>
           <label htmlFor="repeatedUserPassword">Repeat your password:</label>
-          <input
-            id="repeatedUserPassword"
-            type="password"
-            name="repeatPassword"
-            value={formData.repeatPassword}
-            onChange={handleChange}
-          />
-          {errors.repeatPassword && (
-            <div className="errorMessage">{errors.repeatPassword}</div>
-          )}
+          <div>
+            <input
+              id="repeatedUserPassword"
+              type="password"
+              name="repeatPassword"
+              value={formData.repeatPassword}
+              onChange={handleChange}
+            />
+            {errors.repeatPassword && (
+              <div className="errorMessage">{errors.repeatPassword}</div>
+            )}
+          </div>
           {formData.password &&
             formData.password === formData.repeatPassword && (
               <div className="successMessage">Passwords match!</div>
@@ -112,7 +120,7 @@ const Page = () => {
               <Spinner />
             </div>
           )}
-          <button className="registerButton" type="submit">
+          <button type="submit" className="registerButton margin">
             Register
           </button>
         </form>

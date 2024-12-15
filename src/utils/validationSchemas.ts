@@ -2,18 +2,21 @@ import Joi from "joi";
 import { DateTime } from "luxon";
 
 export const register = Joi.object({
-  name: Joi.string().min(3).required().label("Name"),
+  name: Joi.string().min(3).required().messages({
+    "string.empty": "This is a required field",
+  }),
   email: Joi.string()
     .email({ tlds: { allow: false } })
     .required()
-    .label("Email"),
-  password: Joi.string().min(6).required().label("Password"),
-  repeatPassword: Joi.valid(Joi.ref("password"))
-    .required()
-    .label("Repeat Password")
     .messages({
-      "any.only": "Passwords must match",
+      "string.empty": "This is a required field",
     }),
+  password: Joi.string().min(6).required().messages({
+    "string.empty": "This is a required field",
+  }),
+  repeatPassword: Joi.valid(Joi.ref("password")).required().messages({
+    "any.only": "Passwords must match",
+  }),
 });
 
 export const login = Joi.object({

@@ -37,14 +37,10 @@ form {
     z-index: 1000;
     transition: opacity 0.3s ease-in-out;
 
-
-
-    .modalContent { 
-     
+    .modalContent {
         border-radius: 15px;
         transition: transform 0.3s ease-in-out;
 
-        
         .addGoalForm {
             width: 300px;
             background-color: $light-body-background; 

@@ -90,8 +90,10 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   return (
     <>
       <article className="goalCard">
-        <h2>{goal.title}</h2>
-        <p className="createdAtTag">Added on {formattedCreatedAtDate}</p>
+        <div className="titleWrapper">
+          <h2 className="goalTitle">{goal.title}</h2>
+          <p className="createdAtTag">Added on {formattedCreatedAtDate}</p>
+        </div>
 
         <ProgressBar
           progress={displayProgress}
@@ -127,21 +129,23 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
           <section className="progressFormSection">
             <form onSubmit={handleUpdateProgress}>
               <label htmlFor="progress">Update your savings progress: </label>
-              <input
-                id="progress"
-                type="text"
-                min="0"
-                value={progress ?? ""}
-                onChange={(e) => {
-                  setProgress(e.target.value);
-                  setErrors({ ...errors, progress: "" });
-                }}
-              ></input>
 
-              {errors.progress && (
-                <div className="errorMessage">{errors.progress}</div>
-              )}
-              <button type="submit" className="updateButton">
+              <div className="inputWrapper">
+                <input
+                  id="progress"
+                  type="text"
+                  min="0"
+                  value={progress ?? ""}
+                  onChange={(e) => {
+                    setProgress(e.target.value);
+                    setErrors({ ...errors, progress: "" });
+                  }}
+                ></input>
+                {errors.progress && (
+                  <div className="errorMessage">{errors.progress}</div>
+                )}
+              </div>
+              <button type="submit" className="updateButton margin">
                 Update
               </button>
             </form>
@@ -150,7 +154,8 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
 
         {goal.dueDate !== null &&
           daysRemaining !== null &&
-          daysRemaining >= 0 && (
+          daysRemaining >= 0 &&
+          !goal.isComplete && (
             <section className="progressInfoSection">
               <p>
                 <i className="bi bi-calendar-date"></i>

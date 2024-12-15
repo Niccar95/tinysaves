@@ -50,34 +50,38 @@ const Login = () => {
         <h1>Log in</h1>
         <form onSubmit={handleLogin}>
           <label htmlFor="userName">Username:</label>
-          <input
-            id="userName"
-            className="textInput"
-            type="text"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-              setErrors({ ...errors, name: "" });
-            }}
-          ></input>
-          {errors.name && <div className="errorMessage">{errors.name}</div>}
+          <div className="inputWrapper">
+            <input
+              id="userName"
+              className="textInput"
+              type="text"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+                setErrors({ ...errors, name: "" });
+              }}
+            ></input>
+            {errors.name && <div className="errorMessage">{errors.name}</div>}
+          </div>
 
           <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            className="textInput"
-            type="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setErrors({ ...errors, password: "" });
-            }}
-          ></input>
 
-          {errors.password && (
-            <div className="errorMessage">{errors.password}</div>
-          )}
+          <div className="inputWrapper">
+            <input
+              id="password"
+              className="textInput"
+              type="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setErrors({ ...errors, password: "" });
+              }}
+            ></input>
 
+            {errors.password && (
+              <div className="errorMessage">{errors.password}</div>
+            )}
+          </div>
           {errors.general && (
             <div className="errorMessage">{errors.general}</div>
           )}
@@ -88,7 +92,7 @@ const Login = () => {
             </div>
           )}
 
-          <button className="loginButton" type="submit">
+          <button type="submit" className="loginButton margin">
             Log in
           </button>
         </form>

@@ -19,7 +19,6 @@
 
 
 .goalCard {
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -41,12 +40,20 @@
 
     }
 
-    .createdAtTag {
-        position: absolute;
-        right: 2rem;
-        font-size: 14px;
-        font-weight: 500;
-        color: $tertiary-text-color;
+    .titleWrapper {
+        .goalTitle {
+            margin-bottom: 0.5rem;
+        }
+
+        .createdAtTag {
+            position: static;
+            font-size: 14px;
+            font-weight: 500;
+            color: $tertiary-text-color;
+    
+           
+    
+        }
     }
 
 
