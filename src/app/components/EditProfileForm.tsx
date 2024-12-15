@@ -7,6 +7,7 @@ import piggyBank from "/public/piggyBank.svg";
 import coffeeCup from "/public/coffeeCup.svg";
 import hamburger from "/public/hamburger.svg";
 import sunglasses from "/public/sunglasses.svg";
+import hotdog from "/public/hotdog.svg";
 import logo from "/public/logo.svg";
 import { useRouter } from "next/navigation";
 
@@ -120,6 +121,13 @@ const EditProfileForm = () => {
             alt="sunglasses"
             width="50"
             onClick={() => addAvatar("/sunglasses.svg")}
+          ></Image>
+          <Image
+            className="avatar"
+            src={hotdog}
+            alt="hotdog"
+            width="50"
+            onClick={() => addAvatar("/hotdog.svg")}
           ></Image>
         </section>
       )}

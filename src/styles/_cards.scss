@@ -144,9 +144,8 @@
 .avatarSelection {
     display: flex;
     gap: 1rem;
-    width: 300px;
-    height: 200px;
     padding: 1rem;
+    width: fit-content;
     border-radius: 15px;
     box-shadow: $shadow;
     transition: transform 0.2s ease-in-out;
