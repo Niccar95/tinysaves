@@ -1,7 +1,8 @@
 @use "./variables" as *;
 @use "./mixins.scss" as *;
 
-.registerButton, .loginButton, .submitButton, .updateButton, .saveButton {
+.registerButton, .loginButton, .submitButton, 
+.updateButton, .saveButton {
     border: none;
     border-radius: 15px;
     height: 40px;
@@ -14,7 +15,9 @@
     }
 }
 
-.updateButton.margin, .submitButton.margin, .loginButton.margin, .registerButton.margin {
+.updateButton.margin, .submitButton.margin, 
+.loginButton.margin, .registerButton.margin, 
+.saveButton.margin {
     margin-top: 8px;
 }
 

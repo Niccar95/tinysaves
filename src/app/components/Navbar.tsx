@@ -46,26 +46,31 @@ const Navbar = () => {
         <ul>
           <li>
             <Link className="navLink" href="/dashboard" onClick={closeNavBar}>
+              <i className="bi bi-house-door-fill"></i>
               Dashboard
             </Link>
           </li>
           <li>
             <Link className="navLink" href="/goals" onClick={closeNavBar}>
+              <i className="bi bi-piggy-bank-fill"></i>
               My goals
             </Link>
           </li>
           <li>
             <Link className="navLink" href="/badges" onClick={closeNavBar}>
+              <i className="bi bi-trophy-fill"></i>
               My badges
             </Link>
           </li>
           <li>
             <Link className="navLink" href="/stats" onClick={closeNavBar}>
+              <i className="bi bi-bar-chart-line-fill"></i>
               My stats
             </Link>
           </li>
           <li>
             <Link className="navLink" href="/profile" onClick={closeNavBar}>
+              <i className="bi bi-person-circle"></i>
               My profile
             </Link>
           </li>

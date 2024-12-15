@@ -133,9 +133,8 @@ const EditProfileForm = () => {
             value={userDisplayName}
             onChange={(e) => setUserDisplayName(e.target.value)}
           />
-          <i className="bi bi-pencil"></i>
         </div>
-        <button type="submit" className="saveButton">
+        <button type="submit" className="saveButton margin">
           Save changes
         </button>
       </form>
