@@ -3,12 +3,12 @@
 import { signOut, useSession } from "next-auth/react";
 import React from "react";
 
-const DeleteUserButton = () => {
+const DeleteAccountButton = () => {
   const { data: session } = useSession();
 
   const userId = session?.user.id;
 
-  const deleteUser = async () => {
+  const deleteAccount = async () => {
     if (!userId) {
       console.error("User not found");
       return;
@@ -35,12 +35,12 @@ const DeleteUserButton = () => {
   };
   return (
     <>
-      <button className="actionButton delete" onClick={deleteUser}>
+      <button className="actionButton delete" onClick={deleteAccount}>
         <i className="bi bi-trash3"></i>
-        Delete user
+        Delete account
       </button>
     </>
   );
 };
 
-export default DeleteUserButton;
+export default DeleteAccountButton;

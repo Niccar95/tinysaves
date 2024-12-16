@@ -1,7 +1,7 @@
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import React from "react";
-import DeleteUserButton from "../components/DeleteUserButton";
+import DeleteAccountButton from "../components/DeleteAccountButton";
 
 const SettingsPage = async () => {
   const session = await getServerSession(authOptions);
@@ -25,7 +25,7 @@ const SettingsPage = async () => {
           <div className="settingsWrapper">
             <h2>User settings</h2>
 
-            <DeleteUserButton />
+            <DeleteAccountButton />
           </div>
         </section>
       </section>

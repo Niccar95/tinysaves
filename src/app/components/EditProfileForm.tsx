@@ -2,27 +2,30 @@
 
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import piggyBank from "/public/piggyBank.svg";
 import coffeeCup from "/public/coffeeCup.svg";
 import hamburger from "/public/hamburger.svg";
 import sunglasses from "/public/sunglasses.svg";
-import hotdog from "/public/hotdog.svg";
+import hotDog from "/public/hotDog.svg";
 import logo from "/public/logo.svg";
 import { useRouter } from "next/navigation";
 
 const EditProfileForm = () => {
   const { data: session, update } = useSession();
   const router = useRouter();
-  const [userDisplayName, setUserDisplayName] = useState<string>(
-    session?.user.displayName || ""
-  );
+  const [userDisplayName, setUserDisplayName] = useState<string>("");
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  const [avatarImage, setAvatarImage] = useState<string | null>(
-    session?.user.image || null
-  );
+  const [avatarImage, setAvatarImage] = useState<string>("");
+
+  useEffect(() => {
+    if (session) {
+      setUserDisplayName(session.user.displayName || "");
+      setAvatarImage(session.user.image || logo.src);
+    }
+  }, [session]);
 
   const addAvatar = (image: string) => {
     setAvatarImage(image);
@@ -97,37 +100,37 @@ const EditProfileForm = () => {
           <Image
             className="avatar"
             src={piggyBank}
-            alt="piggyBank"
+            alt="piggybank"
             width="50"
-            onClick={() => addAvatar("/piggyBank.svg")}
+            onClick={() => addAvatar(piggyBank.src)}
           ></Image>
           <Image
             className="avatar"
             src={coffeeCup}
-            alt="coffeeCup"
+            alt="coffee cup"
             width="50"
-            onClick={() => addAvatar("/coffeeCup.svg")}
+            onClick={() => addAvatar(coffeeCup.src)}
           ></Image>
           <Image
             className="avatar"
             src={hamburger}
             alt="hamburger"
             width="50"
-            onClick={() => addAvatar("/hamburger.svg")}
+            onClick={() => addAvatar(hamburger.src)}
           ></Image>
           <Image
             className="avatar"
             src={sunglasses}
             alt="sunglasses"
             width="50"
-            onClick={() => addAvatar("/sunglasses.svg")}
+            onClick={() => addAvatar(sunglasses.src)}
           ></Image>
           <Image
             className="avatar"
-            src={hotdog}
-            alt="hotdog"
+            src={hotDog}
+            alt="hot dog"
             width="50"
-            onClick={() => addAvatar("/hotdog.svg")}
+            onClick={() => addAvatar(hotDog.src)}
           ></Image>
         </section>
       )}
@@ -138,7 +141,7 @@ const EditProfileForm = () => {
           <input
             id="changeName"
             type="text"
-            value={userDisplayName}
+            value={userDisplayName || ""}
             onChange={(e) => setUserDisplayName(e.target.value)}
           />
         </div>
