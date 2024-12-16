@@ -8,8 +8,8 @@ const Navbar = () => {
   const [burgerClass, setBurgerClass] = useState("burgerBar unclicked");
   const [navClass, setNavClass] = useState("navBar hidden");
   const [isNavClicked, setIsNavClicked] = useState(false);
-  const handleLogout = () => {
-    signOut({
+  const handleLogout = async () => {
+    await signOut({
       callbackUrl: "/",
     });
 

@@ -1,0 +1,15 @@
+.settingsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+ 
+
+    .settingsWrapper {
+        display: flex; 
+        flex-direction: column;
+        gap: 2rem;
+        padding-top: 5px;
+        border-top: solid 1px rgb(142, 142, 142);
+    }
+
+}

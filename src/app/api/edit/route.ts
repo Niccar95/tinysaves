@@ -48,3 +48,25 @@ export const PATCH = async (req: NextRequest) => {
     return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 };
+
+export const DELETE = async (req: NextRequest) => {
+  try {
+    const { userId } = await req.json();
+    if (!userId)
+      return NextResponse.json({ message: "Invalid userId" }, { status: 422 });
+
+    const goal = await prisma.user.delete({
+      where: {
+        userId: userId,
+      },
+    });
+
+    return NextResponse.json(
+      { message: "Successfully deleted account", goal },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ message: "Server error" }, { status: 500 });
+  }
+};
