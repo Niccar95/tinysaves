@@ -15,7 +15,7 @@ export default async function RootLayout({
       <body>
         <SessionProvider>
           <header>
-            <Image className="logo" src={logo} alt="icon" priority></Image>
+            <Image className="logo" src={logo} alt="icon"></Image>
           </header>
           <main>
             <ConditionalNavbar />

@@ -40,6 +40,7 @@
     .titleWrapper {
         position: relative;
         .goalTitle {
+            width: 60%;
             margin-bottom: 0.5rem;
         }
 
@@ -47,6 +48,7 @@
             position: static;
             font-size: 14px;
             font-weight: 500;
+            width: 60%;
             color: $tertiary-text-color;
         }
     }

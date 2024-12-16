@@ -19,7 +19,7 @@ const ActionMenu = ({ goal, deleteGoal }: GoalProps) => {
           Customise
         </button>
         <button onClick={handleDeleteGoal} className="actionButton delete">
-          <i className="bi bi-trash3"></i>
+          <i className="bi bi-trash3 delete"></i>
           Delete goal
         </button>
       </section>

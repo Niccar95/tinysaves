@@ -1,7 +1,7 @@
 "use client";
 
 import { Goals } from "@prisma/client";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import { processCreatedAtDate, processDueDate } from "@/utils/dateUtils";
 import { goalProgress } from "@/utils/validationSchemas";
@@ -23,11 +23,29 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   //const [currency, setCurrency] = useState<string>(goal.currency); //FOR LATER
 
+  const actionsMenuRef = useRef<HTMLDivElement | null>(null);
+
   const baseUrl =
     process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000";
 
   const { formattedDate, daysRemaining } = processDueDate(goal.dueDate);
   const { formattedCreatedAtDate } = processCreatedAtDate(goal.createdAt);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        actionsMenuRef.current &&
+        !actionsMenuRef.current.contains(event.target as Node)
+      ) {
+        setOpenActionsMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleOpenForm = () => {
     if (!isEditing) {
@@ -37,7 +55,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
     }
   };
 
-  const handleOpenToolBar = () => {
+  const handleOpenActionsMenu = () => {
     if (!openActionsMenu) {
       setOpenActionsMenu(true);
     } else {
@@ -94,16 +112,34 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
           <h2 className="goalTitle">{goal.title}</h2>
           <p className="createdAtTag">Added on {formattedCreatedAtDate}</p>
 
-          {(daysRemaining === null || daysRemaining > 0) &&
+          {/* {(openActionsMenu === false ||
+            daysRemaining === null ||
+            daysRemaining > 0) &&
             displayProgress < goal.targetAmount && (
-              <button className="actionsMenuButton" onClick={handleOpenToolBar}>
+              <button
+                className="actionsMenuButton"
+                onClick={() => {
+                  setOpenActionsMenu(!openActionsMenu);
+                }}
+              >
                 <i className="bi bi-three-dots"></i>
               </button>
+            )} */}
+
+          <div ref={actionsMenuRef} onClick={(e) => e.stopPropagation()}>
+            {openActionsMenu && (
+              <ActionMenu goal={goal} deleteGoal={deleteGoal} />
             )}
 
-          {openActionsMenu && (
-            <ActionMenu goal={goal} deleteGoal={deleteGoal} />
-          )}
+            <button
+              className="actionsMenuButton"
+              onClick={() => {
+                setOpenActionsMenu(!openActionsMenu);
+              }}
+            >
+              <i className="bi bi-three-dots"></i>
+            </button>
+          </div>
         </div>
 
         <ProgressBar

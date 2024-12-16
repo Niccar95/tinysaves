@@ -83,6 +83,12 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
 
   const addNewGoal = () => {
     if (isFormHidden) {
+      setTitle("");
+      setTargetAmount("");
+      setDueDate("");
+      setCurrency("SEK");
+      setErrors({});
+      setSuccessMessage("");
       setIsFormHidden(false);
     } else {
       setIsFormHidden(true);
