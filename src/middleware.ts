@@ -22,5 +22,6 @@ export const config = {
     "/stats",
     "/profile",
     "/profile/edit",
+    "/settings",
   ],
 };

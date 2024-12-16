@@ -38,6 +38,7 @@
     }
 
     .titleWrapper {
+        position: relative;
         .goalTitle {
             margin-bottom: 0.5rem;
         }
@@ -50,7 +51,7 @@
         }
     }
 
-    .actionSection {
+    .updateSection {
         display: flex;      
         gap: 1rem;
     }

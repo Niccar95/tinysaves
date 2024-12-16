@@ -3,9 +3,9 @@
 import { Goals } from "@prisma/client";
 import React, { FormEvent, useState } from "react";
 import ProgressBar from "./ProgressBar";
-import ToolBar from "./ToolBar";
 import { processCreatedAtDate, processDueDate } from "@/utils/dateUtils";
 import { goalProgress } from "@/utils/validationSchemas";
+import ActionMenu from "./ActionMenu";
 
 interface GoalProps {
   goal: Goals;
@@ -15,7 +15,7 @@ interface GoalProps {
 const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  const [openToolBar, setOpenToolBar] = useState<boolean>(false);
+  const [openActionsMenu, setOpenActionsMenu] = useState<boolean>(false);
 
   const [progress, setProgress] = useState<string>("");
   const [displayProgress, setDisplayProgress] = useState<number>(goal.progress);
@@ -38,10 +38,10 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   };
 
   const handleOpenToolBar = () => {
-    if (!openToolBar) {
-      setOpenToolBar(true);
+    if (!openActionsMenu) {
+      setOpenActionsMenu(true);
     } else {
-      setOpenToolBar(false);
+      setOpenActionsMenu(false);
     }
   };
 
@@ -93,6 +93,17 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
         <div className="titleWrapper">
           <h2 className="goalTitle">{goal.title}</h2>
           <p className="createdAtTag">Added on {formattedCreatedAtDate}</p>
+
+          {(daysRemaining === null || daysRemaining > 0) &&
+            displayProgress < goal.targetAmount && (
+              <button className="actionsMenuButton" onClick={handleOpenToolBar}>
+                <i className="bi bi-three-dots"></i>
+              </button>
+            )}
+
+          {openActionsMenu && (
+            <ActionMenu goal={goal} deleteGoal={deleteGoal} />
+          )}
         </div>
 
         <ProgressBar
@@ -102,7 +113,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
           currency={goal.currency}
         ></ProgressBar>
 
-        <section className="actionSection">
+        <section className="updateSection">
           {(daysRemaining === null || daysRemaining > 0) &&
             displayProgress < goal.targetAmount && (
               <button className="addButton" onClick={handleOpenForm}>
@@ -110,20 +121,11 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
                 Update progress
               </button>
             )}
-
-          {(daysRemaining === null || daysRemaining > 0) &&
-            displayProgress < goal.targetAmount && (
-              <button className="toolsButton" onClick={handleOpenToolBar}>
-                <i className="bi bi-three-dots"></i>
-              </button>
-            )}
         </section>
 
         {daysRemaining !== null && daysRemaining <= 0 && (
           <p>Due date reached!</p>
         )}
-
-        {openToolBar && <ToolBar goal={goal} deleteGoal={deleteGoal} />}
 
         {isEditing && (
           <section className="progressFormSection">

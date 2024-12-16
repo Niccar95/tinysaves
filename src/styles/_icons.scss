@@ -1,10 +1,11 @@
 @use "./mixins.scss" as *;
 
 .bi-trash3, .bi-palette, .bi-plus-circle, 
-.bi-box-arrow-left, 
-.bi-clock, .bi-calendar-date, 
+.bi-box-arrow-left, .bi-clock, .bi-calendar-date, 
 .bi-coin, .bi-pencil, 
-.bi-house-door-fill, .bi-piggy-bank-fill, .bi-trophy-fill, .bi-bar-chart-line-fill, .bi-person-circle {
+.bi-house-door-fill, .bi-piggy-bank-fill, 
+.bi-trophy-fill, .bi-bar-chart-line-fill, 
+.bi-person-circle, .bi-gear-fill {
     margin-right: 8px;
   }
 
@@ -22,9 +23,7 @@
       width: 100px;
       
     }
-
   }
-
 
   .bi-pencil {
     font-size: 18px;

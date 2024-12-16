@@ -36,7 +36,7 @@
     }
 }
 
-.addButton, .toolsButton, .actionButton, .addGoalButton, .editButton  {
+.addButton, .actionButton, .addGoalButton, .editButton  {
     font-size: 0.9rem;
     border-radius: 15px;
     height: 40px;
@@ -53,9 +53,6 @@
         }
 }
 
-.toolsButton {
-    width: 70px;
-}
 
 .actionButton.delete {
     background-color: #D32F2F;
@@ -64,7 +61,7 @@
 }
 
 
-.addImageButton {
+.addImageButton, .actionsMenuButton {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -79,6 +76,10 @@
     &:hover {
       opacity: 0.8;
     }
+}
+
+.actionsMenuButton {
+    top: 0;
 }
 
 .removeTipsButton {

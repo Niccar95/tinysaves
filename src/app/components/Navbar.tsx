@@ -74,6 +74,12 @@ const Navbar = () => {
               My profile
             </Link>
           </li>
+          <li>
+            <Link className="navLink" href="/settings" onClick={closeNavBar}>
+              <i className="bi bi-gear-fill"></i>
+              Settings
+            </Link>
+          </li>
         </ul>
         <section className="logoutButtonSection">
           <button className="logoutButton" onClick={handleLogout}>

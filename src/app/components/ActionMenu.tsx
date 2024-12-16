@@ -6,15 +6,15 @@ interface GoalProps {
   deleteGoal: (goalId: string) => void;
 }
 
-const ToolBar = ({ goal, deleteGoal }: GoalProps) => {
+const ActionMenu = ({ goal, deleteGoal }: GoalProps) => {
   const handleDeleteGoal = async () => {
     deleteGoal(goal.goalId);
   };
 
   return (
     <>
-      <section className="toolBar">
-        <button className="actionButton">
+      <section className="actionMenu">
+        <button className="actionButton customise">
           <i className="bi bi-palette"></i>
           Customise
         </button>
@@ -27,4 +27,4 @@ const ToolBar = ({ goal, deleteGoal }: GoalProps) => {
   );
 };
 
-export default ToolBar;
+export default ActionMenu;
