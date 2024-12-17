@@ -45,7 +45,6 @@ model Milestones {
   milestoneId String @id @default(auto()) @map("_id") @db.ObjectId
   description String
   amount Int
-  dueDate DateTime
   goalId String
   goals Goals @relation(fields: [goalId], references: [goalId], onDelete: Cascade)
   createdAt DateTime @default(now())
@@ -59,7 +58,6 @@ model Badges {
   badgeUsers UserBadges[]    
   createdAt DateTime @default(now())
 }
-
 
 model UserBadges {
   id String @id @default(auto()) @map("_id") @db.ObjectId

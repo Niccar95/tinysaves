@@ -23,13 +23,12 @@ const LatestGoalCard = ({ userId }: LatestGoalProps) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`/api/goals?userId=${userId}`);
+      const response = await fetch(`/api/goals?userId=${userId}&latest=true`);
       const data = await response.json();
 
       if (response.ok && data.latestGoal) {
         setLatestGoal(data.latestGoal);
         setHasGoals(true);
-        console.log("Fetched latest goal:", data.latestGoal);
       } else {
         setLatestGoal(null);
         setHasGoals(false);

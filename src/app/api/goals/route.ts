@@ -1,32 +1,104 @@
 import prisma from "@/app/db";
 import { NextRequest, NextResponse } from "next/server";
 
+// export const GET = async (req: NextRequest) => {
+//   try {
+//     const { userId } = await req.json();
+
+//     if (!userId)
+//       return NextResponse.json({ message: "Invalid data" }, { status: 422 });
+
+//     const allGoals = await prisma.goals.findMany({
+//       where: { userId: userId },
+//     });
+
+//     if (!allGoals) {
+//       return NextResponse.json(
+//         { message: "No goals found for this user" },
+//         { status: 200 }
+//       );
+//     }
+
+//     return NextResponse.json(
+//       { message: "Goals found", allGoals },
+//       { status: 200 }
+//     );
+//   } catch (error) {
+//     console.log(error);
+//     return NextResponse.json({ message: "Server error" }, { status: 500 });
+//   }
+// };
+
+// export const GET = async (req: NextRequest) => {
+//   try {
+//     const { searchParams } = req.nextUrl;
+//     const userId = searchParams.get("userId");
+
+//     if (!userId)
+//       return NextResponse.json({ message: "Invalid data" }, { status: 422 });
+
+//     const latestGoal = await prisma.goals.findFirst({
+//       where: { userId: userId },
+//       orderBy: {
+//         createdAt: "desc",
+//       },
+//     });
+
+//     if (!latestGoal) {
+//       return NextResponse.json(
+//         { message: "No goal found for this user" },
+//         { status: 200 }
+//       );
+//     }
+
+//     return NextResponse.json(
+//       { message: "Goal found", latestGoal },
+//       { status: 200 }
+//     );
+//   } catch (error) {
+//     console.log(error);
+//     return NextResponse.json({ message: "Server error" }, { status: 500 });
+//   }
+// };
+
 export const GET = async (req: NextRequest) => {
   try {
     const { searchParams } = req.nextUrl;
     const userId = searchParams.get("userId");
+    const latest = searchParams.get("latest");
 
     if (!userId)
       return NextResponse.json({ message: "Invalid data" }, { status: 422 });
 
-    const latestGoal = await prisma.goals.findFirst({
-      where: { userId: userId },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
+    if (latest === "true") {
+      const latestGoal = await prisma.goals.findFirst({
+        where: { userId: userId },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
 
-    if (!latestGoal) {
+      if (!latestGoal) {
+        return NextResponse.json(
+          { message: "No goal found for this user" },
+          { status: 200 }
+        );
+      }
+
       return NextResponse.json(
-        { message: "No goals found for this user" },
+        { message: "Latest goal found", latestGoal },
+        { status: 200 }
+      );
+    } else {
+      const allGoals = await prisma.goals.findMany({
+        where: { userId: userId },
+      });
+
+      return NextResponse.json(
+        { message: "All goals found", allGoals },
         { status: 200 }
       );
     }
-
-    return NextResponse.json(
-      { message: "Goals found", latestGoal },
-      { status: 200 }
-    );
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: "Server error" }, { status: 500 });

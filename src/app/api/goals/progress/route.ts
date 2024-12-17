@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const PATCH = async (req: NextRequest) => {
   try {
-    const { goalId, progress, targetAmount } = await req.json();
+    const { goalId, progress, targetAmount, userId } = await req.json();
 
-    if (!goalId || progress === undefined || !targetAmount) {
+    if (!goalId || progress === undefined || !targetAmount || !userId) {
       return NextResponse.json({ message: "Invalid data" }, { status: 422 });
     }
 
@@ -20,6 +20,29 @@ export const PATCH = async (req: NextRequest) => {
 
     const updatedProgress = currentGoal.progress + progress;
 
+    if (updatedProgress >= targetAmount * 0.5) {
+      const existingBadge = await prisma.userBadges.findFirst({
+        where: {
+          userId: userId,
+          badge: { name: "50% Progress" },
+        },
+      });
+
+      if (!existingBadge) {
+        await prisma.userBadges.create({
+          data: {
+            user: { connect: { userId: userId } },
+            badge: {
+              create: {
+                name: "50% Progress",
+                criteria: "Reached 50% of the goal",
+              },
+            },
+          },
+        });
+      }
+    }
+
     const goal = await prisma.goals.update({
       where: { goalId },
       data: {
@@ -33,7 +56,7 @@ export const PATCH = async (req: NextRequest) => {
       { status: 200 }
     );
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 };

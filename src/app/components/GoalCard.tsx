@@ -6,6 +6,7 @@ import ProgressBar from "./ProgressBar";
 import { processCreatedAtDate, processDueDate } from "@/utils/dateUtils";
 import { goalProgress } from "@/utils/validationSchemas";
 import ActionMenu from "./ActionMenu";
+import { useSession } from "next-auth/react";
 
 interface GoalProps {
   goal: Goals;
@@ -13,6 +14,9 @@ interface GoalProps {
 }
 
 const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
+  const { data: session } = useSession();
+  const userId = session?.user.id;
+
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const [openActionsMenu, setOpenActionsMenu] = useState<boolean>(false);
@@ -55,14 +59,6 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
     }
   };
 
-  const handleOpenActionsMenu = () => {
-    if (!openActionsMenu) {
-      setOpenActionsMenu(true);
-    } else {
-      setOpenActionsMenu(false);
-    }
-  };
-
   const handleUpdateProgress = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -88,6 +84,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
           goalId: goal.goalId,
           progress: numericTargetAmount,
           targetAmount: goal.targetAmount,
+          userId: userId,
         }),
       });
 
@@ -111,20 +108,6 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
         <div className="titleWrapper">
           <h2 className="goalTitle">{goal.title}</h2>
           <p className="createdAtTag">Added on {formattedCreatedAtDate}</p>
-
-          {/* {(openActionsMenu === false ||
-            daysRemaining === null ||
-            daysRemaining > 0) &&
-            displayProgress < goal.targetAmount && (
-              <button
-                className="actionsMenuButton"
-                onClick={() => {
-                  setOpenActionsMenu(!openActionsMenu);
-                }}
-              >
-                <i className="bi bi-three-dots"></i>
-              </button>
-            )} */}
 
           <div ref={actionsMenuRef} onClick={(e) => e.stopPropagation()}>
             {openActionsMenu && (
