@@ -104,35 +104,35 @@ const EditProfileForm = () => {
             src={piggyBank}
             alt="piggybank"
             width="50"
-            onClick={() => addAvatar("/piggyBank.svg")}
+            onClick={() => addAvatar(piggyBank)}
           ></Image>
           <Image
             className="avatar"
             src={coffeeCup}
             alt="coffee cup"
             width="50"
-            onClick={() => addAvatar("/coffeeCup.svg")}
+            onClick={() => addAvatar(coffeeCup)}
           ></Image>
           <Image
             className="avatar"
             src={hamburger}
             alt="hamburger"
             width="50"
-            onClick={() => addAvatar("/hamburger.svg")}
+            onClick={() => addAvatar(hamburger)}
           ></Image>
           <Image
             className="avatar"
             src={sunglasses}
             alt="sunglasses"
             width="50"
-            onClick={() => addAvatar("/sunglasses.svg")}
+            onClick={() => addAvatar(sunglasses)}
           ></Image>
           <Image
             className="avatar"
             src={hotDog}
             alt="hot dog"
             width="50"
-            onClick={() => addAvatar("/hotDog.svg")}
+            onClick={() => addAvatar(hotDog)}
           ></Image>
         </section>
       )}
