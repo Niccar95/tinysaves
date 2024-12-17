@@ -39,9 +39,10 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
       {
         label: "Goals added by date",
         data: lineChartData.values,
-        fill: false,
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
+        fill: true,
+        stepped: true,
+        borderColor: "rgb(75, 118, 192)",
+        tension: 0.4,
       },
     ],
   };
@@ -58,7 +59,7 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
       x: {
         ticks: {
           autoSkip: true,
-          maxTicksLimit: 10,
+          maxTicksLimit: 5,
         },
       },
       y: {
@@ -67,6 +68,8 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
           maxTicksLimit: 10,
           stepSize: 1,
         },
+        min: 0,
+        max: 10,
         beginAtZero: true,
       },
     },
