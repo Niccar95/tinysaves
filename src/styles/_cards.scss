@@ -1,20 +1,6 @@
 @use "./mixins" as *;
 @use "./variables" as *;
 
-
-.goalListWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-
-    @include desktop() {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-
-       gap: 2rem;
-    }
-
 .goalCard {
     display: flex;
     flex-direction: column;
@@ -69,7 +55,7 @@
         }
     }
 }
-}
+
 
 
 .profileCard {
@@ -172,4 +158,16 @@
     .latestGoalHeading {
         margin-bottom: 10px;
     }
+}
+
+.badgeCard {
+
+     display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.5rem;
+    box-shadow: $shadow;
+    border-radius: 15px;
+
+
 }

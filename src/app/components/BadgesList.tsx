@@ -1,20 +1,24 @@
 "use client";
 
 import { Badges, UserBadges } from "@prisma/client";
+import Badgecard from "./Badgecard";
 
-interface IBadgesProps {
+interface IUserBadgesProps {
   userBadges: (UserBadges & { badge: Badges })[];
 }
 
-const BadgesList = ({ userBadges }: IBadgesProps) => {
+const BadgesList = ({ userBadges }: IUserBadgesProps) => {
   return (
     <>
-      {userBadges.map((userBadge) => (
-        <article key={userBadge.id}>
-          <h3>{userBadge.badge?.name}</h3>
-          <p>{userBadge.badge?.criteria}</p>
-        </article>
-      ))}
+      <div className="badgesListWrapper">
+        {userBadges.length > 0 ? (
+          userBadges.map((userBadge) => (
+            <Badgecard key={userBadge.id} badge={userBadge.badge} />
+          ))
+        ) : (
+          <p>No badges to display!</p>
+        )}
+      </div>
     </>
   );
 };

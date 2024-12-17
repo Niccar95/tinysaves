@@ -9,9 +9,9 @@ const BadgesPage = async () => {
   const userId = session?.user.id;
 
   const userBadges = await prisma.userBadges.findMany({
-    where: { userId: userId }, // Assuming you're filtering by userId
+    where: { userId: userId },
     include: {
-      badge: true, // Include the related badge
+      badge: true,
     },
   });
 

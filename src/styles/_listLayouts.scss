@@ -1,0 +1,33 @@
+@use "./mixins" as *;
+@use "./variables" as *;
+
+
+.goalListWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+
+    @include desktop() {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+       gap: 2rem;
+    }
+}
+
+
+.badgesListWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+
+    @include desktop() {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+       gap: 2rem;
+    }
+}
+

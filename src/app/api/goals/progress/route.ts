@@ -34,8 +34,8 @@ export const PATCH = async (req: NextRequest) => {
             user: { connect: { userId: userId } },
             badge: {
               create: {
-                name: "50% Progress",
-                criteria: "Reached 50% of the goal",
+                name: "Halfway there!",
+                criteria: "Reached 50% of a goal",
               },
             },
           },
