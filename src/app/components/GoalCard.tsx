@@ -188,8 +188,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
               </p>
             </section>
           )}
-
-        {goal.dueDate == null && <p>No due date</p>}
+        {goal.dueDate == null && <p className="noDateTag">No due date</p>}
       </article>
     </>
   );

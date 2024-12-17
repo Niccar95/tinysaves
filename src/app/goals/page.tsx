@@ -3,12 +3,13 @@ import GoalList from "../components/GoalList";
 import { getServerSession } from "next-auth";
 import prisma from "../db";
 import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 const GoalsPage = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    return <div>Please log in to view your goals.</div>;
+    redirect("/");
   }
 
   const userId = session.user.id;

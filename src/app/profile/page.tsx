@@ -5,19 +5,16 @@ import EditButton from "../components/EditButton";
 import Image from "next/image";
 import logo from "/public/logo.svg";
 import star from "/public/star.svg";
+import { redirect } from "next/navigation";
 
 const ProfilePage = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    return (
-      <section className="content">
-        <h1>You need to be logged in to access this page</h1>
-      </section>
-    );
+    redirect("/");
   }
 
-  const userName = session.user?.name;
+  const userName = session.user.name;
   const displayName = session.user.displayName || "";
   const userAvatar = session.user.image || logo;
 

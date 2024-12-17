@@ -6,16 +6,17 @@ import logo from "/public/logo.svg";
 
 import LatestGoalCard from "../components/LatestGoalCard";
 import Tips from "../components/Tips";
+import { redirect } from "next/navigation";
 
 const Dashboard = async () => {
   const session = await getServerSession(authOptions);
-  const userId = session?.user.id;
 
   if (!session) {
-    return <div>Please log in to view your dashboard</div>;
+    redirect("/");
   }
 
-  const userName = session.user?.name;
+  const userId = session.user.id;
+  const displayName = session.user.displayName || session?.user.name;
   const displayAvatar = session.user.image;
 
   return (
@@ -34,7 +35,7 @@ const Dashboard = async () => {
                 height="50"
               />
             </div>
-            {session !== null && <h2>Welcome {userName || ""}!</h2>}
+            {session !== null && <h2>Welcome {displayName}!</h2>}
           </div>
         </section>
         <section className="overviewSection">

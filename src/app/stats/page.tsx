@@ -7,27 +7,16 @@ import {
   calculateLineChartData,
   calculateSummaryData,
 } from "@/utils/statsUtils";
+import { redirect } from "next/navigation";
 
 const StatsPage = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    return (
-      <div>
-        <h1>You need to be logged in to access this page</h1>
-      </div>
-    );
+    redirect("/");
   }
 
-  const userId = session.user?.id;
-
-  if (!userId) {
-    return (
-      <div>
-        <h1>Error: Unable to retrieve user ID</h1>
-      </div>
-    );
-  }
+  const userId = session.user.id;
 
   const allGoals = await prisma.goals.findMany({ where: { userId } });
   const summaryData = calculateSummaryData(allGoals);
