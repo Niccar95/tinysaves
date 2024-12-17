@@ -3,12 +3,12 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { FormEvent, useEffect, useState } from "react";
-import piggyBank from "/public/piggyBank.svg";
-import coffeeCup from "/public/coffeeCup.svg";
-import hamburger from "/public/hamburger.svg";
-import sunglasses from "/public/sunglasses.svg";
-import hotDog from "/public/hotDog.svg";
-import logo from "/public/logo.svg";
+import piggyBank from "/piggyBank.svg";
+import coffeeCup from "/coffeeCup.svg";
+import hamburger from "/hamburger.svg";
+import sunglasses from "/sunglasses.svg";
+import hotDog from "/hotDog.svg";
+import logo from "/logo.svg";
 import { useRouter } from "next/navigation";
 
 const EditProfileForm = () => {
