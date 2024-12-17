@@ -51,7 +51,7 @@ const LatestGoalCard = ({ userId }: LatestGoalProps) => {
 
   return (
     <>
-      <article className="latestGoalCard">
+      <article className="latestCard">
         <SavingsForm onSubmitSuccess={handleGoalSubmission} />
         {isLoading && <Spinner />}
         {latestGoal && <GoalCardContent latestGoal={latestGoal} />}

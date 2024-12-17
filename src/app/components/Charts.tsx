@@ -42,7 +42,7 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
         fill: true,
         stepped: true,
         borderColor: "rgb(75, 118, 192)",
-        tension: 0.4,
+        tension: 0.1,
       },
     ],
   };
@@ -61,12 +61,20 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
           autoSkip: true,
           maxTicksLimit: 5,
         },
+        title: {
+          display: true,
+          text: "Dates",
+        },
       },
       y: {
         ticks: {
           autoSkip: true,
           maxTicksLimit: 10,
           stepSize: 1,
+        },
+        title: {
+          display: true,
+          text: "Goals",
         },
         min: 0,
         max: 10,

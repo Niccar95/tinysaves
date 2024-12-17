@@ -7,6 +7,7 @@ import logo from "/public/logo.svg";
 import LatestGoalCard from "../components/LatestGoalCard";
 import Tips from "../components/Tips";
 import { redirect } from "next/navigation";
+import LatestBadgeCard from "../components/LatestBadgeCard";
 
 const Dashboard = async () => {
   const session = await getServerSession(authOptions);
@@ -40,6 +41,7 @@ const Dashboard = async () => {
         </section>
         <section className="overviewSection">
           {userId && <LatestGoalCard userId={userId} />}
+          {userId && <LatestBadgeCard userId={userId} />}
         </section>
       </div>
     </>

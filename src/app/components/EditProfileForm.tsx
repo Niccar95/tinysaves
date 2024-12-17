@@ -23,13 +23,15 @@ const EditProfileForm = () => {
   useEffect(() => {
     if (session) {
       setUserDisplayName(session.user.displayName || "");
-      setAvatarImage(session.user.image || logo.src);
+      setAvatarImage(session.user.image || logo);
     }
   }, [session]);
 
   const addAvatar = (image: string) => {
     setAvatarImage(image);
   };
+
+  console.log(avatarImage);
 
   const handleEditProfile = async (e: FormEvent) => {
     e.preventDefault();
@@ -102,35 +104,35 @@ const EditProfileForm = () => {
             src={piggyBank}
             alt="piggybank"
             width="50"
-            onClick={() => addAvatar(piggyBank.src)}
+            onClick={() => addAvatar("/piggyBank.svg")}
           ></Image>
           <Image
             className="avatar"
             src={coffeeCup}
             alt="coffee cup"
             width="50"
-            onClick={() => addAvatar(coffeeCup.src)}
+            onClick={() => addAvatar("/coffeeCup.svg")}
           ></Image>
           <Image
             className="avatar"
             src={hamburger}
             alt="hamburger"
             width="50"
-            onClick={() => addAvatar(hamburger.src)}
+            onClick={() => addAvatar("/hamburger.svg")}
           ></Image>
           <Image
             className="avatar"
             src={sunglasses}
             alt="sunglasses"
             width="50"
-            onClick={() => addAvatar(sunglasses.src)}
+            onClick={() => addAvatar("/sunglasses.svg")}
           ></Image>
           <Image
             className="avatar"
             src={hotDog}
             alt="hot dog"
             width="50"
-            onClick={() => addAvatar(hotDog.src)}
+            onClick={() => addAvatar("/hotDog.svg")}
           ></Image>
         </section>
       )}
