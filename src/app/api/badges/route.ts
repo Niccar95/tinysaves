@@ -8,7 +8,7 @@ export const GET = async (req: NextRequest) => {
     const session = await getServerSession({ req, ...authOptions });
 
     if (!session || !session.user) {
-      return { error: "Unauthorized" };
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const userId = session.user.id;
