@@ -18,7 +18,9 @@ const Dashboard = async () => {
 
   const userId = session.user.id;
   const displayName = session.user.displayName || session?.user.name;
-  const displayAvatar = session.user.image;
+  const displayAvatar = session?.user?.image || logo;
+
+  console.log(displayAvatar);
 
   return (
     <>

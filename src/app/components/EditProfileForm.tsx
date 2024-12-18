@@ -3,12 +3,6 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { FormEvent, useEffect, useState } from "react";
-import piggyBank from "/piggyBank.svg";
-import coffeeCup from "/coffeeCup.svg";
-import hamburger from "/hamburger.svg";
-import sunglasses from "/sunglasses.svg";
-import hotDog from "/hotDog.svg";
-import logo from "/logo.svg";
 import { useRouter } from "next/navigation";
 
 const EditProfileForm = () => {
@@ -20,6 +14,13 @@ const EditProfileForm = () => {
 
   const [avatarImage, setAvatarImage] = useState<string>("");
 
+  const piggyBank = "/piggyBank.svg";
+  const coffeeCup = "/coffeeCup.svg";
+  const hamburger = "/hamburger.svg";
+  const sunglasses = "/sunglasses.svg";
+  const hotDog = "/hotDog.svg";
+  const logo = "/logo.svg";
+
   useEffect(() => {
     if (session) {
       setUserDisplayName(session.user.displayName || "");
@@ -29,6 +30,7 @@ const EditProfileForm = () => {
 
   const addAvatar = (image: string) => {
     setAvatarImage(image);
+    setIsEditing(false);
   };
 
   console.log(avatarImage);
@@ -103,6 +105,7 @@ const EditProfileForm = () => {
             className="avatar"
             src={piggyBank}
             alt="piggybank"
+            height="50"
             width="50"
             onClick={() => addAvatar(piggyBank)}
           ></Image>
@@ -110,6 +113,7 @@ const EditProfileForm = () => {
             className="avatar"
             src={coffeeCup}
             alt="coffee cup"
+            height="50"
             width="50"
             onClick={() => addAvatar(coffeeCup)}
           ></Image>
@@ -117,6 +121,7 @@ const EditProfileForm = () => {
             className="avatar"
             src={hamburger}
             alt="hamburger"
+            height="50"
             width="50"
             onClick={() => addAvatar(hamburger)}
           ></Image>
@@ -124,6 +129,7 @@ const EditProfileForm = () => {
             className="avatar"
             src={sunglasses}
             alt="sunglasses"
+            height="50"
             width="50"
             onClick={() => addAvatar(sunglasses)}
           ></Image>
@@ -131,6 +137,7 @@ const EditProfileForm = () => {
             className="avatar"
             src={hotDog}
             alt="hot dog"
+            height="50"
             width="50"
             onClick={() => addAvatar(hotDog)}
           ></Image>
