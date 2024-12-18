@@ -52,10 +52,10 @@ export const createBadges = async (
     }
 
     if (progress >= targetAmount * 0.5) {
-      const existingBadge = await checkExistingBadge(userId, "50% Progress");
+      const existingBadge = await checkExistingBadge(userId, "Halfway there!");
       if (!existingBadge) {
         const badge = await prisma.badges.findFirst({
-          where: { name: "50% Progress" },
+          where: { name: "Halfway there!" },
         });
 
         if (badge) {
@@ -68,7 +68,7 @@ export const createBadges = async (
         } else {
           const newBadge = await prisma.badges.create({
             data: {
-              name: "50% Progress",
+              name: "Halfway there!",
               criteria: "Reached 50% of a goal",
               image: "/badgeIcons/badge50.svg",
             },
@@ -104,6 +104,42 @@ export const createBadges = async (
               name: "Almost there!",
               criteria: "Reached 75% of a goal",
               image: "/badgeIcons/badge75.svg",
+            },
+          });
+
+          await prisma.userBadges.create({
+            data: {
+              user: { connect: { userId } },
+              badge: { connect: { badgeId: newBadge.badgeId } },
+            },
+          });
+        }
+      }
+    }
+
+    if (progress === targetAmount) {
+      const existingBadge = await checkExistingBadge(
+        userId,
+        "One down, many to go"
+      );
+      if (!existingBadge) {
+        const badge = await prisma.badges.findFirst({
+          where: { name: "One down, many to go" },
+        });
+
+        if (badge) {
+          await prisma.userBadges.create({
+            data: {
+              user: { connect: { userId } },
+              badge: { connect: { badgeId: badge.badgeId } },
+            },
+          });
+        } else {
+          const newBadge = await prisma.badges.create({
+            data: {
+              name: "One down, many to go",
+              criteria: "Reached 100% of a goal",
+              image: "/badgeIcons/badge100.svg",
             },
           });
 
