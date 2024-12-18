@@ -165,9 +165,12 @@
 
 .badgeCard {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
     padding: 1.5rem;
     box-shadow: $shadow;
     border-radius: 15px;
+
+    @include desktop() {
+        justify-content: space-between;
+    }
+
 }

@@ -31,7 +31,6 @@ model Goals {
   title String
   targetAmount Int
   dueDate DateTime? 
-  milestones Milestones[]
   progress Int
   currency String
   isComplete Boolean
@@ -41,20 +40,11 @@ model Goals {
   updatedAt DateTime @updatedAt
 }
 
-model Milestones {
-  milestoneId String @id @default(auto()) @map("_id") @db.ObjectId
-  description String
-  amount Int
-  goalId String
-  goals Goals @relation(fields: [goalId], references: [goalId], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model Badges {
   badgeId String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   criteria String
+  image String
   badgeUsers UserBadges[]    
   createdAt DateTime @default(now())
 }

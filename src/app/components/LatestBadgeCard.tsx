@@ -1,6 +1,7 @@
 "use client";
 
 import { Badges, UserBadges } from "@prisma/client";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 interface LatestBadgeProps {
@@ -31,16 +32,26 @@ const LatestBadgeCard = ({ userId }: LatestBadgeProps) => {
     getLatestBadge();
   }, [userId]);
 
-  console.log(latestBadge);
-
   return (
     <>
-      {latestBadge && latestBadge.badge && (
-        <article className="latestCard">
-          <h2 className="latestGoalHeading">Recently added goal: </h2>
-          <h3>{latestBadge.badge.name}</h3>
-        </article>
-      )}
+      <article className="latestCard">
+        {latestBadge && latestBadge.badge && (
+          <>
+            <div>
+              <h2 className="latestGoalHeading">Recently earned badge: </h2>
+              <h3>{latestBadge.badge.name}</h3>
+            </div>
+            <Image
+              src={latestBadge.badge.image}
+              alt="badge"
+              width="100"
+              height="100"
+            ></Image>
+          </>
+        )}
+
+        {!latestBadge && <p>No badges earned yet</p>}
+      </article>
     </>
   );
 };

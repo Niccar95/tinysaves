@@ -20,8 +20,6 @@ const Dashboard = async () => {
   const displayName = session.user.displayName || session?.user.name;
   const displayAvatar = session?.user?.image || logo;
 
-  console.log(displayAvatar);
-
   return (
     <>
       <Tips />

@@ -1,4 +1,5 @@
 import { Badges } from "@prisma/client";
+import Image from "next/image";
 import React from "react";
 
 interface IBadgeProps {
@@ -9,8 +10,11 @@ const Badgecard = ({ badge }: IBadgeProps) => {
   return (
     <>
       <article className="badgeCard">
-        <h3>{badge.name}</h3>
-        <p>{badge.criteria}</p>
+        <div>
+          <h3>{badge.name}</h3>
+          <p>{badge.criteria}</p>
+        </div>
+        <Image src={badge.image} alt="badge" width="100" height="100"></Image>
       </article>
     </>
   );

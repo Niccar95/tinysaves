@@ -55,7 +55,7 @@ const LatestGoalCard = ({ userId }: LatestGoalProps) => {
         <SavingsForm onSubmitSuccess={handleGoalSubmission} />
         {isLoading && <Spinner />}
         {latestGoal && <GoalCardContent latestGoal={latestGoal} />}
-        {!latestGoal && <div>No goals added yet</div>}
+        {!latestGoal && <p>No goals added yet</p>}
       </article>
     </>
   );

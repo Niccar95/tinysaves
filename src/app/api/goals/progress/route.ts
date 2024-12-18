@@ -1,4 +1,5 @@
 import prisma from "@/app/db";
+import { createBadges } from "@/app/services/badgeService";
 import { NextRequest, NextResponse } from "next/server";
 
 export const PATCH = async (req: NextRequest) => {
@@ -20,28 +21,7 @@ export const PATCH = async (req: NextRequest) => {
 
     const updatedProgress = currentGoal.progress + progress;
 
-    if (updatedProgress >= targetAmount * 0.5) {
-      const existingBadge = await prisma.userBadges.findFirst({
-        where: {
-          userId: userId,
-          badge: { name: "50% Progress" },
-        },
-      });
-
-      if (!existingBadge) {
-        await prisma.userBadges.create({
-          data: {
-            user: { connect: { userId: userId } },
-            badge: {
-              create: {
-                name: "Halfway there!",
-                criteria: "Reached 50% of a goal",
-              },
-            },
-          },
-        });
-      }
-    }
+    await createBadges(userId, updatedProgress, targetAmount);
 
     const goal = await prisma.goals.update({
       where: { goalId },
