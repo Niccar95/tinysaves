@@ -6,9 +6,9 @@ export const fetchLatestBadge = async (): Promise<Badges | null> => {
     const response = await fetch("/api/badges");
     if (response.ok) {
       const data = await response.json();
-      return data.latestBadge;
+      return data.latestBadge ? data.latestBadge.badge : null;
     }
-    throw new Error("Unable to fetch badge. Check the server response.");
+    throw new Error("Unable to fetch latest badge");
   } catch (error) {
     console.error("Error fetching the badge:", error);
     return null;

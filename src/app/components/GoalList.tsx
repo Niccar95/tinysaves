@@ -3,6 +3,7 @@
 import { Goals } from "@prisma/client";
 import GoalCard from "./GoalCard";
 import { useState } from "react";
+import { fetchLatestBadge } from "../services/badgeService";
 
 interface GoalListProps {
   goals: Goals[];

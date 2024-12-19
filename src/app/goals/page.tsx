@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth";
 import prisma from "../db";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import BadgeModalHandler from "../components/BadgeModalHandler";
 
 const GoalsPage = async () => {
   const session = await getServerSession(authOptions);
@@ -22,18 +21,11 @@ const GoalsPage = async () => {
     },
   });
 
-  const latestBadge = await prisma.userBadges.findFirst({
-    where: { userId },
-    include: { badge: true },
-    orderBy: { createdAt: "desc" },
-  });
-
   return (
     <>
       <section className="content">
         <h1>My goals</h1>
         <GoalList goals={goals} />
-        {latestBadge && <BadgeModalHandler latestBadge={latestBadge.badge} />}
       </section>
     </>
   );

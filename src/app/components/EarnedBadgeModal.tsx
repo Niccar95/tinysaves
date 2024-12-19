@@ -1,22 +1,52 @@
 "use client";
 
 import { Badges } from "@prisma/client";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 interface ILatestBadgeProps {
-  latestBadge: Badges;
-  onClose: () => void;
+  latestBadge: Badges | null;
 }
 
-const EarnedBadgeModal = ({ latestBadge, onClose }: ILatestBadgeProps) => {
+const EarnedBadgeModal = ({ latestBadge }: ILatestBadgeProps) => {
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (latestBadge) {
+      setShowModal(true);
+    }
+  }, [latestBadge]);
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  if (!latestBadge) {
+    return null;
+  }
+
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h2>Congratulations!</h2>
-        <p>You earned a new badge: {latestBadge.name}</p>
-        <button onClick={onClose}>Close</button>
-      </div>
-    </div>
+    <>
+      {showModal && (
+        <div className="modalBackdrop">
+          <div className="modalContent">
+            <article className="earnedBadgeCard">
+              <h2>Congratulations!</h2>
+              <p>You earned a new badge: {latestBadge.name}</p>
+              <Image
+                src={latestBadge.image}
+                alt="New badge"
+                width="100"
+                height="100"
+              ></Image>
+              <button className="closeModalButton" onClick={closeModal}>
+                Close
+              </button>
+            </article>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
-
 export default EarnedBadgeModal;

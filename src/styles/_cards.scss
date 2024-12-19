@@ -168,9 +168,17 @@
     padding: 1.5rem;
     box-shadow: $shadow;
     border-radius: 15px;
+    background-color: $light-body-background;
 
     @include desktop() {
         justify-content: space-between;
-    }
+   }
+}
 
+.earnedBadgeCard {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 1.5rem;
+    background-color: $light-body-background;
 }

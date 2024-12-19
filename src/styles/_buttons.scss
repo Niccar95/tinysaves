@@ -2,7 +2,7 @@
 @use "./mixins.scss" as *;
 
 .registerButton, .loginButton, .submitButton, 
-.updateButton, .saveButton {
+.updateButton, .saveButton, .closeModalButton {
     border: none;
     border-radius: 15px;
     height: 40px;

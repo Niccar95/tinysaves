@@ -1,14 +1,21 @@
 "use client";
 
 import { Badges, Goals } from "@prisma/client";
-import React, { FormEvent, useEffect, useRef, useState } from "react";
+import React, {
+  FormEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import ProgressBar from "./ProgressBar";
 import { processCreatedAtDate, processDueDate } from "@/utils/dateUtils";
-import { goalProgress } from "@/utils/validationSchemas";
 import ActionMenu from "./ActionMenu";
 import { useSession } from "next-auth/react";
-import { fetchLatestBadge } from "../services/badgeService";
 import { updateGoalProgress } from "../services/goalService";
+import { goalProgress } from "@/utils/validationSchemas";
+import { fetchLatestBadge } from "../services/badgeService";
+import EarnedBadgeModal from "./EarnedBadgeModal";
 
 interface GoalProps {
   goal: Goals;
@@ -27,30 +34,26 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const [displayProgress, setDisplayProgress] = useState<number>(goal.progress);
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  //const [currency, setCurrency] = useState<string>(goal.currency); //FOR LATER
 
   const actionsMenuRef = useRef<HTMLDivElement | null>(null);
-
-  // const baseUrl =
-  //   process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000";
 
   const { formattedDate, daysRemaining } = processDueDate(goal.dueDate);
   const { formattedCreatedAtDate } = processCreatedAtDate(goal.createdAt);
 
   const [badge, setBadge] = useState<Badges | null>(null);
 
-  const getBadge = async () => {
-    const fetchedBadge = await fetchLatestBadge();
-    setBadge(fetchedBadge);
-  };
+  const getBadge = useCallback(async () => {
+    try {
+      const fetchedBadge = await fetchLatestBadge();
+      console.log("Fetched Badge:", fetchedBadge);
 
-  useEffect(() => {
-    if (userId) {
-      getBadge();
+      if (fetchedBadge && (!badge || fetchedBadge.badgeId !== badge.badgeId)) {
+        setBadge(fetchedBadge);
+      }
+    } catch (error) {
+      console.error("Error fetching badge:", error);
     }
-  }, [userId]);
-
-  console.log("latest badge:", badge);
+  }, [badge]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -76,51 +79,6 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
     }
   };
 
-  // const handleUpdateProgress = async (e: FormEvent) => {
-  //   e.preventDefault();
-
-  //   const { error } = goalProgress.validate({ progress });
-
-  //   if (error) {
-  //     const newErrors = Object.fromEntries(
-  //       error.details.map(({ path, message }) => [path[0], message])
-  //     );
-  //     setErrors(newErrors);
-  //     return;
-  //   }
-
-  //   const numericTargetAmount = parseFloat(progress);
-
-  //   try {
-  //     const response = await fetch(`${baseUrl}/api/goals/progress`, {
-  //       method: "PATCH",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         goalId: goal.goalId,
-  //         progress: numericTargetAmount,
-  //         targetAmount: goal.targetAmount,
-  //         userId: userId,
-  //       }),
-  //     });
-
-  //     if (response.ok) {
-  //       const data = await response.json();
-
-  //       await fetchLatestBadge();
-
-  //       setDisplayProgress(data.goal.progress);
-  //       setIsComplete(data.goal.isComplete);
-
-  //       setProgress("");
-  //       setIsEditing(false);
-  //     }
-  //   } catch (error) {
-  //     console.error("Failed to create goal", error);
-  //   }
-  // };
-
   const handleUpdateProgress = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -144,7 +102,9 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
         userId
       );
 
-      await getBadge();
+      if (data.goal.progress !== displayProgress) {
+        await getBadge();
+      }
 
       setDisplayProgress(data.goal.progress);
       setIsComplete(data.goal.isComplete);
@@ -155,8 +115,11 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
     }
   };
 
+  console.log("fuck you chat: ", badge);
+
   return (
     <>
+      <EarnedBadgeModal latestBadge={badge} />
       <article className="goalCard">
         <div className="titleWrapper">
           <h2 className="goalTitle">{goal.title}</h2>

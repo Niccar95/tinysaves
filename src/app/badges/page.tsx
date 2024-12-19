@@ -21,8 +21,6 @@ const BadgesPage = async () => {
     },
   });
 
-  console.log(userBadges);
-
   return (
     <>
       <section className="content">
