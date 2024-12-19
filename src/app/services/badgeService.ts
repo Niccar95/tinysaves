@@ -1,4 +1,19 @@
+import { Badges } from "@prisma/client";
 import prisma from "../db";
+
+export const fetchLatestBadge = async (): Promise<Badges | null> => {
+  try {
+    const response = await fetch("/api/badges");
+    if (response.ok) {
+      const data = await response.json();
+      return data.latestBadge;
+    }
+    throw new Error("Unable to fetch badge. Check the server response.");
+  } catch (error) {
+    console.error("Error fetching the badge:", error);
+    return null;
+  }
+};
 
 const checkExistingBadge = async (userId: string, badgeName: string) => {
   return await prisma.userBadges.findFirst({

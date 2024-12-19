@@ -1,12 +1,14 @@
 "use client";
 
-import { Goals } from "@prisma/client";
+import { Badges, Goals } from "@prisma/client";
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import { processCreatedAtDate, processDueDate } from "@/utils/dateUtils";
 import { goalProgress } from "@/utils/validationSchemas";
 import ActionMenu from "./ActionMenu";
 import { useSession } from "next-auth/react";
+import { fetchLatestBadge } from "../services/badgeService";
+import { updateGoalProgress } from "../services/goalService";
 
 interface GoalProps {
   goal: Goals;
@@ -35,6 +37,21 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
   const { formattedDate, daysRemaining } = processDueDate(goal.dueDate);
   const { formattedCreatedAtDate } = processCreatedAtDate(goal.createdAt);
 
+  const [badge, setBadge] = useState<Badges | null>(null);
+
+  const getBadge = async () => {
+    const fetchedBadge = await fetchLatestBadge();
+    setBadge(fetchedBadge);
+  };
+
+  useEffect(() => {
+    if (userId) {
+      getBadge();
+    }
+  }, [userId]);
+
+  console.log(badge);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -59,6 +76,51 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
     }
   };
 
+  // const handleUpdateProgress = async (e: FormEvent) => {
+  //   e.preventDefault();
+
+  //   const { error } = goalProgress.validate({ progress });
+
+  //   if (error) {
+  //     const newErrors = Object.fromEntries(
+  //       error.details.map(({ path, message }) => [path[0], message])
+  //     );
+  //     setErrors(newErrors);
+  //     return;
+  //   }
+
+  //   const numericTargetAmount = parseFloat(progress);
+
+  //   try {
+  //     const response = await fetch(`${baseUrl}/api/goals/progress`, {
+  //       method: "PATCH",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         goalId: goal.goalId,
+  //         progress: numericTargetAmount,
+  //         targetAmount: goal.targetAmount,
+  //         userId: userId,
+  //       }),
+  //     });
+
+  //     if (response.ok) {
+  //       const data = await response.json();
+
+  //       await fetchLatestBadge();
+
+  //       setDisplayProgress(data.goal.progress);
+  //       setIsComplete(data.goal.isComplete);
+
+  //       setProgress("");
+  //       setIsEditing(false);
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to create goal", error);
+  //   }
+  // };
+
   const handleUpdateProgress = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -75,30 +137,21 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
     const numericTargetAmount = parseFloat(progress);
 
     try {
-      const response = await fetch(`${baseUrl}/api/goals/progress`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          goalId: goal.goalId,
-          progress: numericTargetAmount,
-          targetAmount: goal.targetAmount,
-          userId: userId,
-        }),
-      });
+      const data = await updateGoalProgress(
+        goal.goalId,
+        numericTargetAmount,
+        goal.targetAmount,
+        userId
+      );
 
-      if (response.ok) {
-        const data = await response.json();
+      await getBadge();
 
-        setDisplayProgress(data.goal.progress);
-        setIsComplete(data.goal.isComplete);
-
-        setProgress("");
-        setIsEditing(false);
-      }
+      setDisplayProgress(data.goal.progress);
+      setIsComplete(data.goal.isComplete);
+      setProgress("");
+      setIsEditing(false);
     } catch (error) {
-      console.error("Failed to create goal", error);
+      console.error(error);
     }
   };
 

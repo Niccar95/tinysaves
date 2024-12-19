@@ -21,7 +21,7 @@ export const PATCH = async (req: NextRequest) => {
 
     const updatedProgress = currentGoal.progress + progress;
 
-    await createBadges(userId, updatedProgress, targetAmount);
+    const badge = await createBadges(userId, updatedProgress, targetAmount);
 
     const goal = await prisma.goals.update({
       where: { goalId },
@@ -32,7 +32,7 @@ export const PATCH = async (req: NextRequest) => {
     });
 
     return NextResponse.json(
-      { message: "Savings goal was updated", goal },
+      { message: "Savings goal was updated", goal, badge },
       { status: 200 }
     );
   } catch (error) {
