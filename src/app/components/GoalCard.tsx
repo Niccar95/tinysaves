@@ -31,8 +31,8 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
 
   const actionsMenuRef = useRef<HTMLDivElement | null>(null);
 
-  const baseUrl =
-    process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000";
+  // const baseUrl =
+  //   process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000";
 
   const { formattedDate, daysRemaining } = processDueDate(goal.dueDate);
   const { formattedCreatedAtDate } = processCreatedAtDate(goal.createdAt);
@@ -50,7 +50,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
     }
   }, [userId]);
 
-  console.log(badge);
+  console.log("latest badge:", badge);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
