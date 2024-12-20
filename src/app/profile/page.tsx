@@ -6,6 +6,7 @@ import Image from "next/image";
 import logo from "/public/logo.svg";
 import star from "/public/star.svg";
 import { redirect } from "next/navigation";
+import prisma from "../db";
 
 const ProfilePage = async () => {
   const session = await getServerSession(authOptions);
@@ -15,8 +16,17 @@ const ProfilePage = async () => {
   }
 
   const userName = session.user.name;
+  const userId = session.user.id;
   const displayName = session.user.displayName || "";
   const userAvatar = session.user.image || logo;
+
+  const badges = await prisma.userBadges.findMany({
+    where: { userId: userId },
+  });
+
+  const badgeAmount = badges.length;
+
+  console.log(badgeAmount);
 
   return (
     <>
@@ -44,7 +54,7 @@ const ProfilePage = async () => {
               <h4 className="badgesTag">Earned badges:</h4>
               <div className="badgesIconContainer">
                 <Image src={star} alt="star" className="badgesCountIcon" />
-                <h3 className="badgeCount">0</h3>
+                <h3 className="badgeCount">{badgeAmount}</h3>
               </div>
             </div>
           </section>

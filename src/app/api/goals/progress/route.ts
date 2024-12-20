@@ -1,5 +1,5 @@
 import prisma from "@/app/db";
-import { createBadges } from "@/app/services/badgeService";
+import { createBadges } from "@/services/badgeService";
 import { NextRequest, NextResponse } from "next/server";
 
 export const PATCH = async (req: NextRequest) => {

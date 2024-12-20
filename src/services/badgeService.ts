@@ -1,5 +1,5 @@
+import prisma from "@/app/db";
 import { Badges } from "@prisma/client";
-import prisma from "../db";
 
 export const fetchLatestBadge = async (): Promise<Badges | null> => {
   try {
