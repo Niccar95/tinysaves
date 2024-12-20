@@ -1,9 +1,9 @@
 "use client";
 
+import { fetchLatestBadge } from "@/services/badgeService";
 import { Badges } from "@prisma/client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { fetchLatestBadge } from "../services/badgeService";
 
 interface LatestBadgeProps {
   userId: string;

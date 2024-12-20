@@ -3,7 +3,7 @@
 import { Goals } from "@prisma/client";
 import GoalCard from "./GoalCard";
 import { useState } from "react";
-import { deleteGoal } from "../services/goalService";
+import { deleteGoal, editGoalTitle } from "@/services/goalService";
 
 interface GoalListProps {
   goals: Goals[];
@@ -26,6 +26,20 @@ const GoalList = ({ goals }: GoalListProps) => {
     }
   };
 
+  const handleEditGoalTitle = async (goalId: string, newTitle: string) => {
+    try {
+      await editGoalTitle(goalId, newTitle);
+
+      setGoals(
+        goals.map((goal) =>
+          goal.goalId === goalId ? { ...goal, title: newTitle } : goal
+        )
+      );
+    } catch (error) {
+      console.error("Failed to update goal title on the server:", error);
+    }
+  };
+
   return (
     <>
       <div className="goalListWrapper">
@@ -35,6 +49,7 @@ const GoalList = ({ goals }: GoalListProps) => {
               key={goal.goalId}
               goal={goal}
               handleDeleteGoal={() => handleDeleteGoal(goal.goalId)}
+              handleEditGoalTitle={handleEditGoalTitle}
             ></GoalCard>
           ))
         ) : (

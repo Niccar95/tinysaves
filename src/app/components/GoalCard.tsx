@@ -12,18 +12,23 @@ import ProgressBar from "./ProgressBar";
 import { processCreatedAtDate, processDueDate } from "@/utils/dateUtils";
 import ActionMenu from "./ActionMenu";
 import { useSession } from "next-auth/react";
-import { updateGoalProgress } from "../services/goalService";
 import { goalProgress } from "@/utils/validationSchemas";
-import { fetchLatestBadge } from "../services/badgeService";
 import EarnedBadgeModal from "./EarnedBadgeModal";
 import ProgressForm from "./ProgressForm";
+import { fetchLatestBadge } from "@/services/badgeService";
+import { updateGoalProgress } from "@/services/goalService";
 
 interface GoalProps {
   goal: Goals;
   handleDeleteGoal: (goalId: string) => void;
+  handleEditGoalTitle: (goalId: string, newTitle: string) => void;
 }
 
-const GoalCard = ({ goal, handleDeleteGoal }: GoalProps) => {
+const GoalCard = ({
+  goal,
+  handleDeleteGoal,
+  handleEditGoalTitle,
+}: GoalProps) => {
   const { data: session } = useSession();
   const userId = session?.user.id;
 
@@ -126,7 +131,11 @@ const GoalCard = ({ goal, handleDeleteGoal }: GoalProps) => {
 
           <div ref={actionsMenuRef} onClick={(e) => e.stopPropagation()}>
             {openActionsMenu && (
-              <ActionMenu goal={goal} deleteGoal={handleDeleteGoal} />
+              <ActionMenu
+                goal={goal}
+                deleteGoal={handleDeleteGoal}
+                handleEditGoalTitle={handleEditGoalTitle}
+              />
             )}
 
             <button

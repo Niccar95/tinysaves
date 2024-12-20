@@ -2,27 +2,19 @@
 
 import { Goals } from "@prisma/client";
 import React, { useState } from "react";
-import { editGoalTitle } from "../services/goalService";
 import EditGoalTitleForm from "./EditGoalTitleForm";
 
 interface GoalProps {
   goal: Goals;
   deleteGoal: (goalId: string) => void;
+  handleEditGoalTitle: (goalId: string, newTitle: string) => void;
 }
 
-const ActionMenu = ({ goal, deleteGoal }: GoalProps) => {
+const ActionMenu = ({ goal, deleteGoal, handleEditGoalTitle }: GoalProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleDeleteGoal = async () => {
     deleteGoal(goal.goalId);
-  };
-
-  const handleEditGoalTitle = async () => {
-    try {
-      await editGoalTitle(goal.goalId, goal.title);
-    } catch (error) {
-      console.log("Failed to edit goal title", error);
-    }
   };
 
   return (
@@ -40,7 +32,13 @@ const ActionMenu = ({ goal, deleteGoal }: GoalProps) => {
           Delete goal
         </button>
       </section>
-      {isEditing && <EditGoalTitleForm />}
+      {isEditing && (
+        <EditGoalTitleForm
+          currentTitle={goal.title}
+          goalId={goal.goalId}
+          handleEditGoalTitle={handleEditGoalTitle}
+        />
+      )}
     </>
   );
 };
