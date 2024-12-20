@@ -31,14 +31,18 @@ const EarnedBadgeModal = ({ latestBadge }: ILatestBadgeProps) => {
         <div className="modalBackdrop">
           <div className="modalContent">
             <article className="earnedBadgeCard">
-              <h2>Congratulations!</h2>
-              <p>You earned a new badge: {latestBadge.name}</p>
-              <Image
-                src={latestBadge.image}
-                alt="New badge"
-                width="100"
-                height="100"
-              ></Image>
+              <section className="badgeSection">
+                <div>
+                  <h2>Congratulations!</h2>
+                  <p>You earned a new badge: {latestBadge.name}</p>
+                </div>
+                <Image
+                  src={latestBadge.image}
+                  alt="New badge"
+                  width="100"
+                  height="100"
+                ></Image>
+              </section>
               <button className="closeModalButton" onClick={closeModal}>
                 Close
               </button>

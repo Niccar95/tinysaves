@@ -178,7 +178,17 @@
 .earnedBadgeCard {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
     border-radius: 15px;
     padding: 1.5rem;
     background-color: $light-body-background;
+
+
+    .badgeSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
 }
