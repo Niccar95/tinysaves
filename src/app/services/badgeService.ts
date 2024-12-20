@@ -132,7 +132,7 @@ export const createBadges = async (
       }
     }
 
-    if (progress === targetAmount) {
+    if (progress >= targetAmount) {
       const existingBadge = await checkExistingBadge(
         userId,
         "One down, many to go"

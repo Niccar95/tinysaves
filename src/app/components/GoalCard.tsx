@@ -16,13 +16,14 @@ import { updateGoalProgress } from "../services/goalService";
 import { goalProgress } from "@/utils/validationSchemas";
 import { fetchLatestBadge } from "../services/badgeService";
 import EarnedBadgeModal from "./EarnedBadgeModal";
+import ProgressForm from "./ProgressForm";
 
 interface GoalProps {
   goal: Goals;
-  deleteGoal: (goalId: string) => void;
+  handleDeleteGoal: (goalId: string) => void;
 }
 
-const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
+const GoalCard = ({ goal, handleDeleteGoal }: GoalProps) => {
   const { data: session } = useSession();
   const userId = session?.user.id;
 
@@ -115,8 +116,6 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
     }
   };
 
-  console.log("fuck you chat: ", badge);
-
   return (
     <>
       <EarnedBadgeModal latestBadge={badge} />
@@ -127,7 +126,7 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
 
           <div ref={actionsMenuRef} onClick={(e) => e.stopPropagation()}>
             {openActionsMenu && (
-              <ActionMenu goal={goal} deleteGoal={deleteGoal} />
+              <ActionMenu goal={goal} deleteGoal={handleDeleteGoal} />
             )}
 
             <button
@@ -163,30 +162,13 @@ const GoalCard = ({ goal, deleteGoal }: GoalProps) => {
         )}
 
         {isEditing && (
-          <section className="progressFormSection">
-            <form onSubmit={handleUpdateProgress}>
-              <label htmlFor="progress">Update your savings progress: </label>
-
-              <div className="inputWrapper">
-                <input
-                  id="progress"
-                  type="text"
-                  min="0"
-                  value={progress ?? ""}
-                  onChange={(e) => {
-                    setProgress(e.target.value);
-                    setErrors({ ...errors, progress: "" });
-                  }}
-                ></input>
-                {errors.progress && (
-                  <div className="errorMessage">{errors.progress}</div>
-                )}
-              </div>
-              <button type="submit" className="updateButton margin">
-                Update
-              </button>
-            </form>
-          </section>
+          <ProgressForm
+            progress={progress}
+            setProgress={setProgress}
+            errors={errors}
+            setErrors={setErrors}
+            handleUpdateProgress={handleUpdateProgress}
+          />
         )}
 
         {goal.dueDate !== null &&

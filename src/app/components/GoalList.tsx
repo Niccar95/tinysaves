@@ -3,7 +3,7 @@
 import { Goals } from "@prisma/client";
 import GoalCard from "./GoalCard";
 import { useState } from "react";
-import { fetchLatestBadge } from "../services/badgeService";
+import { deleteGoal } from "../services/goalService";
 
 interface GoalListProps {
   goals: Goals[];
@@ -11,30 +11,17 @@ interface GoalListProps {
 
 const GoalList = ({ goals }: GoalListProps) => {
   const [savingGoals, setGoals] = useState<Goals[]>(goals);
-  const baseUrl =
-    process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000";
 
-  const deleteGoal = async (deletedGoalId: string) => {
+  const handleDeleteGoal = async (deletedGoalId: string) => {
     try {
+      await deleteGoal(deletedGoalId);
+
       const updatedGoals = savingGoals.filter(
         (goal) => goal.goalId !== deletedGoalId
       );
       setGoals(updatedGoals);
-
-      const response = await fetch(`${baseUrl}/api/goals`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ goalId: deletedGoalId }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to delete goal on server");
-      }
     } catch (error) {
       console.error("Error deleting goal:", error);
-
       setGoals(goals);
     }
   };
@@ -47,7 +34,7 @@ const GoalList = ({ goals }: GoalListProps) => {
             <GoalCard
               key={goal.goalId}
               goal={goal}
-              deleteGoal={() => deleteGoal(goal.goalId)}
+              handleDeleteGoal={() => handleDeleteGoal(goal.goalId)}
             ></GoalCard>
           ))
         ) : (
