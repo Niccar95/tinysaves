@@ -1,29 +1,31 @@
 "use client";
 
-import { Badges } from "@prisma/client";
+import { Milestones } from "@prisma/client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-interface ILatestBadgeProps {
-  latestBadge: Badges | null;
+interface ILatestMilestoneProps {
+  latestMilestone: Milestones | null;
 }
 
-const EarnedBadgeModal = ({ latestBadge }: ILatestBadgeProps) => {
+const MilestoneModal = ({ latestMilestone }: ILatestMilestoneProps) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    if (latestBadge) {
+    if (latestMilestone) {
       setShowModal(true);
     }
-  }, [latestBadge]);
+  }, [latestMilestone]);
 
   const closeModal = () => {
     setShowModal(false);
   };
 
-  if (!latestBadge) {
+  if (!latestMilestone) {
     return null;
   }
+
+  console.log("image", latestMilestone.image);
 
   return (
     <>
@@ -33,12 +35,12 @@ const EarnedBadgeModal = ({ latestBadge }: ILatestBadgeProps) => {
             <article className="earnedBadgeCard">
               <section className="badgeSection">
                 <div>
-                  <h2>Congratulations!</h2>
-                  <p>You earned a new badge: {latestBadge.name}</p>
+                  <h2>{latestMilestone.name}</h2>
+                  <p>{latestMilestone.criteria}</p>
                 </div>
                 <Image
-                  src={latestBadge.image}
-                  alt="New badge"
+                  src={latestMilestone.image}
+                  alt="milestone"
                   width="100"
                   height="100"
                 ></Image>
@@ -53,4 +55,4 @@ const EarnedBadgeModal = ({ latestBadge }: ILatestBadgeProps) => {
     </>
   );
 };
-export default EarnedBadgeModal;
+export default MilestoneModal;

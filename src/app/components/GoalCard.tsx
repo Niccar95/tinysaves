@@ -1,6 +1,6 @@
 "use client";
 
-import { Badges, Goals } from "@prisma/client";
+import { Goals, Milestones } from "@prisma/client";
 import React, {
   FormEvent,
   useCallback,
@@ -13,10 +13,10 @@ import { processCreatedAtDate, processDueDate } from "@/utils/dateUtils";
 import ActionMenu from "./ActionMenu";
 import { useSession } from "next-auth/react";
 import { goalProgress } from "@/utils/validationSchemas";
-import EarnedBadgeModal from "./EarnedBadgeModal";
 import ProgressForm from "./ProgressForm";
-import { fetchLatestBadge } from "@/services/badgeService";
 import { updateGoalProgress } from "@/services/goalService";
+import MilestoneModal from "./MilestoneModal";
+import { fetchLatestMilestone } from "@/services/milestoneService";
 
 interface GoalProps {
   goal: Goals;
@@ -46,20 +46,23 @@ const GoalCard = ({
   const { formattedDate, daysRemaining } = processDueDate(goal.dueDate);
   const { formattedCreatedAtDate } = processCreatedAtDate(goal.createdAt);
 
-  const [badge, setBadge] = useState<Badges | null>(null);
+  const [milestone, setMilestone] = useState<Milestones | null>(null);
 
-  const getBadge = useCallback(async () => {
+  const getMilestone = useCallback(async () => {
     try {
-      const fetchedBadge = await fetchLatestBadge();
-      console.log("Fetched Badge:", fetchedBadge);
+      const fetchedMilestone = await fetchLatestMilestone();
+      console.log("Fetched milestone:", fetchedMilestone);
 
-      if (fetchedBadge && (!badge || fetchedBadge.badgeId !== badge.badgeId)) {
-        setBadge(fetchedBadge);
+      if (
+        fetchedMilestone &&
+        (!milestone || fetchedMilestone.milestoneId !== milestone.milestoneId)
+      ) {
+        setMilestone(fetchedMilestone);
       }
     } catch (error) {
       console.error("Error fetching badge:", error);
     }
-  }, [badge]);
+  }, [milestone]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -109,7 +112,7 @@ const GoalCard = ({
       );
 
       if (data.goal.progress !== displayProgress) {
-        await getBadge();
+        await getMilestone();
       }
 
       setDisplayProgress(data.goal.progress);
@@ -123,7 +126,7 @@ const GoalCard = ({
 
   return (
     <>
-      <EarnedBadgeModal latestBadge={badge} />
+      <MilestoneModal latestMilestone={milestone} />
       <article className="goalCard">
         <div className="titleWrapper">
           <h2 className="goalTitle">{goal.title}</h2>

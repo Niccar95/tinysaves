@@ -3,11 +3,10 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Image from "next/image";
 import logo from "/public/logo.svg";
-
 import LatestGoalCard from "../components/LatestGoalCard";
 import Tips from "../components/Tips";
 import { redirect } from "next/navigation";
-import LatestBadgeCard from "../components/LatestBadgeCard";
+import LatestMilestoneCard from "../components/LatestMilestoneCard";
 
 const Dashboard = async () => {
   const session = await getServerSession(authOptions);
@@ -41,7 +40,7 @@ const Dashboard = async () => {
         </section>
         <section className="overviewSection">
           {userId && <LatestGoalCard userId={userId} />}
-          {userId && <LatestBadgeCard userId={userId} />}
+          {userId && <LatestMilestoneCard userId={userId} />}
         </section>
       </div>
     </>

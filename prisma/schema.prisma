@@ -21,7 +21,7 @@ model User {
   hashedPassword String
   displayName String?
   goals Goals[]        
-  userBadges UserBadges[]     
+  userMilestones UserMilestones[]     
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -40,21 +40,21 @@ model Goals {
   updatedAt DateTime @updatedAt
 }
 
-model Badges {
-  badgeId String @id @default(auto()) @map("_id") @db.ObjectId
+model Milestones {
+  milestoneId String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   criteria String
   image String
-  badgeUsers UserBadges[]    
+  milestoneUsers UserMilestones[]    
   createdAt DateTime @default(now())
 }
 
-model UserBadges {
+model UserMilestones {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @db.ObjectId
-  badgeId String @db.ObjectId
+  milestoneId String @db.ObjectId
   user User @relation(fields: [userId], references: [userId])
-  badge Badges @relation(fields: [badgeId], references: [badgeId])
+  milestone Milestones @relation(fields: [milestoneId], references: [milestoneId])
   createdAt DateTime @default(now())
-  @@unique([userId, badgeId])  
+  @@unique([userId, milestoneId])  
 }

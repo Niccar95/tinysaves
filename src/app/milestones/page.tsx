@@ -1,11 +1,11 @@
 import React from "react";
-import BadgesList from "../components/BadgesList";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import prisma from "../db";
 import { redirect } from "next/navigation";
+import MilestonesList from "../components/MilestonesList";
 
-const BadgesPage = async () => {
+const MilestonesPage = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -14,21 +14,21 @@ const BadgesPage = async () => {
 
   const userId = session.user.id;
 
-  const userBadges = await prisma.userBadges.findMany({
+  const milestones = await prisma.userMilestones.findMany({
     where: { userId: userId },
     include: {
-      badge: true,
+      milestone: true,
     },
   });
 
   return (
     <>
       <section className="content">
-        <h1>My badges</h1>
-        <BadgesList userBadges={userBadges} />
+        <h1>My Milestones</h1>
+        <MilestonesList milestones={milestones} />
       </section>
     </>
   );
 };
 
-export default BadgesPage;
+export default MilestonesPage;

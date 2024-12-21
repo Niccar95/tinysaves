@@ -20,13 +20,13 @@ const ProfilePage = async () => {
   const displayName = session.user.displayName || "";
   const userAvatar = session.user.image || logo;
 
-  const badges = await prisma.userBadges.findMany({
+  const badges = await prisma.userMilestones.findMany({
     where: { userId: userId },
   });
 
-  const badgeAmount = badges.length;
+  const milestoneAmount = badges.length;
 
-  console.log(badgeAmount);
+  console.log(milestoneAmount);
 
   return (
     <>
@@ -51,10 +51,10 @@ const ProfilePage = async () => {
               <h3>{displayName}</h3>
             </div>
             <div className="badgesContainer">
-              <h4 className="badgesTag">Earned badges:</h4>
+              <h4 className="badgesTag">Reached milestones:</h4>
               <div className="badgesIconContainer">
                 <Image src={star} alt="star" className="badgesCountIcon" />
-                <h3 className="badgeCount">{badgeAmount}</h3>
+                <h3 className="badgeCount">{milestoneAmount}</h3>
               </div>
             </div>
           </section>

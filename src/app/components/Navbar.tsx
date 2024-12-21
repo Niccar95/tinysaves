@@ -57,9 +57,9 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link className="navLink" href="/badges" onClick={closeNavBar}>
+            <Link className="navLink" href="/milestones" onClick={closeNavBar}>
               <i className="bi bi-trophy-fill"></i>
-              My badges
+              My milestones
             </Link>
           </li>
           <li>

@@ -18,7 +18,7 @@ export const config = {
   matcher: [
     "/dashboard",
     "/goals",
-    "/badges",
+    "/milestones",
     "/stats",
     "/profile",
     "/profile/edit",

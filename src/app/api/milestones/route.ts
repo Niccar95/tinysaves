@@ -16,25 +16,28 @@ export const GET = async (req: NextRequest) => {
     if (!userId)
       return NextResponse.json({ message: "Invalid data" }, { status: 422 });
 
-    const latestBadge = await prisma.userBadges.findFirst({
+    const latestMilestone = await prisma.userMilestones.findFirst({
       where: { userId: userId },
       include: {
-        badge: true,
+        milestone: true,
       },
       orderBy: {
         createdAt: "desc",
       },
     });
 
-    if (!latestBadge) {
+    if (!latestMilestone) {
       return NextResponse.json(
-        { message: "No badge found for this user" },
+        { message: "No milestone for this user" },
         { status: 200 }
       );
     }
 
     return NextResponse.json(
-      { message: "Badge found", latestBadge },
+      {
+        message: "Milestone found",
+        latestMilestone: latestMilestone.milestone,
+      },
       { status: 200 }
     );
   } catch (error) {

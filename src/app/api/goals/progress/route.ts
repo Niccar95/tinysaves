@@ -1,5 +1,5 @@
 import prisma from "@/app/db";
-import { createBadges } from "@/services/badgeService";
+import { createMilestones } from "@/services/milestoneService";
 import { NextRequest, NextResponse } from "next/server";
 
 export const PATCH = async (req: NextRequest) => {
@@ -21,7 +21,11 @@ export const PATCH = async (req: NextRequest) => {
 
     const updatedProgress = currentGoal.progress + progress;
 
-    const badge = await createBadges(userId, updatedProgress, targetAmount);
+    const milestone = await createMilestones(
+      userId,
+      updatedProgress,
+      targetAmount
+    );
 
     const goal = await prisma.goals.update({
       where: { goalId },
@@ -32,7 +36,7 @@ export const PATCH = async (req: NextRequest) => {
     });
 
     return NextResponse.json(
-      { message: "Savings goal was updated", goal, badge },
+      { message: "Savings goal updated", goal, milestone },
       { status: 200 }
     );
   } catch (error) {
