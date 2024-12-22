@@ -19,12 +19,12 @@ const EditProfileForm = () => {
   const hamburger = "/hamburger.svg";
   const sunglasses = "/sunglasses.svg";
   const hotDog = "/hotDog.svg";
-  const logo = "/logo.svg";
+  const presetAvatar = "/presetAvatar.svg";
 
   useEffect(() => {
     if (session) {
       setUserDisplayName(session.user.displayName || "");
-      setAvatarImage(session.user.image || logo);
+      setAvatarImage(session.user.image || presetAvatar);
     }
   }, [session]);
 
@@ -88,7 +88,7 @@ const EditProfileForm = () => {
     <>
       <div className="userImageContainer">
         <Image
-          src={avatarImage || logo}
+          src={avatarImage || presetAvatar}
           alt="User Avatar"
           className="avatarPreview"
           width="50"

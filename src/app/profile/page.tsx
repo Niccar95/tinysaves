@@ -3,7 +3,6 @@ import { getServerSession } from "next-auth";
 import React from "react";
 import EditButton from "../components/EditButton";
 import Image from "next/image";
-import logo from "/public/logo.svg";
 import star from "/public/star.svg";
 import { redirect } from "next/navigation";
 import prisma from "../db";
@@ -18,7 +17,8 @@ const ProfilePage = async () => {
   const userName = session.user.name;
   const userId = session.user.id;
   const displayName = session.user.displayName || "";
-  const userAvatar = session.user.image || logo;
+  const userAvatar = session.user.image;
+  const presetAvatar = "/presetAvatar.svg";
 
   const badges = await prisma.userMilestones.findMany({
     where: { userId: userId },
@@ -38,7 +38,7 @@ const ProfilePage = async () => {
         <article className="profileCard">
           <div className="userImageContainer">
             <Image
-              src={userAvatar}
+              src={userAvatar || presetAvatar}
               alt="User Avatar"
               className="avatarPreview"
               width="50"

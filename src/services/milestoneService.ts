@@ -15,6 +15,19 @@ export const fetchLatestMilestone = async (): Promise<Milestones | null> => {
   }
 };
 
+export const fetchMilestoneForGoal = async (goalId: string) => {
+  try {
+    const response = await fetch(`/api/milestones/${goalId}`);
+    if (response.ok) {
+      return await response.json();
+    }
+    throw new Error("Failed to fetch milestone");
+  } catch (error) {
+    console.error("Error fetching milestone:", error);
+    return null;
+  }
+};
+
 const checkExistingMilestone = async (
   userId: string,
   milestoneName: string

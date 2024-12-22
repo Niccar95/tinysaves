@@ -22,13 +22,15 @@ interface GoalProps {
   goal: Goals;
   handleDeleteGoal: (goalId: string) => void;
   handleEditGoalTitle: (goalId: string, newTitle: string) => void;
+  // onReachMilestone: () => void;
 }
 
 const GoalCard = ({
   goal,
   handleDeleteGoal,
   handleEditGoalTitle,
-}: GoalProps) => {
+}: // onReachMilestone,
+GoalProps) => {
   const { data: session } = useSession();
   const userId = session?.user.id;
 
@@ -43,26 +45,31 @@ const GoalCard = ({
 
   const actionsMenuRef = useRef<HTMLDivElement | null>(null);
 
-  const { formattedDate, daysRemaining } = processDueDate(goal.dueDate);
+  const { formattedDate, daysRemaining, hoursRemaining } = processDueDate(
+    goal.dueDate
+  );
   const { formattedCreatedAtDate } = processCreatedAtDate(goal.createdAt);
 
-  const [milestone, setMilestone] = useState<Milestones | null>(null);
+  console.log("days:", daysRemaining);
+  console.log("hours:", hoursRemaining);
 
-  const getMilestone = useCallback(async () => {
-    try {
-      const fetchedMilestone = await fetchLatestMilestone();
-      console.log("Fetched milestone:", fetchedMilestone);
+  // const [milestone, setMilestone] = useState<Milestones | null>(null);
 
-      if (
-        fetchedMilestone &&
-        (!milestone || fetchedMilestone.milestoneId !== milestone.milestoneId)
-      ) {
-        setMilestone(fetchedMilestone);
-      }
-    } catch (error) {
-      console.error("Error fetching badge:", error);
-    }
-  }, [milestone]);
+  // const getMilestone = useCallback(async () => {
+  //   try {
+  //     const fetchedMilestone = await fetchLatestMilestone();
+  //     console.log("Fetched milestone:", fetchedMilestone);
+
+  //     if (
+  //       fetchedMilestone &&
+  //       (!milestone || fetchedMilestone.milestoneId !== milestone.milestoneId)
+  //     ) {
+  //       setMilestone(fetchedMilestone);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching badge:", error);
+  //   }
+  // }, [milestone]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -111,9 +118,11 @@ const GoalCard = ({
         userId
       );
 
-      if (data.goal.progress !== displayProgress) {
-        await getMilestone();
-      }
+      // if (data.goal.progress !== displayProgress) {
+      //   // await getMilestone();
+
+      //   // onReachMilestone();
+      // }
 
       setDisplayProgress(data.goal.progress);
       setIsComplete(data.goal.isComplete);
@@ -126,7 +135,7 @@ const GoalCard = ({
 
   return (
     <>
-      <MilestoneModal latestMilestone={milestone} />
+      {/* <MilestoneModal latestMilestone={milestone} /> */}
       <article className="goalCard">
         <div className="titleWrapper">
           <h2 className="goalTitle">{goal.title}</h2>
@@ -169,9 +178,9 @@ const GoalCard = ({
             )}
         </section>
 
-        {daysRemaining !== null && daysRemaining <= 0 && (
-          <p>Due date reached!</p>
-        )}
+        {daysRemaining !== null &&
+          daysRemaining <= 0 &&
+          hoursRemaining <= 0 && <p>Due date reached!</p>}
 
         {isEditing && (
           <ProgressForm
@@ -192,10 +201,20 @@ const GoalCard = ({
                 <i className="bi bi-calendar-date"></i>
                 Final date: {formattedDate}
               </p>
-              <p className="dueDateTag">
-                <i className="bi bi-clock"></i>
-                {daysRemaining} days remaining
-              </p>
+
+              {daysRemaining === 0 && hoursRemaining > 0 && (
+                <p className="dueDateTag">
+                  <i className="bi bi-clock"></i>
+                  {hoursRemaining} hours remaining
+                </p>
+              )}
+
+              {daysRemaining > 0 && (
+                <p className="dueDateTag">
+                  <i className="bi bi-clock"></i>
+                  {daysRemaining} days remaining
+                </p>
+              )}
             </section>
           )}
         {goal.dueDate == null && <p className="noDateTag">No due date</p>}

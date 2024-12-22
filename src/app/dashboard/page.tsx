@@ -2,7 +2,6 @@ import React from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Image from "next/image";
-import logo from "/public/logo.svg";
 import LatestGoalCard from "../components/LatestGoalCard";
 import Tips from "../components/Tips";
 import { redirect } from "next/navigation";
@@ -17,7 +16,8 @@ const Dashboard = async () => {
 
   const userId = session.user.id;
   const displayName = session.user.displayName || session?.user.name;
-  const displayAvatar = session?.user?.image || logo;
+  const displayAvatar = session?.user?.image;
+  const presetAvatar = "/presetAvatar.svg";
 
   return (
     <>
@@ -28,7 +28,7 @@ const Dashboard = async () => {
           <div className="greetingContainer">
             <div className="userImageContainer small">
               <Image
-                src={displayAvatar || logo}
+                src={displayAvatar || presetAvatar}
                 alt="User Avatar"
                 className="avatarPreview"
                 width="50"

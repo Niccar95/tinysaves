@@ -25,8 +25,6 @@ const MilestoneModal = ({ latestMilestone }: ILatestMilestoneProps) => {
     return null;
   }
 
-  console.log("image", latestMilestone.image);
-
   return (
     <>
       {showModal && (
