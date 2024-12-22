@@ -19,19 +19,21 @@ const ActionMenu = ({ goal, deleteGoal, handleEditGoalTitle }: GoalProps) => {
 
   return (
     <>
-      <section className="actionMenu">
-        <button
-          className="actionButton customise"
-          onClick={() => setIsEditing(!isEditing)}
-        >
-          <i className="bi bi-pencil"></i>
-          Edit goal name
-        </button>
-        <button className="actionButton delete" onClick={handleDeleteGoal}>
-          <i className="bi bi-trash3 delete"></i>
-          Delete goal
-        </button>
-      </section>
+      {!isEditing && (
+        <section className="actionMenu">
+          <button
+            className="actionButton customise"
+            onClick={() => setIsEditing(!isEditing)}
+          >
+            <i className="bi bi-pencil"></i>
+            Edit goal title
+          </button>
+          <button className="actionButton delete" onClick={handleDeleteGoal}>
+            <i className="bi bi-trash3 delete"></i>
+            Delete goal
+          </button>
+        </section>
+      )}
       {isEditing && (
         <EditGoalTitleForm
           currentTitle={goal.title}

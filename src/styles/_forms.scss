@@ -24,6 +24,18 @@ form {
     }
 }
 
+.editGoalTitleForm {
+    position: absolute;
+    background-color: $light-body-background;
+    top: 0;
+
+    @include desktop() {
+        width: 200px;
+    }
+
+}
+
+
 .modalBackdrop {
     position: fixed;
     top: 0;

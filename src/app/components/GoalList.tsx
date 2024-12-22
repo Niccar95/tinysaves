@@ -58,7 +58,7 @@ const GoalList = ({ goals }: GoalListProps) => {
         )
       );
     } catch (error) {
-      console.error("Failed to update goal title on the server:", error);
+      console.error("Failed to update goal title:", error);
     }
   };
 

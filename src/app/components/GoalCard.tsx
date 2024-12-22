@@ -87,14 +87,6 @@ GoalProps) => {
     };
   }, []);
 
-  const handleOpenForm = () => {
-    if (!isEditing) {
-      setIsEditing(true);
-    } else {
-      setIsEditing(false);
-    }
-  };
-
   const handleUpdateProgress = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -170,7 +162,10 @@ GoalProps) => {
 
         {(daysRemaining === null || daysRemaining > 0 || hoursRemaining > 0) &&
           displayProgress < goal.targetAmount && (
-            <button className="addButton" onClick={handleOpenForm}>
+            <button
+              className="addButton"
+              onClick={() => setIsEditing(!isEditing)}
+            >
               <i className="bi bi-coin"></i>
               Update progress
             </button>

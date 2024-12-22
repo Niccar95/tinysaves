@@ -1,6 +1,15 @@
 import { Goals } from "@prisma/client";
 
 export const calculateSummaryData = (allGoals: Goals[]) => {
+  if (allGoals.length === 0) {
+    return {
+      completedGoals: 0,
+      totalGoals: 0,
+      completedPercentage: 0,
+      totalSaved: 0,
+    };
+  }
+
   const completedGoals = allGoals.filter((goal) => goal.isComplete);
   const completedPercentage = (completedGoals.length / allGoals.length) * 100;
   const totalSaved = allGoals.reduce((total, goal) => total + goal.progress, 0);

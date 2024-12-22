@@ -13,6 +13,7 @@ const EditGoalTitleForm = ({
   handleEditGoalTitle,
 }: IEditTitleProps) => {
   const [newTitle, setNewTitle] = useState<string>(currentTitle);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -21,17 +22,20 @@ const EditGoalTitleForm = ({
       return;
     }
     handleEditGoalTitle(goalId, newTitle);
+    setIsSubmitted(true);
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-        ></input>
-        <button>Save changes</button>
-      </form>
+      {!isSubmitted && (
+        <form onSubmit={handleSubmit} className="editGoalTitleForm">
+          <input
+            type="text"
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+          ></input>
+          <button className="saveButton">Save changes</button>
+        </form>
+      )}
     </>
   );
 };
