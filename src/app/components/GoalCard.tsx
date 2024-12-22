@@ -168,15 +168,13 @@ GoalProps) => {
           currency={goal.currency}
         ></ProgressBar>
 
-        <section className="updateSection">
-          {(daysRemaining === null || daysRemaining > 0) &&
-            displayProgress < goal.targetAmount && (
-              <button className="addButton" onClick={handleOpenForm}>
-                <i className="bi bi-coin"></i>
-                Update progress
-              </button>
-            )}
-        </section>
+        {(daysRemaining === null || daysRemaining > 0 || hoursRemaining > 0) &&
+          displayProgress < goal.targetAmount && (
+            <button className="addButton" onClick={handleOpenForm}>
+              <i className="bi bi-coin"></i>
+              Update progress
+            </button>
+          )}
 
         {daysRemaining !== null &&
           daysRemaining <= 0 &&
