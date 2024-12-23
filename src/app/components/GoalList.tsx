@@ -1,38 +1,31 @@
 "use client";
 
-import { Goals } from "@prisma/client";
+import { Goals, Milestones } from "@prisma/client";
 import GoalCard from "./GoalCard";
 import { useState } from "react";
 import { deleteGoal, editGoalTitle } from "@/services/goalService";
 import { fetchLatestMilestone } from "@/services/milestoneService";
-// import { fetchLatestMilestone } from "@/services/milestoneService";
-// import MilestoneModal from "./MilestoneModal";
-
+import MilestoneModal from "./MilestoneModal";
 interface GoalListProps {
   goals: Goals[];
 }
 
 const GoalList = ({ goals }: GoalListProps) => {
   const [savingGoals, setGoals] = useState<Goals[]>(goals);
+  const [latestMilestone, setLatestMilestone] = useState<Milestones | null>(
+    null
+  );
 
-  // const [milestoneGoal, setMilestoneGoal] = useState<Goals | null>(null);
-
-  // const getMilestone = async (goalId: string) => {
-  //   try {
-  //     const fetchedMilestone = await fetchLatestMilestone();
-  //     if (fetchedMilestone && fetchedMilestone.goalId === goalId) {
-  //       setMilestoneGoal(fetchedMilestone);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching milestone:", error);
-  //   }
-  // };
-
-  const getMilestone = async () => {
-    const fetchedMilestone = await fetchLatestMilestone();
-    console.log(fetchedMilestone);
+  const handleMilestoneReached = async () => {
+    try {
+      const fetchedMilestone = await fetchLatestMilestone();
+      if (fetchedMilestone) {
+        setLatestMilestone(fetchedMilestone);
+      }
+    } catch (error) {
+      console.error("Error fetching milestone:", error);
+    }
   };
-  getMilestone();
 
   const handleDeleteGoal = async (deletedGoalId: string) => {
     try {
@@ -65,7 +58,13 @@ const GoalList = ({ goals }: GoalListProps) => {
   return (
     <>
       <div className="goalListWrapper">
-        {/* {milestoneGoal && <MilestoneModal latestMilestone={milestoneGoal} />} */}
+        {latestMilestone && (
+          <MilestoneModal
+            latestMilestone={latestMilestone}
+            onClose={() => setLatestMilestone(null)}
+          />
+        )}
+
         {savingGoals.length > 0 ? (
           savingGoals.map((goal) => (
             <GoalCard
@@ -73,7 +72,7 @@ const GoalList = ({ goals }: GoalListProps) => {
               goal={goal}
               handleDeleteGoal={() => handleDeleteGoal(goal.goalId)}
               handleEditGoalTitle={handleEditGoalTitle}
-              // onReachMilestone={() => getMilestone(goal.goalId)}
+              onMilestoneReached={handleMilestoneReached}
             ></GoalCard>
           ))
         ) : (

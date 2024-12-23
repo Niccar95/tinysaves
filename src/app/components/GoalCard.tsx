@@ -1,13 +1,7 @@
 "use client";
 
-import { Goals, Milestones } from "@prisma/client";
-import React, {
-  FormEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { Goals } from "@prisma/client";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import { processCreatedAtDate, processDueDate } from "@/utils/dateUtils";
 import ActionMenu from "./ActionMenu";
@@ -15,22 +9,20 @@ import { useSession } from "next-auth/react";
 import { goalProgress } from "@/utils/validationSchemas";
 import ProgressForm from "./ProgressForm";
 import { updateGoalProgress } from "@/services/goalService";
-import MilestoneModal from "./MilestoneModal";
-import { fetchLatestMilestone } from "@/services/milestoneService";
 
 interface GoalProps {
   goal: Goals;
   handleDeleteGoal: (goalId: string) => void;
   handleEditGoalTitle: (goalId: string, newTitle: string) => void;
-  // onReachMilestone: () => void;
+  onMilestoneReached: () => void;
 }
 
 const GoalCard = ({
   goal,
   handleDeleteGoal,
   handleEditGoalTitle,
-}: // onReachMilestone,
-GoalProps) => {
+  onMilestoneReached,
+}: GoalProps) => {
   const { data: session } = useSession();
   const userId = session?.user.id;
 
@@ -49,27 +41,6 @@ GoalProps) => {
     goal.dueDate
   );
   const { formattedCreatedAtDate } = processCreatedAtDate(goal.createdAt);
-
-  console.log("days:", daysRemaining);
-  console.log("hours:", hoursRemaining);
-
-  // const [milestone, setMilestone] = useState<Milestones | null>(null);
-
-  // const getMilestone = useCallback(async () => {
-  //   try {
-  //     const fetchedMilestone = await fetchLatestMilestone();
-  //     console.log("Fetched milestone:", fetchedMilestone);
-
-  //     if (
-  //       fetchedMilestone &&
-  //       (!milestone || fetchedMilestone.milestoneId !== milestone.milestoneId)
-  //     ) {
-  //       setMilestone(fetchedMilestone);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching badge:", error);
-  //   }
-  // }, [milestone]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -110,11 +81,9 @@ GoalProps) => {
         userId
       );
 
-      // if (data.goal.progress !== displayProgress) {
-      //   // await getMilestone();
-
-      //   // onReachMilestone();
-      // }
+      if (data.goal.progress !== displayProgress) {
+        onMilestoneReached();
+      }
 
       setDisplayProgress(data.goal.progress);
       setIsComplete(data.goal.isComplete);
@@ -127,7 +96,6 @@ GoalProps) => {
 
   return (
     <>
-      {/* <MilestoneModal latestMilestone={milestone} /> */}
       <article className="goalCard">
         <div className="titleWrapper">
           <h2 className="goalTitle">{goal.title}</h2>

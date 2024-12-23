@@ -6,9 +6,13 @@ import { useEffect, useState } from "react";
 
 interface ILatestMilestoneProps {
   latestMilestone: Milestones | null;
+  onClose: () => void;
 }
 
-const MilestoneModal = ({ latestMilestone }: ILatestMilestoneProps) => {
+const MilestoneModal = ({
+  latestMilestone,
+  onClose,
+}: ILatestMilestoneProps) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -17,9 +21,9 @@ const MilestoneModal = ({ latestMilestone }: ILatestMilestoneProps) => {
     }
   }, [latestMilestone]);
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  // const closeModal = () => {
+  //   setShowModal(false);
+  // };
 
   if (!latestMilestone) {
     return null;
@@ -43,7 +47,7 @@ const MilestoneModal = ({ latestMilestone }: ILatestMilestoneProps) => {
                   height="100"
                 ></Image>
               </section>
-              <button className="closeModalButton" onClick={closeModal}>
+              <button className="closeModalButton" onClick={onClose}>
                 Close
               </button>
             </article>
