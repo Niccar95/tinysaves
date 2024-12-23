@@ -38,16 +38,18 @@ const EditGoalTitleForm = ({
     <>
       {!isSubmitted && (
         <form onSubmit={handleSubmit} className="editGoalTitleForm">
-          <input
-            type="text"
-            value={newTitle}
-            onChange={(e) => {
-              setNewTitle(e.target.value);
-              setError(null);
-            }}
-            autoFocus
-          ></input>
-          {error && <p className="errorMessage">{error}</p>}
+          <div>
+            <input
+              type="text"
+              value={newTitle}
+              onChange={(e) => {
+                setNewTitle(e.target.value);
+                setError(null);
+              }}
+              autoFocus
+            ></input>
+            {error && <p className="errorMessage">{error}</p>}
+          </div>
         </form>
       )}
     </>

@@ -11,8 +11,9 @@ export const register = Joi.object({
     .messages({
       "string.empty": "This is a required field",
     }),
-  password: Joi.string().min(6).required().messages({
+  password: Joi.string().min(8).required().messages({
     "string.empty": "This is a required field",
+    "string.min": "Password must be at least 8 characters",
   }),
   repeatPassword: Joi.valid(Joi.ref("password")).required().messages({
     "any.only": "Passwords must match",
@@ -97,7 +98,27 @@ export const goalProgress = Joi.object({
 
 export const goalTitle = Joi.object({
   title: Joi.string().min(3).required().messages({
-    "string.min": "Goal name must be at least 3 characters",
+    "string.min": "New name must be at least 3 characters",
+    "string.empty": "This is a required field",
+  }),
+});
+
+export const resetPassword = Joi.object({
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .required()
+    .messages({
+      "string.empty": "This is a required field",
+      "string.email": "Please provide a valid email address",
+    }),
+
+  newPassword: Joi.string().min(8).required().messages({
+    "string.empty": "This is a required field",
+    "string.min": "Password must be at least 8 characters",
+  }),
+
+  confirmPassword: Joi.valid(Joi.ref("newPassword")).required().messages({
+    "any.only": "Passwords must match",
     "string.empty": "This is a required field",
   }),
 });

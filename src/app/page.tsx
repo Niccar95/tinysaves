@@ -11,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
   const router = useRouter();
 
   const handleLogin = async (e: FormEvent) => {
@@ -39,7 +40,9 @@ const Login = () => {
 
     if (result?.error) {
       setErrors({ general: "Invalid username or password" });
+      setLoginSuccess(false);
     } else {
+      setLoginSuccess(true);
       router.push("/dashboard");
     }
   };
@@ -85,6 +88,9 @@ const Login = () => {
           {errors.general && (
             <div className="errorMessage">{errors.general}</div>
           )}
+          {loginSuccess && (
+            <div className="successMessage">Logged in successfully!</div>
+          )}
 
           {loading && (
             <div className="spinnerWrapper">
@@ -98,6 +104,8 @@ const Login = () => {
         </form>
 
         <Link href="/registration">Don&apos;t have an account?</Link>
+
+        <Link href="/resetPassword">Forgot your password?</Link>
       </section>
     </>
   );

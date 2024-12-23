@@ -6,7 +6,11 @@ import Navbar from "./Navbar";
 const ConditionalNavbar = () => {
   const pathname = usePathname();
 
-  if (pathname === "/" || pathname === "/registration") {
+  if (
+    pathname === "/" ||
+    pathname === "/registration" ||
+    pathname === "/resetPassword"
+  ) {
     return null;
   }
   return <Navbar />;
