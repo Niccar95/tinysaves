@@ -15,15 +15,22 @@ const EditGoalTitleForm = ({
 }: IEditTitleProps) => {
   const [newTitle, setNewTitle] = useState<string>(currentTitle);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-
-  const { error } = goalTitle.validate({ newTitle });
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!newTitle.trim()) {
-      console.error("Title cannot be empty!");
+    const { error: validationError } = goalTitle.validate({ title: newTitle });
+    if (validationError) {
+      setError(validationError.details[0].message);
       return;
     }
+
+    if (!newTitle.trim()) {
+      setError("Title cannot be empty!");
+      return;
+    }
+
+    setError(null);
     handleEditGoalTitle(goalId, newTitle);
     setIsSubmitted(true);
   };
@@ -34,9 +41,13 @@ const EditGoalTitleForm = ({
           <input
             type="text"
             value={newTitle}
-            onChange={(e) => setNewTitle(e.target.value)}
+            onChange={(e) => {
+              setNewTitle(e.target.value);
+              setError(null);
+            }}
             autoFocus
           ></input>
+          {error && <p className="errorMessage">{error}</p>}
         </form>
       )}
     </>
