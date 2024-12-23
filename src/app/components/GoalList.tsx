@@ -8,23 +8,36 @@ import { fetchLatestMilestone } from "@/services/milestoneService";
 import MilestoneModal from "./MilestoneModal";
 interface GoalListProps {
   goals: Goals[];
+  milestoneId: string | null;
 }
 
-const GoalList = ({ goals }: GoalListProps) => {
+const GoalList = ({ goals, milestoneId }: GoalListProps) => {
   const [savingGoals, setGoals] = useState<Goals[]>(goals);
-  const [latestMilestone, setLatestMilestone] = useState<Milestones | null>(
+  const [currentMilestone, setCurrentMilestone] = useState<Milestones | null>(
     null
   );
+
+  const [lastShownMilestoneId, setLastShownMilestoneId] = useState<
+    string | null
+  >(milestoneId);
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleMilestoneReached = async () => {
     try {
       const fetchedMilestone = await fetchLatestMilestone();
-      if (fetchedMilestone) {
-        setLatestMilestone(fetchedMilestone);
+      if (fetchedMilestone?.milestoneId !== lastShownMilestoneId) {
+        setCurrentMilestone(fetchedMilestone);
+        setLastShownMilestoneId(fetchedMilestone?.milestoneId || null);
+        setIsModalOpen(true);
       }
     } catch (error) {
       console.error("Error fetching milestone:", error);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleDeleteGoal = async (deletedGoalId: string) => {
@@ -58,10 +71,10 @@ const GoalList = ({ goals }: GoalListProps) => {
   return (
     <>
       <div className="goalListWrapper">
-        {latestMilestone && (
+        {isModalOpen && currentMilestone && (
           <MilestoneModal
-            latestMilestone={latestMilestone}
-            onClose={() => setLatestMilestone(null)}
+            latestMilestone={currentMilestone}
+            onClose={closeModal}
           />
         )}
 

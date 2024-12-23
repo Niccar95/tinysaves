@@ -21,11 +21,19 @@ const GoalsPage = async () => {
     },
   });
 
+  const latestMilestone = await prisma.milestones.findFirst({
+    orderBy: { createdAt: "desc" },
+  });
+
+  const milestoneId = latestMilestone?.milestoneId || null;
+
+  console.log("server milestones data", latestMilestone);
+
   return (
     <>
       <section className="content">
         <h1>My goals</h1>
-        <GoalList goals={goals} />
+        <GoalList goals={goals} milestoneId={milestoneId} />
       </section>
     </>
   );
