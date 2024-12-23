@@ -26,13 +26,14 @@ form {
 
 .editGoalTitleForm {
     position: absolute;
+    padding-bottom: 1rem;
     background-color: $light-body-background;
     top: 0;
+    z-index: 1;
 
     @include desktop() {
         width: 200px;
     }
-
 }
 
 

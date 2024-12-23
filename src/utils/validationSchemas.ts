@@ -94,3 +94,10 @@ export const goalProgress = Joi.object({
       "number.greater": "Target amount must be greater than 0",
     }),
 });
+
+export const goalTitle = Joi.object({
+  title: Joi.string().min(3).required().messages({
+    "string.min": "Goal name must be at least 3 characters",
+    "string.empty": "This is a required field",
+  }),
+});

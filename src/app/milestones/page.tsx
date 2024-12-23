@@ -24,7 +24,7 @@ const MilestonesPage = async () => {
   return (
     <>
       <section className="content">
-        <h1>My Milestones</h1>
+        <h1>My milestones</h1>
         <MilestonesList milestones={milestones} />
       </section>
     </>

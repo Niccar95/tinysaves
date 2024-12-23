@@ -1,4 +1,5 @@
 "use client";
+import { goalTitle } from "@/utils/validationSchemas";
 import React, { FormEvent, useState } from "react";
 
 interface IEditTitleProps {
@@ -14,6 +15,8 @@ const EditGoalTitleForm = ({
 }: IEditTitleProps) => {
   const [newTitle, setNewTitle] = useState<string>(currentTitle);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
+  const { error } = goalTitle.validate({ newTitle });
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -32,8 +35,8 @@ const EditGoalTitleForm = ({
             type="text"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
+            autoFocus
           ></input>
-          <button className="saveButton">Save changes</button>
         </form>
       )}
     </>
