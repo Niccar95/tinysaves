@@ -165,14 +165,30 @@
 
 .milestoneCard {
     display: flex;
+    justify-content: space-between;
     padding: 1.5rem;
     box-shadow: $shadow;
     border-radius: 15px;
     background-color: $light-body-background;
 
     @include desktop() {
-        justify-content: space-between;
+        justify-content: space-around;
    }
+   .milestoneCriteria {
+      margin-top: 0.5rem;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .milestoneIcon {
+        height: 80px;
+        width: 80px;
+     
+    @include desktop() {
+        height: 100px;
+        width: 100px;
+    }
+}
 }
 
 .newMilestoneCard {
