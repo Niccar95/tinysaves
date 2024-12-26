@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 .settingsSection {
     display: flex;
     flex-direction: column;
@@ -9,7 +11,7 @@
         flex-direction: column;
         gap: 2rem;
         padding-top: 5px;
-        border-top: solid 1px rgb(142, 142, 142);
+        border-top: solid 1px $tertiary-border-color;
     }
 
 }

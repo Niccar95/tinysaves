@@ -140,7 +140,11 @@ const GoalCard = ({
           daysRemaining <= 0 &&
           hoursRemaining <= 0 && <p>Due date reached!</p>}
 
-        <div ref={progressFormRef} onClick={(e) => e.stopPropagation()}>
+        <div
+          className="progressFormWrapper"
+          ref={progressFormRef}
+          onClick={(e) => e.stopPropagation()}
+        >
           {isEditing && (
             <ProgressForm
               progress={progress}

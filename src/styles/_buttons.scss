@@ -43,21 +43,21 @@
     width: 200px;
     background-color: white;
     color: $primary-text-color;
-    border: solid 2px $border-color;
+    border: solid 2px $primary-border-color;
     font-weight: $button-font-weight;
     cursor: pointer;
     
     &:hover {
         opacity: 0.8;
-        border: solid 3px $border-color; 
+        border: solid 3px $primary-border-color; 
         }
 }
 
 
 .actionButton.delete, .closeButton {
-    background-color: #D32F2F;
+    background-color: $tertiary-button-color;
     color: white;
-    border: solid 2px #B71C1C;
+    border: solid 2px $secondary-border-color;
 }
 
 
@@ -70,7 +70,7 @@
     border-radius: 50%;
     border: none;
     background-color: white;
-    border: solid 2px $border-color;
+    border: solid 2px $primary-border-color;
     cursor: pointer;
 
     &:hover {
@@ -87,8 +87,8 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: none;
-    background-color: #D32F2F;
+    background-color: $tertiary-button-color;
+    border: solid 2px $secondary-border-color;
     color: white;
     cursor: pointer;
     right: 5px;

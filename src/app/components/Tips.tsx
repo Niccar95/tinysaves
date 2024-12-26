@@ -30,7 +30,7 @@ const Tips = () => {
           setCurrentIndex(index);
           setFade(true);
         }, 500);
-      }, 15000);
+      }, 10000);
 
       return () => clearInterval(interval);
     }

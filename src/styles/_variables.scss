@@ -2,20 +2,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 
 
-//Breakpoint variables
+//BREAKPOINTS:
 
 $tablet: 768px;
 $large-desktop: 1200px;
 
 
-//Typography:
+//TYPOGRAPHY:
 
 $heading-font-family: "Roboto Condensed", sans-serif;
 $base-font-family: "Noto Sans", sans-serif;
 $base-font-size: 16px;
 $heading-font-size: 30px;
 $secondary-heading-font-size: 24px;
-
 $tertiary-heading-font-size: 20px;
 
 
@@ -25,21 +24,30 @@ $heading-font-weight: 700;
 $secondary-heading-font-weight: 600;
 $link-font-weight: 700;
 
-//Colors
+//COLORS:
 
-$primary-color: white;
-$primary-button-color: #1821CB;
-$light-body-background: #E4F1FF;
-
+//Text color
 $primary-text-color: black;
 $secondary-text-color: white;
 $tertiary-text-color: #454545;
 
-$link-color: #1f02ad;
+//Button colors
+$primary-button-color: #1821CB;
+$secondary-button-color: white;
+$tertiary-button-color: #D32F2F;
 
 $primary-button-hover-color: #050da5;
-$border-color: #79AEFF;
+
+//Background colors
+$light-body-background: #E4F1FF;
+
+//Link colors
+$link-color: #1f02ad;
+
+//Borders
+$primary-border-color: #79AEFF;
+$secondary-border-color: #B71C1C;
+$tertiary-border-color: #8e8e8e;
 
 //Effects
-
 $shadow: 0px 4px 20px rgba(0, 0, 0, 0.1), 0px 0px 30px rgba(0, 0, 0, 0.05);

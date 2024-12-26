@@ -31,9 +31,10 @@ const ProfilePage = async () => {
   return (
     <>
       <section className="content">
-        <h1>My profile</h1>
-
-        <EditButton />
+        <section className="profileHeader">
+          <h1>My profile</h1>
+          <EditButton />
+        </section>
 
         <article className="profileCard">
           <div className="userImageContainer">

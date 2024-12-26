@@ -27,7 +27,7 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
       {
         label: "Goals",
         data: [completedGoals, totalGoals - completedGoals],
-        backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)"],
+        backgroundColor: ["rgb(94, 214, 160)", "rgb(54, 162, 235)"],
         hoverOffset: 4,
       },
     ],
