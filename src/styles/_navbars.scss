@@ -28,10 +28,14 @@
     }
 
     ul {
-
       display: flex;
       flex-direction: column;
       list-style: none;
+
+      @include desktop() {
+        margin-top: 40px;
+      }
+  
 
 
    li {

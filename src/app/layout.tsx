@@ -23,7 +23,7 @@ export default async function RootLayout({
           </main>
           <footer>
             <section className="contactSection">
-              <h3>Contact</h3>
+              <h3 className="contactHeading">Contact</h3>
 
               <div className="linkWrapper">
                 <a
