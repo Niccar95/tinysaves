@@ -204,5 +204,9 @@
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+
+        .milestoneName {
+            margin-bottom: 0.5rem;
+        }
     }
 }

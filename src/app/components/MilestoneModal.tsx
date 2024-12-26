@@ -34,7 +34,7 @@ const MilestoneModal = ({
                 height="150"
               ></Image>
               <div className="descriptionWrapper">
-                <h2>{latestMilestone.name}</h2>
+                <h2 className="milestoneName">{latestMilestone.name}</h2>
                 <h3>{latestMilestone.criteria}</h3>
               </div>
             </section>
