@@ -33,15 +33,15 @@ const ProgressBar = ({
                 width: `${dynamicProgress}`,
               }}
             ></div>
-            {progress} / {targetAmount} {currency}
+            <p className="progressInfo">
+              {progress} / {targetAmount} {currency}
+            </p>
           </div>
         )}
 
         {isComplete && (
           <div className="progressBar">
-            <p>
-              <b>Goal reached!</b>
-            </p>
+            <p className="progressInfo">Goal reached!</p>
           </div>
         )}
 
