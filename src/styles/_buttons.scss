@@ -2,7 +2,7 @@
 @use "./mixins.scss" as *;
 
 .registerButton, .loginButton, .submitButton, 
-.updateButton, .saveButton, .closeModalButton {
+.updateButton, .saveButton {
     border: none;
     border-radius: 15px;
     height: 40px;
@@ -36,7 +36,7 @@
     }
 }
 
-.addButton, .actionButton, .addGoalButton, .editButton  {
+.addButton, .actionButton, .addGoalButton, .editButton, .closeButton  {
     font-size: 0.9rem;
     border-radius: 15px;
     height: 40px;
@@ -54,7 +54,7 @@
 }
 
 
-.actionButton.delete {
+.actionButton.delete, .closeButton {
     background-color: #D32F2F;
     color: white;
     border: solid 2px #B71C1C;

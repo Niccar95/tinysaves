@@ -5,7 +5,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     padding: 1.5rem;
     box-shadow: $shadow;
     border-radius: 15px;
@@ -19,7 +19,6 @@
         @include desktop() {
             flex-direction: row;
             align-items: center;
-            gap: 1.5rem;
         }
 
     }
@@ -176,20 +175,34 @@
    }
 }
 
-.earnedBadgeCard {
+.newMilestoneCard {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 2rem;
     border-radius: 15px;
     padding: 1.5rem;
     background-color: $light-body-background;
 
+    .congratulationsHeading {
+        width: 60%;
 
-    .badgeSection {
+        @include desktop() {
+            width: 50%;
+       }
+    }
+
+
+    @include desktop() {
+        width: 400px;
+   }
+
+
+    .milestoneSection {
+        text-align: start;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 1rem;
     }
-
 }

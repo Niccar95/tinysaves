@@ -157,7 +157,13 @@ const GoalCard = ({
             displayProgress < goal.targetAmount && (
               <button
                 className="addButton"
-                onClick={() => setIsEditing(!isEditing)}
+                onClick={() => {
+                  if (!isEditing) {
+                    setProgress("");
+                    setErrors({});
+                  }
+                  setIsEditing(!isEditing);
+                }}
               >
                 <i className="bi bi-coin"></i>
                 Update progress
