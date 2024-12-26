@@ -9,7 +9,7 @@ interface IMilestoneProps {
 const MilestoneCard = ({ milestone }: IMilestoneProps) => {
   return (
     <>
-      <article className="badgeCard">
+      <article className="milestoneCard">
         <div>
           <h3>{milestone.name}</h3>
           <p>{milestone.criteria}</p>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Milestones, UserMilestones } from "@prisma/client";
-import Badgecard from "./MilestoneCard";
+import MilestoneCard from "./MilestoneCard";
 
 interface IMilestonesProps {
   milestones: (UserMilestones & { milestone: Milestones })[];
@@ -10,10 +10,10 @@ interface IMilestonesProps {
 const MilestonesList = ({ milestones }: IMilestonesProps) => {
   return (
     <>
-      <div className="badgesListWrapper">
+      <div className="milestonesListWrapper">
         {milestones.length > 0 ? (
           milestones.map((milestone) => (
-            <Badgecard key={milestone.id} milestone={milestone.milestone} />
+            <MilestoneCard key={milestone.id} milestone={milestone.milestone} />
           ))
         ) : (
           <p>No milestones reached yet!</p>

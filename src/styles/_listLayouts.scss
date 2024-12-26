@@ -11,13 +11,12 @@
     @include desktop() {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-
-       gap: 2rem;
+        gap: 2rem;
     }
 }
 
 
-.badgesListWrapper {
+.milestonesListWrapper {
     display: flex;
     flex-direction: column;
     gap: 2rem;

@@ -46,15 +46,15 @@ const ProfilePage = async () => {
             />
           </div>
           <section className="profileInfoSection">
-            <div className="profileTagsContainer">
-              <h2 className="userNameTag">{userName}</h2>
+            <div>
+              <h2 className="userNameLabel">{userName}</h2>
               <h3>{displayName}</h3>
             </div>
-            <div className="badgesContainer">
-              <h4 className="badgesTag">Reached milestones:</h4>
-              <div className="badgesIconContainer">
-                <Image src={star} alt="star" className="badgesCountIcon" />
-                <h3 className="badgeCount">{milestoneAmount}</h3>
+            <div>
+              <h4 className="milestonesLabel">Reached milestones:</h4>
+              <div className="milestonesIconContainer">
+                <Image src={star} alt="star" className="milestonesCountIcon" />
+                <h3>{milestoneAmount}</h3>
               </div>
             </div>
           </section>

@@ -82,7 +82,7 @@
         flex-direction: column;
         gap: 2rem;
 
-        .userNameTag {
+        .userNameLabel {
             border-bottom: solid 1px rgb(142, 142, 142);
             margin-bottom: 0.5rem;
 
@@ -92,18 +92,18 @@
             
         }
 
-        .badgesTag {
+        .milestonesLabel {
             font-family: $heading-font-family;
             font-size: $tertiary-heading-font-size;
             font-weight: 500;
             margin-bottom: 0.5rem;
         }
         
-        .badgesIconContainer {
+        .milestonesIconContainer {
            display: flex;
            align-items: flex-end;
 
-           .badgesCountIcon { 
+           .milestonesCountIcon { 
                height: 50px;
                width: 50px;
            }
@@ -163,7 +163,7 @@
     }
 }
 
-.badgeCard {
+.milestoneCard {
     display: flex;
     padding: 1.5rem;
     box-shadow: $shadow;
