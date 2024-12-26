@@ -2,7 +2,7 @@
 @use "./mixins.scss" as *;
 
 .registerButton, .loginButton, .submitButton, 
-.updateButton, .saveButton {
+.updateButton, .saveButton, .resetPasswordButton {
     border: none;
     border-radius: 15px;
     height: 40px;
@@ -17,7 +17,7 @@
 
 .updateButton.margin, .submitButton.margin, 
 .loginButton.margin, .registerButton.margin, 
-.saveButton.margin {
+.saveButton.margin, .resetPasswordButton.margin {
     margin-top: 8px;
 }
 
