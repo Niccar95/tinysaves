@@ -184,14 +184,15 @@ const GoalCard = ({
               {daysRemaining === 0 && hoursRemaining > 0 && (
                 <p className="dueDateTag">
                   <i className="bi bi-clock"></i>
-                  {hoursRemaining} hours remaining
+                  {hoursRemaining} hour{hoursRemaining !== 1 ? "s" : ""}{" "}
+                  remaining
                 </p>
               )}
 
               {daysRemaining > 0 && (
                 <p className="dueDateTag">
                   <i className="bi bi-clock"></i>
-                  {daysRemaining} days remaining
+                  {daysRemaining} day{daysRemaining !== 1 ? "s" : ""} remaining
                 </p>
               )}
             </section>
