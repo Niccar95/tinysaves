@@ -36,8 +36,6 @@ form {
     }
 }
 
-
-
         .addGoalForm {
             width: 300px;
             background-color: $light-body-background; 
@@ -63,8 +61,25 @@ form {
           
             }
         }
-   
-  
+
+            .progressForm {
+                position: absolute;
+                z-index: 1;
+                top: 180px;
+                left: 1.5rem;
+                right: 1.5rem;
+                border-radius: 15px;
+                padding: 1.5rem;
+                background-color: $light-body-background;
+                box-shadow: $shadow;
+
+                @include desktop() {
+                    width: 200px;
+                    top: 80px;
+                    left: unset;
+                }
+            }
+        
 
   
   

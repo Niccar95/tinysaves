@@ -36,6 +36,7 @@ const GoalCard = ({
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const actionsMenuRef = useRef<HTMLDivElement | null>(null);
+  const progressFormRef = useRef<HTMLDivElement | null>(null);
 
   const { formattedDate, daysRemaining, hoursRemaining } = processDueDate(
     goal.dueDate
@@ -49,6 +50,13 @@ const GoalCard = ({
         !actionsMenuRef.current.contains(event.target as Node)
       ) {
         setOpenActionsMenu(false);
+      }
+      if (
+        progressFormRef.current &&
+        !progressFormRef.current.contains(event.target as Node)
+      ) {
+        console.log("Clicked outside Progress Form");
+        setIsEditing(false);
       }
     };
 
@@ -128,30 +136,34 @@ const GoalCard = ({
           currency={goal.currency}
         ></ProgressBar>
 
-        {(daysRemaining === null || daysRemaining > 0 || hoursRemaining > 0) &&
-          displayProgress < goal.targetAmount && (
-            <button
-              className="addButton"
-              onClick={() => setIsEditing(!isEditing)}
-            >
-              <i className="bi bi-coin"></i>
-              Update progress
-            </button>
-          )}
-
         {daysRemaining !== null &&
           daysRemaining <= 0 &&
           hoursRemaining <= 0 && <p>Due date reached!</p>}
 
-        {isEditing && (
-          <ProgressForm
-            progress={progress}
-            setProgress={setProgress}
-            errors={errors}
-            setErrors={setErrors}
-            handleUpdateProgress={handleUpdateProgress}
-          />
-        )}
+        <div ref={progressFormRef} onClick={(e) => e.stopPropagation()}>
+          {isEditing && (
+            <ProgressForm
+              progress={progress}
+              setProgress={setProgress}
+              errors={errors}
+              setErrors={setErrors}
+              handleUpdateProgress={handleUpdateProgress}
+            />
+          )}
+
+          {(daysRemaining === null ||
+            daysRemaining > 0 ||
+            hoursRemaining > 0) &&
+            displayProgress < goal.targetAmount && (
+              <button
+                className="addButton"
+                onClick={() => setIsEditing(!isEditing)}
+              >
+                <i className="bi bi-coin"></i>
+                Update progress
+              </button>
+            )}
+        </div>
 
         {goal.dueDate !== null &&
           daysRemaining !== null &&
