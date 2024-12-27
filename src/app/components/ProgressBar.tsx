@@ -1,7 +1,6 @@
 "use client";
 
 import { CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
 
 interface ProgressDataProps {
   progress: number;
@@ -45,7 +44,7 @@ const ProgressBar = ({
           </div>
         )}
 
-        <div style={{ width: 100, height: 100 }}>
+        <div className="circularProgressBarContainer">
           <CircularProgressbar
             value={roundedPercentage}
             text={`${roundedPercentage}%`}

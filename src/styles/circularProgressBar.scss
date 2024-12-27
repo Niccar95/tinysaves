@@ -1,7 +1,14 @@
+@use "./variables" as *;
+
 /*
  * react-circular-progressbar styles
  * All of the styles in this file are configurable!
  */
+
+ .circularProgressBarContainer {
+    width: 100px;
+    height: 100px;
+ }
 
  .CircularProgressbar {
     /*
@@ -17,8 +24,9 @@
   }
   
   .CircularProgressbar .CircularProgressbar-path {
-    stroke: #3e98c7;
-    stroke-linecap: round;
+    stroke: 
+    #3aa6d5; 
+    stroke-linecap:round;
     transition: stroke-dashoffset 0.5s ease 0s;
   }
   
@@ -29,8 +37,9 @@
   }
   
   .CircularProgressbar .CircularProgressbar-text {
-    fill: #3e98c7;
+    fill:   #3aa6d5;
     font-size: 20px;
+    font-weight: 500;
     dominant-baseline: middle;
     text-anchor: middle;
   }
@@ -49,7 +58,7 @@
    *   />
    */
   .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
-    fill: #3e98c7;
+    fill: #3aa6d5;
   }
   
   .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
