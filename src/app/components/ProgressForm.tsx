@@ -17,7 +17,6 @@ const ProgressForm = ({
 }: IProgressFormProps) => {
   return (
     <form className="progressForm" onSubmit={handleUpdateProgress}>
-      <label htmlFor="progress">Update progress: </label>
       <div>
         <input
           id="progress"
@@ -33,7 +32,7 @@ const ProgressForm = ({
           <div className="errorMessage">{errors.progress}</div>
         )}
       </div>
-      <button type="submit" className="updateButton margin">
+      <button type="submit" className="updateButton width">
         Update
       </button>
     </form>

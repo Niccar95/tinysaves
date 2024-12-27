@@ -8,6 +8,8 @@
     height: 40px;
     background-color: $primary-button-color;
     color: $secondary-text-color;
+    font-size: $button-font-size;
+    font-weight: $button-font-weight;
     cursor: pointer;
 
     &:hover {
@@ -15,12 +17,18 @@
     }
 }
 
-.updateButton.margin, .submitButton.margin, 
+.submitButton.margin, 
 .loginButton.margin, .registerButton.margin, 
 .saveButton.margin, .resetPasswordButton.margin {
     margin-top: 8px;
 }
 
+.updateButton.width {
+    
+    @include desktop() {
+        width: 120px;     
+    }
+}
 
 .logoutButton {
     padding: 1.5rem;
@@ -37,13 +45,14 @@
 }
 
 .addButton, .actionButton, .addGoalButton, .editButton, .closeButton  {
-    font-size: 0.9rem;
+    
     border-radius: 15px;
     height: 40px;
     width: 200px;
     background-color: white;
     color: $primary-text-color;
     border: solid 2px $primary-border-color;
+    font-size: $button-font-size;
     font-weight: $button-font-weight;
     cursor: pointer;
     
@@ -93,7 +102,6 @@
     cursor: pointer;
     right: 5px;
     top: 5px;
-
 
     @include desktop() {
         top: -10px;
