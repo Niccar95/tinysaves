@@ -50,8 +50,9 @@ form {
             
             .topSection {
                 display: flex;
-                justify-content: space-evenly;
+                justify-content: center;
                 align-items: center;
+                gap: 1rem;
             }
             
             .inputContainer {
