@@ -160,7 +160,7 @@ const GoalCard = ({
             hoursRemaining > 0) &&
             displayProgress < goal.targetAmount && (
               <button
-                className="addButton"
+                className="openProgressFormButton"
                 onClick={() => {
                   if (!isEditing) {
                     setProgress("");

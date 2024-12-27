@@ -23,6 +23,8 @@
     margin-top: 8px;
 }
 
+
+
 .updateButton.width {
     
     @include desktop() {
@@ -44,7 +46,7 @@
     }
 }
 
-.addButton, .actionButton, .addGoalButton, .editButton, .closeButton  {
+.openProgressFormButton, .actionButton, .addGoalButton, .editButton, .closeButton  {
     
     border-radius: 15px;
     height: 40px;
