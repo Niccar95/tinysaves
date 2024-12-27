@@ -3,8 +3,8 @@
 
  
 .navBar {
-  position: absolute;
-  top: 63px;
+  position: fixed;
+  top: 163px;
   bottom: 0;
   left: -100%;
   z-index: 100;
@@ -15,6 +15,7 @@
   height: 500px;
   background-color: #A0C8F0;
   transition: ease-in-out 0.5s;
+  box-shadow: $shadow;
 
 
   @include desktop() {

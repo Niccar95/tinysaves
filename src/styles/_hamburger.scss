@@ -3,10 +3,13 @@
 
 
 .hamburgerSection {
-    background-color: #7DA6D7;
-    width: 100%;
-    padding: 1rem;
-    border-bottom: solid 1px white;
+  position: fixed;
+  top: 100px;
+  z-index: 100;
+  background-color: #7DA6D7;
+  width: 100%;
+  padding: 1rem;
+  border-bottom: solid 1px white;
 
     @include desktop() {
         display: none;
