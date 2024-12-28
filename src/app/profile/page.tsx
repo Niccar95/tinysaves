@@ -26,8 +26,6 @@ const ProfilePage = async () => {
 
   const milestoneAmount = badges.length;
 
-  console.log(milestoneAmount);
-
   return (
     <>
       <section className="content">

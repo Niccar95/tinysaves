@@ -17,12 +17,6 @@ const SettingsPage = async () => {
         <h1>Settings</h1>
         <section className="settingsSection">
           <div className="settingsWrapper">
-            <h2>General settings</h2>
-
-            <h3>Light mode</h3>
-          </div>
-
-          <div className="settingsWrapper">
             <h2>User settings</h2>
 
             <DeleteAccountButton />

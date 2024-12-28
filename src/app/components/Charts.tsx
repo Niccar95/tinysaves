@@ -10,7 +10,6 @@ interface ChartProps {
   summaryData: {
     completedGoals: number;
     totalGoals: number;
-    totalSaved: number;
     completedPercentage: number;
   };
   lineChartData: {

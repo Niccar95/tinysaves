@@ -6,19 +6,16 @@ export const calculateSummaryData = (allGoals: Goals[]) => {
       completedGoals: 0,
       totalGoals: 0,
       completedPercentage: 0,
-      totalSaved: 0,
     };
   }
 
   const completedGoals = allGoals.filter((goal) => goal.isComplete);
   const completedPercentage = (completedGoals.length / allGoals.length) * 100;
-  const totalSaved = allGoals.reduce((total, goal) => total + goal.progress, 0);
 
   return {
     completedGoals: completedGoals.length,
     totalGoals: allGoals.length,
     completedPercentage,
-    totalSaved,
   };
 };
 

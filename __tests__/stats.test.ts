@@ -50,7 +50,6 @@ describe("calculateSummaryData", () => {
     expect(result.completedGoals).toBe(2);
     expect(result.totalGoals).toBe(3);
     expect(result.completedPercentage).toBeCloseTo(66.67, 2);
-    expect(result.totalSaved).toBe(150);
   });
 
   it("should handle an empty array of goals", () => {
@@ -61,7 +60,6 @@ describe("calculateSummaryData", () => {
     expect(result.completedGoals).toBe(0);
     expect(result.totalGoals).toBe(0);
     expect(result.completedPercentage).toBe(0);
-    expect(result.totalSaved).toBe(0);
   });
 
   it("should handle goals with no completed progress", () => {
@@ -97,7 +95,6 @@ describe("calculateSummaryData", () => {
     expect(result.completedGoals).toBe(0);
     expect(result.totalGoals).toBe(2);
     expect(result.completedPercentage).toBe(0);
-    expect(result.totalSaved).toBe(0);
   });
 });
 
