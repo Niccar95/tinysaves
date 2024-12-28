@@ -103,9 +103,14 @@ const Login = () => {
           </button>
         </form>
 
-        <Link href="/registration">Don&apos;t have an account?</Link>
-
-        <Link href="/resetPassword">Forgot your password?</Link>
+        <section className="authLinkSection">
+          <Link className="authLink" href="/registration">
+            Don&apos;t have an account?
+          </Link>
+          <Link className="authLink" href="/resetPassword">
+            Forgot your password?
+          </Link>
+        </section>
       </section>
     </>
   );

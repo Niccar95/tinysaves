@@ -110,6 +110,23 @@ a {
   font-weight: 600;
 }
 
+.authLinkSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  
+  @include desktop() {
+    width: 400px;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .authLink {
+    font-size: 14px;
+  }
+}
+
 footer {
   display: flex;
   justify-content: center;
@@ -144,7 +161,6 @@ footer {
     }
 
   }
-
 
 }
 

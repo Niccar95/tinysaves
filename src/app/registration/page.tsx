@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import Spinner from "../components/Spinner";
 import { register } from "@/utils/validationSchemas";
+import Link from "next/link";
 
 const Page = () => {
   const router = useRouter();
@@ -124,6 +125,12 @@ const Page = () => {
             Register
           </button>
         </form>
+        <section className="authLinkSection">
+          <Link className="authLink toLogin" href="/">
+            <i className="bi bi-arrow-left-short"></i>
+            Back to login page
+          </Link>
+        </section>
       </section>
     </>
   );

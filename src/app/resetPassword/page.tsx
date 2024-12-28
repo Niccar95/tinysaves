@@ -3,6 +3,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Spinner from "../components/Spinner";
 import { resetPassword } from "@/utils/validationSchemas";
+import Link from "next/link";
 
 const ResetPasswordPage = () => {
   const router = useRouter();
@@ -63,7 +64,7 @@ const ResetPasswordPage = () => {
 
   return (
     <section className="content">
-      <h1>Reset Your Password</h1>
+      <h1>Reset your password</h1>
 
       <form onSubmit={handleResetPassword}>
         <label htmlFor="email">Enter your email:</label>
@@ -123,6 +124,13 @@ const ResetPasswordPage = () => {
           Reset Password
         </button>
       </form>
+
+      <section className="authLinkSection">
+        <Link className="authLink" href="/">
+          <i className="bi bi-arrow-left-short"></i>
+          Back to login page
+        </Link>
+      </section>
     </section>
   );
 };
