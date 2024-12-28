@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import Spinner from "./components/Spinner";
 import { login } from "@/utils/validationSchemas";
+import Image from "next/image";
 
 const Login = () => {
   const [name, setName] = useState<string>("");
@@ -49,69 +50,74 @@ const Login = () => {
 
   return (
     <>
-      <section className="content">
-        <h1>Log in</h1>
-        <form onSubmit={handleLogin}>
-          <label htmlFor="userName">Username:</label>
-          <div className="inputWrapper">
-            <input
-              id="userName"
-              className="textInput"
-              type="text"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                setErrors({ ...errors, name: "" });
-              }}
-            ></input>
-            {errors.name && <div className="errorMessage">{errors.name}</div>}
-          </div>
-
-          <label htmlFor="password">Password:</label>
-
-          <div className="inputWrapper">
-            <input
-              id="password"
-              className="textInput"
-              type="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setErrors({ ...errors, password: "" });
-              }}
-            ></input>
-
-            {errors.password && (
-              <div className="errorMessage">{errors.password}</div>
-            )}
-          </div>
-          {errors.general && (
-            <div className="errorMessage">{errors.general}</div>
-          )}
-          {loginSuccess && (
-            <div className="successMessage">Logged in successfully!</div>
-          )}
-
-          {loading && (
-            <div className="spinnerWrapper">
-              <Spinner />
+      <div className="authPageWrapper">
+        <section className="content authPage">
+          <h1>Log in</h1>
+          <form onSubmit={handleLogin}>
+            <label htmlFor="userName">Username:</label>
+            <div className="inputWrapper">
+              <input
+                id="userName"
+                className="textInput"
+                type="text"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  setErrors({ ...errors, name: "" });
+                }}
+              ></input>
+              {errors.name && <div className="errorMessage">{errors.name}</div>}
             </div>
-          )}
 
-          <button type="submit" className="loginButton margin">
-            Log in
-          </button>
-        </form>
+            <label htmlFor="password">Password:</label>
 
-        <section className="authLinkSection">
-          <Link className="authLink" href="/registration">
-            Don&apos;t have an account?
-          </Link>
-          <Link className="authLink" href="/resetPassword">
-            Forgot your password?
-          </Link>
+            <div className="inputWrapper">
+              <input
+                id="password"
+                className="textInput"
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setErrors({ ...errors, password: "" });
+                }}
+              ></input>
+
+              {errors.password && (
+                <div className="errorMessage">{errors.password}</div>
+              )}
+            </div>
+            {errors.general && (
+              <div className="errorMessage">{errors.general}</div>
+            )}
+            {loginSuccess && (
+              <div className="successMessage">Logged in successfully!</div>
+            )}
+
+            {loading && (
+              <div className="spinnerWrapper">
+                <Spinner />
+              </div>
+            )}
+
+            <button type="submit" className="loginButton margin">
+              Log in
+            </button>
+          </form>
+
+          <section className="authLinkSection">
+            <Link className="authLink" href="/registration">
+              Don&apos;t have an account?
+            </Link>
+            <Link className="authLink" href="/resetPassword">
+              Forgot your password?
+            </Link>
+          </section>
         </section>
-      </section>
+        <div className="bannerWrapper">
+          <Image className="banner" src="/banner.svg" alt="banner" fill></Image>
+        </div>
+      </div>
     </>
   );
 };

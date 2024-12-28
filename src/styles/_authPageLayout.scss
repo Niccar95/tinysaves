@@ -1,0 +1,55 @@
+@use "./mixins" as *;
+
+main.authMain {
+    margin-top: 0;
+  
+    @include desktop() {
+      width: 100%;
+      left: 0;
+     }
+  
+     .authPageWrapper {
+    
+      @include desktop() {
+        display:flex;
+      }
+  
+      .content.authPage {
+        margin-top: 0;
+        
+        @include desktop() {
+          margin-top: 40px;
+          margin-left: 40px;
+        }
+  
+        .authLinkSection {
+          display: flex;
+          flex-direction: column;
+          gap: 0.8rem;
+        
+          
+          @include desktop() {
+            width: 400px;
+            flex-direction: row;
+            gap: 1.5rem;
+          }
+        
+          .authLink {
+            font-size: 14px;
+          }
+        }
+      }
+    
+      .bannerWrapper {
+        position: relative; 
+        width: 50%; 
+        min-height: 550px;
+        height: auto;
+        
+      
+        .banner{
+          object-fit: cover; 
+        }
+      }
+    }
+  }

@@ -4,6 +4,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import Spinner from "../components/Spinner";
 import { register } from "@/utils/validationSchemas";
 import Link from "next/link";
+import Image from "next/image";
 
 const Page = () => {
   const router = useRouter();
@@ -61,77 +62,84 @@ const Page = () => {
 
   return (
     <>
-      <section className="content">
-        <h1>Register</h1>
-        <form onSubmit={registerUser}>
-          <label htmlFor="userName">Create a username:</label>
-          <div>
-            <input
-              id="userName"
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-            {errors.name && <div className="errorMessage">{errors.name}</div>}{" "}
-          </div>
-          <label htmlFor="userEmail">Type your email:</label>
-          <div>
-            <input
-              id="userEmail"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            {errors.email && <div className="errorMessage">{errors.email}</div>}{" "}
-          </div>
-          <label htmlFor="userPassword">Create a strong password:</label>
-          <div>
-            <input
-              id="userPassword"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-            {errors.password && (
-              <div className="errorMessage">{errors.password}</div>
-            )}
-          </div>
-          <label htmlFor="repeatedUserPassword">Repeat your password:</label>
-          <div>
-            <input
-              id="repeatedUserPassword"
-              type="password"
-              name="repeatPassword"
-              value={formData.repeatPassword}
-              onChange={handleChange}
-            />
-            {errors.repeatPassword && (
-              <div className="errorMessage">{errors.repeatPassword}</div>
-            )}
-          </div>
-          {formData.password &&
-            formData.password === formData.repeatPassword && (
-              <div className="successMessage">Passwords match!</div>
-            )}
-          {loader && (
-            <div className="spinnerWrapper">
-              <Spinner />
+      <div className="authPageWrapper">
+        <section className="content authPage">
+          <h1>Register</h1>
+          <form onSubmit={registerUser}>
+            <label htmlFor="userName">Create a username:</label>
+            <div>
+              <input
+                id="userName"
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+              {errors.name && <div className="errorMessage">{errors.name}</div>}{" "}
             </div>
-          )}
-          <button type="submit" className="registerButton margin">
-            Register
-          </button>
-        </form>
-        <section className="authLinkSection">
-          <Link className="authLink toLogin" href="/">
-            <i className="bi bi-arrow-left-short"></i>
-            Back to login page
-          </Link>
+            <label htmlFor="userEmail">Type your email:</label>
+            <div>
+              <input
+                id="userEmail"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              {errors.email && (
+                <div className="errorMessage">{errors.email}</div>
+              )}{" "}
+            </div>
+            <label htmlFor="userPassword">Create a strong password:</label>
+            <div>
+              <input
+                id="userPassword"
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+              {errors.password && (
+                <div className="errorMessage">{errors.password}</div>
+              )}
+            </div>
+            <label htmlFor="repeatedUserPassword">Repeat your password:</label>
+            <div>
+              <input
+                id="repeatedUserPassword"
+                type="password"
+                name="repeatPassword"
+                value={formData.repeatPassword}
+                onChange={handleChange}
+              />
+              {errors.repeatPassword && (
+                <div className="errorMessage">{errors.repeatPassword}</div>
+              )}
+            </div>
+            {formData.password &&
+              formData.password === formData.repeatPassword && (
+                <div className="successMessage">Passwords match!</div>
+              )}
+            {loader && (
+              <div className="spinnerWrapper">
+                <Spinner />
+              </div>
+            )}
+            <button type="submit" className="registerButton margin">
+              Register
+            </button>
+          </form>
+          <section className="authLinkSection">
+            <Link className="authLink toLogin" href="/">
+              <i className="bi bi-arrow-left-short"></i>
+              Back to login page
+            </Link>
+          </section>
         </section>
-      </section>
+        <div className="bannerWrapper">
+          <Image className="banner" src="/banner.svg" alt="banner" fill></Image>
+        </div>
+      </div>
     </>
   );
 };

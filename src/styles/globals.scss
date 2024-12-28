@@ -59,7 +59,7 @@ main {
   flex-grow: 1;
 
    @include desktop() {
-     width: 85%;
+    width: 85%;
     margin-top: 100px;
     left: 15%;
     right: 0;
@@ -79,6 +79,8 @@ main {
     }
   }
 }
+
+
 
 h1{
   font-family: $heading-font-family;
@@ -108,23 +110,6 @@ a {
 
 .boldLabel {
   font-weight: 600;
-}
-
-.authLinkSection {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-
-  
-  @include desktop() {
-    width: 400px;
-    flex-direction: row;
-    gap: 1.5rem;
-  }
-
-  .authLink {
-    font-size: 14px;
-  }
 }
 
 footer {

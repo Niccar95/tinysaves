@@ -1,9 +1,9 @@
 import "./../styles/globals.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Image from "next/image";
-import logo from "../../public/logo.svg";
 import SessionProvider from "./components/providers/SessionProvider";
 import ConditionalNavbar from "./components/ConditionalNavbar";
+import ConditionalMain from "./components/ConditionalMain";
+import ConditionalHeader from "./components/ConditionalHeader";
 
 export default async function RootLayout({
   children,
@@ -14,13 +14,11 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <SessionProvider>
-          <header>
-            <Image className="logo" src={logo} alt="icon"></Image>
-          </header>
-          <main>
+          <ConditionalHeader />
+          <ConditionalMain>
             <ConditionalNavbar />
             {children}
-          </main>
+          </ConditionalMain>
           <footer>
             <section className="contactSection">
               <h3 className="contactHeading">Contact</h3>

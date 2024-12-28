@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Spinner from "../components/Spinner";
 import { resetPassword } from "@/utils/validationSchemas";
 import Link from "next/link";
+import Image from "next/image";
 
 const ResetPasswordPage = () => {
   const router = useRouter();
@@ -63,75 +64,81 @@ const ResetPasswordPage = () => {
   };
 
   return (
-    <section className="content">
-      <h1>Reset your password</h1>
-
-      <form onSubmit={handleResetPassword}>
-        <label htmlFor="email">Enter your email:</label>
-        <div>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <div className="errorMessage">{errors.email}</div>}
-        </div>
-
-        <label htmlFor="newPassword">New password:</label>
-        <div>
-          <input
-            id="newPassword"
-            type="password"
-            name="newPassword"
-            value={formData.newPassword}
-            onChange={handleChange}
-          />
-          {errors.newPassword && (
-            <div className="errorMessage">{errors.newPassword}</div>
-          )}
-        </div>
-
-        <label htmlFor="confirmPassword">Confirm new password:</label>
-        <div>
-          <input
-            id="confirmPassword"
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-          />
-          {errors.confirmPassword && (
-            <div className="errorMessage">{errors.confirmPassword}</div>
-          )}
-        </div>
-
-        {formData.newPassword &&
-          formData.newPassword === formData.confirmPassword && (
-            <div className="successMessage">Passwords match!</div>
-          )}
-
-        {errors.general && <div className="errorMessage">{errors.general}</div>}
-
-        {loader && (
-          <div className="spinnerWrapper">
-            <Spinner />
+    <div className="authPageWrapper">
+      <section className="content authPage">
+        <h1>Reset your password</h1>
+        <form onSubmit={handleResetPassword}>
+          <label htmlFor="email">Enter your email:</label>
+          <div>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            {errors.email && <div className="errorMessage">{errors.email}</div>}
           </div>
-        )}
 
-        <button type="submit" className="resetPasswordButton margin">
-          Reset Password
-        </button>
-      </form>
+          <label htmlFor="newPassword">New password:</label>
+          <div>
+            <input
+              id="newPassword"
+              type="password"
+              name="newPassword"
+              value={formData.newPassword}
+              onChange={handleChange}
+            />
+            {errors.newPassword && (
+              <div className="errorMessage">{errors.newPassword}</div>
+            )}
+          </div>
 
-      <section className="authLinkSection">
-        <Link className="authLink" href="/">
-          <i className="bi bi-arrow-left-short"></i>
-          Back to login page
-        </Link>
+          <label htmlFor="confirmPassword">Confirm new password:</label>
+          <div>
+            <input
+              id="confirmPassword"
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+            {errors.confirmPassword && (
+              <div className="errorMessage">{errors.confirmPassword}</div>
+            )}
+          </div>
+
+          {formData.newPassword &&
+            formData.newPassword === formData.confirmPassword && (
+              <div className="successMessage">Passwords match!</div>
+            )}
+
+          {errors.general && (
+            <div className="errorMessage">{errors.general}</div>
+          )}
+
+          {loader && (
+            <div className="spinnerWrapper">
+              <Spinner />
+            </div>
+          )}
+
+          <button type="submit" className="resetPasswordButton margin">
+            Reset Password
+          </button>
+        </form>
+
+        <section className="authLinkSection">
+          <Link className="authLink" href="/">
+            <i className="bi bi-arrow-left-short"></i>
+            Back to login page
+          </Link>
+        </section>
       </section>
-    </section>
+      <div className="bannerWrapper">
+        <Image className="banner" src="/banner.svg" alt="banner" fill></Image>
+      </div>
+    </div>
   );
 };
 
