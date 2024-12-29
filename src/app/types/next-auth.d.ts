@@ -1,4 +1,8 @@
 import type { DefaultSession } from "next-auth";
+
+// NextAuth already expects a user to have id, name, email and image by default.
+//But I had to add a type extension to to add display names to my users.
+//I also wanted to use userId instead of id, so I changed it here
 declare module "next-auth" {
   interface User {
     id: string;
