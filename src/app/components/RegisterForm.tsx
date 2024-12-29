@@ -24,6 +24,7 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [serverError, setServerError] = useState<string>("");
+  const [success, setSuccess] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -49,7 +50,9 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
 
     if (serverError) {
       setServerError(serverError);
+      setSuccess(false);
     } else {
+      setSuccess(true);
       onSuccess();
     }
 
@@ -112,6 +115,10 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
 
       {formData.password && formData.password === formData.repeatPassword && (
         <div className="successMessage">Passwords match!</div>
+      )}
+
+      {success && (
+        <div className="successMessage">Registered successfully!</div>
       )}
 
       {loader && (

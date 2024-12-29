@@ -10,14 +10,14 @@ import Image from "next/image";
 const Login = () => {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loader, setLoader] = useState<boolean>(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
   const router = useRouter();
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setLoader(true);
 
     const { error } = login.validate({ name, password }, { abortEarly: false });
 
@@ -27,7 +27,7 @@ const Login = () => {
       );
 
       setErrors(newErrors);
-      setLoading(false);
+      setLoader(false);
       return;
     }
 
@@ -37,13 +37,13 @@ const Login = () => {
       password,
     });
 
-    setLoading(false);
+    setLoader(false);
 
     if (result?.error) {
       setErrors({ general: "Invalid username or password" });
-      setLoginSuccess(false);
+      setSuccess(false);
     } else {
-      setLoginSuccess(true);
+      setSuccess(true);
       router.push("/dashboard");
     }
   };
@@ -90,11 +90,11 @@ const Login = () => {
             {errors.general && (
               <div className="errorMessage">{errors.general}</div>
             )}
-            {loginSuccess && (
+            {success && (
               <div className="successMessage">Logged in successfully!</div>
             )}
 
-            {loading && (
+            {loader && (
               <div className="spinnerWrapper">
                 <Spinner />
               </div>

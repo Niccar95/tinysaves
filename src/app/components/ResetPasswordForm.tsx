@@ -21,6 +21,7 @@ const ResetPasswordForm = ({ onSuccess }: ResetPasswordFormProps) => {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [success, setSuccess] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -46,8 +47,10 @@ const ResetPasswordForm = ({ onSuccess }: ResetPasswordFormProps) => {
 
     if (serverError) {
       setErrors({ general: serverError });
+      setSuccess(false);
     } else {
       await getSession();
+      setSuccess(false);
       onSuccess();
     }
 
@@ -102,6 +105,10 @@ const ResetPasswordForm = ({ onSuccess }: ResetPasswordFormProps) => {
         )}
 
       {errors.general && <div className="errorMessage">{errors.general}</div>}
+
+      {success && (
+        <div className="successMessage">Password reset succesfully!</div>
+      )}
 
       {loader && (
         <div className="spinnerWrapper">
