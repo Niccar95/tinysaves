@@ -20,8 +20,6 @@ const LatestMilestoneCard = ({ userId }: LatestMilestoneProps) => {
     const getLatestMilestone = async () => {
       const milestone = await fetchLatestMilestone();
 
-      console.log(milestone?.name);
-
       if (milestone?.milestoneId !== latestMilestone?.milestoneId) {
         setLatestMilestone(milestone);
       }

@@ -40,10 +40,6 @@ const StatsPage = async () => {
             <span className="boldLabel"> Percentage of completed goals:</span>{" "}
             {summaryData.completedPercentage.toFixed(2)}%
           </p>
-          {/* <p>
-            <span className="boldLabel"> Amount of money saved: </span>{" "}
-            {summaryData.totalSaved}
-          </p> */}
         </section>
         <Charts summaryData={summaryData} lineChartData={lineChartData} />
       </section>

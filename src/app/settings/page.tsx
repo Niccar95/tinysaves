@@ -2,13 +2,13 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import React from "react";
 import DeleteAccountButton from "../components/DeleteAccountButton";
+import { redirect } from "next/navigation";
 
 const SettingsPage = async () => {
   const session = await getServerSession(authOptions);
-  const userId = session?.user.id;
 
-  if (!userId) {
-    throw new Error("User is not authenticated or session is invalid");
+  if (!session) {
+    redirect("/");
   }
 
   return (

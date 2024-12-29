@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import Spinner from "../components/Spinner";
 import { register } from "@/utils/validationSchemas";
+import { registerUser } from "@/services/authService";
 
 interface RegisterFormProps {
   onSuccess: () => void;
@@ -29,7 +30,7 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
     setErrors({ ...errors, [e.target.name]: "" });
   };
 
-  const registerUser = async (e: FormEvent) => {
+  const handleRegisterUser = async (e: FormEvent) => {
     e.preventDefault();
     setLoader(true);
 
@@ -45,29 +46,23 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
     }
 
     try {
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const serverError = await registerUser(formData);
 
-      const data = await response.json();
-
-      if (response.status === 409) {
-        setServerError(data.message);
-      } else if (response.status === 201) {
+      if (serverError) {
+        setServerError(serverError);
+      } else {
         onSuccess();
       }
     } catch (error) {
-      console.log("Could not create account", error);
+      console.error("Unexpected error", error);
+      setServerError("An unexpected error occurred.");
     }
+
     setLoader(false);
   };
 
   return (
-    <form onSubmit={registerUser}>
+    <form onSubmit={handleRegisterUser}>
       <label htmlFor="userName">Create a username:</label>
       <div>
         <input

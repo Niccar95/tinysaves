@@ -20,7 +20,7 @@ const GoalCardContent = ({ latestGoal }: GoalProps) => {
         <h3>{latestGoal?.title}</h3>
       </div>
 
-      <div style={{ width: 100, height: 100 }}>
+      <div>
         <CircularProgressbar
           value={roundedPercentage}
           text={`${roundedPercentage}%`}
