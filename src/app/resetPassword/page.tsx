@@ -5,6 +5,7 @@ import Spinner from "../components/Spinner";
 import { resetPassword } from "@/utils/validationSchemas";
 import Link from "next/link";
 import Image from "next/image";
+import { getSession } from "next-auth/react";
 
 const ResetPasswordPage = () => {
   const router = useRouter();
@@ -54,7 +55,8 @@ const ResetPasswordPage = () => {
       if (!response.ok) {
         setErrors({ general: "Invalid email" });
       } else {
-        router.push("/dashboard");
+        await getSession();
+        router.push("/");
       }
     } catch (error) {
       console.error("Failed to reset password", error);
