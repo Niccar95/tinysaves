@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { resetPassword } from "@/utils/validationSchemas";
 import Spinner from "../components/Spinner";
 import { getSession } from "next-auth/react";
+import { resetUserPassword } from "@/services/authService";
 
 interface ResetPasswordFormProps {
   onSuccess: () => void;
@@ -41,28 +42,16 @@ const ResetPasswordForm = ({ onSuccess }: ResetPasswordFormProps) => {
       return;
     }
 
-    try {
-      const response = await fetch("/api/resetPassword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+    const serverError = await resetUserPassword(formData);
 
-      setLoader(false);
-
-      if (!response.ok) {
-        setErrors({ general: "Invalid email" });
-      } else {
-        await getSession();
-        onSuccess();
-      }
-    } catch (error) {
-      console.error("Failed to reset password", error);
-      setLoader(false);
-      setErrors({ general: "An error occurred. Please try again later" });
+    if (serverError) {
+      setErrors({ general: serverError });
+    } else {
+      await getSession();
+      onSuccess();
     }
+
+    setLoader(false);
   };
 
   return (

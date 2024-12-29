@@ -45,17 +45,12 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
       return;
     }
 
-    try {
-      const serverError = await registerUser(formData);
+    const serverError = await registerUser(formData);
 
-      if (serverError) {
-        setServerError(serverError);
-      } else {
-        onSuccess();
-      }
-    } catch (error) {
-      console.error("Unexpected error", error);
-      setServerError("An unexpected error occurred.");
+    if (serverError) {
+      setServerError(serverError);
+    } else {
+      onSuccess();
     }
 
     setLoader(false);

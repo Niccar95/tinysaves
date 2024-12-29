@@ -26,3 +26,28 @@ export const registerUser = async (formData: {
     return "An error occurred. Please try again.";
   }
 };
+
+export const resetUserPassword = async (formData: {
+  email: string;
+  newPassword: string;
+  confirmPassword: string;
+}): Promise<string | null> => {
+  try {
+    const response = await fetch("/api/resetPassword", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) {
+      return "Invalid email";
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Failed to reset password", error);
+    return "An error occurred. Please try again later";
+  }
+};

@@ -91,8 +91,8 @@ export const goalProgress = Joi.object({
     .required()
     .messages({
       "string.empty": "This is a required field",
-      "number.base": "Target amount must be a valid number",
-      "number.greater": "Target amount must be greater than 0",
+      "number.base": "Value must be a valid number",
+      "number.greater": "Value must be greater than 0",
     }),
 });
 
