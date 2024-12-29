@@ -1,6 +1,5 @@
 "use client";
 import { CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
 
 import React from "react";
 import { Goals } from "@prisma/client";
@@ -20,7 +19,7 @@ const GoalCardContent = ({ latestGoal }: GoalProps) => {
         <h3>{latestGoal?.title}</h3>
       </div>
 
-      <div>
+      <div className="circularProgressBarContainer">
         <CircularProgressbar
           value={roundedPercentage}
           text={`${roundedPercentage}%`}

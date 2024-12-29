@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { updateUserProfile } from "@/services/userService";
 
 const EditProfileForm = () => {
   const { data: session, update } = useSession();
@@ -33,54 +34,34 @@ const EditProfileForm = () => {
     setIsEditing(false);
   };
 
-  console.log(avatarImage);
-
   const handleEditProfile = async (e: FormEvent) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch("/api/edit", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: session?.user.id,
-          displayName: userDisplayName,
-          image: avatarImage,
-        }),
-      });
+    if (!session?.user?.id) {
+      console.error("User ID is not available");
+      return;
+    }
 
-      if (!response.ok) {
-        console.error("Failed to update profile");
-        return;
-      }
+    const user = await updateUserProfile(
+      session?.user.id,
+      userDisplayName,
+      avatarImage
+    );
 
-      const { user } = await response.json();
-
+    if (user) {
       await update({
         ...session,
         user: {
           ...session?.user,
-          displayName: user.displayName,
-          image: user.image,
+          displayName: user.displayName || "",
+          image: user.image || "",
         },
       });
 
-      setUserDisplayName(user.displayName);
-      setAvatarImage(user.image);
+      setUserDisplayName(user.displayName || "");
+      setAvatarImage(user.image || "");
 
       router.push("/profile");
-    } catch (error) {
-      console.error("Error updating user", error);
-    }
-  };
-
-  const openAvatarSelection = () => {
-    if (!isEditing) {
-      setIsEditing(true);
-    } else {
-      setIsEditing(false);
     }
   };
 
@@ -94,7 +75,10 @@ const EditProfileForm = () => {
           width="50"
           height="50"
         />
-        <button className="addImageButton" onClick={openAvatarSelection}>
+        <button
+          className="addImageButton"
+          onClick={() => setIsEditing(!isEditing)}
+        >
           <i className="bi bi-pencil addImageIcon"></i>
         </button>
       </div>
