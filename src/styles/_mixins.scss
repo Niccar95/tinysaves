@@ -1,13 +1,7 @@
 @use "./variables" as *;
 
-//Breakpoints
+//Breakpoint for media query. This is for desktop
 
-@mixin tablet {
-    @media screen and (min-width: $tablet) {
-      @content;
-    }
-  }
-  
   @mixin desktop {
     @media screen and (min-width: $large-desktop) {
       @content;

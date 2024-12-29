@@ -21,6 +21,7 @@ const Page = () => {
     repeatPassword: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [serverError, setServerError] = useState<string>("");
 
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
@@ -45,7 +46,7 @@ const Page = () => {
     }
 
     try {
-      await fetch(`${baseUrl}/api/register`, {
+      const response = await fetch(`${baseUrl}/api/register`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -53,7 +54,13 @@ const Page = () => {
         body: JSON.stringify(formData),
       });
 
-      router.push("/");
+      const data = await response.json();
+
+      if (response.status === 409) {
+        setServerError(data.message);
+      } else if (response.status === 201) {
+        router.push("/");
+      }
     } catch (error) {
       console.log("Could not create account", error);
     }
@@ -125,6 +132,9 @@ const Page = () => {
                 <Spinner />
               </div>
             )}
+
+            {serverError && <div className="errorMessage">{serverError}</div>}
+
             <button type="submit" className="registerButton margin">
               Register
             </button>

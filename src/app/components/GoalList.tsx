@@ -89,7 +89,7 @@ const GoalList = ({ goals, milestoneId }: GoalListProps) => {
             ></GoalCard>
           ))
         ) : (
-          <p>No goals available</p>
+          <p>No goals added yet.</p>
         )}
       </div>
     </>

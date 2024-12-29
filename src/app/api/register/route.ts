@@ -12,8 +12,32 @@ export const POST = async (req: Request) => {
       password = "",
       displayName = "",
     } = await req.json();
+
     if (!name || !password || !email)
       return NextResponse.json({ message: "Invalid data" }, { status: 422 });
+
+    const existingUsername = await prisma.user.findUnique({
+      where: { name },
+    });
+
+    if (existingUsername) {
+      return NextResponse.json(
+        { message: "Username is already taken." },
+        { status: 409 }
+      );
+    }
+
+    const existingEmail = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (existingEmail) {
+      return NextResponse.json(
+        { message: "Email is already taken." },
+        { status: 409 }
+      );
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await prisma.user.create({

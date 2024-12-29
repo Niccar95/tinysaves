@@ -27,8 +27,6 @@ const GoalsPage = async () => {
 
   const milestoneId = latestMilestone?.milestoneId || null;
 
-  console.log("server milestones data", latestMilestone);
-
   return (
     <>
       <section className="content">
