@@ -47,3 +47,33 @@ Before you start:
 - Have npm or yarn for package management.
 - Set up a database (PostgreSQL, MySQL, SQLite, MongoDB, etc.).
 - Prisma CLI will be installed as part of the setup process.
+
+## Setting up Jest with Next.js
+
+To set up Jest for testing in your Next.js project, follow these steps to install the necessary dependencies.
+
+### 1. Install Jest and Testing Libraries
+
+Run the following command to install Jest and the necessary libraries for testing:
+
+```bash
+npm install --save-dev jest @testing-library/react @testing-library/jest-dom @testing-library/user-event jest-environment-jsdom ts-jest
+```
+
+If you are using Typescript, you will also need to install the following types:
+
+```bash
+npm install --save-dev @types/jest @types/react @types/react-dom
+```
+
+### 2. Add a jest.config file
+
+You can either create a jest.config.ts|js file manually in the root of your project.
+
+Or you can run the following command to generate the file:
+
+```bash
+npm init jest@latest
+```
+
+Check the official Next.js docs for more detailed steps on how to setup Jest: [text](https://nextjs.org/docs/app/building-your-application/testing/jest#quickstart)
