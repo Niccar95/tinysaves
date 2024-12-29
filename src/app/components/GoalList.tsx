@@ -2,7 +2,7 @@
 
 import { Goals, Milestones } from "@prisma/client";
 import GoalCard from "./GoalCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { deleteGoal, editGoalTitle } from "@/services/goalService";
 import { fetchLatestMilestone } from "@/services/milestoneService";
 import MilestoneModal from "./MilestoneModal";
@@ -12,7 +12,7 @@ interface GoalListProps {
 }
 
 const GoalList = ({ goals, milestoneId }: GoalListProps) => {
-  const [savingGoals, setGoals] = useState<Goals[]>(goals);
+  const [savingGoals, setSavingGoals] = useState<Goals[]>(goals);
   const [currentMilestone, setCurrentMilestone] = useState<Milestones | null>(
     null
   );
@@ -23,49 +23,37 @@ const GoalList = ({ goals, milestoneId }: GoalListProps) => {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const handleMilestoneReached = async () => {
-    try {
-      const fetchedMilestone = await fetchLatestMilestone();
-      if (fetchedMilestone?.milestoneId !== lastShownMilestoneId) {
-        setCurrentMilestone(fetchedMilestone);
-        setLastShownMilestoneId(fetchedMilestone?.milestoneId || null);
-        setIsModalOpen(true);
-      }
-    } catch (error) {
-      console.error("Error fetching milestone:", error);
-    }
-  };
+  useEffect(() => {
+    setSavingGoals(goals);
+  }, [goals]);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const handleMilestoneReached = async () => {
+    const fetchedMilestone = await fetchLatestMilestone();
+
+    if (fetchedMilestone?.milestoneId !== lastShownMilestoneId) {
+      setCurrentMilestone(fetchedMilestone);
+      setLastShownMilestoneId(fetchedMilestone?.milestoneId || null);
+      setIsModalOpen(true);
+    }
   };
 
   const handleDeleteGoal = async (deletedGoalId: string) => {
-    try {
-      await deleteGoal(deletedGoalId);
+    await deleteGoal(deletedGoalId);
 
-      const updatedGoals = savingGoals.filter(
-        (goal) => goal.goalId !== deletedGoalId
-      );
-      setGoals(updatedGoals);
-    } catch (error) {
-      console.error("Error deleting goal:", error);
-      setGoals(goals);
-    }
+    const updatedGoals = savingGoals.filter(
+      (goal) => goal.goalId !== deletedGoalId
+    );
+    setSavingGoals(updatedGoals);
   };
 
   const handleEditGoalTitle = async (goalId: string, newTitle: string) => {
-    try {
-      await editGoalTitle(goalId, newTitle);
+    await editGoalTitle(goalId, newTitle);
 
-      setGoals(
-        goals.map((goal) =>
-          goal.goalId === goalId ? { ...goal, title: newTitle } : goal
-        )
-      );
-    } catch (error) {
-      console.error("Failed to update goal title:", error);
-    }
+    setSavingGoals((prevGoals) =>
+      prevGoals.map((goal) =>
+        goal.goalId === goalId ? { ...goal, title: newTitle } : goal
+      )
+    );
   };
 
   return (
@@ -74,7 +62,7 @@ const GoalList = ({ goals, milestoneId }: GoalListProps) => {
         {isModalOpen && currentMilestone && (
           <MilestoneModal
             latestMilestone={currentMilestone}
-            onClose={closeModal}
+            onClose={() => setIsModalOpen(!isModalOpen)}
           />
         )}
 
