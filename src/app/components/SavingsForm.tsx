@@ -6,6 +6,7 @@ import React, { FormEvent, useState } from "react";
 import money from "/public/moneyIcon.svg";
 
 import { goalForm } from "@/utils/validationSchemas";
+import { createGoal } from "@/services/goalService";
 
 interface ISavingsFormProps {
   onSubmitSuccess: () => void;
@@ -23,9 +24,6 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [isFormHidden, setIsFormHidden] = useState<boolean>(true);
-
-  const baseUrl =
-    process.env.NEXT_PUBLIC_NEXTAUTH_URL || "http://localhost:3000";
 
   const handleCreateGoal = async (e: FormEvent) => {
     e.preventDefault();
@@ -45,37 +43,26 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
 
     const numericTargetAmount = parseFloat(targetAmount);
 
-    try {
-      const response = await fetch(`${baseUrl}/api/goals`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          targetAmount: numericTargetAmount,
-          dueDate: dueDate || null,
-          currency,
-          userId,
-        }),
-      });
+    const response = await createGoal(
+      title,
+      numericTargetAmount,
+      dueDate || null,
+      currency,
+      userId
+    );
 
-      if (response.ok) {
-        setSuccessMessage("Savings goal created successfully!");
-        setTitle("");
-        setTargetAmount("");
-        setDueDate("");
-        setCurrency("SEK");
-        setErrors({});
+    if (response.ok) {
+      setSuccessMessage("Savings goal created successfully!");
+      setTitle("");
+      setTargetAmount("");
+      setDueDate("");
+      setCurrency("SEK");
+      setErrors({});
 
-        onSubmitSuccess();
-      } else {
-        setSuccessMessage("");
-        console.log("Failed to create goal!");
-      }
-    } catch (error) {
+      onSubmitSuccess();
+    } else {
       setSuccessMessage("");
-      console.error("Failed to create goal", error);
+      console.log("Failed to create goal!");
     }
 
     setIsFormHidden(true);

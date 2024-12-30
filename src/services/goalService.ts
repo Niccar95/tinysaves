@@ -24,6 +24,35 @@ export const getLatestGoal = async (userId: string): Promise<Goals | null> => {
   }
 };
 
+export const createGoal = async (
+  title: string,
+  targetAmount: number,
+  dueDate: string | null,
+  currency: string,
+  userId: string | undefined
+): Promise<Response> => {
+  try {
+    const response = await fetch("/api/goals", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, targetAmount, dueDate, currency, userId }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to add new goal");
+    }
+
+    //I chose to return response only because I just wanna check that the request was successfull
+
+    return response;
+  } catch (error) {
+    console.error("Failed to create goal", error);
+    throw error;
+  }
+};
+
 export const updateGoalProgress = async (
   goalId: string,
   progress: number,
