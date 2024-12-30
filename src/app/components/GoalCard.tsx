@@ -55,7 +55,6 @@ const GoalCard = ({
         progressFormRef.current &&
         !progressFormRef.current.contains(event.target as Node)
       ) {
-        console.log("Clicked outside Progress Form");
         setIsEditing(false);
       }
     };
