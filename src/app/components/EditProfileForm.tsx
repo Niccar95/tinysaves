@@ -5,22 +5,21 @@ import Image from "next/image";
 import React, { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { updateUserProfile } from "@/services/userService";
+import AvatarSelector from "./AvatarSelector";
+import { useClickOutside } from "../hooks/useClickOutside";
 
 const EditProfileForm = () => {
   const { data: session, update } = useSession();
   const router = useRouter();
   const [userDisplayName, setUserDisplayName] = useState<string>("");
-
   const [isEditing, setIsEditing] = useState<boolean>(false);
-
   const [avatarImage, setAvatarImage] = useState<string>("");
 
-  const piggyBank = "/piggyBank.svg";
-  const coffeeCup = "/coffeeCup.svg";
-  const hamburger = "/hamburger.svg";
-  const sunglasses = "/sunglasses.svg";
-  const hotDog = "/hotDog.svg";
   const presetAvatar = "/presetAvatar.svg";
+
+  const modalRef = useClickOutside<HTMLDivElement>({
+    onClickOutside: () => setIsEditing(false),
+  });
 
   useEffect(() => {
     if (session) {
@@ -28,11 +27,6 @@ const EditProfileForm = () => {
       setAvatarImage(session.user.image || presetAvatar);
     }
   }, [session]);
-
-  const addAvatar = (image: string) => {
-    setAvatarImage(image);
-    setIsEditing(false);
-  };
 
   const handleEditProfile = async (e: FormEvent) => {
     e.preventDefault();
@@ -75,58 +69,24 @@ const EditProfileForm = () => {
           width="50"
           height="50"
         />
-        <button
-          className="addImageButton"
-          onClick={() => setIsEditing(!isEditing)}
-        >
-          <i className="bi bi-pencil addImageIcon"></i>
-        </button>
+        <div ref={modalRef}>
+          <button
+            className="addImageButton"
+            onClick={() => setIsEditing(!isEditing)}
+          >
+            <i className="bi bi-pencil addImageIcon"></i>
+          </button>
+          {isEditing && (
+            <AvatarSelector
+              onAvatarSelect={(image) => {
+                setAvatarImage(image);
+                setIsEditing(false);
+              }}
+              onClose={() => setIsEditing(false)}
+            />
+          )}
+        </div>
       </div>
-
-      {isEditing && (
-        <section className="avatarSelection">
-          <Image
-            className="avatar"
-            src={piggyBank}
-            alt="piggybank"
-            height="50"
-            width="50"
-            onClick={() => addAvatar(piggyBank)}
-          ></Image>
-          <Image
-            className="avatar"
-            src={coffeeCup}
-            alt="coffee cup"
-            height="50"
-            width="50"
-            onClick={() => addAvatar(coffeeCup)}
-          ></Image>
-          <Image
-            className="avatar"
-            src={hamburger}
-            alt="hamburger"
-            height="50"
-            width="50"
-            onClick={() => addAvatar(hamburger)}
-          ></Image>
-          <Image
-            className="avatar"
-            src={sunglasses}
-            alt="sunglasses"
-            height="50"
-            width="50"
-            onClick={() => addAvatar(sunglasses)}
-          ></Image>
-          <Image
-            className="avatar"
-            src={hotDog}
-            alt="hot dog"
-            height="50"
-            width="50"
-            onClick={() => addAvatar(hotDog)}
-          ></Image>
-        </section>
-      )}
 
       <form onSubmit={handleEditProfile}>
         <label htmlFor="changeName">Edit your display name: </label>

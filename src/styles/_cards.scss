@@ -131,14 +131,16 @@
     }
 }
 
-.avatarSelection {
-    display: flex;
+.avatarSelection { 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     padding: 1rem;
     width: fit-content;
     border-radius: 15px;
     box-shadow: $shadow;
     transition: transform 0.2s ease-in-out;
+    background-color: $light-body-background;
 
     .avatar {
         border-radius: 50%;
