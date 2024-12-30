@@ -75,7 +75,7 @@ form {
 
                 @include desktop() {
                     display: flex;
-                    align-items: center;
+                    align-items:flex-start;
                     flex-direction: row;
                     width: fit-content;
                     top: 200px;
