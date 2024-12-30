@@ -137,7 +137,7 @@ const GoalCard = ({
 
         {daysRemaining !== null &&
           daysRemaining <= 0 &&
-          hoursRemaining <= 0 && <p>Due date reached!</p>}
+          hoursRemaining <= 0 && <p className="boldLabel">Due date reached!</p>}
 
         <div
           className="progressFormWrapper"
@@ -200,7 +200,12 @@ const GoalCard = ({
               )}
             </section>
           )}
-        {goal.dueDate == null && <p className="noDateTag">No due date</p>}
+        {goal.dueDate == null && goal.isComplete === false && (
+          <p className="noDateTag">
+            <i className="bi bi-calendar-date"></i>
+            No due date
+          </p>
+        )}
       </article>
     </>
   );
