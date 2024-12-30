@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import SavingsForm from "./SavingsForm";
 import Spinner from "./Spinner";
 import GoalCardContent from "./GoalCardContent";
+import { getLatestGoal } from "@/services/goalService";
 
 interface LatestGoalProps {
   userId: string;
@@ -16,28 +17,20 @@ const LatestGoalCard = ({ userId }: LatestGoalProps) => {
   const [hasGoals, setHasGoals] = useState<boolean>(true);
 
   const fetchLatestGoal = useCallback(async () => {
-    if (!hasGoals) {
-      return;
-    }
+    if (!hasGoals) return;
 
     setIsLoading(true);
 
-    try {
-      const response = await fetch(`/api/goals?userId=${userId}&latest=true`);
-      const data = await response.json();
-
-      if (response.ok && data.latestGoal) {
-        setLatestGoal(data.latestGoal);
-        setHasGoals(true);
-      } else {
-        setLatestGoal(null);
-        setHasGoals(false);
-      }
-    } catch (err) {
-      console.error("Error fetching latest goal:", err);
-    } finally {
-      setIsLoading(false);
+    const goal = await getLatestGoal(userId);
+    if (goal) {
+      setLatestGoal(goal);
+      setHasGoals(true);
+    } else {
+      setLatestGoal(null);
+      setHasGoals(false);
     }
+
+    setIsLoading(false);
   }, [userId, hasGoals]);
 
   useEffect(() => {

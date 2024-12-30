@@ -7,7 +7,7 @@ import ResetPasswordForm from "../components/ResetPasswordForm";
 const ResetPasswordPage = () => {
   const router = useRouter();
 
-  const handleSuccess = () => {
+  const handleResetPassword = () => {
     router.push("/");
   };
 
@@ -15,7 +15,7 @@ const ResetPasswordPage = () => {
     <div className="authPageWrapper">
       <section className="content authPage">
         <h1>Reset your password</h1>
-        <ResetPasswordForm onSuccess={handleSuccess} />
+        <ResetPasswordForm onSuccess={handleResetPassword} />
 
         <section className="authLinkSection">
           <Link className="authLink" href="/">

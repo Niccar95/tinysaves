@@ -7,7 +7,7 @@ import RegisterForm from "../components/RegisterForm";
 const Page = () => {
   const router = useRouter();
 
-  const handleSuccess = () => {
+  const handleRegisterUser = () => {
     router.push("/");
   };
 
@@ -16,7 +16,7 @@ const Page = () => {
       <div className="authPageWrapper">
         <section className="content authPage">
           <h1>Register</h1>
-          <RegisterForm onSuccess={handleSuccess} />
+          <RegisterForm onSuccess={handleRegisterUser} />
           <section className="authLinkSection">
             <Link className="authLink toLogin" href="/">
               <i className="bi bi-arrow-left-short"></i>

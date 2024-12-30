@@ -1,3 +1,5 @@
+import { Goals } from "@prisma/client";
+
 interface UpdateGoalProgressResponse {
   goal: {
     goalId: string;
@@ -5,6 +7,22 @@ interface UpdateGoalProgressResponse {
     isComplete: boolean;
   };
 }
+
+export const getLatestGoal = async (userId: string): Promise<Goals | null> => {
+  try {
+    const response = await fetch(`/api/goals?userId=${userId}&latest=true`);
+    const data = await response.json();
+
+    if (response.ok && data.latestGoal) {
+      return data.latestGoal;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching latest goal:", error);
+    throw error;
+  }
+};
 
 export const updateGoalProgress = async (
   goalId: string,
