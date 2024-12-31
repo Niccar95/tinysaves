@@ -29,10 +29,13 @@ form {
     padding-bottom: 1rem;
     background-color: $light-body-background;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1;
+    border-bottom: solid 1px $tertiary-border-color;
 
     @include desktop() {
-        width: 200px;
+        width: 300px;
     }
 }
 
@@ -64,10 +67,12 @@ form {
         }
             .progressForm {
                 position: absolute;
+                justify-content: center;
                 z-index: 1;  
                 top: 170px;
                 left: 1.5rem;
                 right: 1.5rem;
+                height: 170px;
                 border-radius: 15px;
                 padding: 1rem;
                 background-color: $light-body-background;
@@ -78,6 +83,7 @@ form {
                     align-items:flex-start;
                     flex-direction: row;
                     width: fit-content;
+                    height: fit-content;
                     top: 200px;
                     left: 1.5rem;
                     right: 1.5rem;
