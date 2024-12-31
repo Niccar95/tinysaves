@@ -1,7 +1,7 @@
 "use client";
 
 import { Goals } from "@prisma/client";
-import React, { FormEvent, useEffect, useRef, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import { processCreatedAtDate, processDueDate } from "@/utils/dateUtils";
 import ActionMenu from "./ActionMenu";
@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 import { goalProgress } from "@/utils/validationSchemas";
 import ProgressForm from "./ProgressForm";
 import { updateGoalProgress } from "@/services/goalService";
+import { useClickOutside } from "../hooks/useClickOutside";
 
 interface GoalProps {
   goal: Goals;
@@ -35,35 +36,19 @@ const GoalCard = ({
   const [isComplete, setIsComplete] = useState<boolean>(goal.isComplete);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
-  const actionsMenuRef = useRef<HTMLDivElement | null>(null);
-  const progressFormRef = useRef<HTMLDivElement | null>(null);
-
   const { formattedDate, daysRemaining, hoursRemaining } = processDueDate(
     goal.dueDate
   );
+
   const { formattedCreatedAtDate } = processCreatedAtDate(goal.createdAt);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        actionsMenuRef.current &&
-        !actionsMenuRef.current.contains(event.target as Node)
-      ) {
-        setOpenActionsMenu(false);
-      }
-      if (
-        progressFormRef.current &&
-        !progressFormRef.current.contains(event.target as Node)
-      ) {
-        setIsEditing(false);
-      }
-    };
+  const actionsMenuRef = useClickOutside<HTMLDivElement>({
+    onClickOutside: () => setOpenActionsMenu(false),
+  });
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const progressFormRef = useClickOutside<HTMLDivElement>({
+    onClickOutside: () => setIsEditing(false),
+  });
 
   const handleUpdateProgress = async (e: FormEvent) => {
     e.preventDefault();
