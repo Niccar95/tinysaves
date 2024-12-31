@@ -4,6 +4,7 @@ import { resetPassword } from "@/utils/validationSchemas";
 import Spinner from "../components/Spinner";
 import { getSession } from "next-auth/react";
 import { resetUserPassword } from "@/services/authService";
+import { toast } from "react-toastify";
 
 interface ResetPasswordFormProps {
   onSuccess: () => void;
@@ -52,6 +53,7 @@ const ResetPasswordForm = ({ onSuccess }: ResetPasswordFormProps) => {
       await getSession();
       setSuccess(false);
       onSuccess();
+      toast.success("Your password has been successfully reset 🔒");
     }
 
     setLoader(false);

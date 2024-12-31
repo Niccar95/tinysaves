@@ -4,6 +4,7 @@ import SessionProvider from "./components/providers/SessionProvider";
 import ConditionalNavbar from "./components/ConditionalNavbar";
 import ConditionalMain from "./components/ConditionalMain";
 import ConditionalHeader from "./components/ConditionalHeader";
+import { Bounce, ToastContainer } from "react-toastify";
 
 export default async function RootLayout({
   children,
@@ -13,6 +14,16 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ToastContainer
+          position="top-right"
+          autoClose={4000}
+          hideProgressBar={false}
+          closeOnClick={false}
+          pauseOnHover={false}
+          draggable={true}
+          theme="light"
+          transition={Bounce}
+        />
         <SessionProvider>
           <ConditionalHeader />
           <ConditionalMain>

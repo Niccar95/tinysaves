@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import Spinner from "../components/Spinner";
 import { register } from "@/utils/validationSchemas";
 import { registerUser } from "@/services/authService";
+import { toast } from "react-toastify";
 
 interface RegisterFormProps {
   onSuccess: () => void;
@@ -54,6 +55,7 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
     } else {
       setSuccess(true);
       onSuccess();
+      toast.success("You’re all set! Your account is now ready to go 🎉");
     }
 
     setLoader(false);

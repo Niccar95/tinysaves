@@ -7,6 +7,7 @@ import money from "/public/moneyIcon.svg";
 
 import { goalForm } from "@/utils/validationSchemas";
 import { createGoal } from "@/services/goalService";
+import { toast } from "react-toastify";
 
 interface ISavingsFormProps {
   onSubmitSuccess: () => void;
@@ -60,6 +61,7 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
       setErrors({});
 
       onSubmitSuccess();
+      toast.success("Goal created succesfully!");
     } else {
       setSuccessMessage("");
       console.log("Failed to create goal!");
