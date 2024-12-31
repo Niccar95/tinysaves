@@ -27,6 +27,17 @@ const GoalList = ({ goals, milestoneId }: GoalListProps) => {
     setSavingGoals(goals);
   }, [goals]);
 
+  useEffect(() => {
+    const fetchInitialMilestone = async () => {
+      const fetchedMilestone = await fetchLatestMilestone();
+      if (fetchedMilestone) {
+        setLastShownMilestoneId(fetchedMilestone.milestoneId);
+        setCurrentMilestone(fetchedMilestone);
+      }
+    };
+    fetchInitialMilestone();
+  }, []);
+
   const handleMilestoneReached = async () => {
     const fetchedMilestone = await fetchLatestMilestone();
 
