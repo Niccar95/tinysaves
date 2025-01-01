@@ -16,7 +16,7 @@ const MilestonesList = ({ milestones }: IMilestonesProps) => {
             <MilestoneCard key={milestone.id} milestone={milestone.milestone} />
           ))
         ) : (
-          <p>No milestones reached yet!</p>
+          <p>No milestones reached yet.</p>
         )}
       </div>
     </>
