@@ -19,9 +19,6 @@ form {
         box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
         
-        &:hover {
-        border-color: darken($primary-border-color, 20%);
-    }
     &:focus {
         border-color: #4cb7ff;
         outline: none;

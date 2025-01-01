@@ -13,6 +13,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// The User model represents an individual user this application
+
 model User {
   userId String @id @default(auto()) @map("_id") @db.ObjectId
   name String  @unique
@@ -26,6 +28,10 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
+
+// The Goals model represents an individual goal created by a user
+ // One to many relationship with users. For example, one user can have many goals
+
 model Goals {
   goalId String @id @default(auto()) @map("_id") @db.ObjectId
   title String
@@ -35,10 +41,14 @@ model Goals {
   currency String
   isComplete Boolean
   userId String
-  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [userId], onDelete: Cascade) 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// The Milestones model represents a specific milestone that a user can reach
+// A user can have multiple goals and can achieve multiple milestones
+// This relationship with milestones is managed through the UserMilestones table
 
 model Milestones {
   milestoneId String @id @default(auto()) @map("_id") @db.ObjectId
@@ -49,12 +59,14 @@ model Milestones {
   createdAt DateTime @default(now())
 }
 
+// UserMilestones model represents the relationship between a user and a milestone they've achieved
+
 model UserMilestones {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @db.ObjectId
   milestoneId String @db.ObjectId
-  user User @relation(fields: [userId], references: [userId])
-  milestone Milestones @relation(fields: [milestoneId], references: [milestoneId])
+  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  milestone Milestones @relation(fields: [milestoneId], references: [milestoneId], onDelete: Cascade)
   createdAt DateTime @default(now())
   @@unique([userId, milestoneId])  
 }
