@@ -14,9 +14,19 @@ form {
         width: 100%;
         height: 40px;
         padding: 10px;
-        border: solid 2px $primary-border-color;
+        border: solid 1.5px $primary-border-color;
         border-radius: 15px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        
+        &:hover {
+        border-color: darken($primary-border-color, 20%);
     }
+    &:focus {
+        border-color: #4cb7ff;
+        outline: none;
+    }
+}
 
     select {
         padding: 5px;

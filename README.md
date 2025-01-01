@@ -1,12 +1,26 @@
 ## TinySaves
 
-TinySaves is a savings goal application designed for users who are new to saving, encouraging small, regular contributions. Users can set personalized savings goals with amounts and optional deadlines, track their progress through a visual progress bar, and update their savings. The app features milestones with badges, statistics showing progress over time, and challenges to save small amounts daily or weekly. Users can also manage their profiles, categorize goals with icons, and receive motivational messages for consistent saving.
+TinySaves is a savings goal application designed for users who are new to saving, encouraging small, regular contributions. Users can set personalized savings goals with amounts and optional deadlines, track their progress through a visual progress bar, and update their savings. The app features milestones that can be earned, and statistics that show users progress over time. Users can also manage their profiles by changing their display name or avatar.
+
+## Images
+
+[text](https://tinysaves.vercel.app/)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+To clone the project on your machine:
+
+```bash
+git clone https://github.com/Niccar95/tinysaves.git
+
+cd tinysaves
+
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -77,3 +91,14 @@ npm init jest@latest
 ```
 
 Check the official Next.js docs for more detailed steps on how to setup Jest: [text](https://nextjs.org/docs/app/building-your-application/testing/jest#quickstart)
+
+### 3. Create a test folder
+
+- In your root, you can create a folder named "**tests**" and inside place your test files.
+- Name your files example.test.ts|js
+
+### 4. Run a test
+
+```bash
+npm run test
+```
