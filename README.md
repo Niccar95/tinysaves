@@ -4,7 +4,11 @@ TinySaves is a savings goal application designed for users who are new to saving
 
 ## Images
 
-[text](https://tinysaves.vercel.app/)
+![TinySaves Login page](./public/sceenshots/loginPage.png)
+
+## Check out TinySaves
+
+[visit TinySaves](https://tinysaves.vercel.app/)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
