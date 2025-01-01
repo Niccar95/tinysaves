@@ -4,6 +4,8 @@ TinySaves is a savings goal application designed for users who are new to saving
 
 ## Images
 
+<img width="1385" alt="Skärmavbild 2025-01-01 kl  18 06 56" src="https://github.com/user-attachments/assets/12661fb0-9438-42ed-8186-5e550076f9a3" />
+
 ## Check out TinySaves
 
 [visit TinySaves](https://tinysaves.vercel.app/)
