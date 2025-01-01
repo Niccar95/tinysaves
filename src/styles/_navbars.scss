@@ -16,6 +16,7 @@
   background-color: #A0C8F0;
   transition: ease-in-out 0.5s;
   box-shadow: $shadow;
+  border-bottom: solid 1px white;
 
 
   @include desktop() {
@@ -26,6 +27,7 @@
       left: 0; 
       opacity: 1;
       transition: none; 
+      border-right: solid 1px white;
     }
 
     ul {

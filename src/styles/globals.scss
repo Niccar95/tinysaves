@@ -34,6 +34,7 @@ header {
   right: 0;
   z-index: 100;
   height: 100px;
+  box-shadow: $shadow;
 
   @include desktop() {
     align-items: center;
@@ -120,6 +121,7 @@ footer {
   padding: 1rem;
   background-color: #BFDFFB;
   border-top: solid 1px white; 
+  box-shadow: $shadow;
 
   .contactSection {
     display:flex;
