@@ -27,6 +27,7 @@ const ProgressForm = ({
             setProgress(e.target.value);
             setErrors({ ...errors, progress: "" });
           }}
+          autoFocus
         />
         {errors.progress && (
           <div className="errorMessage">{errors.progress}</div>
