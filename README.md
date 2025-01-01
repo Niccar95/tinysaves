@@ -4,8 +4,6 @@ TinySaves is a savings goal application designed for users who are new to saving
 
 ## Images
 
-![TinySaves Login page](/loginPage.png)
-
 ## Check out TinySaves
 
 [visit TinySaves](https://tinysaves.vercel.app/)
