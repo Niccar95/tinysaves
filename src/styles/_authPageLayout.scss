@@ -48,12 +48,10 @@ main.authMain {
         width: 100%;
         height: 150px;
         border-bottom: solid 1px white;
-        box-shadow: $shadow;
-
-         
+  
         @include desktop() {
           width: 50%; 
-          min-height: 550px;
+          min-height: 700px;
           height: auto;
           border-left: solid 1px white;
           border-bottom: none;
