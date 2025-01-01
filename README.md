@@ -12,11 +12,9 @@ TinySaves is a savings goal application designed for users who are new to saving
 
 <img width="1194" alt="Skärmavbild 2025-01-01 kl  18 17 54" src="https://github.com/user-attachments/assets/8115d2e1-8c50-4e7b-af81-045715063ce3" />
 
-## Check out TinySaves
+## Live Project
 
-[visit TinySaves](https://tinysaves.vercel.app/)
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+[Visit TinySaves](https://tinysaves.vercel.app/)
 
 ## Getting Started
 
@@ -45,6 +43,8 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
