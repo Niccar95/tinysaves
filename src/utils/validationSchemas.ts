@@ -1,6 +1,8 @@
 import Joi from "joi";
 import { DateTime } from "luxon";
 
+//This is where I validate all my forms, each schema belongs to a form in my this application.
+
 export const register = Joi.object({
   name: Joi.string().min(3).required().messages({
     "string.empty": "This is a required field",
@@ -11,9 +13,9 @@ export const register = Joi.object({
     .messages({
       "string.empty": "This is a required field",
     }),
-  password: Joi.string().min(8).required().messages({
+  password: Joi.string().min(10).required().messages({
     "string.empty": "This is a required field",
-    "string.min": "Password must be at least 8 characters",
+    "string.min": "Password must be at least 10 characters",
   }),
   repeatPassword: Joi.valid(Joi.ref("password")).required().messages({
     "any.only": "Passwords must match",
@@ -112,9 +114,9 @@ export const resetPassword = Joi.object({
       "string.email": "Please provide a valid email address",
     }),
 
-  newPassword: Joi.string().min(8).required().messages({
+  newPassword: Joi.string().min(10).required().messages({
     "string.empty": "This is a required field",
-    "string.min": "Password must be at least 8 characters",
+    "string.min": "Password must be at least 10 characters",
   }),
 
   confirmPassword: Joi.valid(Joi.ref("newPassword")).required().messages({

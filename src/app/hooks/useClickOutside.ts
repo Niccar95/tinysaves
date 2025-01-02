@@ -1,5 +1,8 @@
 import { useEffect, useRef } from "react";
 
+// Custom hook to detect clicks outside a referenced element and trigger a callback
+// In this application, I use it for closing dropdowns, modals, or menus when clicking outside
+
 interface IClickOutside {
   onClickOutside: () => void;
 }
