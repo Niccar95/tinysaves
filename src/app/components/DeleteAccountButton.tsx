@@ -2,6 +2,7 @@
 
 import { signOut, useSession } from "next-auth/react";
 import React from "react";
+import { toast } from "react-toastify";
 
 const DeleteAccountButton = () => {
   const { data: session } = useSession();
@@ -24,11 +25,15 @@ const DeleteAccountButton = () => {
 
       if (!response.ok) {
         throw new Error("Failed to delete user");
-      }
+      } else {
+        toast.success("Account deleted successfully!");
 
-      await signOut({
-        callbackUrl: "/",
-      });
+        setTimeout(async () => {
+          await signOut({
+            callbackUrl: "/",
+          });
+        }, 1000);
+      }
     } catch (error) {
       console.error("Error deleting user:", error);
     }
