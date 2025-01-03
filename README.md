@@ -18,7 +18,7 @@ TinySaves is a savings goal application designed for users who are new to saving
 
 ## Getting Started
 
-To clone the project on your machine:
+- To clone the project on your machine:
 
 ```bash
 git clone https://github.com/Niccar95/tinysaves.git
@@ -28,7 +28,59 @@ cd tinysaves
 npm install
 ```
 
-Then, run the development server:
+## Environment Setup
+
+- Create a .env file in the project root directory
+- Add the following environment variables:
+
+NextAuth Configuration:
+
+NEXTAUTH_SECRET=your_generated_secret_key
+
+To generate a secure random string for NEXTAUTH_SECRET, run this commads:
+
+```bash
+openssl rand -base64 32
+```
+
+Add URL for client and backend:
+
+NEXTAUTH_URL=http://localhost:3000
+NEXT_PUBLIC_NEXTAUTH_URL=http://localhost:3000
+
+Add Database URL:
+
+DATABASE_URL=your_mongodb_connection_string (You will get the full string when you setup your database on MongoDB so leave the value empty at first)
+
+## MongoDB Setup
+
+- Create a MongoDB Atlas account
+- Create a new cluster
+- In the MongoDB Atlas dashboard:
+
+- Click "Connect"
+- Choose "Connect your application"
+- Copy the connection string
+- Replace <password> with your database user password
+- Add this connection string to your .env file as DATABASE_URL
+
+## Prisma Setup
+
+- Generate the Prisma client:
+
+```bash
+npx prisma generate
+```
+
+- Push the database schema to your MongoDB cluster:
+
+```bash
+npx prisma db push
+```
+
+## Run the Project
+
+- run the development server:
 
 ```bash
 npm run dev
@@ -78,13 +130,13 @@ To set up Jest for testing in your Next.js project, follow these steps to instal
 
 ### 1. Install Jest and Testing Libraries
 
-Run the following command to install Jest and the necessary libraries for testing:
+- Run the following command to install Jest and the necessary libraries for testing:
 
 ```bash
 npm install --save-dev jest @testing-library/react @testing-library/jest-dom @testing-library/user-event jest-environment-jsdom ts-jest
 ```
 
-If you are using Typescript, you will also need to install the following types:
+- If you are using Typescript, you will also need to install the following types:
 
 ```bash
 npm install --save-dev @types/jest @types/react @types/react-dom
