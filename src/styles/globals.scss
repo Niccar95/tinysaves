@@ -115,10 +115,10 @@ a {
 
 footer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 140px;
-  padding: 1rem;
+  gap: 4rem;
+  padding: 4rem 2rem 2rem 2rem;
   background-color: $footer-background;     
   border-top: $footer-border-top;           
   color: $footer-text-color;      
@@ -128,12 +128,12 @@ footer {
     display:flex;
     flex-direction: column;
     align-items: center;
+    width: fit-content;
     gap: 0.8rem;
-    text-align: center;
 
     .contactHeading {
-      width: 100px;
-      border-bottom: solid 1px $tertiary-border-color;
+      padding-bottom: 0.5rem;
+      border-bottom: solid 0.5px $tertiary-border-color;
     }
 
 
@@ -148,7 +148,10 @@ footer {
     }
 
   }
-
+  .copyright {
+    font-size: 14px;
+    color: #757575; 
+  }
 }
 
 

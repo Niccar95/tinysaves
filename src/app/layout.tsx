@@ -32,7 +32,7 @@ export default async function RootLayout({
           </ConditionalMain>
           <footer>
             <section className="contactSection">
-              <h3 className="contactHeading">Contact</h3>
+              <h3 className="contactHeading">Follow me on</h3>
 
               <div className="linkWrapper">
                 <a
@@ -51,6 +51,9 @@ export default async function RootLayout({
                 </a>
               </div>
             </section>
+            <p className="copyright">
+              &copy; {new Date().getFullYear()} Nicolas Carrasco
+            </p>
           </footer>
         </SessionProvider>
       </body>
