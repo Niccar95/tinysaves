@@ -43,7 +43,6 @@
 
    li {
     width: 100%;
-    padding: 1.5rem; 
    }
 
 
@@ -53,12 +52,12 @@
   
       .navLink {
         display: block;
-  width: 100%;
-  height: 100%;
-       width: 100%;
-       font-weight: $link-font-weight;
-       color: #101C2C;
-       text-decoration: none;
+        width: 100%;
+        height: 100%;
+        padding: 1.5rem; 
+        font-weight: $link-font-weight;
+        color: #101C2C;
+        text-decoration: none;
       }
    }
 }
