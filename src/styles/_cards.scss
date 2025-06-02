@@ -9,6 +9,8 @@
     padding: 1.5rem;
     box-shadow: $shadow;
     border-radius: 15px;
+    background: $card-background;
+    border: $card-border-color;
 
     .progressSection {
         display: flex;
@@ -73,6 +75,7 @@
     padding: 1.5rem;
     box-shadow: $shadow;
     border-radius: 15px;
+    border: $card-border-color;
 
     @include desktop() {
         width: 50%;
@@ -157,6 +160,7 @@
     gap: 1rem;
     padding: 1.5rem;
     box-shadow: $shadow;
+    border: $card-border-color;
     border-radius: 15px;
     
     @include desktop() {
@@ -174,6 +178,7 @@
     justify-content: space-between;
     padding: 1.5rem;
     box-shadow: $shadow;
+    border: $card-border-color;
     border-radius: 15px;
     background-color: $light-body-background;
 

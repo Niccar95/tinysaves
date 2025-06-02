@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    border: solid 1px #79AEFF;
+    border: solid 1px  #b7d3b2;
     height: 60px;
     padding: 0.5rem;
     border-radius: 20px;
@@ -28,10 +28,12 @@
         top: 0.5rem;
         bottom: 0.5rem;
         border-radius: 20px;
-        z-index: -1;
+        z-index: 0;
         transition: width 0.3s ease;
     }
     .progressInfo {
+        position: static;
+        z-index: 1;
         font-weight: 500;
     }
 }

@@ -7,13 +7,13 @@
   top: 163px;
   bottom: 0;
   left: -100%;
-  z-index: 100;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
   height: 500px;
-  background-color: #A0C8F0;
+  background-color: $header-background;
   transition: ease-in-out 0.5s;
   box-shadow: $shadow;
   border-bottom: solid 1px white;
@@ -42,15 +42,20 @@
 
 
    li {
-     padding: 1.5rem; 
+    width: 100%;
+    padding: 1.5rem; 
    }
 
 
    li:hover {
-     background-color: #8BB2DE;
+     background-color: #8ac17a;
    }
   
       .navLink {
+        display: block;
+  width: 100%;
+  height: 100%;
+       width: 100%;
        font-weight: $link-font-weight;
        color: #101C2C;
        text-decoration: none;

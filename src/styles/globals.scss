@@ -27,7 +27,7 @@ body {
 
 header {
   display: flex;
-  background-color: #BFDFFB;
+  background-color: $header-background;
   border-bottom: solid 1px white;
   position: fixed;
   left: 0;
@@ -119,8 +119,9 @@ footer {
   align-items: center;
   height: 140px;
   padding: 1rem;
-  background-color: #BFDFFB;
-  border-top: solid 1px white; 
+  background-color: $footer-background;     
+  border-top: $footer-border-top;           
+  color: $footer-text-color;      
   box-shadow: $header-footer-shadow;
 
   .contactSection {

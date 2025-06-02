@@ -1,54 +1,70 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;600;700&display=swap");
 
-
-//Breakpoint for responsiveness:
-
+// Breakpoint for responsiveness:
 $large-desktop: 1200px;
 
-//TYPOGRAPHY:
-
+// TYPOGRAPHY:
 $heading-font-family: "Roboto Condensed", sans-serif;
 $base-font-family: "Noto Sans", sans-serif;
 
 $base-font-size: 16px;
-$heading-font-size: 30px;
-$secondary-heading-font-size: 24px;
-$tertiary-heading-font-size: 20px;
-$button-font-size: 14px;
+$heading-font-size: 28px;
+$secondary-heading-font-size: 22px;
+$tertiary-heading-font-size: 18px;
+$button-font-size: 15px;
 
-$base-font-weight: normal;
+$base-font-weight: 400;
 $button-font-weight: 600;
 $heading-font-weight: 700;
 $secondary-heading-font-weight: 600;
-$link-font-weight: 700;
+$link-font-weight: 600;
 
-//COLORS:
+// COLORS:
 
-//Text color
-$primary-text-color: black;
-$secondary-text-color: white;
-$tertiary-text-color: #454545;
+// Text colors
+$primary-text-color: #2a2a2a;       
+$secondary-text-color: #f9f8f6;       
+$tertiary-text-color: #757575;       
 
-//Button colors
-$primary-button-color: #1821CB;
-$secondary-button-color: white;
-$tertiary-button-color: #D32F2F;
+// Button colors
+$primary-button-color: #4caf50;        
+$secondary-button-color: #e8f5e9;      
+$tertiary-button-color: #e53e3e; 
 
-$primary-button-hover-color: #050da5;
+$alert-color: #ffa726; 
 
-//Background colors
-$light-body-background: #D6EBFF;
-$navbar-background: #A0C8F0;
+$primary-button-hover-color: #388e3c;  
 
-//Link colors
-$link-color: #1f02ad;
+// Background colors
+$light-body-background: #fcfdfa;     
+$navbar-background: #a5d6a7;          
+$header-background: #a5d6a7;
+ 
+// $card-background: linear-gradient(135deg, #f9fdf9 0%, #f6fcf6 100%);
 
-//Borders
-$primary-border-color: #3081f9;
-$secondary-border-color: #B71C1C;
-$tertiary-border-color: #8e8e8e;
+$card-background: linear-gradient(135deg, #f9fdf9 0%, #f3faf3 100%);
 
-//Effects
-$shadow: 0px 4px 20px rgba(0, 0, 0, 0.1), 0px 0px 30px rgba(0, 0, 0, 0.05);
-$header-footer-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05), 0px 1px 5px rgba(0, 0, 0, 0.03);
+
+
+// Borders
+$card-border-color: solid 0.5px #b7d3b2; 
+
+$footer-background: #fcfdfa;  
+$footer-border-top: 1px solid #c8e6c9; 
+$footer-text-color: #2a2a2a;
+
+// Link colors
+$link-color: #388e3c;                  
+$link-hover-color: #2e7d32;
+
+// Borders
+$primary-border-color: #c8e6c9;  
+$secondary-border-color: #b43b3b;     
+$tertiary-border-color: #9e9e9e;    
+
+$attention-border-color: #ffa726;   
+
+// Effects (shadows)
+$shadow: 0 0 6px rgba(76, 175, 80, 0.2);
+
+$header-footer-shadow: 0px 2px 8px rgba(76, 175, 80, 0.1), 0px 1px 3px rgba(76, 175, 80, 0.07);
