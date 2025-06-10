@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import LoginForm from "./components/LoginForm";
+import InstallButton from "./components/InstallButton";
 
 const Login = () => {
   const router = useRouter();
@@ -17,7 +18,6 @@ const Login = () => {
       <div className="authPageWrapper">
         <section className="content authPage">
           <h1>Log in</h1>
-
           <LoginForm onSuccess={handleLogin} />
 
           <section className="authLinkSection">
@@ -28,6 +28,7 @@ const Login = () => {
               Forgot your password?
             </Link>
           </section>
+          <InstallButton />
         </section>
         <div className="bannerWrapper">
           <Image className="banner" src="/banner.svg" alt="banner" fill></Image>
