@@ -21,6 +21,7 @@ main.authMain {
         margin-top: 0;
         
         @include desktop() {
+          width: 50%;
           margin-top: 50px;
           margin-left: 100px;
         }
