@@ -62,7 +62,7 @@ const InstallButton = () => {
           </p>
           <button className="actionButton" onClick={handleInstallClick}>
             <i className="bi bi-download"></i>
-            Install App
+            Install app
           </button>
         </>
       ) : (

@@ -6,10 +6,11 @@
   position: absolute;
   padding: 1.5rem;
   border-radius: 15px;
+  border: solid 0.5px $attention-border-color;
   box-shadow: $shadow;
   opacity: 1;
   transition: opacity 0.5s ease;
-  background-color: whitesmoke;
+  background-color: rgb(255, 255, 255);
   right: 20px;
   bottom: 20px;
   z-index: 1;

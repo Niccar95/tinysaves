@@ -6,6 +6,7 @@ import SavingsForm from "./SavingsForm";
 import Spinner from "./Spinner";
 import GoalCardContent from "./GoalCardContent";
 import { getLatestGoal } from "@/services/goalService";
+import { motion } from "motion/react";
 
 interface LatestGoalProps {
   userId: string;
@@ -44,12 +45,17 @@ const LatestGoalCard = ({ userId }: LatestGoalProps) => {
 
   return (
     <>
-      <article className="latestCard">
+      <motion.article
+        initial={{ x: 300, scale: 0 }}
+        animate={{ x: 0, scale: 1 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="latestCard"
+      >
         <SavingsForm onSubmitSuccess={handleGoalSubmission} />
         {isLoading && <Spinner />}
         {latestGoal && <GoalCardContent latestGoal={latestGoal} />}
         {!latestGoal && <p>No goals added yet</p>}
-      </article>
+      </motion.article>
     </>
   );
 };

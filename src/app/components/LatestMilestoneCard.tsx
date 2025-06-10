@@ -4,6 +4,7 @@ import { fetchLatestMilestone } from "@/services/milestoneService";
 import { Milestones } from "@prisma/client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 interface LatestMilestoneProps {
   userId: string;
@@ -30,7 +31,12 @@ const LatestMilestoneCard = ({ userId }: LatestMilestoneProps) => {
 
   return (
     <>
-      <article className="latestCard">
+      <motion.article
+        initial={{ x: 300, scale: 0 }}
+        animate={{ x: 0, scale: 1 }}
+        transition={{ duration: 0.4, ease: "easeOut", delay: 0.5 }}
+        className="latestCard"
+      >
         {latestMilestone && latestMilestone && (
           <>
             <div>
@@ -49,7 +55,7 @@ const LatestMilestoneCard = ({ userId }: LatestMilestoneProps) => {
         )}
 
         {!latestMilestone && <p>No milestones reached yet</p>}
-      </article>
+      </motion.article>
     </>
   );
 };
