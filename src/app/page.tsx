@@ -28,12 +28,6 @@ const Login = () => {
               Forgot your password?
             </Link>
           </section>
-
-          <p className="pwaMessage">
-            <strong>TinySaves is now installable!</strong> Enjoy a native app
-            experience on your desktop or mobile. Click below to install the app
-            and access it faster, anytime.
-          </p>
           <InstallButton />
         </section>
         <div className="bannerWrapper">

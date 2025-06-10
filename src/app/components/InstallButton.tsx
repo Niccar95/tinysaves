@@ -51,15 +51,29 @@ const InstallButton = () => {
     }
   };
 
-  if (!isInstallable) {
-    return null;
-  }
-
   return (
-    <button className="actionButton" onClick={handleInstallClick}>
-      <i className="bi bi-download"></i>
-      Install App
-    </button>
+    <>
+      {isInstallable ? (
+        <>
+          <p className="pwaMessage">
+            <strong>TinySaves is now installable!</strong> Enjoy a native app
+            experience on your desktop or mobile. Click below to install the app
+            and access it faster, anytime.
+          </p>
+          <button className="actionButton" onClick={handleInstallClick}>
+            <i className="bi bi-download"></i>
+            Install App
+          </button>
+        </>
+      ) : (
+        <>
+          <p className="pwaMessage">
+            <strong>Already using TinySaves?</strong> If you&apos;ve installed
+            it, you can now launch it from your home screen or app drawer.
+          </p>
+        </>
+      )}
+    </>
   );
 };
 
