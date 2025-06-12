@@ -5,6 +5,7 @@ import ConditionalNavbar from "./components/ConditionalNavbar";
 import ConditionalMain from "./components/ConditionalMain";
 import ConditionalHeader from "./components/ConditionalHeader";
 import { Bounce, ToastContainer } from "react-toastify";
+import { SidebarProvider } from "./components/providers/SidebarProvider";
 
 export default async function RootLayout({
   children,
@@ -31,10 +32,10 @@ export default async function RootLayout({
         />
         <SessionProvider>
           <ConditionalHeader />
-          <ConditionalMain>
+          <SidebarProvider>
             <ConditionalNavbar />
-            {children}
-          </ConditionalMain>
+            <ConditionalMain>{children}</ConditionalMain>
+          </SidebarProvider>
           <footer>
             <section className="contactSection">
               <h3 className="contactHeading">Follow me on</h3>

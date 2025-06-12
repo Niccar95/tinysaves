@@ -1,7 +1,6 @@
 @use "./mixins" as *;
 @use "./variables" as *;
 
- 
 .navBar {
   position: fixed;
   top: 163px;
@@ -14,62 +13,91 @@
   width: 100%;
   height: 500px;
   background-color: $header-background;
-  transition: ease-in-out 0.5s;
+  transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
   box-shadow: $shadow;
   border-bottom: solid 1px white;
 
-
   @include desktop() {
-      position: fixed;
-      height: auto;
-      width: 15%;
-      top: 100px;
-      left: 0; 
-      opacity: 1;
-      transition: none; 
-      border-right: solid 1px white;
+    position: fixed;
+    height: auto;
+    width: 15%;
+    top: 100px;
+    left: 0;
+    opacity: 1;
+    transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    border-right: solid 1px white;
+  }
+
+  .sidebarToggleContainer {
+     display: none;
+
+     @include desktop() {
+         display: block;
+         position: absolute;
+         top: 0px;
+         right: -35px;
+         width: 70px;
+         padding: 0.4rem;
+         border-radius: 30px;
+         display: flex;
+         justify-content: end;
+         background-color: $navbar-background;
+     }
+     .sidebarToggle {
+      @include desktop() {
+        width: fit-content;
+        padding: 0.3rem;
+        border-radius: 50%;
+        border: none;
+        background-color: #8ac17a;
+        color: $primary-text-color;
+        cursor: pointer;
+    }
+  }
+}
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+
+    @include desktop() {
+      margin-top: 40px;
     }
 
-    ul {
-      display: flex;
-      flex-direction: column;
-      list-style: none;
+    li {
+      width: 100%;
+    }
 
-      @include desktop() {
-        margin-top: 40px;
-      }
-  
+    li:hover {
+      background-color: #8ac17a;
+    }
 
-
-   li {
-    width: 100%;
-   }
-
-
-   li:hover {
-     background-color: #8ac17a;
-   }
-  
-      .navLink {
-        display: block;
-        width: 100%;
-        height: 100%;
-        padding: 1.5rem; 
-        font-weight: $link-font-weight;
-        color: #101C2C;
-        text-decoration: none;
-      }
-   }
+    .navLink {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 1.5rem;
+      font-weight: $link-font-weight;
+      color: #101C2C;
+      text-decoration: none;
+    }
+  }
 }
 
 .visible {
   left: 0;
   opacity: 1;
+  transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .hidden {
+  left: -100%;
+  opacity: 0;
+  transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
+
   @include desktop() {
-      left: 0;
-      opacity:1;
-     }
+    left: -15%; 
+    opacity: 1;
+  }
 }

@@ -2,12 +2,17 @@
 
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { SidebarContext } from "../contexts/SidebarContext";
 
 const Navbar = () => {
-  const [burgerClass, setBurgerClass] = useState("burgerBar unclicked");
-  const [navClass, setNavClass] = useState("navBar hidden");
-  const [isNavClicked, setIsNavClicked] = useState(false);
+  const [isNavClicked, setIsNavClicked] = useState<boolean>(false);
+  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+
+  const burgerClass = isNavClicked
+    ? "burgerBar clicked"
+    : "burgerBar unclicked";
+
   const handleLogout = async () => {
     await signOut({
       callbackUrl: "/",
@@ -17,21 +22,21 @@ const Navbar = () => {
   };
 
   const updateNavBar = () => {
-    if (!isNavClicked) {
-      setBurgerClass("burgerBar clicked");
-      setNavClass("navBar visible");
-    } else {
-      setBurgerClass("burgerBar unclicked");
-      setNavClass("navBar hidden");
-    }
     setIsNavClicked(!isNavClicked);
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   const closeNavBar = () => {
-    setBurgerClass("burgerBar unclicked");
-    setNavClass("navBar hidden");
     setIsNavClicked(false);
+    if (window.innerWidth < 1200) {
+      setIsSidebarOpen(false);
+    }
   };
+
+  useEffect(() => {
+    const isDesktop = window.innerWidth >= 1200;
+    setIsSidebarOpen(isDesktop);
+  }, [setIsSidebarOpen]);
 
   return (
     <>
@@ -42,7 +47,15 @@ const Navbar = () => {
           <div className={burgerClass}></div>
         </div>
       </section>
-      <nav className={navClass}>
+      <nav className={`navBar ${isSidebarOpen ? "visible" : "hidden"}`}>
+        <div className="sidebarToggleContainer">
+          <button
+            className="sidebarToggle"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
+            <i className="bi bi-caret-right-fill"></i>
+          </button>
+        </div>
         <ul>
           <li>
             <Link className="navLink" href="/dashboard" onClick={closeNavBar}>

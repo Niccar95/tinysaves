@@ -66,6 +66,7 @@ main {
     left: 15%;
     right: 0;
     flex-grow: 1;
+    transition: width 0.3s ease, left 0.3s ease;
    }
 
   .content {
@@ -79,6 +80,14 @@ main {
     @include desktop() {
       margin-top: 0;
     }
+  }
+}
+
+main.fullWidth {
+  @include desktop() {
+    width: 100%;
+    left: 0;
+    transition: width 0.3s ease, left 0.3s ease;
   }
 }
 
