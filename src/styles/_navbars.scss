@@ -35,9 +35,8 @@
          display: block;
          position: absolute;
          top: 0px;
-         right: -35px;
+         right: -32px;
          width: 70px;
-         padding: 0.4rem;
          border-radius: 30px;
          display: flex;
          justify-content: end;
@@ -46,9 +45,9 @@
      .sidebarToggle {
       @include desktop() {
         width: fit-content;
-        padding: 0.3rem;
+        padding: 0.25rem;
         border-radius: 50%;
-        border: none;
+        border: solid 0.3rem $navbar-background;
         background-color: #8ac17a;
         color: $primary-text-color;
         cursor: pointer;

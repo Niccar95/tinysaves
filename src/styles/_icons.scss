@@ -36,4 +36,15 @@
   .bi-github, .bi-linkedin {
     font-size: 25px;
   }
+
+//Sidebar toggle icon
+
+.bi-caret-right-fill {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .bi-caret-right-fill.rotate {
+   transform: rotate(180deg);
+  }
   

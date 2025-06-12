@@ -53,7 +53,11 @@ const Navbar = () => {
             className="sidebarToggle"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
-            <i className="bi bi-caret-right-fill"></i>
+            <i
+              className={`bi bi-caret-right-fill ${
+                isSidebarOpen ? "rotate" : ""
+              }`}
+            ></i>
           </button>
         </div>
         <ul>
