@@ -17,44 +17,49 @@
     }
 }
 
-
 .hamburgerMenu {
-    height: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-
-    @include desktop() {
-      display: none;
-    }
-  }
-
-  .burgerBar {
-    width: 40px;
-    height: 5px;
-    background-color: $primary-text-color;
-    border-radius: 0.5em;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-
-
-    &.clicked {
-      &:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 12px);
-      }
+  position: relative;
+  width: fit-content;
+  height: 24px; 
   
-      &:nth-child(2) {
-        opacity: 0; 
-      }
-  
-      &:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -12px);
-      }
+     @include desktop() {
+        display: none;
     }
-  
-    &.unclicked {
-      transform: none;
-      opacity: 1;
-    }
-  }
+}
 
+.burgerBar {
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 4px;
+  background-color: $primary-text-color;
+  border-radius: 0.5em;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.burgerBar:nth-child(1) {
+  top: 0;
+}
+
+.burgerBar:nth-child(2) {
+  top: 10px;
+}
+
+.burgerBar:nth-child(3) {
+  top: 20px;
+}
+
+
+.burgerBar.clicked:nth-child(1) {
+  transform: rotate(45deg);
+  top: 10px;
+}
+
+.burgerBar.clicked:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerBar.clicked:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 10px;
+}
