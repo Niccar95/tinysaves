@@ -174,7 +174,7 @@
     }
 }
 
-.milestoneCard {
+.milestoneCard, .lockedMilestoneCard {
     display: flex;
     justify-content: space-between;
     padding: 1.5rem;
@@ -182,10 +182,12 @@
     border: $card-border-color;
     border-radius: 15px;
     background-color: $light-body-background;
+    height: 150px;
 
     @include desktop() {
         justify-content: space-around;
    }
+
    .milestoneCriteria {
       margin-top: 0.5rem;
       font-size: 14px;
@@ -201,6 +203,11 @@
         width: 100px;
     }
 }
+}
+
+.lockedMilestoneCard {
+    justify-content: center;
+    align-items: center;
 }
 
 .newMilestoneCard {

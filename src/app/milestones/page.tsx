@@ -23,17 +23,18 @@ const MilestonesPage = async () => {
 
   const totalMilestones = await prisma.milestones.count();
 
-  ///working on milestones page
+  const remainingMilestoneCount = totalMilestones - milestones.length;
 
-  const remainingMilestonesCount = totalMilestones - milestones.length;
-
-  console.log("Remaining milestones:", remainingMilestonesCount);
+  console.log(remainingMilestoneCount);
 
   return (
     <>
       <section className="content">
         <h1>My milestones</h1>
-        <MilestonesList milestones={milestones} />
+        <MilestonesList
+          milestones={milestones}
+          remainingMilestoneCount={remainingMilestoneCount}
+        />
       </section>
     </>
   );
