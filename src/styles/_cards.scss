@@ -245,3 +245,23 @@
         }
     }
 }
+
+.goalMoneyCard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: $shadow;
+    border-radius: 15px;
+    border: $card-border-color;
+    width: fit-content;
+    
+    .currencyLabel {
+      color: $tertiary-text-color;
+      font-weight: normal;
+    }
+    
+    .amount {
+      font-weight: bold;
+    }
+}
