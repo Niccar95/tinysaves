@@ -1,11 +1,12 @@
 import "./../styles/globals.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import SessionProvider from "./components/providers/SessionProvider";
+import SessionProvider from "./providers/SessionProvider";
 import ConditionalNavbar from "./components/ConditionalNavbar";
 import ConditionalMain from "./components/ConditionalMain";
 import ConditionalHeader from "./components/ConditionalHeader";
 import { Bounce, ToastContainer } from "react-toastify";
-import { SidebarProvider } from "./components/providers/SidebarProvider";
+import { SidebarProvider } from "./providers/SidebarProvider";
+import CurrencyProvider from "./providers/CurrencyProvider";
 
 export default async function RootLayout({
   children,
@@ -14,12 +15,12 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/icons/icon-192x192.png" />
+        <meta name="theme-color" content="#ffffff" />
+      </head>
       <body>
-        <head>
-          <link rel="manifest" href="/manifest.json" />
-          <link rel="icon" href="/icons/icon-192x192.png" />
-          <meta name="theme-color" content="#ffffff" />
-        </head>
         <ToastContainer
           position="top-right"
           autoClose={4000}
@@ -30,11 +31,14 @@ export default async function RootLayout({
           theme="light"
           transition={Bounce}
         />
+
         <SessionProvider>
           <ConditionalHeader />
           <SidebarProvider>
             <ConditionalNavbar />
-            <ConditionalMain>{children}</ConditionalMain>
+            <CurrencyProvider>
+              <ConditionalMain>{children}</ConditionalMain>
+            </CurrencyProvider>
           </SidebarProvider>
           <footer>
             <section className="contactSection">

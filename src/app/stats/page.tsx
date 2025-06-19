@@ -8,6 +8,7 @@ import {
   calculateSummaryData,
 } from "@/utils/statsUtils";
 import { redirect } from "next/navigation";
+import ConversionSelect from "../components/ConversionSelect";
 
 const StatsPage = async () => {
   const session = await getServerSession(authOptions);
@@ -18,9 +19,15 @@ const StatsPage = async () => {
 
   const userId = session.user.id;
 
-  const allGoals = await prisma.goals.findMany({ where: { userId } });
+  const allGoals = await prisma.goals.findMany({
+    where: { userId },
+  });
   const summaryData = calculateSummaryData(allGoals);
   const lineChartData = calculateLineChartData(allGoals);
+  const goalMoneyData = await prisma.goals.findMany({
+    where: { userId },
+    select: { currency: true, progress: true, targetAmount: true },
+  });
 
   return (
     <>
@@ -37,9 +44,11 @@ const StatsPage = async () => {
             {summaryData.completedGoals}
           </p>
           <p>
-            <span className="boldLabel"> Percentage of completed goals:</span>{" "}
+            <span className="boldLabel">Percentage of completed goals:</span>{" "}
             {summaryData.completedPercentage.toFixed(2)}%
           </p>
+
+          <ConversionSelect goalMoneyData={goalMoneyData} />
         </section>
         <Charts summaryData={summaryData} lineChartData={lineChartData} />
       </section>

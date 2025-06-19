@@ -25,8 +25,6 @@ const MilestonesPage = async () => {
 
   const remainingMilestoneCount = totalMilestones - milestones.length;
 
-  console.log(remainingMilestoneCount);
-
   return (
     <>
       <section className="content">
