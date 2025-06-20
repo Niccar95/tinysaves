@@ -14,6 +14,9 @@ const AvatarSelector = ({ onAvatarSelect, onClose }: AvatarSelectorProps) => {
     { src: "/sunglasses.svg", alt: "sunglasses" },
     { src: "/hotDog.svg", alt: "hot dog" },
     { src: "/coins.svg", alt: "coins" },
+    { src: "/iceCream.svg", alt: "ice cream" },
+    { src: "/dollar.svg", alt: "dollar" },
+    { src: "/cheese.svg", alt: "cheese" },
   ];
 
   return (

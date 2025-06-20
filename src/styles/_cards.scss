@@ -148,9 +148,12 @@
 
     .avatar {
         border-radius: 50%;
+        border: solid 0.5px $tertiary-border-color;
         cursor: pointer;
+        transition: transform 0.1s ease-in;
+
         &:hover {
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
     }
 }
