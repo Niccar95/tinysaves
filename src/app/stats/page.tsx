@@ -29,6 +29,10 @@ const StatsPage = async () => {
     select: { currency: true, progress: true, targetAmount: true },
   });
 
+  const reachedMilestones = await prisma.userMilestones.findMany({
+    where: { userId },
+  });
+
   return (
     <>
       <section className="content">
@@ -46,6 +50,11 @@ const StatsPage = async () => {
           <p>
             <span className="boldLabel">Percentage of completed goals:</span>{" "}
             {summaryData.completedPercentage.toFixed(2)}%
+          </p>
+
+          <p>
+            <span className="boldLabel">Milestones reached: </span>{" "}
+            {reachedMilestones.length}
           </p>
 
           <ConversionSelect goalMoneyData={goalMoneyData} />
