@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { deleteGoal, editGoalTitle } from "@/services/goalService";
 import { fetchLatestMilestone } from "@/services/milestoneService";
 import MilestoneModal from "./MilestoneModal";
+import { motion } from "motion/react";
 interface GoalListProps {
   goals: Goals[];
   milestoneId: string | null;
@@ -78,14 +79,24 @@ const GoalList = ({ goals, milestoneId }: GoalListProps) => {
         )}
 
         {savingGoals.length > 0 ? (
-          savingGoals.map((goal) => (
-            <GoalCard
+          savingGoals.map((goal, i) => (
+            <motion.div
               key={goal.goalId}
-              goal={goal}
-              handleDeleteGoal={() => handleDeleteGoal(goal.goalId)}
-              handleEditGoalTitle={handleEditGoalTitle}
-              onMilestoneReached={handleMilestoneReached}
-            ></GoalCard>
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+                delay: (i + 1) * 0.3,
+              }}
+            >
+              <GoalCard
+                goal={goal}
+                handleDeleteGoal={() => handleDeleteGoal(goal.goalId)}
+                handleEditGoalTitle={handleEditGoalTitle}
+                onMilestoneReached={handleMilestoneReached}
+              ></GoalCard>
+            </motion.div>
           ))
         ) : (
           <p>No goals added yet.</p>

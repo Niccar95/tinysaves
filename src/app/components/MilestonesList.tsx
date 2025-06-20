@@ -3,6 +3,7 @@
 import { Milestones, UserMilestones } from "@prisma/client";
 import MilestoneCard from "./MilestoneCard";
 import LockedMilestoneCard from "./LockedMilestoneCard";
+import { motion } from "motion/react";
 
 interface IMilestonesProps {
   milestones: (UserMilestones & { milestone: Milestones })[];
@@ -26,11 +27,19 @@ const MilestonesList = ({
       <div className="milestonesListWrapper">
         {milestones.length > 0 ? (
           <>
-            {milestones.map((milestone) => (
-              <MilestoneCard
+            {milestones.map((milestone, i) => (
+              <motion.div
                 key={milestone.id}
-                milestone={milestone.milestone}
-              />
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  duration: 0.4,
+                  ease: "easeOut",
+                  delay: (i + 1) * 0.3,
+                }}
+              >
+                <MilestoneCard milestone={milestone.milestone} />
+              </motion.div>
             ))}
             {renderRemainingCards()}
           </>

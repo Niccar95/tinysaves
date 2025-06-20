@@ -8,6 +8,7 @@ import money from "/public/moneyIcon.svg";
 import { goalForm } from "@/utils/validationSchemas";
 import { createGoal } from "@/services/goalService";
 import { toast } from "react-toastify";
+import { motion } from "motion/react";
 
 interface ISavingsFormProps {
   onSubmitSuccess: () => void;
@@ -94,7 +95,12 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
       {!isFormHidden && (
         <div className="modalBackdrop" onClick={() => setIsFormHidden(true)}>
           <div className="modalContent" onClick={(e) => e.stopPropagation()}>
-            <form className="addGoalForm" onSubmit={handleCreateGoal}>
+            <motion.form
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="addGoalForm"
+              onSubmit={handleCreateGoal}
+            >
               <section className="topSection">
                 <h2>Time to Save!</h2>
                 <Image className="moneyIcon" src={money} alt="icon"></Image>
@@ -171,7 +177,7 @@ const SavingsForm = ({ onSubmitSuccess }: ISavingsFormProps) => {
               <button type="submit" className="submitButton margin">
                 Add goal
               </button>
-            </form>
+            </motion.form>
           </div>
         </div>
       )}

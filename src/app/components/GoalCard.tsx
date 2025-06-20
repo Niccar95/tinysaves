@@ -10,7 +10,6 @@ import { goalProgress } from "@/utils/validationSchemas";
 import ProgressForm from "./ProgressForm";
 import { updateGoalProgress } from "@/services/goalService";
 import { useClickOutside } from "../hooks/useClickOutside";
-import { motion } from "motion/react";
 
 interface GoalProps {
   goal: Goals;
@@ -89,12 +88,7 @@ const GoalCard = ({
 
   return (
     <>
-      <motion.article
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="goalCard"
-      >
+      <article className="goalCard">
         <div className="titleWrapper">
           <h2 className="goalTitle">{goal.title}</h2>
           <p className="createdAtTag">Added on {formattedCreatedAtDate}</p>
@@ -197,7 +191,7 @@ const GoalCard = ({
             No due date
           </p>
         )}
-      </motion.article>
+      </article>
     </>
   );
 };
