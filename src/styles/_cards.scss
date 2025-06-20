@@ -11,6 +11,7 @@
     border-radius: 15px;
     background: $card-background;
     border: $card-border-color;
+    height: 100%;
 
     .progressSection {
         display: flex;
@@ -185,7 +186,7 @@
     border: $card-border-color;
     border-radius: 15px;
     background-color: $light-body-background;
-    height: 150px;
+    height: fit-content;
 
     @include desktop() {
         justify-content: space-around;
