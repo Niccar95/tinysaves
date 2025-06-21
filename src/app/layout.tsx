@@ -64,7 +64,7 @@ export default async function RootLayout({
               </div>
             </section>
             <p className="copyright">
-              &copy; {new Date().getFullYear()} Nicolas Carrasco
+              &copy; {new Date().getFullYear()} TinySaves
             </p>
           </footer>
         </SessionProvider>

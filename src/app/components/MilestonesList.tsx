@@ -19,7 +19,20 @@ const MilestonesList = ({
       { length: remainingMilestoneCount },
       (_, i) => i + 1
     );
-    return numbers.map((i) => <LockedMilestoneCard key={i} />);
+    return numbers.map((i) => (
+      <motion.div
+        key={i}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.4,
+          ease: "easeOut",
+          delay: milestones.length * 0.3 + i * 0.2,
+        }}
+      >
+        <LockedMilestoneCard />
+      </motion.div>
+    ));
   };
 
   return (
