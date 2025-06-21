@@ -7,7 +7,6 @@ import Spinner from "./Spinner";
 import GoalCardContent from "./GoalCardContent";
 import { getLatestGoal } from "@/services/goalService";
 import { motion } from "motion/react";
-
 interface LatestGoalProps {
   userId: string;
 }
