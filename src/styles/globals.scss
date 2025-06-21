@@ -94,6 +94,9 @@ main.fullWidth {
 }
 
 .pwaMessage {
+  display: flex; 
+  flex-direction: column;
+  gap: 2rem;
   background: $card-background;
   color: $primary-text-color;
   border: 1px solid $primary-border-color;

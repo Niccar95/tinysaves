@@ -54,8 +54,8 @@ const InstallButton = () => {
   return (
     <>
       {isInstallable ? (
-        <>
-          <p className="pwaMessage">
+        <div className="pwaMessage">
+          <p>
             <strong>TinySaves is now installable!</strong> Enjoy a native app
             experience on your desktop or mobile. Click below to install the app
             and access it faster, anytime.
@@ -64,14 +64,22 @@ const InstallButton = () => {
             <i className="bi bi-download"></i>
             Install app
           </button>
-        </>
+        </div>
       ) : (
-        <>
-          <p className="pwaMessage">
+        <div className="pwaMessage">
+          <p>
             <strong>Already using TinySaves?</strong> If you&apos;ve installed
             it, you can now launch it from your home screen or app drawer.
           </p>
-        </>
+          <button
+            className="actionButton disabled"
+            onClick={handleInstallClick}
+            disabled
+          >
+            <i className="bi bi-check-circle-fill"></i>
+            Installed
+          </button>
+        </div>
       )}
     </>
   );
