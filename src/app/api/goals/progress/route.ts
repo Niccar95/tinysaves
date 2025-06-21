@@ -1,5 +1,8 @@
 import prisma from "@/app/db";
-import { createMilestones } from "@/services/milestoneService";
+import {
+  createMilestones,
+  goalAmountMilestones,
+} from "@/services/milestoneService";
 import { NextRequest, NextResponse } from "next/server";
 
 export const PATCH = async (req: NextRequest) => {
@@ -21,12 +24,6 @@ export const PATCH = async (req: NextRequest) => {
 
     const updatedProgress = currentGoal.progress + progress;
 
-    const milestone = await createMilestones(
-      userId,
-      updatedProgress,
-      targetAmount
-    );
-
     const goal = await prisma.goals.update({
       where: { goalId },
       data: {
@@ -35,8 +32,16 @@ export const PATCH = async (req: NextRequest) => {
       },
     });
 
+    const milestone = await createMilestones(
+      userId,
+      updatedProgress,
+      targetAmount
+    );
+
+    const goalAmount = await goalAmountMilestones(userId);
+
     return NextResponse.json(
-      { message: "Savings goal updated", goal, milestone },
+      { message: "Savings goal updated", goal, milestone, goalAmount },
       { status: 200 }
     );
   } catch (error) {

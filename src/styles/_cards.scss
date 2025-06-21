@@ -190,6 +190,7 @@
 
     @include desktop() {
         justify-content: space-around;
+        height: 150px;
    }
 
    .milestoneCriteria {

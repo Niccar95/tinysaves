@@ -63,21 +63,6 @@ export const createMilestones = async (
               milestone: { connect: { milestoneId: milestone.milestoneId } },
             },
           });
-        } else {
-          const newMilestone = await prisma.milestones.create({
-            data: {
-              name: "Halfway to halfway",
-              criteria: "Reached 25% of a goal",
-              image: "/milestoneIcons/milestone25.svg",
-            },
-          });
-
-          await prisma.userMilestones.create({
-            data: {
-              user: { connect: { userId } },
-              milestone: { connect: { milestoneId: newMilestone.milestoneId } },
-            },
-          });
         }
       }
     }
@@ -97,21 +82,6 @@ export const createMilestones = async (
             data: {
               user: { connect: { userId } },
               milestone: { connect: { milestoneId: milestone.milestoneId } },
-            },
-          });
-        } else {
-          const newMilestone = await prisma.milestones.create({
-            data: {
-              name: "Halfway there!",
-              criteria: "Reached 50% of a goal",
-              image: "/milestoneIcons/milestone50.svg",
-            },
-          });
-
-          await prisma.userMilestones.create({
-            data: {
-              user: { connect: { userId } },
-              milestone: { connect: { milestoneId: newMilestone.milestoneId } },
             },
           });
         }
@@ -135,21 +105,6 @@ export const createMilestones = async (
               milestone: { connect: { milestoneId: milestone.milestoneId } },
             },
           });
-        } else {
-          const newMilestone = await prisma.milestones.create({
-            data: {
-              name: "Almost there!",
-              criteria: "Reached 75% of a goal",
-              image: "/milestoneIcons/milestone75.svg",
-            },
-          });
-
-          await prisma.userMilestones.create({
-            data: {
-              user: { connect: { userId } },
-              milestone: { connect: { milestoneId: newMilestone.milestoneId } },
-            },
-          });
         }
       }
     }
@@ -171,25 +126,58 @@ export const createMilestones = async (
               milestone: { connect: { milestoneId: milestone.milestoneId } },
             },
           });
-        } else {
-          const newMilestone = await prisma.milestones.create({
-            data: {
-              name: "One down, many to go",
-              criteria: "Reached 100% of a goal",
-              image: "/milestoneIcons/milestone100.svg",
-            },
-          });
-
-          await prisma.userMilestones.create({
-            data: {
-              user: { connect: { userId } },
-              milestone: { connect: { milestoneId: newMilestone.milestoneId } },
-            },
-          });
         }
       }
     }
   } catch (error) {
     console.error("Error creating milestones:", error);
+  }
+};
+
+export const goalAmountMilestones = async (userId: string) => {
+  const completedGoalsCount = await prisma.goals.count({
+    where: { userId, isComplete: true },
+  });
+
+  if (completedGoalsCount >= 5) {
+    const existingMilestone = await checkExistingMilestone(
+      userId,
+      "Avid saver"
+    );
+    if (!existingMilestone) {
+      const milestone = await prisma.milestones.findFirst({
+        where: { name: "Avid saver" },
+      });
+
+      if (milestone) {
+        await prisma.userMilestones.create({
+          data: {
+            user: { connect: { userId } },
+            milestone: { connect: { milestoneId: milestone.milestoneId } },
+          },
+        });
+      }
+    }
+  }
+
+  if (completedGoalsCount >= 10) {
+    const existingMilestone = await checkExistingMilestone(
+      userId,
+      "Saving Guru"
+    );
+    if (!existingMilestone) {
+      const milestone = await prisma.milestones.findFirst({
+        where: { name: "Saving Guru" },
+      });
+
+      if (milestone) {
+        await prisma.userMilestones.create({
+          data: {
+            user: { connect: { userId } },
+            milestone: { connect: { milestoneId: milestone.milestoneId } },
+          },
+        });
+      }
+    }
   }
 };

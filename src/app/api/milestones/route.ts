@@ -1,7 +1,13 @@
 import prisma from "@/app/db";
 import { authOptions } from "@/lib/auth";
+import { ensureMilestonesExist } from "@/lib/seedMilestones";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
+
+export const POST = async () => {
+  await ensureMilestonesExist();
+  return NextResponse.json({ status: "ok" });
+};
 
 export const GET = async (req: NextRequest) => {
   try {

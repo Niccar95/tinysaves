@@ -7,12 +7,14 @@ import ConditionalHeader from "./components/ConditionalHeader";
 import { Bounce, ToastContainer } from "react-toastify";
 import { SidebarProvider } from "./providers/SidebarProvider";
 import CurrencyProvider from "./providers/CurrencyProvider";
+import { ensureMilestonesExist } from "@/lib/seedMilestones";
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  await ensureMilestonesExist();
   return (
     <html lang="en">
       <head>
