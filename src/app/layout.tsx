@@ -11,6 +11,12 @@ import { ensureMilestonesExist } from "@/lib/seedMilestones";
 import { getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 
+import en from "../../messages/en.json";
+import sv from "../../messages/sv.json";
+import es from "../../messages/es.json";
+
+const allMessages = { en, sv, es };
+
 export default async function RootLayout({
   children,
 }: {
@@ -19,6 +25,7 @@ export default async function RootLayout({
   await ensureMilestonesExist();
 
   const locale = await getLocale();
+  const messages = allMessages[locale as keyof typeof allMessages] ?? en;
 
   return (
     <html lang={locale}>
@@ -28,7 +35,7 @@ export default async function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </head>
       <body>
-        <NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <ToastContainer
             position="top-right"
             autoClose={4000}

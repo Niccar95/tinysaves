@@ -10,7 +10,7 @@ interface GoalProps {
   handleEditGoalTitle: (goalId: string, newTitle: string) => void;
 }
 
-const ActionMenu = ({ goal, deleteGoal, handleEditGoalTitle }: GoalProps) => {
+const ActionsMenu = ({ goal, deleteGoal, handleEditGoalTitle }: GoalProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleDeleteGoal = async () => {
@@ -20,7 +20,7 @@ const ActionMenu = ({ goal, deleteGoal, handleEditGoalTitle }: GoalProps) => {
   return (
     <>
       {!isEditing && (
-        <section className="actionMenu">
+        <section className="actionsMenu">
           <button
             className="actionButton customise"
             onClick={() => setIsEditing(!isEditing)}
@@ -45,4 +45,4 @@ const ActionMenu = ({ goal, deleteGoal, handleEditGoalTitle }: GoalProps) => {
   );
 };
 
-export default ActionMenu;
+export default ActionsMenu;

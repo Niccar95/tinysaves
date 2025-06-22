@@ -1,6 +1,6 @@
 @use "./variables" as *;
 
-.actionMenu {
+.actionsMenu {
     position: absolute;
     z-index: 2;
     right: 0;
@@ -12,4 +12,11 @@
     padding: 1rem;
     background-color: $light-body-background;
     box-shadow: $shadow;
+}
+
+
+.langMenu {
+    top: 100px;
+    position: fixed;
+    z-index: 100;
 }

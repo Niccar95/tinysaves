@@ -15,6 +15,8 @@ const GoalCardContent = ({ latestGoal }: GoalProps) => {
 
   const roundedPercentage = Math.round(percentage);
 
+  console.log("current t('recent'):", t("recent"));
+
   return (
     <>
       <div>

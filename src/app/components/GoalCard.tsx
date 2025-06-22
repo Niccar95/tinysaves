@@ -4,12 +4,12 @@ import { Goals } from "@prisma/client";
 import React, { FormEvent, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import { processCreatedAtDate, processDueDate } from "@/utils/dateUtils";
-import ActionMenu from "./ActionMenu";
 import { useSession } from "next-auth/react";
 import { goalProgress } from "@/utils/validationSchemas";
 import ProgressForm from "./ProgressForm";
 import { updateGoalProgress } from "@/services/goalService";
 import { useClickOutside } from "../hooks/useClickOutside";
+import ActionsMenu from "./ActionsMenu";
 
 interface GoalProps {
   goal: Goals;
@@ -95,7 +95,7 @@ const GoalCard = ({
 
           <div ref={actionsMenuRef} onClick={(e) => e.stopPropagation()}>
             {openActionsMenu && (
-              <ActionMenu
+              <ActionsMenu
                 goal={goal}
                 deleteGoal={handleDeleteGoal}
                 handleEditGoalTitle={handleEditGoalTitle}
