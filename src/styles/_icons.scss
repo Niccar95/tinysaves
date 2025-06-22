@@ -37,16 +37,20 @@
     font-size: 25px;
   }
 
-//Sidebar toggle icon
+//Sidebar toggle icon and language toggle icon
 
 .bi-caret-right-fill {
     display: inline-block;
     transition: transform 0.3s ease;
   }
+  .bi-caret-down-fill {
+    transition: transform 0.3s ease;
+  }
   
-  .bi-caret-right-fill.rotate {
+  .rotate {
    transform: rotate(180deg);
   }
+
 
   //Icon for Locked Milestone cards
 

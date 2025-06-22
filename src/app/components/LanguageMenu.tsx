@@ -4,9 +4,10 @@ import React, { useState } from "react";
 
 interface LangMenuProps {
   closeMenu: () => void;
+  setCurrentLang: (locale: string) => void;
 }
 
-const LanguageMenu = ({ closeMenu }: LangMenuProps) => {
+const LanguageMenu = ({ closeMenu, setCurrentLang }: LangMenuProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleChangeLanguage = async (locale: string) => {
@@ -15,8 +16,9 @@ const LanguageMenu = ({ closeMenu }: LangMenuProps) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ locale }),
     });
-
+    setCurrentLang(locale);
     closeMenu();
+
     window.location.reload();
   };
   return (
