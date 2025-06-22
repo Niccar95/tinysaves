@@ -146,6 +146,7 @@
     box-shadow: $shadow;
     transition: transform 0.2s ease-in-out;
     background-color: $light-body-background;
+    border:  $card-border-color;
 
     .avatar {
         border-radius: 50%;
