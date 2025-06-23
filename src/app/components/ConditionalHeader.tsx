@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useLocale } from "next-intl";
 import { useClickOutside } from "../hooks/useClickOutside";
 
-const ConditionalHeader = () => {
+const ConditionalHeader = ({ children }: { children: React.ReactNode }) => {
   const locale = useLocale();
   const [openLangMenu, setOpenLangMenu] = useState<boolean>(false);
   const [currentLang, setCurrentLang] = useState<string>(locale);
@@ -59,6 +59,7 @@ const ConditionalHeader = () => {
           />
         )}
       </div>
+      {children}
     </header>
   );
 };

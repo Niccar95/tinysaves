@@ -6,6 +6,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { SidebarContext } from "../contexts/SidebarContext";
 import { useClickOutside } from "../hooks/useClickOutside";
 import { useTranslations } from "next-intl";
+import ConditionalHeader from "./ConditionalHeader";
 
 const Navbar = () => {
   const [isNavClicked, setIsNavClicked] = useState<boolean>(false);
@@ -56,79 +57,76 @@ const Navbar = () => {
   }, [setIsSidebarOpen]);
 
   return (
-    <>
-      <section className="hamburgerSection">
-        <div className="hamburgerMenu" onClick={updateNavBar}>
-          <div className={burgerClass}></div>
-          <div className={burgerClass}></div>
-          <div className={burgerClass}></div>
-        </div>
-      </section>
-      <div ref={actionsMenuRef} onClick={(e) => e.stopPropagation()}>
-        <nav className={`navBar ${isSidebarOpen ? "visible" : "hidden"}`}>
-          <div className="sidebarToggleContainer">
-            <button
-              className="sidebarToggle"
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            >
-              <i
-                className={`bi bi-caret-right-fill ${
-                  isSidebarOpen ? "rotate" : ""
-                }`}
-              ></i>
-            </button>
-          </div>
-          <ul>
-            <li>
-              <Link className="navLink" href="/dashboard" onClick={closeNavBar}>
-                <i className="bi bi-house-door-fill"></i>
-                {t("dashboard")}
-              </Link>
-            </li>
-            <li>
-              <Link className="navLink" href="/goals" onClick={closeNavBar}>
-                <i className="bi bi-piggy-bank-fill"></i>
-                {t("myGoals")}
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="navLink"
-                href="/milestones"
-                onClick={closeNavBar}
-              >
-                <i className="bi bi-trophy-fill"></i>
-                {t("myMilestones")}
-              </Link>
-            </li>
-            <li>
-              <Link className="navLink" href="/stats" onClick={closeNavBar}>
-                <i className="bi bi-bar-chart-line-fill"></i>
-                {t("myStats")}
-              </Link>
-            </li>
-            <li>
-              <Link className="navLink" href="/profile" onClick={closeNavBar}>
-                <i className="bi bi-person-circle"></i>
-                {t("myProfile")}
-              </Link>
-            </li>
-            <li>
-              <Link className="navLink" href="/settings" onClick={closeNavBar}>
-                <i className="bi bi-gear-fill"></i>
-                {t("settings")}
-              </Link>
-            </li>
-          </ul>
-          <section className="logoutButtonSection">
-            <button className="logoutButton" onClick={handleLogout}>
-              <i className="bi bi-box-arrow-left"></i>
-              {t("logOut")}
-            </button>
-          </section>
-        </nav>
+    <ConditionalHeader>
+      <div className="hamburgerMenu" onClick={updateNavBar}>
+        <div className={burgerClass}></div>
+        <div className={burgerClass}></div>
+        <div className={burgerClass}></div>
       </div>
-    </>
+
+      <nav
+        ref={actionsMenuRef}
+        onClick={(e) => e.stopPropagation()}
+        className={`navBar ${isSidebarOpen ? "visible" : "hidden"}`}
+      >
+        <div className="sidebarToggleContainer">
+          <button
+            className="sidebarToggle"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
+            <i
+              className={`bi bi-caret-right-fill ${
+                isSidebarOpen ? "rotate" : ""
+              }`}
+            ></i>
+          </button>
+        </div>
+        <ul>
+          <li>
+            <Link className="navLink" href="/dashboard" onClick={closeNavBar}>
+              <i className="bi bi-house-door-fill"></i>
+              {t("dashboard")}
+            </Link>
+          </li>
+          <li>
+            <Link className="navLink" href="/goals" onClick={closeNavBar}>
+              <i className="bi bi-piggy-bank-fill"></i>
+              {t("myGoals")}
+            </Link>
+          </li>
+          <li>
+            <Link className="navLink" href="/milestones" onClick={closeNavBar}>
+              <i className="bi bi-trophy-fill"></i>
+              {t("myMilestones")}
+            </Link>
+          </li>
+          <li>
+            <Link className="navLink" href="/stats" onClick={closeNavBar}>
+              <i className="bi bi-bar-chart-line-fill"></i>
+              {t("myStats")}
+            </Link>
+          </li>
+          <li>
+            <Link className="navLink" href="/profile" onClick={closeNavBar}>
+              <i className="bi bi-person-circle"></i>
+              {t("myProfile")}
+            </Link>
+          </li>
+          <li>
+            <Link className="navLink" href="/settings" onClick={closeNavBar}>
+              <i className="bi bi-gear-fill"></i>
+              {t("settings")}
+            </Link>
+          </li>
+        </ul>
+        <section className="logoutButtonSection">
+          <button className="logoutButton" onClick={handleLogout}>
+            <i className="bi bi-box-arrow-left"></i>
+            {t("logOut")}
+          </button>
+        </section>
+      </nav>
+    </ConditionalHeader>
   );
 };
 

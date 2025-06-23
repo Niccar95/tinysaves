@@ -2,25 +2,25 @@
 @use "./variables" as *;
 
 
-.hamburgerSection {
-  position: fixed;
-  top: 100px;
-  z-index: 90;
-  background-color: $header-background;
-  width: 100%;
-  padding: 1rem;
-  border-bottom: solid 1px white;
-  box-shadow: $shadow;
+// .hamburgerSection {
+//   position: fixed;
+//   top: 100px;
+//   z-index: 90;
+//   background-color: $header-background;
+//   width: 100%;
+//   padding: 1rem;
+//   border-bottom: solid 1px white;
+//   box-shadow: $shadow;
 
-    @include desktop() {
-        display: none;
-    }
-}
+//     @include desktop() {
+//         display: none;
+//     }
+// }
 
 .hamburgerMenu {
   position: relative;
-  width: fit-content;
   height: 24px; 
+    width: 30px;
   
      @include desktop() {
         display: none;
@@ -30,7 +30,7 @@
 .burgerBar {
   position: absolute;
   left: 0;
-  width: 30px;
+  width: 100%;
   height: 4px;
   background-color: $primary-text-color;
   border-radius: 0.5em;
