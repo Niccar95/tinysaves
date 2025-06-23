@@ -7,6 +7,7 @@ import Spinner from "./Spinner";
 import GoalCardContent from "./GoalCardContent";
 import { getLatestGoal } from "@/services/goalService";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 interface LatestGoalProps {
   userId: string;
 }
@@ -15,6 +16,8 @@ const LatestGoalCard = ({ userId }: LatestGoalProps) => {
   const [latestGoal, setLatestGoal] = useState<Goals | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [hasGoals, setHasGoals] = useState<boolean>(true);
+
+  const t = useTranslations("latestGoal");
 
   const fetchLatestGoal = useCallback(async () => {
     if (!hasGoals) return;
@@ -53,7 +56,7 @@ const LatestGoalCard = ({ userId }: LatestGoalProps) => {
         <SavingsForm onSubmitSuccess={handleGoalSubmission} />
         {isLoading && <Spinner />}
         {latestGoal && <GoalCardContent latestGoal={latestGoal} />}
-        {!latestGoal && <p>No goals added yet</p>}
+        {!latestGoal && <p className="noGoalsLabel">{t("noGoals")}</p>}
       </motion.article>
     </>
   );

@@ -5,6 +5,7 @@ import { Milestones } from "@prisma/client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 interface LatestMilestoneProps {
   userId: string;
@@ -14,6 +15,8 @@ const LatestMilestoneCard = ({ userId }: LatestMilestoneProps) => {
   const [latestMilestone, setLatestMilestone] = useState<Milestones | null>(
     null
   );
+
+  const t = useTranslations("latestMilestone");
 
   useEffect(() => {
     if (!userId) return;
@@ -40,9 +43,7 @@ const LatestMilestoneCard = ({ userId }: LatestMilestoneProps) => {
         {latestMilestone && latestMilestone && (
           <>
             <div>
-              <h2 className="latestGoalHeading">
-                Recently reached milestone:{" "}
-              </h2>
+              <h2 className="latestGoalHeading">{t("recent")}</h2>
               <h3>{latestMilestone.name}</h3>
             </div>
             <Image
@@ -54,7 +55,7 @@ const LatestMilestoneCard = ({ userId }: LatestMilestoneProps) => {
           </>
         )}
 
-        {!latestMilestone && <p>No milestones reached yet</p>}
+        {!latestMilestone && <p>{t("noMilestones")}</p>}
       </motion.article>
     </>
   );

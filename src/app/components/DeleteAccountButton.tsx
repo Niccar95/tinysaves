@@ -1,11 +1,13 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import React from "react";
 import { toast } from "react-toastify";
 
 const DeleteAccountButton = () => {
   const { data: session } = useSession();
+  const t = useTranslations("userSettings");
 
   const userId = session?.user.id;
 
@@ -42,7 +44,7 @@ const DeleteAccountButton = () => {
     <>
       <button className="actionButton delete" onClick={deleteAccount}>
         <i className="bi bi-trash3"></i>
-        Delete account
+        {t("delete")}
       </button>
     </>
   );

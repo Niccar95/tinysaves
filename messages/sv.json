@@ -1,5 +1,41 @@
 {
   "latestGoal": {
-    "recent": "Senast tillagda mål:"
-  }
+    "recent": "Senast tillagda mål:",
+    "addNewGoal": "Lägg till nytt mål",
+    "noGoals": "Inga mål har lagts till än"
+  },
+
+   "latestMilestone": {
+    "recent": "Senast uppnådda milstolpe:",
+    "noMilestones": "Inga milstolpar har uppnåtts ännu"
+  },
+
+  "pages": {
+  "dashboard": "Översikt",
+  "myGoals": "Mina mål",
+  "myMilestones": "Mina milstolpar",
+  "myStats": "Min statistik",
+  "myProfile": "Min profil",
+  "settings": "Inställningar",
+  "logOut": "Logga ut"
+},
+  "messages": {
+  "userGreeting": "Välkommen"
+ },
+ "savingsForm": {
+  "heading": "Spardags!",
+  "name": "Namn på sparmål:",
+  "amount": "Målsumma att spara:",
+  "currency": "Välj valuta:",
+  "dueDate": "Måldatum (valfritt):",
+  "addGoal": "Lägg till mål"
+},
+"userSettings": {
+  "heading": "Användarinställningar",
+  "delete": "Ta bort konto"
+},
+"footer": {
+  "social": "Följ mig på"
 }
+}
+

@@ -4,9 +4,11 @@ import { getServerSession } from "next-auth";
 import prisma from "../db";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 
 const GoalsPage = async () => {
   const session = await getServerSession(authOptions);
+  const t = await getTranslations("pages");
 
   if (!session) {
     redirect("/");
@@ -30,7 +32,7 @@ const GoalsPage = async () => {
   return (
     <>
       <section className="content">
-        <h1>My goals</h1>
+        <h1>{t("myGoals")}</h1>
         <GoalList goals={goals} milestoneId={milestoneId} />
       </section>
     </>

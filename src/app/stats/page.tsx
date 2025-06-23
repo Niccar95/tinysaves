@@ -9,9 +9,11 @@ import {
 } from "@/utils/statsUtils";
 import { redirect } from "next/navigation";
 import ConversionSelect from "../components/ConversionSelect";
+import { getTranslations } from "next-intl/server";
 
 const StatsPage = async () => {
   const session = await getServerSession(authOptions);
+  const t = await getTranslations("pages");
 
   if (!session) {
     redirect("/");
@@ -36,7 +38,7 @@ const StatsPage = async () => {
   return (
     <>
       <section className="content">
-        <h1>My stats</h1>
+        <h1>{t("myStats")}</h1>
         <section className="statSummarySection">
           <h2>Complete overview</h2>
           <p>

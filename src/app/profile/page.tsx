@@ -6,9 +6,11 @@ import Image from "next/image";
 import star from "/public/star.svg";
 import { redirect } from "next/navigation";
 import prisma from "../db";
+import { getTranslations } from "next-intl/server";
 
 const ProfilePage = async () => {
   const session = await getServerSession(authOptions);
+  const t = await getTranslations("pages");
 
   if (!session) {
     redirect("/");
@@ -30,7 +32,7 @@ const ProfilePage = async () => {
     <>
       <section className="content">
         <section className="profileHeader">
-          <h1>My profile</h1>
+          <h1>{t("myProfile")}</h1>
           <EditButton />
         </section>
 

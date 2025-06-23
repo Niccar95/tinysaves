@@ -4,9 +4,11 @@ import { authOptions } from "@/lib/auth";
 import prisma from "../db";
 import { redirect } from "next/navigation";
 import MilestonesList from "../components/MilestonesList";
+import { getTranslations } from "next-intl/server";
 
 const MilestonesPage = async () => {
   const session = await getServerSession(authOptions);
+  const t = await getTranslations("pages");
 
   if (!session) {
     redirect("/");
@@ -28,7 +30,7 @@ const MilestonesPage = async () => {
   return (
     <>
       <section className="content">
-        <h1>My milestones</h1>
+        <h1>{t("myMilestones")}</h1>
         <MilestonesList
           milestones={milestones}
           remainingMilestoneCount={remainingMilestoneCount}

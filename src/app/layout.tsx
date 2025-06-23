@@ -8,7 +8,7 @@ import { Bounce, ToastContainer } from "react-toastify";
 import { SidebarProvider } from "./providers/SidebarProvider";
 import CurrencyProvider from "./providers/CurrencyProvider";
 import { ensureMilestonesExist } from "@/lib/seedMilestones";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 
 import en from "../../messages/en.json";
@@ -23,6 +23,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   await ensureMilestonesExist();
+
+  const t = await getTranslations("footer");
 
   const locale = await getLocale();
   const messages = allMessages[locale as keyof typeof allMessages] ?? en;
@@ -57,7 +59,7 @@ export default async function RootLayout({
             </SidebarProvider>
             <footer>
               <section className="contactSection">
-                <h3 className="contactHeading">Follow me on</h3>
+                <h3 className="contactHeading">{t("social")}</h3>
 
                 <div className="linkWrapper">
                   <a

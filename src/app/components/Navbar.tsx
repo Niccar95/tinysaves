@@ -5,10 +5,12 @@ import Link from "next/link";
 import { useContext, useEffect, useRef, useState } from "react";
 import { SidebarContext } from "../contexts/SidebarContext";
 import { useClickOutside } from "../hooks/useClickOutside";
+import { useTranslations } from "next-intl";
 
 const Navbar = () => {
   const [isNavClicked, setIsNavClicked] = useState<boolean>(false);
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+  const t = useTranslations("pages");
 
   const windowCheckRef = useRef<boolean>(false);
   const [windowCheck, setwindowCheck] = useState<boolean>(false);
@@ -80,13 +82,13 @@ const Navbar = () => {
             <li>
               <Link className="navLink" href="/dashboard" onClick={closeNavBar}>
                 <i className="bi bi-house-door-fill"></i>
-                Dashboard
+                {t("dashboard")}
               </Link>
             </li>
             <li>
               <Link className="navLink" href="/goals" onClick={closeNavBar}>
                 <i className="bi bi-piggy-bank-fill"></i>
-                My goals
+                {t("myGoals")}
               </Link>
             </li>
             <li>
@@ -96,32 +98,32 @@ const Navbar = () => {
                 onClick={closeNavBar}
               >
                 <i className="bi bi-trophy-fill"></i>
-                My milestones
+                {t("myMilestones")}
               </Link>
             </li>
             <li>
               <Link className="navLink" href="/stats" onClick={closeNavBar}>
                 <i className="bi bi-bar-chart-line-fill"></i>
-                My stats
+                {t("myStats")}
               </Link>
             </li>
             <li>
               <Link className="navLink" href="/profile" onClick={closeNavBar}>
                 <i className="bi bi-person-circle"></i>
-                My profile
+                {t("myProfile")}
               </Link>
             </li>
             <li>
               <Link className="navLink" href="/settings" onClick={closeNavBar}>
                 <i className="bi bi-gear-fill"></i>
-                Settings
+                {t("settings")}
               </Link>
             </li>
           </ul>
           <section className="logoutButtonSection">
             <button className="logoutButton" onClick={handleLogout}>
               <i className="bi bi-box-arrow-left"></i>
-              Log out
+              {t("logOut")}
             </button>
           </section>
         </nav>

@@ -6,9 +6,13 @@ import LatestGoalCard from "../components/LatestGoalCard";
 import Tips from "../components/Tips";
 import { redirect } from "next/navigation";
 import LatestMilestoneCard from "../components/LatestMilestoneCard";
+import { getTranslations } from "next-intl/server";
 
 const Dashboard = async () => {
   const session = await getServerSession(authOptions);
+
+  const t = await getTranslations("pages");
+  const tm = await getTranslations("messages");
 
   if (!session) {
     redirect("/");
@@ -24,7 +28,7 @@ const Dashboard = async () => {
       <Tips />
       <div className="content dashboard">
         <section className="goalSetupSection">
-          <h1>Dashboard</h1>
+          <h1>{t("dashboard")}</h1>
           <div className="greetingContainer">
             <div className="userImageContainer small">
               <Image
@@ -35,7 +39,11 @@ const Dashboard = async () => {
                 height="50"
               />
             </div>
-            {session !== null && <h2>Welcome {displayName}!</h2>}
+            {session !== null && (
+              <h2>
+                {tm("userGreeting")} {displayName}!
+              </h2>
+            )}
           </div>
         </section>
         <section className="overviewSection">

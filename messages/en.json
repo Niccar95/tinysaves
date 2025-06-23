@@ -1,5 +1,41 @@
 {
   "latestGoal": {
-    "recent": "Recently added goal:"
-  }
+    "recent": "Recently added goal:",
+    "addNewGoal": "Add new goal",
+    "noGoals": "No goals added yet"
+  },
+
+  "latestMilestone": {
+    "recent": "Recently reached milestone:",
+    "noMilestones": "No milestones reached"
+  },
+
+  "pages": {
+    "dashboard": "Dashboard",
+    "myGoals": "My goals",
+    "myMilestones": "My milestones",
+    "myStats": "My stats",
+    "myProfile": "My profile",
+    "settings": "Settings",
+    "logOut": "Log out"
+  },
+"messages": {
+  "userGreeting": "Welcome"
+ },
+ "savingsForm": {
+  "heading": "Time to save!",
+  "name": "Savings goal name:",
+  "amount": "Target amount to save:",
+  "currency": "Select currency:",
+  "dueDate": "Goal due date (optional):",
+  "addGoal": "Add goal"
+},
+"userSettings": {
+  "heading": "User settings",
+  "delete": "Delete account"
+},
+"footer": {
+  "social": "Follow me on"
+}
+
 }

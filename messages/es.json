@@ -1,5 +1,42 @@
 {
   "latestGoal": {
-    "recent": "Meta añadida recientemente:"
-  }
+    "recent": "Meta añadida recientemente:",
+    "addNewGoal": "Agregar nueva meta",
+    "noGoals": "Aún no se han agregado metas"
+  },
+
+   "latestMilestone": {
+    "recent": "Logro alcanzado recientemente:",
+    "noMilestones": "Ningún logro alcanzado aún"
+  },
+
+  "pages": {
+  "dashboard": "Panel de control",
+  "myGoals": "Mis metas",
+  "myMilestones": "Mis logros",
+  "myStats": "Mis estadísticas",
+  "myProfile": "Mi perfil",
+  "settings": "Configuración",
+  "logOut": "Cerrar sesión"
+},
+
+"messages": {
+  "userGreeting": "¡Bienvenido"
+ },
+
+ "savingsForm": {
+  "heading": "¡Ahorra ya!",
+  "name": "Nombre de meta de ahorro:",
+  "amount": "Cantidad de ahorro:",
+  "currency": "Selecciona la moneda:",
+  "dueDate": "Fecha límite (opcional):",
+  "addGoal": "Agregar metas"
+},
+"userSettings": {
+  "heading": "Configuración de usuario",
+  "delete": "Eliminar cuenta"
+},
+"footer": {
+  "social": "Sígueme en"
+}
 }
