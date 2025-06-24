@@ -6,14 +6,20 @@ import Navbar from "./Navbar";
 const ConditionalNavbar = () => {
   const pathname = usePathname();
 
-  if (
-    pathname === "/" ||
-    pathname === "/registration" ||
-    pathname === "/resetPassword"
-  ) {
-    return null;
+  const allowedPaths = [
+    "/dashboard",
+    "/goals",
+    "/milestones",
+    "/settings",
+    "/profile",
+    "/profile/edit",
+  ];
+
+  if (allowedPaths.includes(pathname)) {
+    return <Navbar />;
   }
-  return <Navbar />;
+
+  return null;
 };
 
 export default ConditionalNavbar;

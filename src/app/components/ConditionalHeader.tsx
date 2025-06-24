@@ -18,11 +18,16 @@ const ConditionalHeader = ({ children }: { children: React.ReactNode }) => {
     onClickOutside: () => setOpenLangMenu(false),
   });
 
-  if (
-    pathname === "/" ||
-    pathname === "/registration" ||
-    pathname === "/resetPassword"
-  ) {
+  const allowedPaths = [
+    "/dashboard",
+    "/goals",
+    "/milestones",
+    "/settings",
+    "/profile",
+    "/profile/edit",
+  ];
+
+  if (!allowedPaths.includes(pathname)) {
     return null;
   }
 
