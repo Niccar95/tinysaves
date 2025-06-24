@@ -40,9 +40,11 @@
 //Sidebar toggle icon and language toggle icon
 
 .bi-caret-right-fill {
+  font-size: 12px;
     display: inline-block;
     transition: transform 0.3s ease;
   }
+  
   .bi-caret-down-fill {
     transition: transform 0.3s ease;
   }

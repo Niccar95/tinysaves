@@ -4,29 +4,31 @@
 .navBar {
   position: fixed;
   top: 80px;
-  border-radius: 8px;
+  border-radius: 15px;
   bottom: 0;
-  left: -100%;
-  z-index: 2;
+  right: -100%;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
+  align-items: center;
+  width: 80%;
   height: 500px;
-  background-color: $header-background;
+  background: $surface-elevated;
   transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  box-shadow: $shadow;
-  border-bottom: solid 1px white;
+  border: solid 1px white;
+  border-top: none;
+  box-shadow: $floatingShadow;
 
   @include desktop() {
     position: fixed;
     height: auto;
     width: 15%;
+    border-radius: 8px;
     top: 80px;
     left: 0;
     opacity: 1;
     transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
-    border-right: solid 1px white;
   }
 
   .sidebarToggleContainer {
@@ -36,19 +38,25 @@
          display: block;
          position: absolute;
          top: 0px;
-         right: -32px;
+         right: -28px;
          width: 70px;
          border-radius: 30px;
          display: flex;
          justify-content: flex-end;
-         background-color: $navbar-background;
+         background: #bde1bd;
      }
      .sidebarToggle {
+      
       @include desktop() {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: fit-content;
+        height: fit-content;
         padding: 0.25rem;
         border-radius: 50%;
-        border: solid 0.3rem $navbar-background;
+        border: solid 0.3rem #bde1bd;
+;
         background-color: #8ac17a;
         color: $primary-text-color;
         cursor: pointer;
@@ -67,6 +75,7 @@
 
     li {
       width: 100%;
+          border-radius: 15px;
     }
 
     li:hover {
@@ -86,18 +95,26 @@
 }
 
 .visible {
-  left: 0;
+  right: 0;
   opacity: 1;
-  transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
+
+   @include desktop() {
+    left: 0; 
+    opacity: 1;
+    transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  }
 }
 
 .hidden {
-  left: -100%;
+  right: -100%;
   opacity: 0;
-  transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
 
   @include desktop() {
     left: -15%; 
     opacity: 1;
+    transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
+
   }
 }

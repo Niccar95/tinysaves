@@ -5,9 +5,14 @@ import React, { useState } from "react";
 interface LangMenuProps {
   closeMenu: () => void;
   setCurrentLang: (locale: string) => void;
+  className?: string;
 }
 
-const LanguageMenu = ({ closeMenu, setCurrentLang }: LangMenuProps) => {
+const LanguageMenu = ({
+  closeMenu,
+  setCurrentLang,
+  className,
+}: LangMenuProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleChangeLanguage = async (locale: string) => {
@@ -24,7 +29,7 @@ const LanguageMenu = ({ closeMenu, setCurrentLang }: LangMenuProps) => {
   return (
     <>
       {!isEditing && (
-        <section className="actionsMenu langMenu">
+        <section className={`actionsMenu langMenu ${className}`}>
           <button
             className="actionButton langMenuButton"
             onClick={() => {

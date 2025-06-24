@@ -52,12 +52,11 @@ const ConditionalHeader = ({ children }: { children: React.ReactNode }) => {
           ></i>
         </button>
 
-        {openLangMenu && (
-          <LanguageMenu
-            setCurrentLang={setCurrentLang}
-            closeMenu={() => setOpenLangMenu(false)}
-          />
-        )}
+        <LanguageMenu
+          className={openLangMenu ? "visible" : ""}
+          setCurrentLang={setCurrentLang}
+          closeMenu={() => setOpenLangMenu(false)}
+        />
       </div>
       {children}
     </header>

@@ -18,15 +18,28 @@
 
 
 .langMenu {
-    top: 80px;
-    position: fixed;
-    z-index: 100;
-    left: 50%;
-    transform: translateX(-50%);
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: $surface-elevated;
+  border: solid 1px white;
+  border-top: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: top 0.3s ease, opacity 0.3s ease;
+  z-index: 100;
 
-    @include desktop() {
-        left: auto;
-        right: 0;
-        transform: none;
-    }
+  @include desktop() {
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+
+  &.visible {
+    top: 80px;
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
+
