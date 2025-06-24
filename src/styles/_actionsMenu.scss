@@ -1,4 +1,5 @@
 @use "./variables" as *;
+@use "./mixins" as *;
 
 .actionsMenu {
     position: absolute;
@@ -17,7 +18,15 @@
 
 
 .langMenu {
-    top: 100px;
+    top: 80px;
     position: fixed;
     z-index: 100;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include desktop() {
+        left: auto;
+        right: 0;
+        transform: none;
+    }
 }

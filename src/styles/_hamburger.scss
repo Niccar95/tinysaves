@@ -2,30 +2,22 @@
 @use "./variables" as *;
 
 
-// .hamburgerSection {
-//   position: fixed;
-//   top: 100px;
-//   z-index: 90;
-//   background-color: $header-background;
-//   width: 100%;
-//   padding: 1rem;
-//   border-bottom: solid 1px white;
-//   box-shadow: $shadow;
+.burgerContainer {
+  @include desktop() {
+    display: none;
+  }
 
-//     @include desktop() {
-//         display: none;
-//     }
-// }
+  .hamburgerMenu {
+    position: relative;
+    height: 24px; 
+      width: 30px;
+    
+       @include desktop() {
+          display: none;
+      }
+  }
 
-.hamburgerMenu {
-  position: relative;
-  height: 24px; 
-    width: 30px;
-  
-     @include desktop() {
-        display: none;
-    }
-}
+
 
 .burgerBar {
   position: absolute;
@@ -62,4 +54,6 @@
 .burgerBar.clicked:nth-child(3) {
   transform: rotate(-45deg);
   top: 10px;
+}
+
 }

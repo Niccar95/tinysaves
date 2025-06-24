@@ -58,17 +58,19 @@ const Navbar = () => {
 
   return (
     <ConditionalHeader>
-      <div className="hamburgerMenu" onClick={updateNavBar}>
-        <div className={burgerClass}></div>
-        <div className={burgerClass}></div>
-        <div className={burgerClass}></div>
-      </div>
-
-      <nav
+      <div
+        className="burgerContainer"
         ref={actionsMenuRef}
         onClick={(e) => e.stopPropagation()}
-        className={`navBar ${isSidebarOpen ? "visible" : "hidden"}`}
       >
+        <div className="hamburgerMenu" onClick={updateNavBar}>
+          <div className={burgerClass}></div>
+          <div className={burgerClass}></div>
+          <div className={burgerClass}></div>
+        </div>
+      </div>
+
+      <nav className={`navBar ${isSidebarOpen ? "visible" : "hidden"}`}>
         <div className="sidebarToggleContainer">
           <button
             className="sidebarToggle"
