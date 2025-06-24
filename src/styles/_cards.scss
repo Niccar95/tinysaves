@@ -279,3 +279,26 @@
       font-weight: bold;
     }
 }
+
+.pwaMessageCard {
+  display: flex; 
+  flex-direction: column;
+  gap: 2rem;
+  background: $card-background;
+  color: $primary-text-color;
+  border: 1px solid $card-border-color;
+  border-top: solid 5px $card-border-color;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  box-shadow: $shadow;
+  font-family: $base-font-family;
+  font-size: 0.9rem;
+  font-weight: $base-font-weight;
+  line-height: 1.5;
+
+  strong {
+    font-weight: $secondary-heading-font-weight;
+    color: $link-color;
+  }
+}

@@ -46,12 +46,9 @@ $card-background: linear-gradient(135deg, #f9fdf9 0%, #f3faf3 100%);
 
 $slider-highlight-bg: #66bb6a;
 
-// Borders
-$card-border-color: #b7d3b2; 
-
 $footer-background: #fcfdfa;  
-$footer-border-top: 1px solid #c8e6c9; 
-$slider-border-color: #4caf50;
+
+
 
 // Link colors
 $link-color: #388e3c;                  
@@ -62,11 +59,15 @@ $primary-border-color: #c8e6c9;
 $secondary-border-color: #b43b3b;     
 $tertiary-border-color: #9e9e9e;    
 
+$card-border-color: #b7d3b2; 
+
+$footer-border-top: 1px solid #c8e6c9; 
+$slider-border-color: #4caf50;
+
 $attention-border-color: #ffa726;   
 
 // Effects (shadows)
 $shadow: 0 0 6px rgba(76, 175, 80, 0.2);
 
-$floatingShadow: 0 0 15px rgba(0, 0, 0, 0.12), 
-                 0 0 8px rgba(0, 0, 0, 0.06);
+$floatingShadow: 0 0 15px rgba(0, 0, 0, 0.12), 0 0 8px rgba(0, 0, 0, 0.06);
 $header-footer-shadow: 0px 2px 8px rgba(76, 175, 80, 0.1), 0px 1px 3px rgba(76, 175, 80, 0.07);

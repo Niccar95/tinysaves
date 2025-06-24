@@ -54,7 +54,7 @@ const InstallButton = () => {
   return (
     <>
       {isInstallable ? (
-        <div className="pwaMessage">
+        <div className="pwaMessageCard">
           <p>
             <strong>TinySaves is now installable!</strong> Enjoy a native app
             experience on your desktop or mobile. Click below to install the app
