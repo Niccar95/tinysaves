@@ -113,8 +113,6 @@ main.fullWidth {
   }
 }
 
-
-
 h1{
   font-family: $heading-font-family;
   font-size: $heading-font-size;
@@ -145,6 +143,14 @@ a {
   font-weight: 600;
 }
 
+
+.sliderButtonContainer {
+  justify-self: center;
+  margin-top: 2.5rem;
+  display: flex; 
+  gap: 0.5rem;
+}
+
 footer {
   display: flex;
   flex-direction: column;
@@ -153,7 +159,7 @@ footer {
   padding: 4rem 2rem 2rem 2rem;
   background-color: $footer-background;     
   border-top: $footer-border-top;           
-  color: $footer-text-color;      
+  color: $primary-text-color;      
   box-shadow: $header-footer-shadow;
 
   .contactSection {

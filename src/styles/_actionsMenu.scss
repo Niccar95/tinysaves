@@ -12,8 +12,8 @@
     border-radius: 15px;
     padding: 1rem;
     background-color: $light-body-background;
-    box-shadow: $shadow;
-    border: $card-border-color;
+    box-shadow: $floatingShadow;
+    border: solid 0.5px $card-border-color;
 }
 
 

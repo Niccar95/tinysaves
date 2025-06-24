@@ -1,4 +1,5 @@
 @use "./mixins.scss" as *;
+@use "./variables.scss" as *;
 
 .bi-trash3, .bi-palette, .bi-plus-circle, 
 .bi-box-arrow-left, .bi-clock, .bi-calendar-date, 
@@ -53,10 +54,15 @@
    transform: rotate(180deg);
   }
 
-
   //Icon for Locked Milestone cards
 
   .bi-lock-fill {
     font-size: 28px;
+  }
+
+// for tips slider
+  .bi-info-circle {
+    font-size: 25px;
+    color: $attention-border-color;
   }
   

@@ -44,12 +44,14 @@ $surface-elevated: linear-gradient(to bottom, #bde1bd 0%, #a5d6a7 50%, #a5d6a7 1
 
 $card-background: linear-gradient(135deg, #f9fdf9 0%, #f3faf3 100%);
 
+$slider-highlight-bg: #66bb6a;
+
 // Borders
-$card-border-color: solid 0.5px #b7d3b2; 
+$card-border-color: #b7d3b2; 
 
 $footer-background: #fcfdfa;  
 $footer-border-top: 1px solid #c8e6c9; 
-$footer-text-color: #2a2a2a;
+$slider-border-color: #4caf50;
 
 // Link colors
 $link-color: #388e3c;                  

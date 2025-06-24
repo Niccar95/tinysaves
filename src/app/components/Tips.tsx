@@ -1,57 +1,44 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const Tips = () => {
-  const tips = [
+  const tips: string[] = [
     "New to saving? Get started by adding a short term goal.",
     "Check out your stats page to see a summary of your progress so far.",
     "You can earn badges by completing goals or reaching certain milestones.",
   ];
 
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [currentTip, setCurrentTip] = useState<number>(0);
 
-  const [fade, setFade] = useState<boolean>(true);
-  const [isVisible, setIsVisible] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    const storedVisibility = localStorage.getItem("messagesVisible");
-
-    setIsVisible(storedVisibility !== "false");
-  }, []);
-
-  useEffect(() => {
-    if (isVisible) {
-      let index = 0;
-      const interval = setInterval(() => {
-        setFade(false);
-        setTimeout(() => {
-          index = (index + 1) % tips.length;
-          setCurrentIndex(index);
-          setFade(true);
-        }, 500);
-      }, 10000);
-
-      return () => clearInterval(interval);
-    }
-  }, [isVisible, tips.length]);
-
-  const handleRemove = () => {
-    setIsVisible(false);
-    localStorage.setItem("messagesVisible", "false");
+  const handleChangeTip = (i: number) => {
+    setCurrentTip(i);
   };
 
   return (
     <>
-      {isVisible && (
-        <div className={`tipsBox ${fade && "fadeIn"} ${!fade && "fadeOut"}`}>
-          <p>{tips[currentIndex]}</p>
-
-          <button className="removeTipsButton" onClick={handleRemove}>
-            <i className="bi bi-x"></i>
-          </button>
+      <aside className="tipsBox">
+        <div className="tipContent">
+          <i className="bi bi-info-circle"></i>
+          <p>{tips[currentTip]}</p>
         </div>
-      )}
+
+        <div className="sliderButtonContainer">
+          {tips.map((tip, i) => {
+            return (
+              <button
+                className={`tipSliderButton ${
+                  currentTip === i ? "highlight" : ""
+                }`}
+                key={tip}
+                onClick={() => {
+                  handleChangeTip(i);
+                }}
+              ></button>
+            );
+          })}
+        </div>
+      </aside>
     </>
   );
 };

@@ -23,8 +23,6 @@
     margin-top: 8px;
 }
 
-
-
 .updateButton.width {
     
     @include desktop() {
@@ -133,6 +131,23 @@
         right: -10px;
 
     }
+}
+.tipSliderButton {
+    width: 30px;
+    height: 10px;
+    background: none;
+    border: solid 1px $slider-border-color;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+// highlights the slider button 
+
+.highlight {
+    background-color: $slider-highlight-bg;
+    box-shadow: 0 0 8px rgba(102, 187, 106, 0.6);
+    transition: background-color 0.3s ease;
+    border-color: darken($slider-highlight-bg, 15%);
 }
 
 

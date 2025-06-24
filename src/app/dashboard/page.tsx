@@ -25,7 +25,6 @@ const Dashboard = async () => {
 
   return (
     <>
-      <Tips />
       <div className="content dashboard">
         <section className="goalSetupSection">
           <h1>{t("dashboard")}</h1>
@@ -45,6 +44,7 @@ const Dashboard = async () => {
               </h2>
             )}
           </div>
+          <Tips />
         </section>
         <section className="overviewSection">
           {userId && <LatestGoalCard userId={userId} />}

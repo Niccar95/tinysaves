@@ -10,7 +10,8 @@
     box-shadow: $shadow;
     border-radius: 15px;
     background: $card-background;
-    border: $card-border-color;
+    border: solid 0.5px $card-border-color;
+    border-top: solid 5px $card-border-color;
     height: 100%;
 
     .progressSection {
@@ -67,8 +68,6 @@
     }
 }
 
-
-
 .profileCard {
     display: flex;
     flex-direction: column;
@@ -76,7 +75,8 @@
     padding: 1.5rem;
     box-shadow: $shadow;
     border-radius: 15px;
-    border: $card-border-color;
+    border: solid 0.5px $card-border-color;
+    border-top: solid 5px $card-border-color;
 
     @include desktop() {
         width: 50%;
@@ -143,10 +143,10 @@
     padding: 1rem;
     width: fit-content;
     border-radius: 15px;
-    box-shadow: $shadow;
+    box-shadow: $floatingShadow;
     transition: transform 0.2s ease-in-out;
     background-color: $light-body-background;
-    border:  $card-border-color;
+    border: solid 0.5px $card-border-color;
 
     .avatar {
         border-radius: 50%;
@@ -166,7 +166,8 @@
     gap: 1rem;
     padding: 1.5rem;
     box-shadow: $shadow;
-    border: $card-border-color;
+    border: solid 0.5px $card-border-color;
+    border-top: solid 5px $card-border-color;
     border-radius: 15px;
     
     @include desktop() {
@@ -190,7 +191,8 @@
     justify-content: space-between;
     padding: 1.5rem;
     box-shadow: $shadow;
-    border: $card-border-color;
+    border: solid 0.5px $card-border-color;
+    border-top: solid 5px $card-border-color;
     border-radius: 15px;
     background-color: $light-body-background;
     height: fit-content;
@@ -244,7 +246,6 @@
         width: 400px;
    }
 
-
     .milestoneSection {
         text-align: start;
         display: flex;
@@ -265,7 +266,8 @@
     padding: 1.5rem;
     box-shadow: $shadow;
     border-radius: 15px;
-    border: $card-border-color;
+    border: solid 0.5px $card-border-color;
+    border-top: solid 5px $card-border-color;
     width: fit-content;
     
     .currencyLabel {

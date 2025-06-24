@@ -7,7 +7,7 @@
     gap: 2rem;
     border-radius: 15px;
     box-shadow: $shadow;
-    border: $card-border-color;
+    border: solid 0.5px $card-border-color;
     padding: 1.5rem;
 }
 
@@ -17,7 +17,7 @@
     gap: 2rem;
     border-radius: 15px;
     box-shadow: $shadow;
-    border: $card-border-color;
+    border: solid 0.5px $card-border-color;
     padding: 1.5rem;
 
     @include desktop() {

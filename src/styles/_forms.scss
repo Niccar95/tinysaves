@@ -83,8 +83,9 @@ form {
                 height: 170px;
                 border-radius: 15px;
                 padding: 1rem;
+                border: solid 0.5px $card-border-color;
                 background-color: $light-body-background;
-                box-shadow: $shadow;
+                box-shadow: $floatingShadow;
 
                 @include desktop() {
                     display: flex;

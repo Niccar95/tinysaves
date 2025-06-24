@@ -22,9 +22,10 @@ const ConditionalHeader = ({ children }: { children: React.ReactNode }) => {
     "/dashboard",
     "/goals",
     "/milestones",
-    "/settings",
+    "/stats",
     "/profile",
     "/profile/edit",
+    "/settings",
   ];
 
   if (!allowedPaths.includes(pathname)) {

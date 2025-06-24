@@ -10,9 +10,10 @@ const ConditionalNavbar = () => {
     "/dashboard",
     "/goals",
     "/milestones",
-    "/settings",
+    "/stats",
     "/profile",
     "/profile/edit",
+    "/settings",
   ];
 
   if (allowedPaths.includes(pathname)) {
