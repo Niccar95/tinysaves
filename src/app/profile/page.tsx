@@ -12,6 +12,8 @@ const ProfilePage = async () => {
   const session = await getServerSession(authOptions);
   const t = await getTranslations("pages");
 
+  const tp = await getTranslations("profileInfo");
+
   if (!session) {
     redirect("/");
   }
@@ -52,7 +54,7 @@ const ProfilePage = async () => {
               <h3>{displayName}</h3>
             </div>
             <div>
-              <h4 className="milestonesLabel">Reached milestones:</h4>
+              <h4 className="milestonesLabel">{tp("milestones")}</h4>
               <div className="milestonesIconContainer">
                 <Image src={star} alt="star" className="milestonesCountIcon" />
                 <h3>{milestoneAmount}</h3>

@@ -7,9 +7,12 @@ import { useRouter } from "next/navigation";
 import { updateUserProfile } from "@/services/userService";
 import AvatarSelector from "./AvatarSelector";
 import { useClickOutside } from "../hooks/useClickOutside";
+import { useTranslations } from "next-intl";
 
 const EditProfileForm = () => {
   const { data: session, update } = useSession();
+  const t = useTranslations("profileInfo.editForm");
+
   const router = useRouter();
   const [userDisplayName, setUserDisplayName] = useState<string>("");
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -89,7 +92,7 @@ const EditProfileForm = () => {
       </div>
 
       <form onSubmit={handleEditProfile}>
-        <label htmlFor="changeName">Edit your display name: </label>
+        <label htmlFor="changeName">{t("displayName")}</label>
         <div className="inputContainer">
           <input
             id="changeName"
@@ -99,7 +102,7 @@ const EditProfileForm = () => {
           />
         </div>
         <button type="submit" className="saveButton margin">
-          Save changes
+          {t("save")}
         </button>
       </form>
     </>

@@ -19,8 +19,37 @@
   "settings": "Inställningar",
   "logOut": "Logga ut"
 },
+
+  "goalCard": {
+    "addedDate": "Tillagd den",
+    "update": "Uppdatera framsteg",
+    "dueDate": "Slutdatum:",
+    "remainingDays": "dagar kvar",
+    "dueDateReached": "Slutdatum uppnått!",
+    "noDueDate": "Inget slutdatum",
+    "goalReached": "Mål uppnått!",
+    "actionsMenu": {
+    "editTitle": "Redigera måltitel",
+    "deleteGoal": "Ta bort mål"
+  }
+  },
+
+"profileInfo": {
+    "milestones": "Uppnådda milstolpar:",
+    "edit": "Redigera profil",
+    "editForm": {
+    "displayName": "Redigera ditt visningsnamn:",
+    "save": "Spara ändringar"
+  }
+  },
+
   "messages": {
-  "userGreeting": "Välkommen"
+  "userGreeting": "Välkommen",
+  "tips": [
+    "Ny på att spara? Kom igång genom att lägga till ett kortsiktigt mål.",
+    "Kolla in din statssida för en översikt av dina framsteg hittills.",
+    "Du kan tjäna märken genom att slutföra mål eller nå vissa milstolpar."
+  ]
  },
  "savingsForm": {
   "heading": "Spardags!",

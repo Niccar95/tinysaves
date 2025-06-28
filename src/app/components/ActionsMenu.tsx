@@ -3,6 +3,7 @@
 import { Goals } from "@prisma/client";
 import React, { useState } from "react";
 import EditGoalTitleForm from "./EditGoalTitleForm";
+import { useTranslations } from "next-intl";
 
 interface GoalProps {
   goal: Goals;
@@ -11,6 +12,7 @@ interface GoalProps {
 }
 
 const ActionsMenu = ({ goal, deleteGoal, handleEditGoalTitle }: GoalProps) => {
+  const t = useTranslations("goalCard.actionsMenu");
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleDeleteGoal = async () => {
@@ -26,11 +28,11 @@ const ActionsMenu = ({ goal, deleteGoal, handleEditGoalTitle }: GoalProps) => {
             onClick={() => setIsEditing(!isEditing)}
           >
             <i className="bi bi-pencil"></i>
-            Edit goal title
+            {t("editTitle")}
           </button>
           <button className="actionButton delete" onClick={handleDeleteGoal}>
             <i className="bi bi-trash3 delete"></i>
-            Delete goal
+            {t("deleteGoal")}
           </button>
         </section>
       )}

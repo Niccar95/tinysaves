@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { CircularProgressbar } from "react-circular-progressbar";
 
 interface ProgressDataProps {
@@ -16,6 +17,8 @@ const ProgressBar = ({
   currency,
 }: ProgressDataProps) => {
   const percentage = (progress / targetAmount) * 100;
+
+  const t = useTranslations("goalCard");
 
   const dynamicProgress = `${percentage}%`;
 
@@ -40,7 +43,7 @@ const ProgressBar = ({
 
         {isComplete && (
           <div className="progressBar">
-            <p className="progressInfo">Goal reached!</p>
+            <p className="progressInfo">{t("goalReached")}</p>
           </div>
         )}
 

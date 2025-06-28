@@ -10,6 +10,7 @@ import ProgressForm from "./ProgressForm";
 import { updateGoalProgress } from "@/services/goalService";
 import { useClickOutside } from "../hooks/useClickOutside";
 import ActionsMenu from "./ActionsMenu";
+import { useTranslations } from "next-intl";
 
 interface GoalProps {
   goal: Goals;
@@ -25,6 +26,7 @@ const GoalCard = ({
   onMilestoneReached,
 }: GoalProps) => {
   const { data: session } = useSession();
+  const t = useTranslations("goalCard");
   const userId = session?.user.id;
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -91,7 +93,9 @@ const GoalCard = ({
       <article className="goalCard">
         <div className="titleWrapper">
           <h2 className="goalTitle">{goal.title}</h2>
-          <p className="createdAtTag">Added on {formattedCreatedAtDate}</p>
+          <p className="createdAtTag">
+            {t("addedDate")} {formattedCreatedAtDate}
+          </p>
 
           <div ref={actionsMenuRef} onClick={(e) => e.stopPropagation()}>
             {openActionsMenu && (
@@ -122,7 +126,9 @@ const GoalCard = ({
 
         {daysRemaining !== null &&
           daysRemaining <= 0 &&
-          hoursRemaining <= 0 && <p className="boldLabel">Due date reached!</p>}
+          hoursRemaining <= 0 && (
+            <p className="boldLabel">{t("dueDateReached")}</p>
+          )}
 
         <div
           className="progressFormWrapper"
@@ -154,7 +160,7 @@ const GoalCard = ({
                 }}
               >
                 <i className="bi bi-coin"></i>
-                Update progress
+                {t("update")}
               </button>
             )}
         </div>
@@ -166,7 +172,7 @@ const GoalCard = ({
             <section className="dueDateInfoSection">
               <p className="dueDateTag">
                 <i className="bi bi-calendar-date"></i>
-                Final date: {formattedDate}
+                {t("dueDate")} {formattedDate}
               </p>
 
               {daysRemaining === 0 && hoursRemaining > 0 && (
@@ -188,7 +194,7 @@ const GoalCard = ({
         {goal.dueDate == null && goal.isComplete === false && (
           <p className="noDateTag">
             <i className="bi bi-calendar-date"></i>
-            No due date
+            {t("noDueDate")}
           </p>
         )}
       </article>

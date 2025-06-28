@@ -19,8 +19,37 @@
     "settings": "Settings",
     "logOut": "Log out"
   },
+
+  "goalCard": {
+    "addedDate": "Added on",
+    "update": "Update progress",
+    "dueDate": "Final date:",
+    "remainingDays": "days remaining",
+    "dueDateReached": "Due date reached!",
+    "noDueDate": "No due date",
+    "goalReached": "Goal reached!",
+    "actionsMenu": {
+      "editTitle": "Edit goal title",
+      "deleteGoal": "Delete goal"
+    }
+  },
+
+  "profileInfo": {
+    "milestones": "Reached milestones:",
+    "edit": "Edit profile",
+    "editForm": {
+      "displayName": "Edit your display name:",
+      "save": "Save changes"
+    }
+  },
+
 "messages": {
-  "userGreeting": "Welcome"
+  "userGreeting": "Welcome",
+  "tips": [
+    "New to saving? Get started by adding a short term goal.",
+    "Check out your stats page to see a summary of your progress so far.",
+    "You can earn badges by completing goals or reaching certain milestones."
+  ]
  },
  "savingsForm": {
   "heading": "Time to save!",
@@ -37,5 +66,8 @@
 "footer": {
   "social": "Follow me on"
 }
+
+
+
 
 }

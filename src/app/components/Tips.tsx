@@ -1,13 +1,12 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 
 const Tips = () => {
-  const tips: string[] = [
-    "New to saving? Get started by adding a short term goal.",
-    "Check out your stats page to see a summary of your progress so far.",
-    "You can earn badges by completing goals or reaching certain milestones.",
-  ];
+  const t = useTranslations("messages");
+
+  const tips: string[] = t.raw("tips");
 
   const [currentTip, setCurrentTip] = useState<number>(0);
 

@@ -20,8 +20,36 @@
   "logOut": "Cerrar sesión"
 },
 
+  "goalCard": {
+    "addedDate": "Añadido el",
+    "update": "Actualizar progreso",
+    "dueDate": "Fecha final:",
+    "remainingDays": "días restantes",
+    "dueDateReached": "¡Fecha límite alcanzada!",
+    "noDueDate": "Sin fecha límite",
+    "goalReached": "¡Meta alcanzada!",
+    "actionsMenu": {
+    "editTitle": "Editar título de la meta",
+    "deleteGoal": "Eliminar meta"
+  }
+  },
+
+  "profileInfo": {
+    "milestones": "Metas alcanzadas:",
+    "edit": "Editar perfil",
+    "editForm": {
+    "displayName": "Edita tu nombre visible:",
+    "save": "Guardar cambios"
+  }
+  },
+
 "messages": {
-  "userGreeting": "¡Bienvenido"
+  "userGreeting": "¡Bienvenido",
+   "tips": [
+    "¿Nuevo en el ahorro? Comienza añadiendo una meta a corto plazo.",
+    "Consulta tu página de estadísticas para ver un resumen de tu progreso hasta ahora.",
+    "Puedes ganar insignias al completar metas o alcanzar ciertas metas."
+  ]
  },
 
  "savingsForm": {
