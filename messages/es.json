@@ -34,6 +34,33 @@
   }
   },
 
+  "milestoneList": {
+    "Halfway to halfway": {
+      "title": "Un cuarto del camino",
+      "description": "Alcanzaste el 25% de una meta"
+    },
+    "Halfway there!": {
+      "title": "A mitad de camino",
+      "description": "Alcanzaste el 50% de una meta"
+    },
+    "Almost there!": {
+      "title": "Casi allí",
+      "description": "Alcanzaste el 75% de una meta"
+    },
+    "One down, many to go": {
+      "title": "Una meta cumplida, muchas por delante",
+      "description": "Alcanzaste el 100% de una meta"
+    },
+    "Avid saver": {
+      "title": "Ahorrador dedicado",
+      "description": "Completaste 5 metas"
+    },
+    "Saving Guru": {
+      "title": "Guru del ahorro",
+      "description": "Completaste 10 metas"
+    }
+  },
+
   "profileInfo": {
     "milestones": "Metas alcanzadas:",
     "edit": "Editar perfil",

@@ -51,7 +51,7 @@ const MilestonesList = ({
                   delay: (i + 1) * 0.3,
                 }}
               >
-                <MilestoneCard milestone={milestone.milestone} />
+                <MilestoneCard milestone={milestone.milestone} index={i} />
               </motion.div>
             ))}
             {renderRemainingCards()}

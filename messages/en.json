@@ -34,6 +34,33 @@
     }
   },
 
+  "milestoneList": {
+    "Halfway to halfway": {
+      "title": "Halfway to halfway",
+      "description": "Reached 25% of a goal"
+    },
+    "Halfway there!": {
+      "title": "Halfway there!",
+      "description": "Reached 50% of a goal"
+    },
+    "Almost there!": {
+      "title": "Almost there!",
+      "description": "Reached 75% of a goal"
+    },
+    "One down, many to go": {
+      "title": "One down, many to go",
+      "description": "Reached 100% of a goal"
+    },
+    "Avid saver": {
+      "title": "Avid saver",
+      "description": "Completed 5 goals"
+    },
+    "Saving Guru": {
+      "title": "Saving Guru",
+      "description": "Completed 10 goals"
+    }
+  },
+
   "profileInfo": {
     "milestones": "Reached milestones:",
     "edit": "Edit profile",
@@ -66,8 +93,4 @@
 "footer": {
   "social": "Follow me on"
 }
-
-
-
-
 }

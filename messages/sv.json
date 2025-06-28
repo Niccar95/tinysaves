@@ -34,6 +34,33 @@
   }
   },
 
+   "milestoneList": {
+    "Halfway to halfway": {
+      "title": "En fjärdedel klar",
+      "description": "Nått 25% av ett mål"
+    },
+    "Halfway there!": {
+      "title": "Halvvägs där",
+      "description": "Nått 50% av ett mål"
+    },
+    "Almost there!": {
+      "title": "Nästan där",
+      "description": "Nått 75% av ett mål"
+    },
+    "One down, many to go": {
+      "title": "En klar, många kvar",
+      "description": "Nått 100% av ett mål"
+    },
+    "Avid saver": {
+      "title": "Flitig sparare",
+      "description": "Slutfört 5 mål"
+    },
+    "Saving Guru": {
+      "title": "Sparguru",
+      "description": "Slutfört 10 mål"
+    }
+  },
+
 "profileInfo": {
     "milestones": "Uppnådda milstolpar:",
     "edit": "Redigera profil",
