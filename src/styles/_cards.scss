@@ -171,7 +171,6 @@
     border-radius: 15px;
     
     @include desktop() {
-        flex-direction: row;
         gap: 1.5rem;
     }
 
