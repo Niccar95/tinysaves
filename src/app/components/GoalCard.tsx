@@ -11,7 +11,6 @@ import { updateGoalProgress } from "@/services/goalService";
 import { useClickOutside } from "../hooks/useClickOutside";
 import ActionsMenu from "./ActionsMenu";
 import { useTranslations } from "next-intl";
-
 interface GoalProps {
   goal: Goals;
   handleDeleteGoal: (goalId: string) => void;
@@ -27,6 +26,7 @@ const GoalCard = ({
 }: GoalProps) => {
   const { data: session } = useSession();
   const t = useTranslations("goalCard");
+
   const userId = session?.user.id;
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -178,15 +178,22 @@ const GoalCard = ({
               {daysRemaining === 0 && hoursRemaining > 0 && (
                 <p className="dueDateTag">
                   <i className="bi bi-clock"></i>
-                  {hoursRemaining} hour{hoursRemaining !== 1 ? "s" : ""}{" "}
-                  remaining
+                  {hoursRemaining}{" "}
+                  {hoursRemaining !== 1 ? t("hourPlural") : t("hourSingular")}{" "}
+                  {hoursRemaining !== 1
+                    ? t("remainingPlural")
+                    : t("remainingSingular")}
                 </p>
               )}
 
               {daysRemaining > 0 && (
                 <p className="dueDateTag">
                   <i className="bi bi-clock"></i>
-                  {daysRemaining} day{daysRemaining !== 1 ? "s" : ""} remaining
+                  {daysRemaining}{" "}
+                  {daysRemaining !== 1 ? t("dayPlural") : t("daySingular")}{" "}
+                  {daysRemaining !== 1
+                    ? t("remainingPlural")
+                    : t("remainingSingular")}
                 </p>
               )}
             </section>

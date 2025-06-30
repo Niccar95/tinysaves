@@ -28,6 +28,15 @@
     "dueDateReached": "Slutdatum uppnått!",
     "noDueDate": "Inget slutdatum",
     "goalReached": "Mål uppnått!",
+    "updateGoal": "Uppdatera",
+    "daySingular": "dag",
+    "dayPlural": "dagar",
+    "hourSingular": "timme",
+    "hourPlural": "timmar",
+    "remainingPlural": "kvar",
+    "remainingSingular": "kvar",
+
+
     "actionsMenu": {
     "editTitle": "Redigera måltitel",
     "deleteGoal": "Ta bort mål"

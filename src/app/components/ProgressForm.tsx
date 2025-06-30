@@ -1,3 +1,5 @@
+"use client";
+import { useTranslations } from "next-intl";
 import React, { FormEvent } from "react";
 
 interface IProgressFormProps {
@@ -15,6 +17,8 @@ const ProgressForm = ({
   setErrors,
   handleUpdateProgress,
 }: IProgressFormProps) => {
+  const t = useTranslations("goalCard");
+
   return (
     <form className="progressForm" onSubmit={handleUpdateProgress}>
       <div>
@@ -34,7 +38,7 @@ const ProgressForm = ({
         )}
       </div>
       <button type="submit" className="updateButton width">
-        Update
+        {t("updateGoal")}
       </button>
     </form>
   );

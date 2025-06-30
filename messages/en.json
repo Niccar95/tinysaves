@@ -28,6 +28,14 @@
     "dueDateReached": "Due date reached!",
     "noDueDate": "No due date",
     "goalReached": "Goal reached!",
+    "updateGoal": "Update",
+    "daySingular": "day",
+    "dayPlural": "days",
+    "hourSingular": "hour",
+    "hourPlural": "hours",
+    "remainingPlural": "remaining",
+    "remainingSingular": "remaining",
+
     "actionsMenu": {
       "editTitle": "Edit goal title",
       "deleteGoal": "Delete goal"

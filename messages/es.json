@@ -28,6 +28,14 @@
     "dueDateReached": "¡Fecha límite alcanzada!",
     "noDueDate": "Sin fecha límite",
     "goalReached": "¡Meta alcanzada!",
+    "updateGoal": "Actualizar",
+    "daySingular": "día",
+    "dayPlural": "días",
+    "hourSingular": "hour",
+    "hourPlural": "hours",
+    "remainingPlural": "restantes",
+    "remainingSingular": "restante",
+
     "actionsMenu": {
     "editTitle": "Editar título de la meta",
     "deleteGoal": "Eliminar meta"
