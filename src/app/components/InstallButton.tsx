@@ -1,25 +1,24 @@
 "use client";
 
+import {
+  BeforeInstallPromptEvent,
+  getGlobalPrompt,
+  setGlobalPrompt,
+  wasInstallable,
+} from "@/utils/globalPrompt";
 import { useEffect, useState } from "react";
 
-interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: string[];
-  readonly userChoice: Promise<{
-    outcome: "accepted" | "dismissed";
-    platform: string;
-  }>;
-  prompt(): Promise<void>;
-}
-
 const InstallButton = () => {
-  const [deferredPrompt, setDeferredPrompt] =
-    useState<BeforeInstallPromptEvent | null>(null);
   const [isInstallable, setIsInstallable] = useState(false);
 
   useEffect(() => {
+    if (wasInstallable()) {
+      setIsInstallable(true);
+    }
+
     const handleBeforeInstallPrompt = (e: BeforeInstallPromptEvent) => {
       e.preventDefault();
-      setDeferredPrompt(e);
+      setGlobalPrompt(e);
       setIsInstallable(true);
     };
 
@@ -28,21 +27,23 @@ const InstallButton = () => {
       handleBeforeInstallPrompt as EventListener
     );
 
-    return () =>
+    return () => {
       window.removeEventListener(
         "beforeinstallprompt",
         handleBeforeInstallPrompt as EventListener
       );
+    };
   }, []);
 
   const handleInstallClick = async () => {
+    const deferredPrompt = getGlobalPrompt();
     if (!deferredPrompt) return;
 
     try {
-      deferredPrompt.prompt();
+      await deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
 
-      setDeferredPrompt(null);
+      setGlobalPrompt(null);
       setIsInstallable(false);
 
       console.log(`User response to the install prompt: ${outcome}`);
@@ -66,7 +67,7 @@ const InstallButton = () => {
           </button>
         </div>
       ) : (
-        <div className="pwaMessage">
+        <div className="pwaMessageCard">
           <p>
             <strong>Already using TinySaves?</strong> If you&apos;ve installed
             it, you can now launch it from your home screen or app drawer.
