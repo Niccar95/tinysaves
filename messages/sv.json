@@ -69,6 +69,22 @@
       "description": "Slutfört 10 mål"
     }
   },
+  
+"stats": {
+  "title": "Fullständig översikt",
+  "addedGoals": "Tillagda mål:",
+  "completedGoals": "Slutförda mål:",
+  "completedPercentage": "Andel slutförda mål:",
+  "reachedMilestones": "Uppnådda milstolpar:",
+  "totalSaved": "Totalt sparat (omräknat till olika valutor):",
+  "charts": {
+  "goals": "Mål",
+  "completed": "Slutförda",
+  "notCompleted": "Inte slutförda",
+  "addedByDate": "Mål tillagda per datum",
+  "dates": "Datum"
+}
+},
 
 "profileInfo": {
     "milestones": "Uppnådda milstolpar:",

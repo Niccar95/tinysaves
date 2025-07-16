@@ -2,6 +2,7 @@
 
 import { useContext } from "react";
 import { CurrencyContext } from "../contexts/CurrencyContext";
+import { useTranslations } from "next-intl";
 
 interface Goal {
   progress: number | null;
@@ -15,6 +16,8 @@ interface GoalMoneyDataProps {
 
 const ConversionSelect = ({ goalMoneyData }: GoalMoneyDataProps) => {
   const { rates } = useContext(CurrencyContext);
+
+  const t = useTranslations("stats");
 
   const convertToUSD = () => {
     const converted = goalMoneyData.map((goal) => {
@@ -51,9 +54,7 @@ const ConversionSelect = ({ goalMoneyData }: GoalMoneyDataProps) => {
 
   return (
     <article className="goalMoneyCard">
-      <p className="boldLabel">
-        Total saved (converted to different currencies):
-      </p>
+      <p className="boldLabel">{t("totalSaved")}</p>
       <p>
         <span className="currencyLabel">USD (US Dollars): </span>
         <span className="amount">${baseCurrencySum.toFixed(2)}</span>

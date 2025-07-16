@@ -69,6 +69,22 @@
     }
   },
 
+  "stats": {
+    "title": "Complete overview",
+    "addedGoals": "Added goals:",
+    "completedGoals": "Completed goals:",
+    "completedPercentage": "Percentage of completed goals:",
+    "reachedMilestones": "Milestones reached:",
+    "totalSaved": "Total saved (converted to different currencies):",
+    "charts": {
+      "goals": "Goals",
+      "completed": "Completed",
+      "notCompleted": "Not completed",
+      "addedByDate": "Goals added by date",
+      "dates": "Dates"
+    }
+  },
+
   "profileInfo": {
     "milestones": "Reached milestones:",
     "edit": "Edit profile",

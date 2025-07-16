@@ -14,6 +14,7 @@
 .chartSection {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 2rem;
     border-radius: 15px;
     box-shadow: $shadow;
@@ -23,13 +24,16 @@
     @include desktop() {
         gap: 1rem;
         flex-direction: row;
+        align-items: flex-start;
     }
 
     .doughnutChartContainer {
+        height: 250px;
+        width: 250px;
 
         @include desktop() {
-            height: 400px;
-            width: 400px;
+            height: 350px;
+            width: 350px;
         }    
     }
 
@@ -39,6 +43,7 @@
 
         @include desktop() {
             height: 400px;
+            width: 50%;
        }
     }
 }

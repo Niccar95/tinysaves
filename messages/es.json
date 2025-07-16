@@ -69,6 +69,22 @@
     }
   },
 
+"stats": {
+  "title": "Resumen completo",
+  "addedGoals": "Metas añadidas:",
+  "completedGoals": "Metas completadas:",
+  "completedPercentage": "Porcentaje de metas completadas:",
+  "reachedMilestones": "Logros alcanzados:",
+  "totalSaved": "Total ahorrado (convertido a diferentes monedas):",
+  "charts": {
+  "goals": "Metas",
+  "completed": "Completadas",
+  "notCompleted": "No completadas",
+  "addedByDate": "Metas añadidas por fecha",
+  "dates": "Fechas"
+}
+},
+
   "profileInfo": {
     "milestones": "Metas alcanzadas:",
     "edit": "Editar perfil",

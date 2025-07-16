@@ -3,6 +3,7 @@
 import React from "react";
 import { Chart, registerables } from "chart.js";
 import { Doughnut, Line } from "react-chartjs-2";
+import { useTranslations } from "next-intl";
 
 Chart.register(...registerables);
 
@@ -20,11 +21,13 @@ interface ChartProps {
 
 const Charts = ({ summaryData, lineChartData }: ChartProps) => {
   const { completedGoals, totalGoals } = summaryData;
+
+  const t = useTranslations("stats.charts");
   const doughNutData = {
-    labels: ["Completed", "Not completed"],
+    labels: [`${t("completed")}`, `${t("notCompleted")}`],
     datasets: [
       {
-        label: "Goals",
+        label: `${t("goals")}`,
         data: [completedGoals, totalGoals - completedGoals],
         backgroundColor: ["rgb(94, 214, 160)", "rgb(54, 162, 235)"],
         hoverOffset: 4,
@@ -36,7 +39,7 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
     labels: lineChartData.labels,
     datasets: [
       {
-        label: "Goals added by date",
+        label: `${t("addedByDate")}`,
         data: lineChartData.values,
         fill: true,
         stepped: true,
@@ -62,7 +65,7 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
         },
         title: {
           display: true,
-          text: "Dates",
+          text: `${t("dates")}`,
         },
       },
       y: {
@@ -73,7 +76,7 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
         },
         title: {
           display: true,
-          text: "Goals",
+          text: `${t("goals")}`,
         },
         min: 0,
         max: 10,
