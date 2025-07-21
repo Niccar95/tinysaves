@@ -16,6 +16,15 @@
     }
   },
   
+  "registerPage": {
+    "register": "Registrera dig",
+    "backToLogin": "Tillbaka till inloggningssidan",
+    "username": "Skapa ett användarnamn:",
+    "email": "Ange din e-postadress:",
+    "password": "Skapa ett starkt lösenord:",
+    "repeatPassword": "Upprepa ditt lösenord:"
+},
+  
   "latestGoal": {
     "recent": "Senast tillagda mål:",
     "addNewGoal": "Lägg till nytt mål",

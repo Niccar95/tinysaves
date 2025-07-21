@@ -15,6 +15,15 @@
     }
   },
 
+  "registerPage": {
+    "register": "Regístrate",
+    "backToLogin": "Volver a la página de inicio de sesión",
+    "username": "Crea un nombre de usuario:",
+    "email": "Introduce tu correo electrónico:",
+    "password": "Crea una contraseña segura:",
+    "repeatPassword": "Repite tu contraseña:"
+},
+
   "latestGoal": {
     "recent": "Meta añadida recientemente:",
     "addNewGoal": "Agregar nueva meta",

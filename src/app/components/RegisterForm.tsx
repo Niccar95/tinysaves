@@ -5,12 +5,15 @@ import Spinner from "../components/Spinner";
 import { register } from "@/utils/validationSchemas";
 import { registerUser } from "@/services/authService";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 interface RegisterFormProps {
   onSuccess: () => void;
 }
 
 const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
+  const t = useTranslations("registerPage");
+
   const [loader, setLoader] = useState<boolean>(false);
   const [formData, setFormData] = useState<{
     name: string;
@@ -63,7 +66,7 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
 
   return (
     <form onSubmit={handleRegisterUser}>
-      <label htmlFor="userName">Create a username:</label>
+      <label htmlFor="userName">{t("username")}</label>
       <div>
         <input
           id="userName"
@@ -75,7 +78,7 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
         {errors.name && <div className="errorMessage">{errors.name}</div>}
       </div>
 
-      <label htmlFor="userEmail">Type your email:</label>
+      <label htmlFor="userEmail">{t("email")}</label>
       <div>
         <input
           id="userEmail"
@@ -87,7 +90,7 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
         {errors.email && <div className="errorMessage">{errors.email}</div>}
       </div>
 
-      <label htmlFor="userPassword">Create a strong password:</label>
+      <label htmlFor="userPassword">{t("password")}</label>
       <div>
         <input
           id="userPassword"
@@ -101,7 +104,7 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
         )}
       </div>
 
-      <label htmlFor="repeatedUserPassword">Repeat your password:</label>
+      <label htmlFor="repeatedUserPassword">{t("repeatPassword")}</label>
       <div>
         <input
           id="repeatedUserPassword"
@@ -132,7 +135,7 @@ const RegisterForm = ({ onSuccess }: RegisterFormProps) => {
       {serverError && <div className="errorMessage">{serverError}</div>}
 
       <button type="submit" className="registerButton margin">
-        Register
+        {t("register")}
       </button>
     </form>
   );

@@ -3,9 +3,12 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import RegisterForm from "../components/RegisterForm";
+import { useTranslations } from "next-intl";
 
 const Page = () => {
   const router = useRouter();
+
+  const t = useTranslations("registerPage");
 
   const handleRegisterUser = () => {
     router.push("/");
@@ -15,12 +18,12 @@ const Page = () => {
     <>
       <div className="authPageWrapper">
         <section className="content authPage">
-          <h1>Register</h1>
+          <h1>{t("register")}</h1>
           <RegisterForm onSuccess={handleRegisterUser} />
           <section className="authLinkSection">
             <Link className="authLink toLogin" href="/">
               <i className="bi bi-arrow-left-short"></i>
-              Back to login page
+              {t("backToLogin")}
             </Link>
           </section>
         </section>

@@ -15,6 +15,15 @@
       "installedButton": "Installed"
     }
   },
+
+  "registerPage": {
+    "register": "Register",
+    "backToLogin": "Back to login page",
+    "username": "Create a username:",
+    "email": "Type your email:",
+    "password": "Create a strong password:",
+    "repeatPassword": "Repeat your password:"
+  },
   
   "latestGoal": {
     "recent": "Recently added goal:",
