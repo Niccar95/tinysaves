@@ -3,7 +3,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import SessionProvider from "./providers/SessionProvider";
 import ConditionalNavbar from "./components/ConditionalNavbar";
 import ConditionalMain from "./components/ConditionalMain";
-// import ConditionalHeader from "./components/ConditionalHeader";
 import { Bounce, ToastContainer } from "react-toastify";
 import { SidebarProvider } from "./providers/SidebarProvider";
 import CurrencyProvider from "./providers/CurrencyProvider";

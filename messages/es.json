@@ -1,4 +1,20 @@
 {
+  "loginPage": {
+    "login": "Iniciar sesión",
+    "username": "Nombre de usuario:",
+    "password": "Contraseña:",
+    "noAccount": "¿No tienes una cuenta?",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "messageCard": {
+      "installIntro": "¡TinySaves ya se puede instalar!",
+      "installMessage": "Disfruta de una experiencia nativa en tu escritorio o móvil. Haz clic abajo para instalar la aplicación y acceder a ella más rápido en cualquier momento.",
+      "installButton": "Instalar aplicación",
+      "installedIntro": "¿Ya usas TinySaves?",
+      "installedMessage": "Si ya la has instalado, ahora puedes abrirla desde tu pantalla de inicio o cajón de aplicaciones.",
+      "installedButton": "Instalada"
+    }
+  },
+
   "latestGoal": {
     "recent": "Meta añadida recientemente:",
     "addNewGoal": "Agregar nueva meta",

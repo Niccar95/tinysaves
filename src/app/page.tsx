@@ -5,9 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import LoginForm from "./components/LoginForm";
 import InstallButton from "./components/InstallButton";
+import { useTranslations } from "next-intl";
 
 const Login = () => {
   const router = useRouter();
+
+  const t = useTranslations("loginPage");
 
   const handleLogin = () => {
     router.push("/dashboard");
@@ -17,15 +20,15 @@ const Login = () => {
     <>
       <div className="authPageWrapper">
         <section className="content authPage">
-          <h1>Log in</h1>
+          <h1>{t("login")}</h1>
           <LoginForm onSuccess={handleLogin} />
 
           <section className="authLinkSection">
             <Link className="authLink" href="/registration">
-              Don&apos;t have an account?
+              {t("noAccount")}
             </Link>
             <Link className="authLink" href="/resetPassword">
-              Forgot your password?
+              {t("forgotPassword")}
             </Link>
           </section>
           <InstallButton />

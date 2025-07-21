@@ -1,4 +1,21 @@
 {
+
+   "loginPage": {
+    "login": "Logga in",
+    "username": "Användarnamn:",
+    "password": "Lösenord:",
+    "noAccount": "Har du inget konto?",
+    "forgotPassword": "Glömt ditt lösenord?",
+    "messageCard": {
+      "installIntro": "TinySaves kan nu installeras!",
+      "installMessage": "Njut av en appupplevelse direkt på din dator eller mobil. Klicka nedan för att installera appen och få snabbare åtkomst, när som helst.",
+      "installButton": "Installera app",
+      "installedIntro": "Använder du redan TinySaves?",
+      "installedMessage": "Om du har installerat den kan du nu starta appen från din hemskärm eller applåda.",
+      "installedButton": "Installerad"
+    }
+  },
+  
   "latestGoal": {
     "recent": "Senast tillagda mål:",
     "addNewGoal": "Lägg till nytt mål",

@@ -6,9 +6,12 @@ import {
   setGlobalPrompt,
   wasInstallable,
 } from "@/utils/globalPrompt";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 const InstallButton = () => {
+  const t = useTranslations("loginPage.messageCard");
+
   const [isInstallable, setIsInstallable] = useState(false);
 
   useEffect(() => {
@@ -57,20 +60,18 @@ const InstallButton = () => {
       {isInstallable ? (
         <div className="pwaMessageCard">
           <p>
-            <strong>TinySaves is now installable!</strong> Enjoy a native app
-            experience on your desktop or mobile. Click below to install the app
-            and access it faster, anytime.
+            <strong>{t("installIntro")}</strong> {t("installMessage")}
           </p>
           <button className="actionButton" onClick={handleInstallClick}>
             <i className="bi bi-download"></i>
-            Install app
+            {t("installButton")}
           </button>
         </div>
       ) : (
         <div className="pwaMessageCard">
           <p>
-            <strong>Already using TinySaves?</strong> If you&apos;ve installed
-            it, you can now launch it from your home screen or app drawer.
+            <strong>{t("installedIntro")}</strong>
+            {t("installedMessage")}
           </p>
           <button
             className="actionButton disabled"
@@ -78,7 +79,7 @@ const InstallButton = () => {
             disabled
           >
             <i className="bi bi-check-circle-fill"></i>
-            Installed
+            {t("installedButton")}
           </button>
         </div>
       )}

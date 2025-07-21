@@ -4,12 +4,15 @@ import React, { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import Spinner from "./Spinner";
 import { login } from "@/utils/validationSchemas";
+import { useTranslations } from "next-intl";
 
 interface LoginFormProps {
   onSuccess: () => void;
 }
 
 const LoginForm = ({ onSuccess }: LoginFormProps) => {
+  const t = useTranslations("loginPage");
+
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loader, setLoader] = useState<boolean>(false);
@@ -51,7 +54,7 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
 
   return (
     <form onSubmit={handleLogin}>
-      <label htmlFor="userName">Username:</label>
+      <label htmlFor="userName">{t("username")}</label>
       <div className="inputWrapper">
         <input
           id="userName"
@@ -66,7 +69,7 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
         {errors.name && <div className="errorMessage">{errors.name}</div>}
       </div>
 
-      <label htmlFor="password">Password:</label>
+      <label htmlFor="password">{t("password")}</label>
       <div className="inputWrapper">
         <input
           id="password"
@@ -93,7 +96,7 @@ const LoginForm = ({ onSuccess }: LoginFormProps) => {
       )}
 
       <button type="submit" className="loginButton margin">
-        Log in
+        {t("login")}
       </button>
     </form>
   );
