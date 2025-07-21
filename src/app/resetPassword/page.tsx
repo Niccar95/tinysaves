@@ -3,9 +3,12 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import ResetPasswordForm from "../components/ResetPasswordForm";
+import { useTranslations } from "next-intl";
 
 const ResetPasswordPage = () => {
   const router = useRouter();
+
+  const t = useTranslations("resetPasswordPage");
 
   const handleResetPassword = () => {
     router.push("/");
@@ -14,13 +17,13 @@ const ResetPasswordPage = () => {
   return (
     <div className="authPageWrapper">
       <section className="content authPage">
-        <h1>Reset your password</h1>
+        <h1>{t("resetPassword")}</h1>
         <ResetPasswordForm onSuccess={handleResetPassword} />
 
         <section className="authLinkSection">
           <Link className="authLink" href="/">
             <i className="bi bi-arrow-left-short"></i>
-            Back to login page
+            {t("backToLogin")}
           </Link>
         </section>
       </section>

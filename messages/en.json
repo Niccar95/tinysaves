@@ -24,6 +24,14 @@
     "password": "Create a strong password:",
     "repeatPassword": "Repeat your password:"
   },
+
+  "resetPasswordPage": {
+    "resetPassword": "Reset your password",
+    "backToLogin": "Back to login page",
+    "email": "Enter your email:",
+    "newPassword": "New password:",
+    "confirmPassword": "Confirm new password:"
+  },
   
   "latestGoal": {
     "recent": "Recently added goal:",

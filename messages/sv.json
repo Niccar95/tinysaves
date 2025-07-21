@@ -24,6 +24,14 @@
     "password": "Skapa ett starkt lösenord:",
     "repeatPassword": "Upprepa ditt lösenord:"
 },
+
+"resetPasswordPage": {
+  "resetPassword": "Återställ ditt lösenord",
+  "backToLogin": "Tillbaka till inloggningssidan",
+  "email": "Ange din e-postadress:",
+  "newPassword": "Nytt lösenord:",
+  "confirmPassword": "Bekräfta nytt lösenord:"
+},
   
   "latestGoal": {
     "recent": "Senast tillagda mål:",

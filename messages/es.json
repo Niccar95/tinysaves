@@ -24,6 +24,14 @@
     "repeatPassword": "Repite tu contraseña:"
 },
 
+"resetPasswordPage": {
+  "resetPassword": "Restablece tu contraseña",
+  "backToLogin": "Volver a la página de inicio de sesión",
+  "email": "Introduce tu correo electrónico:",
+  "newPassword": "Nueva contraseña:",
+  "confirmPassword": "Confirma la nueva contraseña:"
+},
+
   "latestGoal": {
     "recent": "Meta añadida recientemente:",
     "addNewGoal": "Agregar nueva meta",

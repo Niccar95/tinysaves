@@ -5,12 +5,15 @@ import Spinner from "../components/Spinner";
 import { getSession } from "next-auth/react";
 import { resetUserPassword } from "@/services/authService";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 interface ResetPasswordFormProps {
   onSuccess: () => void;
 }
 
 const ResetPasswordForm = ({ onSuccess }: ResetPasswordFormProps) => {
+  const t = useTranslations("resetPasswordPage");
+
   const [loader, setLoader] = useState<boolean>(false);
   const [formData, setFormData] = useState<{
     email: string;
@@ -61,7 +64,7 @@ const ResetPasswordForm = ({ onSuccess }: ResetPasswordFormProps) => {
 
   return (
     <form onSubmit={handleResetPassword}>
-      <label htmlFor="email">Enter your email:</label>
+      <label htmlFor="email">{t("email")}</label>
       <div>
         <input
           id="email"
@@ -73,7 +76,7 @@ const ResetPasswordForm = ({ onSuccess }: ResetPasswordFormProps) => {
         {errors.email && <div className="errorMessage">{errors.email}</div>}
       </div>
 
-      <label htmlFor="newPassword">New password:</label>
+      <label htmlFor="newPassword">{t("newPassword")}</label>
       <div>
         <input
           id="newPassword"
@@ -87,7 +90,7 @@ const ResetPasswordForm = ({ onSuccess }: ResetPasswordFormProps) => {
         )}
       </div>
 
-      <label htmlFor="confirmPassword">Confirm new password:</label>
+      <label htmlFor="confirmPassword">{t("confirmPassword")}</label>
       <div>
         <input
           id="confirmPassword"
@@ -119,7 +122,7 @@ const ResetPasswordForm = ({ onSuccess }: ResetPasswordFormProps) => {
       )}
 
       <button type="submit" className="resetPasswordButton margin">
-        Reset Password
+        {t("resetPassword")}
       </button>
     </form>
   );
