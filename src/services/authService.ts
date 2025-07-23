@@ -51,3 +51,28 @@ export const resetUserPassword = async (formData: {
     return "An error occurred. Please try again later";
   }
 };
+
+export const changeUserPassword = async (formData: {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}): Promise<string | null> => {
+  try {
+    const response = await fetch("/api/changePassword", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) {
+      return "Invalid password";
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Failed to change password", error);
+    return "An error occurred. Please try again later";
+  }
+};

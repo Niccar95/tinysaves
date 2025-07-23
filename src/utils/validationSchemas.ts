@@ -124,3 +124,18 @@ export const resetPassword = Joi.object({
     "string.empty": "This is a required field",
   }),
 });
+
+export const changePassword = Joi.object({
+  currentPassword: Joi.string().min(10).required().messages({
+    "string.empty": "This is a required field",
+    "string.min": "Password must be at least 10 characters",
+  }),
+  newPassword: Joi.string().min(10).required().messages({
+    "string.empty": "This is a required field",
+    "string.min": "New password must be at least 10 characters",
+  }),
+  confirmPassword: Joi.valid(Joi.ref("newPassword")).required().messages({
+    "any.only": "Passwords must match",
+    "string.empty": "This is a required field",
+  }),
+});
