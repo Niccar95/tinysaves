@@ -11,18 +11,17 @@
     width: fit-content;
     border-radius: 15px;
     padding: 1rem;
-    background-color: $light-body-background;
-    box-shadow: $floatingShadow;
-    border: solid 0.5px $card-border-color;
+    background-color: var(--light-body-background);
+    box-shadow: var(--floating-shadow);
+    border: solid 0.5px var(--card-border-color);
 }
-
 
 .langMenu {
   position: fixed;
   top: 60px;
   left: 50%;
   transform: translateX(-50%);
-  background: $surface-elevated;
+  background: var(--surface-elevated);
   border: solid 1px white;
   border-top: none;
   opacity: 0;

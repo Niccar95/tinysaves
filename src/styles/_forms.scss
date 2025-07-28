@@ -35,12 +35,12 @@ form {
 .editGoalTitleForm {
     position: absolute;
     padding-bottom: 1rem;
-    background-color: $light-body-background;
+    background: var(--card-background);
     top: 0;
     left: 0;
     right: 0;
     z-index: 1;
-    border-bottom: solid 1px $tertiary-border-color;
+    border-bottom: solid 1px var(--tertiary-border-color);
 
     @include desktop() {
         width: 300px;
@@ -49,10 +49,10 @@ form {
 
         .addGoalForm {
             width: 300px;
-            background-color: $light-body-background; 
+            background-color: var(--light-body-background); 
             border-radius: 15px;
             padding: 1rem 2rem;
-            box-shadow: $shadow;
+            box-shadow: var(--shadow);
             
             @include desktop() {
             padding: 2rem;
@@ -83,9 +83,9 @@ form {
                 height: 170px;
                 border-radius: 15px;
                 padding: 1rem;
-                border: solid 0.5px $card-border-color;
-                background-color: $light-body-background;
-                box-shadow: $floatingShadow;
+                border: solid 0.5px var(--card-border-color);
+                background-color: var(--light-body-background);
+                box-shadow: var(--floating-shadow);
 
                 @include desktop() {
                     display: flex;

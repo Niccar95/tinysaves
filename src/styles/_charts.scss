@@ -6,8 +6,8 @@
     flex-direction: column;
     gap: 2rem;
     border-radius: 15px;
-    box-shadow: $shadow;
-    border: solid 0.5px $card-border-color;
+    box-shadow: var(--shadow);
+    border: solid 0.5px var(--card-border-color);
     padding: 1.5rem;
 }
 
@@ -17,8 +17,8 @@
     align-items: center;
     gap: 2rem;
     border-radius: 15px;
-    box-shadow: $shadow;
-    border: solid 0.5px $card-border-color;
+    box-shadow: var(--shadow);
+    border: solid 0.5px var(--card-border-color);
     padding: 1.5rem;
 
     @include desktop() {

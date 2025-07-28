@@ -6,14 +6,14 @@
     border: none;
     border-radius: 15px;
     height: 40px;
-    background-color: $primary-button-color;
-    color: $secondary-text-color;
+    background-color: var(--primary-button-color);
+    color: var(--secondary-text-color);
     font-size: $button-font-size;
     font-weight: $button-font-weight;
     cursor: pointer;
 
     &:hover {
-        background-color: $primary-button-hover-color;
+        background-color: var(--primary-button-hover-color);
     }
 }
 
@@ -34,7 +34,7 @@
     padding: 1.5rem;
     font-weight: $button-font-weight;
     background-color: transparent;
-    color: $primary-text-color;
+    color: var(--primary-text-color);
     border: none;
     cursor: pointer;
 
@@ -49,24 +49,24 @@
     border-radius: 15px;
     height: 40px;
     width: 200px;
-    background-color: white;
-    color: $primary-text-color;
-    border: solid 2px $primary-border-color;
+    background-color: var(--action-button-color);
+    color: var(--action-button-text-color);
+    border: solid 2px var(--action-button-border-color);
     font-size: $button-font-size;
     font-weight: $button-font-weight;
     cursor: pointer;
     
     &:hover {
         opacity: 0.8;
-        border: solid 2.5px $primary-border-color; 
+        border: solid 2.5px var(--primary-border-color); 
     }
 }
 
 
 .actionButton.delete, .closeButton {
-    background-color: $tertiary-button-color;
+    background-color: var(--tertiary-button-color);
     color: white;
-    border: solid 2px $secondary-border-color;
+    border: solid 2px var(--secondary-border-color);
 }
 
 .actionButton.disabled {
@@ -75,7 +75,7 @@
     
     &:hover {
         opacity: none;
-        border: solid 2px $primary-border-color;
+        border: solid 2px ver(--primary-border-color);
     }
 }
 
@@ -88,6 +88,7 @@
     background-color: unset;
     border: none;
     cursor: pointer;
+    color: var(--primary-text-color);
 
 }
 
@@ -100,13 +101,14 @@
     height: 50px;
     border-radius: 50%;
     border: none;
-    background-color: white;
-    border: solid 2px $primary-border-color;
+    background-color: var(--action-button-color);
+    border: solid 2px var(--primary-border-color);
     cursor: pointer;
+    color: var(--action-button-text-color);
 
     &:hover {
       opacity: 0.8;
-      border: solid 2.5px $primary-border-color; 
+      border: solid 2.5px var(--primary-border-color); 
     }
 }
 
@@ -114,29 +116,29 @@
     top: 0;
 }
 
-.removeTipsButton {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: $tertiary-button-color;
-    border: solid 2px $secondary-border-color;
-    color: white;
-    cursor: pointer;
-    right: 5px;
-    top: 5px;
+// .removeTipsButton {
+//     position: absolute;
+//     width: 30px;
+//     height: 30px;
+//     border-radius: 50%;
+//     background-color: $tertiary-button-color;
+//     border: solid 2px $secondary-border-color;
+//     color: white;
+//     cursor: pointer;
+//     right: 5px;
+//     top: 5px;
 
-    @include desktop() {
-        top: -10px;
-        right: -10px;
+//     @include desktop() {
+//         top: -10px;
+//         right: -10px;
 
-    }
-}
+//     }
+// }
 .tipSliderButton {
     width: 30px;
     height: 10px;
     background: none;
-    border: solid 1px $slider-border-color;
+    border: solid 1px var(--slider-border-color);
     border-radius: 8px;
     cursor: pointer;
 }
@@ -144,10 +146,10 @@
 // highlights the slider button 
 
 .highlight {
-    background-color: $slider-highlight-bg;
+    background-color: var(--slider-highlight-bg);
     box-shadow: 0 0 8px rgba(102, 187, 106, 0.6);
     transition: background-color 0.3s ease;
-    border-color: darken($slider-highlight-bg, 15%);
+    border-color: darken(#66bb6a, 15%);
 }
 
 

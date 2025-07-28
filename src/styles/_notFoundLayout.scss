@@ -7,8 +7,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: $primary-text-color;
-    background: $light-body-background;
+    color: var(--primary-text-color);
+    background: var(--light-body-background);
 
     .notFoundTitle {
         font-size: 5rem;

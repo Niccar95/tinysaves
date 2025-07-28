@@ -16,12 +16,13 @@ html,
 body {
   overflow-x: hidden;
   min-height: 100vh;
+    color: var(--primary-text-color)
 }
 
 body {
   display: flex;  
   flex-direction: column;
-  background-color: $light-body-background;
+  background-color: var(--light-body-background);
 }
 
 
@@ -29,14 +30,14 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: $surface-elevated;
+  background: var(--surface-elevated);
   border-bottom: solid 1px white;
   position: fixed;
   left: 0;
   right: 0;
   z-index: 100;
   height: 80px;
-  box-shadow: $floatingShadow;
+  box-shadow: var(--floating-shadow);
   padding: 0rem 2rem 0rem 2rem;
 
   @include desktop() {
@@ -106,14 +107,14 @@ h2 {
 
 h3 {
   font-family: $heading-font-family;
-  color: $tertiary-text-color;
+  color: var(--tertiary-text-color);
   font-weight: $secondary-heading-font-weight;
   font-size: $tertiary-heading-font-size;
 }
 
 
 a {
-  color: $link-color;
+  color: var(--link-color);
   text-decoration: underline;
 }
 
@@ -135,10 +136,9 @@ footer {
   align-items: center;
   gap: 4rem;
   padding: 4rem 2rem 2rem 2rem;
-  background-color: $footer-background;     
-  border-top: $footer-border-top;           
-  color: $primary-text-color;      
-  box-shadow: $header-footer-shadow;
+  background-color: var(--footer-background);     
+  border-top: var(--footer-border-top);              
+  box-shadow: var(--header-footer-shadow);
 
   .contactSection {
     display:flex;
@@ -149,7 +149,7 @@ footer {
 
     .contactHeading {
       padding-bottom: 0.5rem;
-      border-bottom: solid 0.5px $tertiary-border-color;
+      border-bottom: solid 0.5px var(--tertiary-border-color);
     }
 
 
@@ -158,7 +158,7 @@ footer {
       gap: 1.2rem;
 
       .footerLink {
-        color: black;
+        color: var(--footer-link-icon-color);
         text-decoration: none;
       }
     }
@@ -166,7 +166,7 @@ footer {
   }
   .copyright {
     font-size: 14px;
-    color: #757575; 
+    color: var(--tertiary-text-color);   
   }
 }
 

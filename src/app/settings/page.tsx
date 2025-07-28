@@ -5,6 +5,7 @@ import DeleteAccountButton from "../components/DeleteAccountButton";
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import ChangePasswordForm from "../components/ChangePasswordForm";
+import ThemeToggle from "../components/ThemeToggle";
 
 const SettingsPage = async () => {
   const session = await getServerSession(authOptions);
@@ -21,7 +22,10 @@ const SettingsPage = async () => {
         <h1>{t("settings")}</h1>
         <section className="settingsSection">
           <h2>Display settings</h2>
-          <div className="settingsWrapper"></div>
+          <div className="settingsWrapper">
+            <h3>Change theme</h3>
+            <ThemeToggle />
+          </div>
 
           <h2>{ts("heading")}</h2>
           <div className="settingsWrapper">

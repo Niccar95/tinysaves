@@ -47,7 +47,6 @@ export default async function RootLayout({
             theme="light"
             transition={Bounce}
           />
-
           <SessionProvider>
             {/* <ConditionalHeader /> */}
             <SidebarProvider>

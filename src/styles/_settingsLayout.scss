@@ -3,7 +3,7 @@
 .settingsSection {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
  
 
     .settingsWrapper {
@@ -11,7 +11,7 @@
         flex-direction: column;
         gap: 2rem;
         padding-top: 1rem;
-        border-top: solid 1px $tertiary-border-color;
+        border-top: solid 1px var(--tertiary-border-color);
     }
 
 }

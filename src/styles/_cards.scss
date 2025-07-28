@@ -7,11 +7,11 @@
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem;
-    box-shadow: $shadow;
+    box-shadow: var(--shadow);
     border-radius: 15px;
-    background: $card-background;
-    border: solid 0.5px $card-border-color;
-    border-top: solid 5px $card-border-color;
+    background: var(--card-background);
+    border: solid 0.5px var(--card-border-color);
+    border-top: solid 5px var(--card-border-color);
     height: 100%;
 
     .progressSection {
@@ -43,7 +43,7 @@
             font-size: 14px;
             font-weight: 500;
             width: 60%;
-            color: $tertiary-text-color;
+            color: var(--tertiary-text-color);
         }
     }
 
@@ -73,10 +73,10 @@
     flex-direction: column;
     gap: 2rem;
     padding: 1.5rem;
-    box-shadow: $shadow;
+    box-shadow: var(--shadow);
     border-radius: 15px;
-    border: solid 0.5px $card-border-color;
-    border-top: solid 5px $card-border-color;
+    border: solid 0.5px var(--card-border-color);
+    border-top: solid 5px var(--card-border-color);
 
     @include desktop() {
         width: 50%;
@@ -91,7 +91,7 @@
         gap: 2rem;
 
         .userNameLabel {
-            border-bottom: solid 1px $tertiary-border-color;
+            border-bottom: solid 1px var(--tertiary-border-color);
             margin-bottom: 0.5rem;
 
             @include desktop() {
@@ -143,14 +143,14 @@
     padding: 1rem;
     width: fit-content;
     border-radius: 15px;
-    box-shadow: $floatingShadow;
+    box-shadow: var(--floating-shadow);
     transition: transform 0.2s ease-in-out;
-    background-color: $light-body-background;
-    border: solid 0.5px $card-border-color;
+    background-color: var(--light-body-background);
+    border: solid 0.5px var(--card-border-color);
 
     .avatar {
         border-radius: 50%;
-        border: solid 0.5px $tertiary-border-color;
+        border: solid 0.5px var(--tertiary-border-color);
         cursor: pointer;
         transition: transform 0.1s ease-in;
 
@@ -165,9 +165,9 @@
     flex-direction: column;
     gap: 1rem;
     padding: 1.5rem;
-    box-shadow: $shadow;
-    border: solid 0.5px $card-border-color;
-    border-top: solid 5px $card-border-color;
+    box-shadow: var(--shadow);
+    border: solid 0.5px var(--card-border-color);
+    border-top: solid 5px var(--card-border-color);
     border-radius: 15px;
     
     @include desktop() {
@@ -189,11 +189,11 @@
     display: flex;
     justify-content: space-between;
     padding: 1.5rem;
-    box-shadow: $shadow;
-    border: solid 0.5px $card-border-color;
-    border-top: solid 5px $card-border-color;
+    box-shadow: var(--shadow);
+    border: solid 0.5px var(--card-border-color);
+    border-top: solid 5px var(--card-border-color);
     border-radius: 15px;
-    background-color: $light-body-background;
+    background-color: var(--light-body-background);
     height: fit-content;
 
     @include desktop() {
@@ -230,7 +230,7 @@
     gap: 2rem;
     border-radius: 15px;
     padding: 1.5rem;
-    background-color: $light-body-background;
+    background-color: var(--light-body-background);
 
     .congratulationsHeading {
         width: 60%;
@@ -263,14 +263,14 @@
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem;
-    box-shadow: $shadow;
+    box-shadow: var(--shadow);
     border-radius: 15px;
-    border: solid 0.5px $card-border-color;
-    border-top: solid 5px $card-border-color;
+    border: solid 0.5px var(--card-border-color);
+    border-top: solid 5px var(--card-border-color);
     width: fit-content;
     
     .currencyLabel {
-      color: $tertiary-text-color;
+      color: var(--tertiary-text-color);
       font-weight: normal;
     }
     
@@ -283,14 +283,14 @@
   display: flex; 
   flex-direction: column;
   gap: 2rem;
-  background: $card-background;
-  color: $primary-text-color;
-  border: 1px solid $card-border-color;
-  border-top: solid 5px $card-border-color;
+  background: var(--card-background);
+  color: var(--primary-text-color);
+  border: 1px solid var(--card-border-color);
+  border-top: solid 5px var(--card-border-color);
   border-radius: 8px;
   padding: 1rem 1.25rem;
   margin-top: 1.5rem;
-  box-shadow: $shadow;
+  box-shadow: var(--shadow);
   font-family: $base-font-family;
   font-size: 0.9rem;
   font-weight: $base-font-weight;
@@ -298,6 +298,6 @@
 
   strong {
     font-weight: $secondary-heading-font-weight;
-    color: $link-color;
+    color: var(--link-color);
   }
 }
