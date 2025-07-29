@@ -101,6 +101,12 @@ $link-font-weight: 600;
   --tertiary-button-color: #e53e3e;
   --primary-button-hover-color: #388e3c;
   --action-button-color: #ffffff;
+  
+  --sidebar-toggle-container-bg: #bde1bd;
+
+   --sidebar-toggle-background-color: #8ac17a;
+
+  --sidebar-toggle-border-color: #bde1bd;
 
   // Backgrounds
   --light-body-background: #fcfdfa;
@@ -123,6 +129,8 @@ $link-font-weight: 600;
   --slider-border-color: #4caf50;
   --action-button-border-color: #a8dca9;
   --attention-border-color: #ffa726;  
+
+    --nav-menu-border-color: #ffffff;
 
   // Misc
   --alert-color: #ffa726;
@@ -148,10 +156,15 @@ $link-font-weight: 600;
   --primary-button-hover-color: #444;
   --action-button-color: #4a4f58;
 
+  --sidebar-toggle-container-bg: #1f1f1f;
+
+  --sidebar-toggle-background-color: #030303;
+
+  --sidebar-toggle-border-color: #1f1f1f;
 
   // Backgrounds
   --light-body-background: #161616;
-  --surface-elevated: linear-gradient(to bottom, #070707 0%, #1e1e1e 100%);
+  --surface-elevated: linear-gradient(to bottom, #1f1f1f 0%, #121212 100%);
   --card-background: linear-gradient(135deg, #1b1b1b 0%, #232323 100%);
   --footer-background: #161616;
 
@@ -166,19 +179,23 @@ $link-font-weight: 600;
   --secondary-border-color: #3d3d3d;
   --tertiary-border-color: #555;
   --card-border-color: #333;
+  --card-border-color: #3b5b3b;
+
   --footer-border-top: 1px solid #1f1f1f;
   --slider-border-color: #4caf50;
   --action-button-border-color: #3f4350;
-  --attention-border-color: #ffa726;  
+  --attention-border-color: #ffa726; 
+  
+  --nav-menu-border-color: #2a3d2a;
 
   // Alerts / Status
   --alert-color: #ffa726;
 
   // Effects
-    --slider-highlight-bg: #66bb6a;
+  --slider-highlight-bg: #66bb6a;
 
   // Shadows
-  --shadow: 0 0 6px rgba(0, 0, 0, 0.4);
-  --floating-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  --header-footer-shadow: 0px 2px 8px rgba(0, 0, 0, 0.6);
+--shadow: 0 0 8px rgba(59, 91, 59, 0.25);
+--floating-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+--header-footer-shadow: 0px 2px 8px rgba(0, 0, 0, 0.6);
 }

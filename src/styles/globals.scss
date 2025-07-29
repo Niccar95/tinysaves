@@ -31,7 +31,7 @@ header {
   align-items: center;
   justify-content: space-between;
   background: var(--surface-elevated);
-  border-bottom: solid 1px white;
+  border-bottom: solid 1px var(--nav-menu-border-color);
   position: fixed;
   left: 0;
   right: 0;

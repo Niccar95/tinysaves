@@ -22,7 +22,7 @@
   left: 50%;
   transform: translateX(-50%);
   background: var(--surface-elevated);
-  border: solid 1px white;
+  border: solid 1px var(--nav-menu-border-color);
   border-top: none;
   opacity: 0;
   pointer-events: none;

@@ -16,7 +16,7 @@
   height: 500px;
   background: var(--surface-elevated);
   transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  border: solid 1px white;
+  border: solid 1px var(--nav-menu-border-color);
   border-top: none;
   box-shadow: var(--floating-shadow);
 
@@ -43,7 +43,7 @@
          border-radius: 30px;
          display: flex;
          justify-content: flex-end;
-         background: #bde1bd;
+         background: var(--sidebar-toggle-container-bg);
      }
      .sidebarToggle {
       
@@ -55,8 +55,8 @@
         height: fit-content;
         padding: 0.25rem;
         border-radius: 50%;
-        border: solid 0.3rem #bde1bd;
-        background-color: #8ac17a;
+        border: solid 0.3rem var(--sidebar-toggle-border-color);
+        background-color: var(--sidebar-toggle-background-color);
         color: var(--primary-text-color);
         cursor: pointer;
     }
@@ -78,7 +78,6 @@
     }
 
     li:hover {
-      // background-color: #8ac17a;
       background-color: var(--nav-hover-color);
     }
 
