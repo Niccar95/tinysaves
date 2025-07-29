@@ -49,10 +49,20 @@ export const POST = async (req: Request) => {
         hashedPassword,
       },
     });
-    return NextResponse.json(
-      { message: "user was created", user },
-      { status: 201 }
-    );
+
+    if (user) {
+      const userSettings = await prisma.userSettings.create({
+        data: {
+          userId: user.userId,
+          theme: "light",
+        },
+      });
+
+      return NextResponse.json(
+        { message: "user was created", user, userSettings },
+        { status: 201 }
+      );
+    }
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: "Server error" }, { status: 500 });

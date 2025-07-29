@@ -55,14 +55,13 @@ export const DELETE = async (req: NextRequest) => {
     if (!userId)
       return NextResponse.json({ message: "Invalid userId" }, { status: 422 });
 
-    const goal = await prisma.user.delete({
-      where: {
-        userId: userId,
-      },
-    });
+    const result = await prisma.$transaction([
+      prisma.userSettings.delete({ where: { userId: userId } }),
+      prisma.user.delete({ where: { userId: userId } }),
+    ]);
 
     return NextResponse.json(
-      { message: "Successfully deleted account", goal },
+      { message: "Successfully deleted account", result },
       { status: 201 }
     );
   } catch (error) {
