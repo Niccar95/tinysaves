@@ -13,6 +13,9 @@ import { NextIntlClientProvider } from "next-intl";
 import en from "../../messages/en.json";
 import sv from "../../messages/sv.json";
 import es from "../../messages/es.json";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import prisma from "./db";
 
 const allMessages = { en, sv, es };
 
@@ -21,6 +24,17 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+
+  let theme = "light";
+
+  if (session) {
+    const userSettings = await prisma.userSettings.findFirst({
+      where: { userId: session.user.id },
+    });
+    theme = userSettings?.theme || "light";
+  }
+
   await ensureMilestonesExist();
 
   const t = await getTranslations("footer");
@@ -29,7 +43,7 @@ export default async function RootLayout({
   const messages = allMessages[locale as keyof typeof allMessages] ?? en;
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={theme === "dark" ? "dark" : ""}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/icons/icon-192x192.png" />

@@ -1,4 +1,5 @@
 "use client";
+import { changeTheme } from "@/services/authService";
 import React, { useState } from "react";
 
 interface ThemeProps {
@@ -15,6 +16,9 @@ const ThemeToggle = ({ currentTheme }: ThemeProps) => {
     document.documentElement.classList.toggle("dark", isDark);
 
     setTheme(newTheme);
+    changeTheme(newTheme);
+
+    localStorage.setItem("userTheme", JSON.stringify(newTheme));
   };
 
   console.log("Theme changed to:", theme);
@@ -23,7 +27,11 @@ const ThemeToggle = ({ currentTheme }: ThemeProps) => {
     <div className="switchContainer">
       <i className="bi bi-sun"></i>
       <label className="switch">
-        <input type="checkbox" onChange={toggleTheme} />
+        <input
+          type="checkbox"
+          checked={theme === "dark"}
+          onChange={toggleTheme}
+        />
         <span className="slider round"></span>
       </label>
       <i className="bi bi-moon-fill"></i>

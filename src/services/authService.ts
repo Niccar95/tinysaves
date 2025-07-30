@@ -76,3 +76,24 @@ export const changeUserPassword = async (formData: {
     return "An error occurred. Please try again later";
   }
 };
+
+export const changeTheme = async (theme: string): Promise<string | null> => {
+  try {
+    const response = await fetch("/api/settings", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ theme }),
+    });
+
+    if (!response.ok) {
+      return "Invalid theme";
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Failed to change theme", error);
+    return "An error occurred. Please try again later";
+  }
+};
