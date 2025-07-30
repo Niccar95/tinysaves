@@ -1,11 +1,23 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
-const ThemeToggle = () => {
+interface ThemeProps {
+  currentTheme: string | undefined;
+}
+
+const ThemeToggle = ({ currentTheme }: ThemeProps) => {
+  const [theme, setTheme] = useState<string | undefined>(currentTheme);
+
   const toggleTheme = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const checked = e.target.checked;
-    document.documentElement.classList.toggle("dark", checked);
+    const isDark = e.target.checked;
+    const newTheme = isDark ? "dark" : "light";
+
+    document.documentElement.classList.toggle("dark", isDark);
+
+    setTheme(newTheme);
   };
+
+  console.log("Theme changed to:", theme);
 
   return (
     <div className="switchContainer">

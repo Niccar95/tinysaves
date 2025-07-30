@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import ChangePasswordForm from "../components/ChangePasswordForm";
 import ThemeToggle from "../components/ThemeToggle";
+import prisma from "../db";
 
 const SettingsPage = async () => {
   const session = await getServerSession(authOptions);
@@ -16,6 +17,14 @@ const SettingsPage = async () => {
     redirect("/");
   }
 
+  const userId = session.user.id;
+
+  const userSettings = await prisma.userSettings.findFirst({
+    where: { userId: userId },
+  });
+
+  const theme = userSettings?.theme;
+
   return (
     <>
       <section className="content">
@@ -24,7 +33,7 @@ const SettingsPage = async () => {
           <h2>Display settings</h2>
           <div className="settingsWrapper">
             <h3>Change theme</h3>
-            <ThemeToggle />
+            <ThemeToggle currentTheme={theme} />
           </div>
 
           <h2>{ts("heading")}</h2>
