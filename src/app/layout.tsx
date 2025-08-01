@@ -16,6 +16,7 @@ import es from "../../messages/es.json";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import prisma from "./db";
+import { ThemeProvider } from "./providers/ThemeProvider";
 
 const allMessages = { en, sv, es };
 
@@ -62,38 +63,39 @@ export default async function RootLayout({
             transition={Bounce}
           />
           <SessionProvider>
-            {/* <ConditionalHeader /> */}
-            <SidebarProvider>
-              <ConditionalNavbar />
-              <CurrencyProvider>
-                <ConditionalMain>{children}</ConditionalMain>
-              </CurrencyProvider>
-            </SidebarProvider>
-            <footer>
-              <section className="contactSection">
-                <h3 className="contactHeading">{t("social")}</h3>
+            <ThemeProvider>
+              <SidebarProvider>
+                <ConditionalNavbar />
+                <CurrencyProvider>
+                  <ConditionalMain>{children}</ConditionalMain>
+                </CurrencyProvider>
+              </SidebarProvider>
+              <footer>
+                <section className="contactSection">
+                  <h3 className="contactHeading">{t("social")}</h3>
 
-                <div className="linkWrapper">
-                  <a
-                    className="footerLink"
-                    href="https://github.com/Niccar95"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="bi bi-github"></i>
-                  </a>
-                  <a
-                    className="footerLink"
-                    href="https://www.linkedin.com/in/nicolas-carrasco-6882402a5/"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="bi bi-linkedin"></i>
-                  </a>
-                </div>
-              </section>
-              <p className="copyright">
-                &copy; {new Date().getFullYear()} TinySaves
-              </p>
-            </footer>
+                  <div className="linkWrapper">
+                    <a
+                      className="footerLink"
+                      href="https://github.com/Niccar95"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="bi bi-github"></i>
+                    </a>
+                    <a
+                      className="footerLink"
+                      href="https://www.linkedin.com/in/nicolas-carrasco-6882402a5/"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="bi bi-linkedin"></i>
+                    </a>
+                  </div>
+                </section>
+                <p className="copyright">
+                  &copy; {new Date().getFullYear()} TinySaves
+                </p>
+              </footer>
+            </ThemeProvider>
           </SessionProvider>
         </NextIntlClientProvider>
       </body>

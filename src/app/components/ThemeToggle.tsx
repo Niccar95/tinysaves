@@ -1,6 +1,7 @@
 "use client";
 import { changeTheme } from "@/services/authService";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 interface ThemeProps {
   currentTheme: string | undefined;
@@ -8,6 +9,8 @@ interface ThemeProps {
 
 const ThemeToggle = ({ currentTheme }: ThemeProps) => {
   const [theme, setTheme] = useState<string | undefined>(currentTheme);
+
+  const { setTrackedTheme } = useContext(ThemeContext);
 
   const toggleTheme = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isDark = e.target.checked;
@@ -17,11 +20,10 @@ const ThemeToggle = ({ currentTheme }: ThemeProps) => {
 
     setTheme(newTheme);
     changeTheme(newTheme);
+    setTrackedTheme(newTheme);
 
     localStorage.setItem("userTheme", JSON.stringify(newTheme));
   };
-
-  console.log("Theme changed to:", theme);
 
   return (
     <div className="switchContainer">

@@ -2,14 +2,18 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import logo from "/public/logo.svg";
+import logoLightMode from "/public/logo-lightMode.svg";
+import logoDarkMode from "/public/logo-darkMode.svg";
 import LanguageMenu from "./LanguageMenu";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLocale } from "next-intl";
 import { useClickOutside } from "../hooks/useClickOutside";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const ConditionalHeader = ({ children }: { children: React.ReactNode }) => {
   const locale = useLocale();
+  const { trackedTheme } = useContext(ThemeContext);
+
   const [openLangMenu, setOpenLangMenu] = useState<boolean>(false);
   const [currentLang, setCurrentLang] = useState<string>(locale);
   const pathname = usePathname();
@@ -34,7 +38,13 @@ const ConditionalHeader = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <header>
-      <Image className="logo" src={logo} alt="icon"></Image>
+      {trackedTheme === "light" && (
+        <Image className="logo" src={logoLightMode} alt="icon"></Image>
+      )}
+
+      {trackedTheme === "dark" && (
+        <Image className="logo" src={logoDarkMode} alt="icon"></Image>
+      )}
 
       <div ref={actionsMenuRef} onClick={(e) => e.stopPropagation()}>
         <button
