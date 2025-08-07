@@ -1,9 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import ResetPasswordForm from "../components/ResetPasswordForm";
 import { useTranslations } from "next-intl";
+import Banner from "../components/Banner";
 
 const ResetPasswordPage = () => {
   const router = useRouter();
@@ -27,9 +27,7 @@ const ResetPasswordPage = () => {
           </Link>
         </section>
       </section>
-      <div className="bannerWrapper">
-        <Image className="banner" src="/banner.svg" alt="banner" fill></Image>
-      </div>
+      <Banner />
     </div>
   );
 };
