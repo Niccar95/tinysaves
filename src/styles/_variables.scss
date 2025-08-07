@@ -59,6 +59,7 @@ $link-font-weight: 600;
   --light-body-background: #fcfdfa;
   --surface-elevated: linear-gradient(to bottom, #bde1bd 0%, #a5d6a7 100%);
   --card-background: linear-gradient(135deg, #f9fdf9 0%, #f3faf3 100%);
+  --tips-card-background: #ffffff;
   --footer-background: #fcfdfa;
 
   // Links
@@ -113,6 +114,7 @@ $link-font-weight: 600;
   --surface-elevated: linear-gradient(to bottom, #1f1f1f 0%, #121212 100%);
   --card-background: linear-gradient(135deg, #1b1b1b 0%, #232323 100%);
   --footer-background: #161616;
+  --tips-card-background: #2a2117;
 
   // Links
   --link-color: #9ecbff;
@@ -129,8 +131,7 @@ $link-font-weight: 600;
   --footer-border-top: 1px solid #1f1f1f;
   --slider-border-color: #4caf50;
   --action-button-border-color: #3f4350;
-  --attention-border-color: #ffa726; 
-  
+  --attention-border-color: #e39435;
   --nav-menu-border-color: #2a3d2a;
 
   // Alerts / Status
