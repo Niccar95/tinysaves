@@ -52,7 +52,7 @@ form {
             background-color: var(--light-body-background); 
             border-radius: 15px;
             padding: 1rem 2rem;
-            box-shadow: var(--shadow);
+            box-shadow: var(--floating-shadow);
             
             @include desktop() {
             padding: 2rem;
