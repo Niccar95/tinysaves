@@ -12,6 +12,7 @@ const SettingsPage = async () => {
   const session = await getServerSession(authOptions);
   const t = await getTranslations("pages");
   const ts = await getTranslations("userSettings");
+  const td = await getTranslations("displaySettings");
 
   if (!session) {
     redirect("/");
@@ -30,18 +31,18 @@ const SettingsPage = async () => {
       <section className="content">
         <h1>{t("settings")}</h1>
         <section className="settingsSection">
-          <h2>Display settings</h2>
+          <h2>{td("heading")}</h2>
           <div className="settingsWrapper">
-            <h3>Change theme</h3>
+            <h3>{td("changeTheme")}</h3>
             <ThemeToggle currentTheme={theme} />
           </div>
 
           <h2>{ts("heading")}</h2>
           <div className="settingsWrapper">
-            <h3>Change password</h3>
+            <h3>{ts("changePassword")}</h3>
             <ChangePasswordForm />
 
-            <h3>Remove account</h3>
+            <h3>{ts("removeAccount")}</h3>
             <DeleteAccountButton />
           </div>
         </section>

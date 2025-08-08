@@ -146,7 +146,15 @@
 },
 "userSettings": {
   "heading": "Configuración de usuario",
-  "delete": "Eliminar cuenta"
+  "changePassword": "Cambiar contraseña",
+  "currentPassword": "Contraseña actual:",
+  "newPassword": "Nueva contraseña:",
+  "confirmPassword": "Confirmar nueva contraseña:",
+  "removeAccount": "Eliminar cuenta"
+},
+"displaySettings": {
+  "heading": "Configuración de pantalla",
+  "changeTheme": "Cambiar tema"
 },
 "footer": {
   "social": "Sígueme en"

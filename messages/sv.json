@@ -147,7 +147,15 @@
 },
 "userSettings": {
   "heading": "Användarinställningar",
-  "delete": "Ta bort konto"
+  "changePassword": "Byt lösenord",
+  "currentPassword": "Nuvarande lösenord:",
+  "newPassword": "Nytt lösenord:",
+  "confirmPassword": "Bekräfta nytt lösenord:",
+  "removeAccount": "Ta bort konto"
+},
+"displaySettings": {
+  "heading": "Bildskärmsinställningar",
+  "changeTheme": "Byt tema"
 },
 "footer": {
   "social": "Följ mig på"

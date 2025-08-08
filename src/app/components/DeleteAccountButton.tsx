@@ -44,7 +44,7 @@ const DeleteAccountButton = () => {
     <>
       <button className="actionButton delete" onClick={deleteAccount}>
         <i className="bi bi-trash3"></i>
-        {t("delete")}
+        {t("removeAccount")}
       </button>
     </>
   );

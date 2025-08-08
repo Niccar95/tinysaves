@@ -5,8 +5,11 @@ import Spinner from "./Spinner";
 import { toast } from "react-toastify";
 import { changePassword } from "@/utils/validationSchemas";
 import { changeUserPassword } from "@/services/authService";
+import { useTranslations } from "next-intl";
 
 const ChangePasswordForm = () => {
+  const t = useTranslations("userSettings");
+
   const [loader, setLoader] = useState<boolean>(false);
   const [formData, setFormData] = useState<{
     currentPassword: string;
@@ -58,7 +61,7 @@ const ChangePasswordForm = () => {
 
   return (
     <form onSubmit={handleChangePassword}>
-      <label htmlFor="currentPassword">Current password:</label>
+      <label htmlFor="currentPassword">{t("currentPassword")}</label>
       <div>
         <input
           id="currentPassword"
@@ -72,7 +75,7 @@ const ChangePasswordForm = () => {
         )}
       </div>
 
-      <label htmlFor="newPassword">New password:</label>
+      <label htmlFor="newPassword">{t("newPassword")}</label>
       <div>
         <input
           id="newPassword"
@@ -86,7 +89,7 @@ const ChangePasswordForm = () => {
         )}
       </div>
 
-      <label htmlFor="confirmPassword">Confirm password: </label>
+      <label htmlFor="confirmPassword">{t("confirmPassword")}</label>
       <div>
         <input
           id="confirmPassword"
@@ -113,7 +116,7 @@ const ChangePasswordForm = () => {
       )}
 
       <button type="submit" className="resetPasswordButton margin">
-        Change password
+        {t("changePassword")}
       </button>
 
       {success && (

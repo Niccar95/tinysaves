@@ -146,7 +146,15 @@
 },
 "userSettings": {
   "heading": "User settings",
-  "delete": "Delete account"
+  "changePassword": "Change password",
+  "currentPassword": "Current password:",
+  "newPassword": "New password:",
+  "confirmPassword": "Confirm new password:",
+  "removeAccount": "Remove account"
+},
+"displaySettings": {
+  "heading": "Display settings",
+  "changeTheme": "Change theme"
 },
 "footer": {
   "social": "Follow me on"
