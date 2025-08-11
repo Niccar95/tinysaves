@@ -17,6 +17,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import prisma from "./db";
 import { ThemeProvider } from "./providers/ThemeProvider";
+import FriendRequests from "./components/FriendRequests";
 
 const allMessages = { en, sv, es };
 
@@ -62,6 +63,7 @@ export default async function RootLayout({
             theme="light"
             transition={Bounce}
           />
+          <FriendRequests />
           <SessionProvider>
             <ThemeProvider>
               <SidebarProvider>
