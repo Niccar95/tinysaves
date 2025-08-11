@@ -1,6 +1,6 @@
 "use client";
 import { findUser } from "@/utils/validationSchemas";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Spinner from "./Spinner";
 import { findUserName } from "@/services/userService";
 import Image from "next/image";
@@ -15,17 +15,18 @@ const AddFriendForm = () => {
   const [userAvatar, setUserAvatar] = useState<string>("");
   const presetAvatar = "/presetAvatar.svg";
 
+  const debounceTimer = useRef<NodeJS.Timeout | null>(null);
+
   const openFriendModal = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleFindUser = async (val: string) => {
-    setUserName(val);
-    setErrors({ ...errors, userName: "" });
+  const handleFindUser = async (value: string) => {
+    setErrors({ userName: "" });
     setSuccess(false);
     setFoundUser("");
 
-    if (!val.trim()) {
+    if (!value.trim()) {
       setLoader(false);
       return;
     }
@@ -33,7 +34,7 @@ const AddFriendForm = () => {
     setLoader(true);
 
     const { error } = findUser.validate(
-      { userName: val },
+      { userName: value },
       { abortEarly: false }
     );
 
@@ -46,7 +47,7 @@ const AddFriendForm = () => {
       return;
     }
 
-    const result = await findUserName(val);
+    const result = await findUserName(value);
 
     if (result) {
       setFoundUser(result.name);
@@ -58,6 +59,35 @@ const AddFriendForm = () => {
     }
 
     setLoader(false);
+  };
+
+  const handleInputChange = (value: string) => {
+    setUserName(value);
+    setErrors({});
+    setSuccess(false);
+    setFoundUser("");
+    setLoader(false);
+
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
+
+    if (value.trim().length >= 3) {
+      debounceTimer.current = setTimeout(() => {
+        handleFindUser(value);
+      }, 400);
+    } else if (value.trim().length > 0) {
+      const { error } = findUser.validate(
+        { userName: value },
+        { abortEarly: false }
+      );
+      if (error) {
+        const newErrors = Object.fromEntries(
+          error.details.map(({ path, message }) => [path[0], message])
+        );
+        setErrors(newErrors);
+      }
+    }
   };
 
   return (
@@ -75,6 +105,8 @@ const AddFriendForm = () => {
             setUserName("");
             setFoundUser("");
             setErrors({});
+            setSuccess(false);
+            setLoader(false);
           }}
         >
           <div className="modalContent" onClick={(e) => e.stopPropagation()}>
@@ -86,17 +118,17 @@ const AddFriendForm = () => {
                   className="textInput"
                   type="text"
                   value={userName}
-                  onChange={(e) => {
-                    handleFindUser(e.target.value);
-                  }}
-                ></input>
+                  onChange={(e) => handleInputChange(e.target.value)}
+                />
                 {errors.userName && (
                   <div className="errorMessage">{errors.userName}</div>
                 )}
               </div>
+
               {success && foundUser && (
                 <div className="successMessage">Username found!</div>
               )}
+
               {success && foundUser && (
                 <article className="profilePreviewCard">
                   <div className="profileHeader">
@@ -105,8 +137,8 @@ const AddFriendForm = () => {
                         src={userAvatar}
                         alt="User Avatar"
                         className="avatarPreview"
-                        width="50"
-                        height="50"
+                        width={50}
+                        height={50}
                       />
                     </div>
                     <h2>{foundUser}</h2>
@@ -117,6 +149,7 @@ const AddFriendForm = () => {
                   </button>
                 </article>
               )}
+
               {loader && (
                 <div className="spinnerWrapper">
                   <Spinner />
