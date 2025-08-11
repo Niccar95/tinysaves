@@ -52,3 +52,27 @@ export const findUserName = async (userName: string): Promise<User | null> => {
     return null;
   }
 };
+
+export async function sendFriendRequest(
+  toUserName: string,
+  fromUserName: string
+) {
+  try {
+    const response = await fetch("/api/sendFriendRequest", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ toUserName, fromUserName }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Failed to send friend request");
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw error;
+  }
+}

@@ -2,8 +2,9 @@
 import { findUser } from "@/utils/validationSchemas";
 import React, { useRef, useState } from "react";
 import Spinner from "./Spinner";
-import { findUserName } from "@/services/userService";
+import { findUserName, sendFriendRequest } from "@/services/userService";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 const AddFriendForm = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -16,6 +17,9 @@ const AddFriendForm = () => {
   const presetAvatar = "/presetAvatar.svg";
 
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
+
+  const { data: session } = useSession();
+  const fromUserName = session?.user?.name || "";
 
   const openFriendModal = () => {
     setIsOpen(!isOpen);
@@ -90,6 +94,19 @@ const AddFriendForm = () => {
     }
   };
 
+  const handleSendRequest = async () => {
+    try {
+      setLoader(true);
+
+      await sendFriendRequest(foundUser, fromUserName);
+      console.log("Friend request sent!");
+    } catch (error) {
+      console.log("Failed to send request", error);
+    } finally {
+      setLoader(false);
+    }
+  };
+
   return (
     <div>
       <button className="actionButton" onClick={openFriendModal}>
@@ -143,7 +160,7 @@ const AddFriendForm = () => {
                     </div>
                     <h2>{foundUser}</h2>
                   </div>
-                  <button className="actionButton">
+                  <button className="actionButton" onClick={handleSendRequest}>
                     <i className="bi bi-send-fill"></i>
                     Send request
                   </button>
