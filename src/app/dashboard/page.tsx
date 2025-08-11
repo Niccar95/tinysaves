@@ -29,7 +29,7 @@ const Dashboard = async () => {
         <section className="goalSetupSection">
           <h1>{t("dashboard")}</h1>
           <div className="greetingContainer">
-            <div className="userImageContainer small">
+            <div className="userImageWrapper userImageWrapper--small">
               <Image
                 src={displayAvatar || presetAvatar}
                 alt="User Avatar"

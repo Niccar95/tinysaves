@@ -30,3 +30,25 @@ export const updateUserProfile = async (
     return null;
   }
 };
+
+export const findUserName = async (userName: string): Promise<User | null> => {
+  try {
+    const response = await fetch(
+      `/api/findUser?userName=${encodeURIComponent(userName)}`,
+      {
+        method: "GET",
+      }
+    );
+
+    if (!response.ok) {
+      console.error("Failed to get username");
+      return null;
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Failed to find user", error);
+    return null;
+  }
+};

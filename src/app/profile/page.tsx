@@ -7,6 +7,7 @@ import star from "/public/star.svg";
 import { redirect } from "next/navigation";
 import prisma from "../db";
 import { getTranslations } from "next-intl/server";
+import AddFriendForm from "../components/AddFriendForm";
 
 const ProfilePage = async () => {
   const session = await getServerSession(authOptions);
@@ -39,7 +40,7 @@ const ProfilePage = async () => {
         </section>
 
         <article className="profileCard">
-          <div className="userImageContainer">
+          <div className="userImageWrapper userImageWrapper--large">
             <Image
               src={userAvatar || presetAvatar}
               alt="User Avatar"
@@ -62,6 +63,9 @@ const ProfilePage = async () => {
             </div>
           </section>
         </article>
+
+        <h2>Friend list</h2>
+        <AddFriendForm />
       </section>
     </>
   );

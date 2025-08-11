@@ -139,3 +139,9 @@ export const changePassword = Joi.object({
     "string.empty": "This is a required field",
   }),
 });
+
+export const findUser = Joi.object({
+  userName: Joi.string().min(3).required().messages({
+    "string.empty": "This is a required field",
+  }),
+});

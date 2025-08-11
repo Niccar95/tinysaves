@@ -64,7 +64,7 @@ const EditProfileForm = () => {
 
   return (
     <>
-      <div className="userImageContainer">
+      <div className="userImageWrapper userImageWrapper--large">
         <Image
           src={avatarImage || presetAvatar}
           alt="User Avatar"

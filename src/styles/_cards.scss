@@ -119,12 +119,10 @@
     }
 }
 
-.userImageContainer {
+.userImageWrapper {
     position: relative;
     border-radius: 50%;
     border: 0.5px solid rgba(0, 0, 0, 0.1);
-    width: 200px;
-    height: 200px;
     background-color: rgb(220, 220, 220);
 
     .avatarPreview {
@@ -134,6 +132,16 @@
         height: 100%;
         border-radius: 50%;
     }
+}
+
+.userImageWrapper--small {
+  width: 60px;
+  height: 60px;
+}
+
+.userImageWrapper--large {
+  width: 200px;
+  height: 200px;
 }
 
 .avatarSelection { 
@@ -300,4 +308,24 @@
     font-weight: $secondary-heading-font-weight;
     color: var(--link-color);
   }
+}
+
+
+.profilePreviewCard {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border-radius: 15px;
+    border: solid 0.5px var(--card-border-color);
+    border-top: solid 5px var(--card-border-color);
+
+    .profileHeader {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+    }
+
 }

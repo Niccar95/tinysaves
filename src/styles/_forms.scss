@@ -47,12 +47,13 @@ form {
     }
 }
 
-        .addGoalForm {
+        .addGoalForm, .findUserForm {
             width: 300px;
             background-color: var(--light-body-background); 
             border-radius: 15px;
             padding: 1rem 2rem;
             box-shadow: var(--floating-shadow);
+            border: solid 0.5px var(--card-border-color);
             
             @include desktop() {
             padding: 2rem;

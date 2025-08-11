@@ -37,7 +37,7 @@
     color: var(--primary-text-color);
     border: none;
     cursor: pointer;
-
+ 
     &:hover {
         text-decoration: underline;
         
@@ -131,7 +131,7 @@
     background-color: var(--slider-highlight-bg);
     box-shadow: 0 0 8px rgba(102, 187, 106, 0.6);
     transition: background-color 0.3s ease;
-    border-color: darken(#66bb6a, 15%);
+    border-color: #579f5a;
 }
 
 
