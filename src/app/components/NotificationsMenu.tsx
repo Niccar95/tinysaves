@@ -6,7 +6,7 @@ interface LangMenuProps {
   className?: string;
 }
 
-const NotificationsMenu = ({ closeMenu, className }: LangMenuProps) => {
+const NotificationsMenu = ({ className }: LangMenuProps) => {
   return (
     <>
       <section
