@@ -5,6 +5,7 @@ import Spinner from "./Spinner";
 import { findUserName, sendFriendRequest } from "@/services/userService";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 const AddFriendForm = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -99,9 +100,9 @@ const AddFriendForm = () => {
       setLoader(true);
 
       await sendFriendRequest(foundUser, fromUserName);
-      console.log("Friend request sent!");
+      toast.success(`Friend request sent to ${foundUser}!`);
     } catch (error) {
-      console.log("Failed to send request", error);
+      toast.error(`Failed to send friend request, ${error}`);
     } finally {
       setLoader(false);
     }

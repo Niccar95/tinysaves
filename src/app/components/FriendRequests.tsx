@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import Pusher from "pusher-js";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
@@ -11,11 +12,16 @@ const FriendRequests = () => {
   const [requests, setRequests] = useState<{ from: string; to: string }[]>([]);
   const requestsRef = useRef(requests);
 
+  const { data: session } = useSession();
+  const loggedInUser = session?.user?.name || "";
+
   useEffect(() => {
     requestsRef.current = requests;
   }, [requests]);
 
   useEffect(() => {
+    if (!pusherKey || !loggedInUser) return;
+
     const pusher = new Pusher(pusherKey, {
       cluster: pusherCluster,
     });
@@ -25,7 +31,9 @@ const FriendRequests = () => {
     channel.bind("new-friend-request", (data: { from: string; to: string }) => {
       setRequests([...requestsRef.current, data]);
 
-      toast.info(`New friend request from ${data.from}`);
+      if (data.from !== loggedInUser) {
+        toast.info(`New friend request from ${data.from}`);
+      }
     });
 
     return () => {
@@ -33,7 +41,7 @@ const FriendRequests = () => {
       channel.unsubscribe();
       pusher.disconnect();
     };
-  }, []);
+  }, [loggedInUser]);
 
   return null;
 };

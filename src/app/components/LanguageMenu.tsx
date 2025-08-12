@@ -29,7 +29,7 @@ const LanguageMenu = ({
   return (
     <>
       {!isEditing && (
-        <section className={`actionsMenu langMenu ${className}`}>
+        <section className={`actionsMenu headerMenu langMenu ${className}`}>
           <button
             className="actionButton langMenuButton"
             onClick={() => {

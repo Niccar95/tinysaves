@@ -16,11 +16,8 @@
     border: solid 0.5px var(--card-border-color);
 }
 
-.langMenu {
+.headerMenu {
   position: fixed;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
   background: var(--surface-elevated);
   border: solid 1px var(--nav-menu-border-color);
   border-top: none;
@@ -29,16 +26,31 @@
   transition: top 0.3s ease, opacity 0.3s ease;
   z-index: 100;
 
-  @include desktop() {
-    left: auto;
-    right: 0;
-    transform: none;
-  }
-
   &.visible {
     top: 80px;
     opacity: 1;
     pointer-events: auto;
   }
 }
+
+.langMenu {
+  top: 60px;
+  left: 35%;
+
+    @include desktop() {
+    left: auto;
+    right: 0;
+
+  }
+}
+
+.notificationsMenu {
+  top: 60px;
+  left: 17%;
+  @include desktop() {
+    left: auto;
+    right: 8%;
+  }
+}
+
 
