@@ -1,3 +1,4 @@
+import prisma from "@/app/db";
 import { NextRequest, NextResponse } from "next/server";
 import Pusher from "pusher";
 
@@ -32,7 +33,44 @@ export async function POST(req: NextRequest) {
       from: fromUserName,
     });
 
-    return NextResponse.json({ message: "Friend request sent" });
+    //I need this to get the recipients id
+
+    const toUser = await prisma.user.findUnique({
+      where: { name: toUserName },
+      select: { userId: true },
+    });
+    if (!toUser) {
+      return NextResponse.json(
+        { error: "Recipient not found" },
+        { status: 404 }
+      );
+    }
+
+    //I need this to get the senders id
+
+    const fromUser = await prisma.user.findUnique({
+      where: { name: fromUserName },
+      select: { userId: true },
+    });
+    if (!fromUser) {
+      return NextResponse.json({ error: "Sender not found" }, { status: 404 });
+    }
+
+    const notification = await prisma.notifications.create({
+      data: {
+        userId: toUser.userId,
+        fromUserId: fromUser.userId,
+        type: "friend_request",
+        message: `${fromUserName} sent you a friend request`,
+        status: "pending",
+        isRead: false,
+      },
+    });
+
+    return NextResponse.json(
+      { message: "Friend request sent", notification },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Pusher trigger error:", error);
     return NextResponse.json(

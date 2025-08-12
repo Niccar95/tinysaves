@@ -27,6 +27,8 @@ model User {
   userMilestones UserMilestones[]     
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  notificationsReceived Notifications[] @relation("NotificationRecipient")
+  notificationsSent Notifications[] @relation("NotificationSender")
 }
 
 model UserSettings {
@@ -76,4 +78,20 @@ model UserMilestones {
   milestone Milestones @relation(fields: [milestoneId], references: [milestoneId], onDelete: Cascade)
   createdAt DateTime @default(now())
   @@unique([userId, milestoneId])  
+}
+
+
+model Notifications {
+  notificationId String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  type String
+  fromUserId String? @db.ObjectId
+  message String
+  status String @default("pending")
+  isRead Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation("NotificationRecipient", fields: [userId], references: [userId], onDelete: Cascade)
+  fromUser User? @relation("NotificationSender", fields: [fromUserId], references: [userId], onDelete: SetNull)
 }

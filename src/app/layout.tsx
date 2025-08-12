@@ -18,6 +18,7 @@ import { authOptions } from "@/lib/auth";
 import prisma from "./db";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import FriendRequests from "./components/FriendRequests";
+import { NotificationsProvider } from "./providers/NotificationsProvider";
 
 const allMessages = { en, sv, es };
 
@@ -35,6 +36,11 @@ export default async function RootLayout({
       where: { userId: session.user.id },
     });
     theme = userSettings?.theme || "light";
+
+    const notifications = await prisma.notifications.findMany({
+      where: { userId: session?.user.id },
+      orderBy: { createdAt: "desc" },
+    });
   }
 
   await ensureMilestonesExist();
@@ -64,40 +70,42 @@ export default async function RootLayout({
             transition={Bounce}
           />
           <SessionProvider>
-            <FriendRequests />
-            <ThemeProvider>
-              <SidebarProvider>
-                <ConditionalNavbar />
-                <CurrencyProvider>
-                  <ConditionalMain>{children}</ConditionalMain>
-                </CurrencyProvider>
-              </SidebarProvider>
-              <footer>
-                <section className="contactSection">
-                  <h3 className="contactHeading">{t("social")}</h3>
+            <NotificationsProvider>
+              <FriendRequests />
+              <ThemeProvider>
+                <SidebarProvider>
+                  <ConditionalNavbar />
+                  <CurrencyProvider>
+                    <ConditionalMain>{children}</ConditionalMain>
+                  </CurrencyProvider>
+                </SidebarProvider>
+                <footer>
+                  <section className="contactSection">
+                    <h3 className="contactHeading">{t("social")}</h3>
 
-                  <div className="linkWrapper">
-                    <a
-                      className="footerLink"
-                      href="https://github.com/Niccar95"
-                      rel="noopener noreferrer"
-                    >
-                      <i className="bi bi-github"></i>
-                    </a>
-                    <a
-                      className="footerLink"
-                      href="https://www.linkedin.com/in/nicolas-carrasco-6882402a5/"
-                      rel="noopener noreferrer"
-                    >
-                      <i className="bi bi-linkedin"></i>
-                    </a>
-                  </div>
-                </section>
-                <p className="copyright">
-                  &copy; {new Date().getFullYear()} TinySaves
-                </p>
-              </footer>
-            </ThemeProvider>
+                    <div className="linkWrapper">
+                      <a
+                        className="footerLink"
+                        href="https://github.com/Niccar95"
+                        rel="noopener noreferrer"
+                      >
+                        <i className="bi bi-github"></i>
+                      </a>
+                      <a
+                        className="footerLink"
+                        href="https://www.linkedin.com/in/nicolas-carrasco-6882402a5/"
+                        rel="noopener noreferrer"
+                      >
+                        <i className="bi bi-linkedin"></i>
+                      </a>
+                    </div>
+                  </section>
+                  <p className="copyright">
+                    &copy; {new Date().getFullYear()} TinySaves
+                  </p>
+                </footer>
+              </ThemeProvider>
+            </NotificationsProvider>
           </SessionProvider>
         </NextIntlClientProvider>
       </body>

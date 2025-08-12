@@ -4,7 +4,7 @@ import { SidebarContext } from "@/app/contexts/SidebarContext";
 import { useState, ReactNode } from "react";
 
 export const SidebarProvider = ({ children }: { children: ReactNode }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   return (
     <SidebarContext.Provider value={{ isSidebarOpen, setIsSidebarOpen }}>
