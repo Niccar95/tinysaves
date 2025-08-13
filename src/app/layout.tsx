@@ -36,11 +36,6 @@ export default async function RootLayout({
       where: { userId: session.user.id },
     });
     theme = userSettings?.theme || "light";
-
-    //   const notifications = await prisma.notifications.findMany({
-    //     where: { userId: session?.user.id },
-    //     orderBy: { createdAt: "desc" },
-    //   });
   }
 
   await ensureMilestonesExist();

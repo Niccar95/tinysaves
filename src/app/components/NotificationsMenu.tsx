@@ -1,25 +1,28 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
+import { NotificationsContext } from "../contexts/NotificationsContext";
 interface LangMenuProps {
   closeMenu: () => void;
   className?: string;
 }
 
 const NotificationsMenu = ({ className }: LangMenuProps) => {
+  const { notifications } = useContext(NotificationsContext);
+
   return (
     <>
       <section
         className={`actionsMenu headerMenu notificationsMenu ${className} `}
       >
-        {/* //     {requests.length > 0 ? (
-    //       <ul>
-    //         {requests.map((req, id) => (
-    //           <li key={id}>Pending friend request from {req.from}</li>
-    //         ))}
-    //       </ul>
-    //     ) : (
-    //       <p>No notifications</p>
-    //     )} */}
+        {notifications.length > 0 ? (
+          <ul>
+            {notifications.map((notification, i) => (
+              <li key={i}>{notification.message}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>No notifications</p>
+        )}
       </section>
     </>
   );
