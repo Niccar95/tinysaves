@@ -15,9 +15,22 @@ const NotificationsMenu = ({ className }: LangMenuProps) => {
         className={`actionsMenu headerMenu notificationsMenu ${className} `}
       >
         {notifications.length > 0 ? (
-          <ul>
+          <ul className="notificationList">
             {notifications.map((notification, i) => (
-              <li key={i}>{notification.message}</li>
+              <li className="notification" key={i}>
+                <p className="notificationMessage">{notification.message}</p>
+
+                <div className="notificationActions">
+                  <button className="actionButton small">
+                    <i className="bi bi-check-circle-fill"></i>
+                    Accept
+                  </button>
+                  <button className="actionButton small declineButton">
+                    <i className="bi bi-x-circle-fill"></i>
+                    Decline
+                  </button>
+                </div>
+              </li>
             ))}
           </ul>
         ) : (

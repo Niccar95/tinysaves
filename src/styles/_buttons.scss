@@ -39,8 +39,7 @@
     cursor: pointer;
  
     &:hover {
-        text-decoration: underline;
-        
+        text-decoration: underline;   
     }
 }
 
@@ -63,11 +62,23 @@
 }
 
 
-.actionButton.delete, .closeButton {
+.actionButton.delete, .closeButton, .declineButton {
     background-color: var(--tertiary-button-color);
     color: white;
     border: solid 2px var(--secondary-border-color);
 }
+
+.small {
+    width: unset;
+    padding: 0rem 1rem 0rem 1rem;
+
+      &:hover {
+        opacity: 0.8;
+        border: solid 2px var(--primary-border-color); 
+    }
+}
+
+
 
 .actionButton.disabled {
     opacity: 0.8;
