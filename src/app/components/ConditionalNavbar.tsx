@@ -14,6 +14,7 @@ const ConditionalNavbar = () => {
     "/profile",
     "/profile/edit",
     "/settings",
+    "/notifications",
   ];
 
   if (allowedPaths.includes(pathname)) {

@@ -47,6 +47,7 @@
 .notificationsMenu {
   top: 60px;
   left: 17%;
+  text-align: center;
   @include desktop() {
     left: auto;
     right: 8%;

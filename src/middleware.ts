@@ -23,5 +23,6 @@ export const config = {
     "/profile",
     "/profile/edit",
     "/settings",
+    "/notifications",
   ],
 };

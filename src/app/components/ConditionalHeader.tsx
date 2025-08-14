@@ -10,10 +10,12 @@ import { useLocale } from "next-intl";
 import { useClickOutside } from "../hooks/useClickOutside";
 import { ThemeContext } from "../contexts/ThemeContext";
 import NotificationsMenu from "./NotificationsMenu";
+import { NotificationsContext } from "../contexts/NotificationsContext";
 
 const ConditionalHeader = ({ children }: { children: React.ReactNode }) => {
   const locale = useLocale();
   const { trackedTheme } = useContext(ThemeContext);
+  const { notifications } = useContext(NotificationsContext);
 
   const [openLangMenu, setOpenLangMenu] = useState<boolean>(false);
   const [openNotificationsMenu, setOpenNotificationsMenu] =
@@ -36,6 +38,7 @@ const ConditionalHeader = ({ children }: { children: React.ReactNode }) => {
     "/profile",
     "/profile/edit",
     "/settings",
+    "/notifications",
   ];
 
   if (!allowedPaths.includes(pathname)) {
@@ -61,7 +64,11 @@ const ConditionalHeader = ({ children }: { children: React.ReactNode }) => {
             }}
           >
             <i className="bi bi-bell-fill">
-              <span className="notificationsCounter"></span>
+              {notifications.length > 0 && (
+                <span className="notificationsCounter">
+                  {notifications.length}
+                </span>
+              )}
             </i>
           </button>
 
