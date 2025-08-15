@@ -39,18 +39,19 @@ export const NotificationsProvider = ({
     if (!pusherKey || !userId) return;
 
     const pusher = new Pusher(pusherKey, { cluster: pusherCluster });
-    const channel = pusher.subscribe(`user-${userId}-notifications`);
+    const channel = pusher.subscribe(`friend-requests`);
 
-    channel.bind("new-notification", (notification: Notification) => {
-      setNotifications((prev) => [...prev, notification]);
+    channel.bind("new-friend-request", (notification: Notification) => {
+      if (notification.userId === session?.user.name) {
+        setNotifications((prev) => [...prev, notification]);
+      }
     });
-
     return () => {
       channel.unbind_all();
       channel.unsubscribe();
       pusher.disconnect();
     };
-  }, [userId]);
+  }, [session?.user.name, userId]);
 
   return (
     <NotificationsContext.Provider value={{ notifications, setNotifications }}>
