@@ -23,16 +23,14 @@ export const NotificationsProvider = ({
   const userId = session?.user?.id;
   const userName = session?.user?.name;
 
-  // Initial fetch
   useEffect(() => {
     if (!userId) return;
-
     (async () => {
       try {
         const response = await getNotifications();
         if (response) setNotifications(response);
-      } catch (error) {
-        console.error("Failed to fetch notifications", error);
+      } catch (err) {
+        console.error("Failed to fetch notifications", err);
       }
     })();
   }, [userId]);
@@ -43,21 +41,19 @@ export const NotificationsProvider = ({
     const pusher = new Pusher(pusherKey, { cluster: pusherCluster });
     const channel = pusher.subscribe("friend-requests");
 
-    const handler = async (data: { to: string; from: string }) => {
+    const onNew = (data: {
+      to: string;
+      from: string;
+      notification: Notification;
+    }) => {
       if (data.to !== userName) return;
-
-      try {
-        const next = await getNotifications();
-        if (next) setNotifications(next);
-      } catch (error) {
-        console.error("Failed to refresh notifications after event", error);
-      }
+      setNotifications((prev) => [...prev, data.notification]);
     };
 
-    channel.bind("new-friend-request", handler);
+    channel.bind("new-friend-request", onNew);
 
     return () => {
-      channel.unbind("new-friend-request", handler);
+      channel.unbind("new-friend-request", onNew);
       channel.unsubscribe();
       pusher.disconnect();
     };

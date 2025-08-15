@@ -21,19 +21,10 @@ const pusher = new Pusher({
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { toUserName, fromUserName } = body;
-
+    const { toUserName, fromUserName } = await req.json();
     if (!toUserName || !fromUserName) {
       return NextResponse.json({ error: "Missing usernames" }, { status: 400 });
     }
-
-    await pusher.trigger("friend-requests", "new-friend-request", {
-      to: toUserName,
-      from: fromUserName,
-    });
-
-    //I need this to get the recipients id
 
     const toUser = await prisma.user.findUnique({
       where: { name: toUserName },
@@ -46,13 +37,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    //I need this to get the senders id
-
     const fromUser = await prisma.user.findUnique({
       where: { name: fromUserName },
       select: { userId: true },
     });
-
     if (!fromUser) {
       return NextResponse.json({ error: "Sender not found" }, { status: 404 });
     }
@@ -66,6 +54,12 @@ export async function POST(req: NextRequest) {
         status: "pending",
         isRead: false,
       },
+    });
+
+    await pusher.trigger("friend-requests", "new-friend-request", {
+      to: toUserName,
+      from: fromUserName,
+      notification,
     });
 
     return NextResponse.json(
