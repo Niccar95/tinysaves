@@ -25,14 +25,17 @@ export const NotificationsProvider = ({
 
   useEffect(() => {
     if (!userId) return;
-    (async () => {
+
+    const fetchNotifications = async () => {
       try {
         const response = await getNotifications();
         if (response) setNotifications(response);
-      } catch (err) {
-        console.error("Failed to fetch notifications", err);
+      } catch (error) {
+        console.error("Failed to fetch notifications", error);
       }
-    })();
+    };
+
+    fetchNotifications();
   }, [userId]);
 
   useEffect(() => {
