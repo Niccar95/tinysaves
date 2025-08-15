@@ -32,7 +32,7 @@ export function useFriendRequests(loggedInUser: string) {
       channel.unsubscribe();
       pusher.disconnect();
     };
-  }, [loggedInUser]);
+  }, [loggedInUser, requests]);
 
   return requests;
 }
