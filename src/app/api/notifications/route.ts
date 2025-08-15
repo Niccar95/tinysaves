@@ -1,29 +1,67 @@
 import prisma from "@/app/db";
-import { authOptions } from "@/lib/auth";
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import Pusher from "pusher";
 
-export const GET = async () => {
-  const session = await getServerSession(authOptions);
-  const userId = session?.user.id;
+const appId = process.env.PUSHER_APP_ID!;
+const key = process.env.NEXT_PUBLIC_PUSHER_KEY!;
+const secret = process.env.PUSHER_SECRET!;
+const cluster = process.env.PUSHER_CLUSTER!;
 
+const pusher = new Pusher({
+  appId,
+  key,
+  secret,
+  cluster,
+  useTLS: true,
+});
+
+export async function POST(req: NextRequest) {
   try {
-    if (!userId) {
-      return NextResponse.json({ notifications: [] }, { status: 200 });
+    const { toUserName, fromUserName } = await req.json();
+
+    if (!toUserName || !fromUserName) {
+      return NextResponse.json({ error: "Missing usernames" }, { status: 400 });
     }
 
-    const notifications = await prisma.notifications.findMany({
-      where: { userId: session?.user.id },
-      orderBy: { createdAt: "desc" },
+    const toUser = await prisma.user.findUnique({
+      where: { name: toUserName },
+      select: { userId: true },
+    });
+    if (!toUser)
+      return NextResponse.json(
+        { error: "Recipient not found" },
+        { status: 404 }
+      );
+
+    const fromUser = await prisma.user.findUnique({
+      where: { name: fromUserName },
+      select: { userId: true },
+    });
+    if (!fromUser)
+      return NextResponse.json({ error: "Sender not found" }, { status: 404 });
+
+    const notification = await prisma.notifications.create({
+      data: {
+        userId: toUser.userId,
+        fromUserId: fromUser.userId,
+        type: "friend_request",
+        message: `${fromUserName} sent you a friend request`,
+        status: "pending",
+        isRead: false,
+      },
     });
 
-    if (notifications.length === 0) {
-      return NextResponse.json({ notifications: [] }, { status: 200 });
-    } else {
-      return NextResponse.json({ notifications }, { status: 200 });
-    }
+    await pusher.trigger("friend-requests", "new-friend-request", notification);
+
+    return NextResponse.json(
+      { message: "Friend request sent", notification },
+      { status: 200 }
+    );
   } catch (error) {
-    console.log(error);
-    return NextResponse.json({ message: "Server error" }, { status: 500 });
+    console.error("Error sending friend request:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
-};
+}
