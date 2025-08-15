@@ -6,10 +6,6 @@ import {
 } from "../contexts/NotificationsContext";
 import { getNotifications } from "@/services/notificationsService";
 import { useSession } from "next-auth/react";
-import Pusher from "pusher-js";
-
-const pusherKey = process.env.NEXT_PUBLIC_PUSHER_KEY || "";
-const pusherCluster = process.env.PUSHER_CLUSTER || "eu";
 
 export const NotificationsProvider = ({
   children,
@@ -33,25 +29,6 @@ export const NotificationsProvider = ({
     };
 
     fetchNotifications();
-  }, [userId]);
-
-  useEffect(() => {
-    if (!pusherKey || !userId) return;
-
-    const pusher = new Pusher(pusherKey, { cluster: pusherCluster });
-    const channel = pusher.subscribe("friend-requests");
-
-    channel.bind("new-friend-request", (notification: Notification) => {
-      if (notification.userId === userId) {
-        setNotifications((prev) => [...prev, notification]);
-      }
-    });
-
-    return () => {
-      channel.unbind_all();
-      channel.unsubscribe();
-      pusher.disconnect();
-    };
   }, [userId]);
 
   return (
