@@ -6,6 +6,7 @@ import { findUserName, sendFriendRequest } from "@/services/userService";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
+import { getNotifications } from "@/services/notificationsService";
 
 const AddFriendForm = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -100,6 +101,7 @@ const AddFriendForm = () => {
       setLoader(true);
 
       await sendFriendRequest(foundUser, fromUserName);
+      getNotifications();
       toast.success(`Friend request sent to ${foundUser}!`);
     } catch (error) {
       toast.error(`Failed to send friend request, ${error}`);
