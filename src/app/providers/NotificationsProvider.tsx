@@ -1,6 +1,5 @@
 "use client";
-
-import { useState, ReactNode, useEffect, useRef } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import {
   NotificationsContext,
   Notification,
@@ -18,14 +17,8 @@ export const NotificationsProvider = ({
   children: ReactNode;
 }) => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
-  const notificationsRef = useRef(notifications);
-
   const { data: session } = useSession();
-  const userId = session?.user.id;
-
-  useEffect(() => {
-    notificationsRef.current = notifications;
-  }, [notifications]);
+  const userId = session?.user?.id;
 
   useEffect(() => {
     if (!userId) return;
@@ -35,7 +28,7 @@ export const NotificationsProvider = ({
         const response = await getNotifications();
         if (response) setNotifications(response);
       } catch (error) {
-        console.log("Failed to get notifications", error);
+        console.error("Failed to fetch notifications", error);
       }
     };
 
@@ -49,7 +42,7 @@ export const NotificationsProvider = ({
     const channel = pusher.subscribe(`user-${userId}-notifications`);
 
     channel.bind("new-notification", (notification: Notification) => {
-      setNotifications([...notificationsRef.current, notification]);
+      setNotifications((prev) => [...prev, notification]);
     });
 
     return () => {
