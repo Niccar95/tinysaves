@@ -42,7 +42,7 @@ export async function PATCH(req: NextRequest) {
     // });
 
     return NextResponse.json(
-      { message: "Friend request sent", updatedNotification },
+      { message: "Friend request updated", updatedNotification },
       { status: 200 }
     );
   } catch (error) {
