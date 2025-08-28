@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 export interface Notification {
+  notificationId: string;
   userId: string;
   fromUserId: string;
   type: string;

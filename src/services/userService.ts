@@ -78,3 +78,29 @@ export const sendFriendRequest = async (
     return null;
   }
 };
+
+export const handleReceivedFriendRequest = async (
+  userChoice: string,
+  notificationId: string
+): Promise<{ message: string } | null> => {
+  try {
+    const response = await fetch("/api/handleFriendRequest", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userChoice, notificationId }),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to accept/decline friend request");
+      return null;
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Failed to accpet/decline friend request", error);
+    return null;
+  }
+};
