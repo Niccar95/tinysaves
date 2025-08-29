@@ -5,25 +5,33 @@ import { Notification } from "../contexts/NotificationsContext";
 
 interface NotificationsListProps {
   notifications: Notification[];
+  setNotifications?: (notifications: Notification[]) => void;
   closeMenu?: () => void;
 }
 
 const NotificationsList = ({
   notifications,
+  setNotifications,
   closeMenu,
 }: NotificationsListProps) => {
+  if (notifications.length === 0) return <p>No notifications</p>;
+
   const handleFriendRequest = async (
     userChoice: string,
-    notificationId: string
+    notification: Notification
   ) => {
     try {
-      await handleReceivedFriendRequest(userChoice, notificationId);
+      await handleReceivedFriendRequest(
+        userChoice,
+        notification.notificationId
+      );
+
+      notification.status = userChoice;
+      setNotifications?.([...notifications]);
     } catch (error) {
       console.error("Failed to handle friend request", error);
     }
   };
-
-  if (notifications.length === 0) return <p>No notifications</p>;
 
   return (
     <ul className="notificationsList">
@@ -31,22 +39,13 @@ const NotificationsList = ({
         <li key={notification.notificationId} className="notification">
           <p className="notificationMessage">{notification.message}</p>
           <div className="notificationActions">
-            {notification.status ? (
-              <span className="notificationStatus">
-                {notification.status === "accepted"
-                  ? "✅ Accepted"
-                  : "❌ Declined"}
-              </span>
-            ) : (
+            {!notification.status || notification.status === "pending" ? (
               <>
                 <button
                   className="actionButton small"
                   onClick={() => {
                     closeMenu?.();
-                    handleFriendRequest(
-                      "accepted",
-                      notification.notificationId
-                    );
+                    handleFriendRequest("accepted", notification);
                   }}
                 >
                   Accept
@@ -55,15 +54,18 @@ const NotificationsList = ({
                   className="actionButton small declineButton"
                   onClick={() => {
                     closeMenu?.();
-                    handleFriendRequest(
-                      "declined",
-                      notification.notificationId
-                    );
+                    handleFriendRequest("declined", notification);
                   }}
                 >
                   Decline
                 </button>
               </>
+            ) : (
+              <span className="notificationStatus">
+                {notification.status === "accepted"
+                  ? "✅ Accepted"
+                  : "❌ Declined"}
+              </span>
             )}
           </div>
         </li>
