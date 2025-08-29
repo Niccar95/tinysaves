@@ -5,11 +5,13 @@ import { Notification } from "../contexts/NotificationsContext";
 
 interface NotificationsListProps {
   notifications: Notification[];
+  setNotifications?: (notifications: Notification[]) => void;
   closeMenu?: () => void;
 }
 
 const NotificationsList = ({
   notifications,
+  setNotifications,
   closeMenu,
 }: NotificationsListProps) => {
   const handleFriendRequest = async (
@@ -18,6 +20,10 @@ const NotificationsList = ({
   ) => {
     try {
       await handleReceivedFriendRequest(userChoice, notificationId);
+
+      if (setNotifications) {
+        setNotifications([...notifications]);
+      }
     } catch (error) {
       console.error("Failed to handle friend request", error);
     }

@@ -10,7 +10,7 @@ interface LangMenuProps {
 }
 
 const NotificationsMenu = ({ closeMenu, className }: LangMenuProps) => {
-  const { notifications } = useContext(NotificationsContext);
+  const { notifications, setNotifications } = useContext(NotificationsContext);
 
   const displayedNotifications = notifications.slice(0, 3);
 
@@ -20,6 +20,7 @@ const NotificationsMenu = ({ closeMenu, className }: LangMenuProps) => {
     >
       <NotificationsList
         notifications={displayedNotifications}
+        setNotifications={setNotifications}
         closeMenu={closeMenu}
       />
       <Link href="/notifications">Show all notifications</Link>
