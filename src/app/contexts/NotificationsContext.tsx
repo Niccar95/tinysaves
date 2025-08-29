@@ -3,7 +3,7 @@ import { createContext } from "react";
 export interface Notification {
   notificationId: string;
   userId: string;
-  fromUserId: string;
+  fromUserId: string | null;
   type: string;
   message: string;
   status: string;
