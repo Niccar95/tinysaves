@@ -5,13 +5,11 @@ import { Notification } from "../contexts/NotificationsContext";
 
 interface NotificationsListProps {
   notifications: Notification[];
-  setNotifications?: (notifications: Notification[]) => void;
   closeMenu?: () => void;
 }
 
 const NotificationsList = ({
   notifications,
-  setNotifications,
   closeMenu,
 }: NotificationsListProps) => {
   const handleFriendRequest = async (
@@ -20,10 +18,6 @@ const NotificationsList = ({
   ) => {
     try {
       await handleReceivedFriendRequest(userChoice, notificationId);
-
-      if (setNotifications) {
-        setNotifications([...notifications]);
-      }
     } catch (error) {
       console.error("Failed to handle friend request", error);
     }
@@ -37,7 +31,13 @@ const NotificationsList = ({
         <li key={notification.notificationId} className="notification">
           <p className="notificationMessage">{notification.message}</p>
           <div className="notificationActions">
-            {notification.status === "pending" ? (
+            {notification.status ? (
+              <span className="notificationStatus">
+                {notification.status === "accepted"
+                  ? "✅ Accepted"
+                  : "❌ Declined"}
+              </span>
+            ) : (
               <>
                 <button
                   className="actionButton small"
@@ -64,12 +64,6 @@ const NotificationsList = ({
                   Decline
                 </button>
               </>
-            ) : (
-              <span className="notificationStatus">
-                {notification.status === "accepted"
-                  ? "✅ Accepted"
-                  : "❌ Declined"}
-              </span>
             )}
           </div>
         </li>
