@@ -49,6 +49,13 @@ export const NotificationsProvider = ({
       from: string;
       notification: Notification;
     }) => {
+      console.log("Received data:", data);
+      console.log("data.to:", data.to);
+      console.log("userName:", userName);
+      console.log("userId:", userId);
+      console.log("Match userName?", data.to === userName);
+      console.log("Match userId?", data.to === userId);
+
       if (data.to !== userName) return;
       setNotifications((prev) => [data.notification, ...prev]);
     };
