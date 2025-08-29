@@ -6,28 +6,35 @@ import { NotificationsContext } from "../contexts/NotificationsContext";
 
 const FriendRequests = () => {
   const { notifications } = useContext(NotificationsContext);
-  const latestNotificationRef = useRef<string | null>(null);
-  const hasBeenShown = useRef(false);
+  const latestRef = useRef<string | null>(null);
 
   useEffect(() => {
     const friendRequests = notifications.filter(
-      (notification) => notification.type === "friend_request"
+      (n) => n.type === "friend_request"
     );
+    if (!friendRequests.length) return;
 
-    if (friendRequests.length === 0) return;
+    const latest = friendRequests[0];
 
-    const latestNotification = friendRequests[0];
-
-    if (!hasBeenShown.current) {
-      latestNotificationRef.current = latestNotification.notificationId;
-      hasBeenShown.current = true;
+    // Skip first render
+    if (!latestRef.current) {
+      latestRef.current = latest.notificationId;
       return;
     }
 
-    if (latestNotification.notificationId !== latestNotificationRef.current) {
-      latestNotificationRef.current = latestNotification.notificationId;
+    // New request
+    if (latest.notificationId !== latestRef.current) {
+      latestRef.current = latest.notificationId;
+      toast.info(latest.message);
+    }
 
-      toast.info(latestNotification.message);
+    // Status change
+    if (latest.status && latest.status !== "pending") {
+      toast.info(
+        `Friend request from ${latest.fromUserId} ${
+          latest.status === "accepted" ? "accepted ✅" : "declined ❌"
+        }`
+      );
     }
   }, [notifications]);
 

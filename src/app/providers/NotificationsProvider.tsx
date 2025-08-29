@@ -58,6 +58,7 @@ export const NotificationsProvider = ({
       from: string;
       notification: Notification;
     }) => {
+      console.log("data.to", data.to, "userId", userId);
       if (data.to !== userId) return;
 
       const remainingNotifications = notifications.filter(
@@ -65,8 +66,8 @@ export const NotificationsProvider = ({
       );
 
       const updatedNotifications = [
-        ...remainingNotifications,
         data.notification,
+        ...remainingNotifications,
       ];
 
       setNotifications(updatedNotifications);
@@ -77,10 +78,11 @@ export const NotificationsProvider = ({
 
     return () => {
       channel.unbind("new-friend-request", onNew);
+      channel.unbind("friend-request-update", onUpdate);
       channel.unsubscribe();
       pusher.disconnect();
     };
-  }, [userId, userName]);
+  }, [notifications, userId, userName]);
 
   return (
     <NotificationsContext.Provider value={{ notifications, setNotifications }}>
