@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { handleReceivedFriendRequest } from "@/services/userService";
 import { Notification } from "../contexts/NotificationsContext";
@@ -13,7 +14,7 @@ const NotificationsList = ({
   closeMenu,
 }: NotificationsListProps) => {
   const handleFriendRequest = async (
-    userChoice: string,
+    userChoice: "accepted" | "declined",
     notificationId: string
   ) => {
     try {
@@ -27,47 +28,51 @@ const NotificationsList = ({
 
   return (
     <ul className="notificationsList">
-      {notifications.map((notification) => (
-        <li key={notification.notificationId} className="notification">
-          <p className="notificationMessage">{notification.message}</p>
-          <div className="notificationActions">
-            {notification.status === "pending" ? (
-              <>
-                <button
-                  className="actionButton small"
-                  onClick={() => {
-                    closeMenu?.();
-                    handleFriendRequest(
-                      "accepted",
-                      notification.notificationId
-                    );
-                  }}
-                >
-                  Accept
-                </button>
-                <button
-                  className="actionButton small declineButton"
-                  onClick={() => {
-                    closeMenu?.();
-                    handleFriendRequest(
-                      "declined",
-                      notification.notificationId
-                    );
-                  }}
-                >
-                  Decline
-                </button>
-              </>
-            ) : (
-              <span className="notificationStatus">
-                {notification.status === "accepted"
-                  ? "✅ Accepted"
-                  : "❌ Declined"}
-              </span>
-            )}
-          </div>
-        </li>
-      ))}
+      {notifications.map((notification) => {
+        const isPending = !notification.status;
+
+        return (
+          <li key={notification.notificationId} className="notification">
+            <p className="notificationMessage">{notification.message}</p>
+            <div className="notificationActions">
+              {isPending ? (
+                <>
+                  <button
+                    className="actionButton small"
+                    onClick={() => {
+                      closeMenu?.();
+                      handleFriendRequest(
+                        "accepted",
+                        notification.notificationId
+                      );
+                    }}
+                  >
+                    Accept
+                  </button>
+                  <button
+                    className="actionButton small declineButton"
+                    onClick={() => {
+                      closeMenu?.();
+                      handleFriendRequest(
+                        "declined",
+                        notification.notificationId
+                      );
+                    }}
+                  >
+                    Decline
+                  </button>
+                </>
+              ) : (
+                <span className="notificationStatus">
+                  {notification.status === "accepted"
+                    ? "✅ Accepted"
+                    : "❌ Declined"}
+                </span>
+              )}
+            </div>
+          </li>
+        );
+      })}
     </ul>
   );
 };
