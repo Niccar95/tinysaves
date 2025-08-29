@@ -1,30 +1,38 @@
-import { useContext, useEffect, useRef } from "react";
-import { toast } from "react-toastify";
-import {
-  NotificationsContext,
-  Notification,
-} from "../contexts/NotificationsContext";
+import { useEffect, useRef, useState } from "react";
+import Pusher from "pusher-js";
+
+const pusherKey = process.env.NEXT_PUBLIC_PUSHER_KEY || "";
+const pusherCluster = process.env.PUSHER_CLUSTER || "eu";
+
+interface FriendRequest {
+  from: string;
+  to: string;
+}
 
 export function useFriendRequests(loggedInUser: string) {
-  const { notifications } = useContext(NotificationsContext);
-  const handledNotificationIds = useRef<Set<string>>(new Set()); // keep track of which notifications have already triggered a toast
+  const [requests, setRequests] = useState<FriendRequest[]>([]);
+  const requestsRef = useRef(requests);
 
   useEffect(() => {
-    // Filter notifications for new friend requests from other users
-    const newFriendRequests = notifications.filter(
-      (notification: Notification) => {
-        return (
-          notification.type === "friend-request" &&
-          notification.fromUserId !== loggedInUser &&
-          !handledNotificationIds.current.has(notification.notificationId)
-        );
-      }
-    );
+    requestsRef.current = requests;
+  }, [requests]);
 
-    // Show a toast for each new friend request and mark it as handled
-    newFriendRequests.forEach((friendRequest) => {
-      toast.info(`New friend request from ${friendRequest.fromUserId}`);
-      handledNotificationIds.current.add(friendRequest.notificationId);
+  useEffect(() => {
+    if (!pusherKey || !loggedInUser) return;
+
+    const pusher = new Pusher(pusherKey, { cluster: pusherCluster });
+    const channel = pusher.subscribe("friend-requests");
+
+    channel.bind("new-friend-request", (data: FriendRequest) => {
+      setRequests([...requestsRef.current, data]);
     });
-  }, [notifications, loggedInUser]);
+
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+      pusher.disconnect();
+    };
+  }, [loggedInUser, requests]);
+
+  return requests;
 }
