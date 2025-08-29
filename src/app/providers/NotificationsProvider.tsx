@@ -49,25 +49,31 @@ export const NotificationsProvider = ({
       from: string;
       notification: Notification;
     }) => {
-      console.log("Received friend request:", data);
-      console.log("userName:", userName, "userId:", userId);
-      console.log("Match?", data.to === userName);
+      if (data.to !== userName) return;
+      setNotifications((prev) => [data.notification, ...prev]);
+    };
 
-      if (data.to !== userName) {
-        console.log("Not for this user, ignoring");
-        return;
-      }
+    const onUpdate = (data: {
+      to: string;
+      from: string;
+      notification: Notification;
+    }) => {
+      if (data.to !== userId) return;
 
-      console.log("Adding notification:", data.notification);
-      setNotifications((prev) => {
-        console.log("Previous notifications:", prev);
-        const newNotifications = [data.notification, ...prev];
-        console.log("New notifications array:", newNotifications);
-        return newNotifications;
-      });
+      const remainingNotifications = notifications.filter(
+        (n) => n.notificationId !== data.notification.notificationId
+      );
+
+      const updatedNotifications = [
+        ...remainingNotifications,
+        data.notification,
+      ];
+
+      setNotifications(updatedNotifications);
     };
 
     channel.bind("new-friend-request", onNew);
+    channel.bind("friend-request-updated", onUpdate);
 
     return () => {
       channel.unbind("new-friend-request", onNew);

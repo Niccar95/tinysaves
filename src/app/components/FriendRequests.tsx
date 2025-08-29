@@ -10,7 +10,7 @@ const FriendRequests = () => {
 
   useEffect(() => {
     const friendRequests = notifications.filter(
-      (notification) => notification.type === "friend-request"
+      (notification) => notification.type === "friend_request"
     );
     if (friendRequests.length === 0) return;
 
