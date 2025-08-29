@@ -1,22 +1,26 @@
 "use client";
-import { useSession } from "next-auth/react";
+
+import { useContext, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
-import { useFriendRequests } from "../hooks/useFriendRequests";
-import { useEffect } from "react";
+import { NotificationsContext } from "../contexts/NotificationsContext";
 
 const FriendRequests = () => {
-  const { data: session } = useSession();
-  const loggedInUser = session?.user?.name || "";
-  const requests = useFriendRequests(loggedInUser);
+  const { notifications } = useContext(NotificationsContext);
+  const latestNotificationRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (requests.length === 0) return;
+    if (notifications.length === 0) return;
 
-    const latestRequest = requests[requests.length - 1];
-    if (latestRequest.from !== loggedInUser) {
-      toast.info(`New friend request from ${latestRequest.from}`);
+    const latestNotification = notifications[notifications.length - 1];
+
+    if (latestNotification.notificationId !== latestNotificationRef.current) {
+      latestNotificationRef.current = latestNotification.notificationId;
+
+      if (latestNotification.type === "friend-request") {
+        toast.info(`New friend request from ${latestNotification.fromUserId}`);
+      }
     }
-  }, [requests, loggedInUser]);
+  }, [notifications]);
 
   return null;
 };
