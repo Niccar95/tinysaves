@@ -3,7 +3,7 @@ import prisma from "../db";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import NotificationsList from "../components/NotificationsList";
+import NotificationsPageClient from "../components/NotificationsPageClient";
 
 const page = async () => {
   const session = await getServerSession(authOptions);
@@ -21,7 +21,7 @@ const page = async () => {
 
   return (
     <section className="content">
-      <NotificationsList notifications={notifications} />
+      <NotificationsPageClient initialNotifications={notifications} />
     </section>
   );
 };
