@@ -10,11 +10,11 @@ const FriendRequests = () => {
 
   useEffect(() => {
     const friendRequests = notifications.filter(
-      (n) => n.type === "friend-request"
+      (notification) => notification.type === "friend-request"
     );
     if (friendRequests.length === 0) return;
 
-    const latestNotification = friendRequests[friendRequests.length - 1];
+    const latestNotification = friendRequests[0];
 
     if (latestNotification.notificationId !== latestNotificationRef.current) {
       latestNotificationRef.current = latestNotification.notificationId;
