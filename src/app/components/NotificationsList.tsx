@@ -31,13 +31,7 @@ const NotificationsList = ({
         <li key={notification.notificationId} className="notification">
           <p className="notificationMessage">{notification.message}</p>
           <div className="notificationActions">
-            {notification.status ? (
-              <span className="notificationStatus">
-                {notification.status === "accepted"
-                  ? "✅ Accepted"
-                  : "❌ Declined"}
-              </span>
-            ) : (
+            {notification.status === "pending" ? (
               <>
                 <button
                   className="actionButton small"
@@ -64,6 +58,12 @@ const NotificationsList = ({
                   Decline
                 </button>
               </>
+            ) : (
+              <span className="notificationStatus">
+                {notification.status === "accepted"
+                  ? "✅ Accepted"
+                  : "❌ Declined"}
+              </span>
             )}
           </div>
         </li>
