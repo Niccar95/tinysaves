@@ -50,7 +50,7 @@ export const NotificationsProvider = ({
       notification: Notification;
     }) => {
       if (data.to !== userName) return;
-      setNotifications((prev) => [...prev, data.notification]);
+      setNotifications((prev) => [data.notification, ...prev]);
     };
 
     const onUpdate = (data: {
