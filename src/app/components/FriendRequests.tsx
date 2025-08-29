@@ -9,16 +9,16 @@ const FriendRequests = () => {
   const latestNotificationRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (notifications.length === 0) return;
+    const friendRequests = notifications.filter(
+      (n) => n.type === "friend-request"
+    );
+    if (friendRequests.length === 0) return;
 
-    const latestNotification = notifications[notifications.length - 1];
+    const latestNotification = friendRequests[friendRequests.length - 1];
 
     if (latestNotification.notificationId !== latestNotificationRef.current) {
       latestNotificationRef.current = latestNotification.notificationId;
-
-      if (latestNotification.type === "friend-request") {
-        toast.info(`New friend request from ${latestNotification.fromUserId}`);
-      }
+      toast.info(`New friend request from ${latestNotification.fromUserId}`);
     }
   }, [notifications]);
 
