@@ -100,7 +100,7 @@ export const handleReceivedFriendRequest = async (
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Failed to accpet/decline friend request", error);
+    console.error("Failed to accept/decline friend request", error);
     return null;
   }
 };

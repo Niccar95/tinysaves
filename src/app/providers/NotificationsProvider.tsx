@@ -53,7 +53,27 @@ export const NotificationsProvider = ({
       setNotifications((prev) => [...prev, data.notification]);
     };
 
+    const onUpdate = (data: {
+      to: string;
+      from: string;
+      notification: Notification;
+    }) => {
+      if (data.to !== userId) return;
+
+      const remainingNotifications = notifications.filter(
+        (n) => n.notificationId !== data.notification.notificationId
+      );
+
+      const updatedNotifications = [
+        ...remainingNotifications,
+        data.notification,
+      ];
+
+      setNotifications(updatedNotifications);
+    };
+
     channel.bind("new-friend-request", onNew);
+    channel.bind("friend-request-updated", onUpdate);
 
     return () => {
       channel.unbind("new-friend-request", onNew);

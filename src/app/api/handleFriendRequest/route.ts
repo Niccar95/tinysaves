@@ -1,5 +1,14 @@
 import prisma from "@/app/db";
 import { NextRequest, NextResponse } from "next/server";
+import Pusher from "Pusher";
+
+const pusher = new Pusher({
+  appId: process.env.PUSHER_APP_ID!,
+  key: process.env.PUSHER_KEY!,
+  secret: process.env.PUSHER_SECRET!,
+  cluster: process.env.PUSHER_CLUSTER!,
+  useTLS: true,
+});
 
 export async function PATCH(req: NextRequest) {
   try {
@@ -11,35 +20,16 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    // const toUser = await prisma.user.findUnique({
-    //   where: { name: notificationId },
-    // });
-    // if (!toUser) {
-    //   return NextResponse.json(
-    //     { error: "Recipient not found" },
-    //     { status: 404 }
-    //   );
-    // }
-
-    // const fromUser = await prisma.user.findUnique({
-    //   where: { name: fromUserName },
-    //   select: { userId: true },
-    // });
-
-    // if (!fromUser) {
-    //   return NextResponse.json({ error: "User not found" }, { status: 404 });
-    // }
-
     const updatedNotification = await prisma.notifications.update({
       where: { notificationId },
       data: { status: userChoice },
     });
 
-    // await pusher.trigger("friend-requests", "new-friend-request", {
-    //   to: toUserName,
-    //   from: fromUserName,
-    //   notification,
-    // });
+    pusher.trigger("friend-requests", "friend-request-updated", {
+      to: updatedNotification.fromUserId,
+      from: updatedNotification.userId,
+      notification: updatedNotification,
+    });
 
     return NextResponse.json(
       { message: "Friend request updated", updatedNotification },

@@ -21,7 +21,7 @@ const page = async () => {
 
   return (
     <section className="content">
-      <NotificationsList notifications={notifications} />;
+      <NotificationsList notifications={notifications} />
     </section>
   );
 };

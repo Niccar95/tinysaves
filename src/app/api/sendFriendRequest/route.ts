@@ -1,6 +1,6 @@
 import prisma from "@/app/db";
 import { NextRequest, NextResponse } from "next/server";
-import Pusher from "pusher";
+import Pusher from "Pusher";
 
 const appId = process.env.PUSHER_APP_ID;
 const key = process.env.NEXT_PUBLIC_PUSHER_KEY;
