@@ -58,7 +58,7 @@ export const NotificationsProvider = ({
       from: string;
       notification: Notification;
     }) => {
-      if (data.to !== userId) return;
+      if (data.to !== userName) return;
 
       setNotifications((prev) => {
         const remaining = prev.filter(

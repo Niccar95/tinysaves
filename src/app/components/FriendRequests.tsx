@@ -30,11 +30,7 @@ const FriendRequests = () => {
 
     // Status change
     if (latest.status && latest.status !== "pending") {
-      toast.info(
-        `Friend request from ${latest.fromUserId} ${
-          latest.status === "accepted" ? "accepted ✅" : "declined ❌"
-        }`
-      );
+      toast.info(latest.message);
     }
   }, [notifications]);
 
