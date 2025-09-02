@@ -59,7 +59,6 @@ export const NotificationsProvider = ({
       from: string;
       notification: Notification;
     }) => {
-      console.log("data.to", data.to, "userId", userId);
       if (data.to !== userId) return;
 
       const remainingNotifications = notifications.filter(

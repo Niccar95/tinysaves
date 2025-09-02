@@ -47,8 +47,8 @@ export async function PATCH(req: NextRequest) {
       });
 
       pusher.trigger("friend-requests", "friend-request-updated", {
-        to: newNotification.userId,
-        from: newNotification.fromUserId,
+        to: updatedNotification.fromUserId,
+        from: updatedNotification.userId,
         notification: newNotification,
       });
     }
