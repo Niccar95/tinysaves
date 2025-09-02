@@ -33,8 +33,8 @@ export async function PATCH(req: NextRequest) {
 
     // Send to original sender
     pusher.trigger("friend-requests", "friend-request-updated", {
-      to: updatedNotification.fromUserId,
-      from: updatedNotification.userId,
+      to: updatedNotification.userId,
+      from: updatedNotification.fromUserId,
       notification: updatedNotification,
     });
 
