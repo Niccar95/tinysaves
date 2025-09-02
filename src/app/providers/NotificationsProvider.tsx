@@ -50,8 +50,7 @@ export const NotificationsProvider = ({
       notification: Notification;
     }) => {
       if (data.to !== userName) return;
-      const updatedNotifications = [data.notification, ...notifications];
-      setNotifications(updatedNotifications);
+      setNotifications((prev) => [data.notification, ...prev]);
     };
 
     const onUpdate = (data: {
@@ -61,16 +60,12 @@ export const NotificationsProvider = ({
     }) => {
       if (data.to !== userId) return;
 
-      const remainingNotifications = notifications.filter(
-        (n) => n.notificationId !== data.notification.notificationId
-      );
-
-      const updatedNotifications = [
-        data.notification,
-        ...remainingNotifications,
-      ];
-
-      setNotifications(updatedNotifications);
+      setNotifications((prev) => {
+        const remaining = prev.filter(
+          (n) => n.notificationId !== data.notification.notificationId
+        );
+        return [data.notification, ...remaining];
+      });
     };
 
     channel.bind("new-friend-request", onNew);
