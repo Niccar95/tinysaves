@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
       where: { name: fromUserName },
       select: { userId: true },
     });
+
     if (!fromUser) {
       return NextResponse.json({ error: "Sender not found" }, { status: 404 });
     }

@@ -25,18 +25,33 @@ export async function PATCH(req: NextRequest) {
       data: { status: userChoice },
     });
 
-    // pusher.trigger("friend-requests", "friend-request-updated", {
-    //   to: updatedNotification.fromUserId,
-    //   from: updatedNotification.userId,
-    //   notification: updatedNotification,
-    // });
+    if (updatedNotification) {
+      const responseMessage =
+        userChoice === "accepted"
+          ? "✅ Your friend request was accepted"
+          : "❌ Your friend request was declined";
 
-    // Send to original sender
-    pusher.trigger("friend-requests", "friend-request-updated", {
-      to: updatedNotification.userId,
-      from: updatedNotification.fromUserId,
-      notification: updatedNotification,
-    });
+      if (!updatedNotification.fromUserId || !updatedNotification.userId) {
+        return NextResponse.json({ error: "Invalid users" }, { status: 400 });
+      }
+
+      const newNotification = await prisma.notifications.create({
+        data: {
+          userId: updatedNotification.fromUserId,
+          fromUserId: updatedNotification.userId,
+          type: "friend_request_response",
+          message: responseMessage,
+          status: "none",
+          isRead: false,
+        },
+      });
+
+      pusher.trigger("friend-requests", "friend-request-updated", {
+        to: newNotification.userId,
+        from: newNotification.fromUserId,
+        notification: newNotification,
+      });
+    }
 
     return NextResponse.json(
       { message: "Friend request updated", updatedNotification },
