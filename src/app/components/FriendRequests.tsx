@@ -3,40 +3,59 @@
 import { useContext, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import { NotificationsContext } from "../contexts/NotificationsContext";
+import { useSession } from "next-auth/react";
 
 const FriendRequests = () => {
   const { notifications } = useContext(NotificationsContext);
-  const latestRef = useRef<string | null>(null);
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
 
+  const latestRequestRef = useRef<string | null>(null);
+  const latestResponseRef = useRef<string | null>(null);
+
+  // To handle new friend requests
   useEffect(() => {
+    if (!userId) return;
+
     const friendRequests = notifications.filter(
-      (n) => n.type === "friend_request"
+      (n) => n.type === "friend_request" && n.userId === userId
     );
     if (!friendRequests.length) return;
 
     const latest = friendRequests[0];
 
-    // Skip first render
-    if (!latestRef.current) {
-      latestRef.current = latest.notificationId;
+    if (!latestRequestRef.current) {
+      latestRequestRef.current = latest.notificationId;
       return;
     }
 
-    // New request
-    if (latest.notificationId !== latestRef.current) {
-      latestRef.current = latest.notificationId;
+    if (latest.notificationId !== latestRequestRef.current) {
+      latestRequestRef.current = latest.notificationId;
       toast.info(latest.message);
     }
+  }, [notifications, userId]);
 
-    // Status change
-    if (latest.status && latest.status !== "pending") {
-      toast.info(
-        `Friend request from ${latest.fromUserId} ${
-          latest.status === "accepted" ? "accepted ✅" : "declined ❌"
-        }`
-      );
+  // To handle friend request responses like accepted or declined
+  useEffect(() => {
+    if (!userId) return;
+
+    const responses = notifications.filter(
+      (n) => n.type === "friend_request_response" && n.userId === userId
+    );
+    if (!responses.length) return;
+
+    const latest = responses[0];
+
+    if (!latestResponseRef.current) {
+      latestResponseRef.current = latest.notificationId;
+      return;
     }
-  }, [notifications]);
+
+    if (latest.notificationId !== latestResponseRef.current) {
+      latestResponseRef.current = latest.notificationId;
+      toast.info(latest.message); // already contains ✅ or ❌ from backend
+    }
+  }, [notifications, userId]);
 
   return null;
 };
