@@ -18,7 +18,7 @@ const FriendRequests = () => {
     if (!userId) return;
 
     const friendRequests = notifications.filter(
-      (n) => n.type === "friend_request" && n.userId === userId
+      (n) => n.type === "friend_request"
     );
     if (!friendRequests.length) return;
 
@@ -40,7 +40,7 @@ const FriendRequests = () => {
     if (!userId) return;
 
     const responses = notifications.filter(
-      (n) => n.type === "friend_request_response" && n.userId === userId
+      (n) => n.type === "friend_request_response"
     );
     if (!responses.length) return;
 
@@ -53,7 +53,7 @@ const FriendRequests = () => {
 
     if (latest.notificationId !== latestResponseRef.current) {
       latestResponseRef.current = latest.notificationId;
-      toast.info(latest.message); // already contains ✅ or ❌ from backend
+      toast.info(latest.message);
     }
   }, [notifications, userId]);
 
