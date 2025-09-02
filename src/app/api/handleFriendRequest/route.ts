@@ -25,6 +25,13 @@ export async function PATCH(req: NextRequest) {
       data: { status: userChoice },
     });
 
+    // pusher.trigger("friend-requests", "friend-request-updated", {
+    //   to: updatedNotification.fromUserId,
+    //   from: updatedNotification.userId,
+    //   notification: updatedNotification,
+    // });
+
+    // Send to original sender
     pusher.trigger("friend-requests", "friend-request-updated", {
       to: updatedNotification.fromUserId,
       from: updatedNotification.userId,

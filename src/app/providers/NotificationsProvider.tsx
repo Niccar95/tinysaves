@@ -78,7 +78,7 @@ export const NotificationsProvider = ({
 
     return () => {
       channel.unbind("new-friend-request", onNew);
-      channel.unbind("friend-request-update", onUpdate);
+      channel.unbind("friend-request-updated", onUpdate);
       channel.unsubscribe();
       pusher.disconnect();
     };
