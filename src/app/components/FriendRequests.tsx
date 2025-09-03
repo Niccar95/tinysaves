@@ -16,20 +16,13 @@ const FriendRequests = () => {
 
     const latest = friendRequests[0];
 
-    // Skip first render
     if (!latestRef.current) {
       latestRef.current = latest.notificationId;
       return;
     }
 
-    // New request
     if (latest.notificationId !== latestRef.current) {
       latestRef.current = latest.notificationId;
-      toast.info(latest.message);
-    }
-
-    // Status change
-    if (latest.status && latest.status !== "pending") {
       toast.info(latest.message);
     }
   }, [notifications]);
