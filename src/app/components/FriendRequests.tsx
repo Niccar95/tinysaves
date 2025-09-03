@@ -9,6 +9,7 @@ const FriendRequests = () => {
 
   const latestRequestRef = useRef<string | null>(null);
   const latestResponseRef = useRef<string | null>(null);
+  const initialLoadRef = useRef(true);
 
   useEffect(() => {
     const requests = notifications.filter((n) => n.type === "friend_request");
@@ -33,6 +34,12 @@ const FriendRequests = () => {
       toast.info(latest.message);
     }
   }, [notifications]);
+
+  useEffect(() => {
+    if (initialLoadRef.current) {
+      initialLoadRef.current = false;
+    }
+  }, []);
 
   return null;
 };

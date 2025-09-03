@@ -37,7 +37,6 @@ export const NotificationsProvider = ({
     fetchNotifications();
   }, [userId]);
 
-  // Pusher subscriptions
   useEffect(() => {
     if (!pusherKey || !userId || !userName) return;
 
