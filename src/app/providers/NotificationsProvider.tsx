@@ -69,6 +69,7 @@ export const NotificationsProvider = ({
       notification: Notification;
     }) => {
       if (data.to !== userName) return;
+      console.log("onUpdate triggered:", data.notification.notificationId);
 
       setNotifications((prev) => {
         const remaining = prev.filter(
