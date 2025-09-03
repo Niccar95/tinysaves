@@ -6,23 +6,30 @@ import { NotificationsContext } from "../contexts/NotificationsContext";
 
 const FriendRequests = () => {
   const { notifications } = useContext(NotificationsContext);
-  const latestRef = useRef<string | null>(null);
+
+  const latestRequestRef = useRef<string | null>(null);
+  const latestResponseRef = useRef<string | null>(null);
 
   useEffect(() => {
-    const friendRequests = notifications.filter(
-      (n) => n.type === "friend_request" || n.type === "friend_request_response"
-    );
-    if (!friendRequests.length) return;
+    const requests = notifications.filter((n) => n.type === "friend_request");
+    if (requests.length === 0) return;
 
-    const latest = friendRequests[0];
-
-    if (!latestRef.current) {
-      latestRef.current = latest.notificationId;
-      return;
+    const latest = requests[0];
+    if (latest.notificationId !== latestRequestRef.current) {
+      latestRequestRef.current = latest.notificationId;
+      toast.info(latest.message);
     }
+  }, [notifications]);
 
-    if (latest.notificationId !== latestRef.current) {
-      latestRef.current = latest.notificationId;
+  useEffect(() => {
+    const responses = notifications.filter(
+      (n) => n.type === "friend_request_response"
+    );
+    if (responses.length === 0) return;
+
+    const latest = responses[0];
+    if (latest.notificationId !== latestResponseRef.current) {
+      latestResponseRef.current = latest.notificationId;
       toast.info(latest.message);
     }
   }, [notifications]);
