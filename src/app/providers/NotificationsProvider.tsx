@@ -22,14 +22,13 @@ export const NotificationsProvider = ({
   const userId = session?.user?.id;
   const userName = session?.user?.name;
 
-  // Initial fetch
   useEffect(() => {
     if (!userId) return;
 
     const fetchNotifications = async () => {
       try {
-        const response = await getNotifications();
-        if (response) setNotifications(response);
+        const data = await getNotifications();
+        if (data) setNotifications(data);
       } catch (error) {
         console.error("Failed to fetch notifications", error);
       }
@@ -38,19 +37,24 @@ export const NotificationsProvider = ({
     fetchNotifications();
   }, [userId]);
 
+  // Pusher subscriptions
   useEffect(() => {
     if (!pusherKey || !userId || !userName) return;
 
     const pusher = new Pusher(pusherKey, { cluster: pusherCluster });
     const channel = pusher.subscribe("friend-requests");
 
-    const addNotification = (newNotification: Notification) => {
+    const addOrUpdateNotification = (notification: Notification) => {
       setNotifications((prev) => {
-        if (
-          prev.some((n) => n.notificationId === newNotification.notificationId)
-        )
-          return prev;
-        return [newNotification, ...prev];
+        const exists = prev.find(
+          (n) => n.notificationId === notification.notificationId
+        );
+        if (exists) {
+          return prev.map((n) =>
+            n.notificationId === notification.notificationId ? notification : n
+          );
+        }
+        return [notification, ...prev];
       });
     };
 
@@ -60,7 +64,7 @@ export const NotificationsProvider = ({
       notification: Notification;
     }) => {
       if (data.to !== userName) return;
-      addNotification(data.notification);
+      addOrUpdateNotification(data.notification);
     };
 
     const onUpdate = (data: {
@@ -69,19 +73,7 @@ export const NotificationsProvider = ({
       notification: Notification;
     }) => {
       if (data.to !== userName) return;
-      console.log("onUpdate triggered:", data.notification.notificationId);
-
-      setNotifications((prev) => {
-        const remaining = prev.filter(
-          (n) =>
-            !(
-              n.fromUserId === data.notification.fromUserId &&
-              (n.type === "friend_request" ||
-                n.type === "friend_request_response")
-            )
-        );
-        return [data.notification, ...remaining];
-      });
+      addOrUpdateNotification(data.notification);
     };
 
     channel.bind("new-friend-request", onNew);
