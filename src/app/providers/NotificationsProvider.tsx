@@ -19,10 +19,10 @@ export const NotificationsProvider = ({
 }) => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const { data: session } = useSession();
-
   const userId = session?.user?.id;
   const userName = session?.user?.name;
 
+  // Initial fetch
   useEffect(() => {
     if (!userId) return;
 
@@ -44,13 +44,23 @@ export const NotificationsProvider = ({
     const pusher = new Pusher(pusherKey, { cluster: pusherCluster });
     const channel = pusher.subscribe("friend-requests");
 
+    const addNotification = (newNotification: Notification) => {
+      setNotifications((prev) => {
+        if (
+          prev.some((n) => n.notificationId === newNotification.notificationId)
+        )
+          return prev;
+        return [newNotification, ...prev];
+      });
+    };
+
     const onNew = (data: {
       to: string;
       from: string;
       notification: Notification;
     }) => {
       if (data.to !== userName) return;
-      setNotifications((prev) => [data.notification, ...prev]);
+      addNotification(data.notification);
     };
 
     const onUpdate = (data: {
@@ -62,7 +72,12 @@ export const NotificationsProvider = ({
 
       setNotifications((prev) => {
         const remaining = prev.filter(
-          (n) => n.notificationId !== data.notification.notificationId
+          (n) =>
+            !(
+              n.fromUserId === data.notification.fromUserId &&
+              (n.type === "friend_request" ||
+                n.type === "friend_request_response")
+            )
         );
         return [data.notification, ...remaining];
       });
@@ -77,7 +92,7 @@ export const NotificationsProvider = ({
       channel.unsubscribe();
       pusher.disconnect();
     };
-  }, [notifications, userId, userName]);
+  }, [userId, userName]);
 
   return (
     <NotificationsContext.Provider value={{ notifications, setNotifications }}>
