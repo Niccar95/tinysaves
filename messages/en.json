@@ -8,7 +8,7 @@
     "forgotPassword": "Forgot your password?",
     "messageCard": {
       "installIntro": "TinySaves is now installable!",
-      "InstallMessage": "Enjoy a native app experience on your desktop or mobile. Click below to install the app and access it faster, anytime.",
+      "installMessage": "Enjoy a native app experience on your desktop or mobile. Click below to install the app and access it faster, anytime.",
       "installButton": "Install app",
       "installedIntro": "Already using TinySaves?",
       "installedMessage": "If you've installed it, you can now launch it from your home screen or app drawer.",
