@@ -6,9 +6,7 @@ import { Notification } from "../contexts/NotificationsContext";
 interface NotificationsListProps {
   notifications: Notification[];
   setNotifications?: (
-    notifications:
-      | Notification[]
-      | ((prev: Notification[]) => Notification[])
+    notifications: Notification[] | ((prev: Notification[]) => Notification[])
   ) => void;
   closeMenu?: () => void;
 }
@@ -27,7 +25,6 @@ const NotificationsList = ({
     try {
       await handleReceivedFriendRequest(userChoice, notificationId);
 
-      // Update the notification status in the context
       if (setNotifications) {
         setNotifications((prev) =>
           prev.map((n) =>
@@ -55,7 +52,10 @@ const NotificationsList = ({
                   className="actionButton small"
                   onClick={() => {
                     closeMenu?.();
-                    handleFriendRequest("accepted", notification.notificationId);
+                    handleFriendRequest(
+                      "accepted",
+                      notification.notificationId
+                    );
                   }}
                 >
                   Accept
@@ -64,7 +64,10 @@ const NotificationsList = ({
                   className="actionButton small declineButton"
                   onClick={() => {
                     closeMenu?.();
-                    handleFriendRequest("declined", notification.notificationId);
+                    handleFriendRequest(
+                      "declined",
+                      notification.notificationId
+                    );
                   }}
                 >
                   Decline
@@ -74,7 +77,9 @@ const NotificationsList = ({
               (notification.status === "accepted" ||
                 notification.status === "declined") ? (
               <span className="notificationStatus">
-                {notification.status === "accepted" ? "✅ Accepted" : "❌ Declined"}
+                {notification.status === "accepted"
+                  ? "✅ Accepted"
+                  : "❌ Declined"}
               </span>
             ) : notification.type === "friend_request_response" ? (
               <span className="notificationStatus">

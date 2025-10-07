@@ -67,7 +67,7 @@ export default async function RootLayout({
           <SessionProvider>
             <NotificationsProvider>
               <FriendRequests />
-              <ThemeProvider>
+              <ThemeProvider key={session?.user?.id || "guest"} initialTheme={theme}>
                 <SidebarProvider>
                   <ConditionalNavbar />
                   <CurrencyProvider>

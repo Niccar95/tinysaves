@@ -16,13 +16,9 @@ const ThemeToggle = ({ currentTheme }: ThemeProps) => {
     const isDark = e.target.checked;
     const newTheme = isDark ? "dark" : "light";
 
-    document.documentElement.classList.toggle("dark", isDark);
-
     setTheme(newTheme);
     changeTheme(newTheme);
     setTrackedTheme(newTheme);
-
-    localStorage.setItem("userTheme", JSON.stringify(newTheme));
   };
 
   return (
