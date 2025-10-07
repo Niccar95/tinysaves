@@ -57,8 +57,8 @@ export async function PATCH(req: NextRequest) {
 
     const responseMessage =
       userChoice === "accepted"
-        ? `✅ ${fromUser.name} accepted your friend request`
-        : `❌ ${fromUser.name} declined your friend request`;
+        ? `${fromUser.name} accepted your friend request`
+        : `${fromUser.name} declined your friend request`;
 
     const newNotification = await prisma.notifications.create({
       data: {
@@ -66,7 +66,7 @@ export async function PATCH(req: NextRequest) {
         fromUserId: updatedNotification.userId,
         type: "friend_request_response",
         message: responseMessage,
-        status: "none",
+        status: userChoice,
         isRead: false,
       },
     });

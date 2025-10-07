@@ -12,7 +12,11 @@ export interface Notification {
 
 interface Notifications {
   notifications: Notification[];
-  setNotifications: (notifications: Notification[]) => void;
+  setNotifications: (
+    notifications:
+      | Notification[]
+      | ((prev: Notification[]) => Notification[])
+  ) => void;
 }
 
 export const NotificationsContext = createContext<Notifications>({
