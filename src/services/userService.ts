@@ -54,16 +54,15 @@ export const findUserName = async (userName: string): Promise<User | null> => {
 };
 
 export const sendFriendRequest = async (
-  toUserName: string,
-  fromUserName: string
+  friendUsername: string
 ): Promise<{ message: string } | null> => {
   try {
-    const response = await fetch("/api/sendFriendRequest", {
+    const response = await fetch("/api/friends", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ toUserName, fromUserName }),
+      body: JSON.stringify({ friendUsername }),
     });
 
     if (!response.ok) {
@@ -84,7 +83,7 @@ export const handleReceivedFriendRequest = async (
   notificationId: string
 ): Promise<{ message: string } | null> => {
   try {
-    const response = await fetch("/api/handleFriendRequest", {
+    const response = await fetch("/api/friends", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

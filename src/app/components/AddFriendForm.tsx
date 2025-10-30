@@ -4,7 +4,6 @@ import React, { useRef, useState } from "react";
 import Spinner from "./Spinner";
 import { findUserName, sendFriendRequest } from "@/services/userService";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 
 const AddFriendForm = () => {
@@ -18,9 +17,6 @@ const AddFriendForm = () => {
   const presetAvatar = "/presetAvatar.svg";
 
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
-
-  const { data: session } = useSession();
-  const fromUserName = session?.user?.name || "";
 
   const openFriendModal = () => {
     setIsOpen(!isOpen);
@@ -99,7 +95,7 @@ const AddFriendForm = () => {
     try {
       setLoader(true);
 
-      await sendFriendRequest(foundUser, fromUserName);
+      await sendFriendRequest(foundUser);
 
       toast.success(`Friend request sent to ${foundUser}!`);
     } catch (error) {

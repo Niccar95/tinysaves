@@ -24,11 +24,13 @@ model User {
   displayName String?
   goals Goals[]
   settings UserSettings? @relation()
-  userMilestones UserMilestones[]     
+  userMilestones UserMilestones[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   notificationsReceived Notifications[] @relation("NotificationRecipient")
   notificationsSent Notifications[] @relation("NotificationSender")
+  friendRequestsSent Friendship[] @relation("Requester")
+  friendRequestsReceived Friendship[] @relation("Recipient")
 }
 
 model UserSettings {
@@ -94,4 +96,19 @@ model Notifications {
 
   user User @relation("NotificationRecipient", fields: [userId], references: [userId], onDelete: Cascade)
   fromUser User? @relation("NotificationSender", fields: [fromUserId], references: [userId], onDelete: SetNull)
+}
+
+// Friendship model represents confirmed friendships between users
+// Only created after friend request notification is accepted
+
+model Friendship {
+  friendshipId String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  friendId String @db.ObjectId
+  createdAt DateTime @default(now())
+
+  user User @relation("Requester", fields: [userId], references: [userId], onDelete: Cascade)
+  friend User @relation("Recipient", fields: [friendId], references: [userId], onDelete: Cascade)
+
+  @@unique([userId, friendId])
 }
