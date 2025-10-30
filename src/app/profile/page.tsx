@@ -8,6 +8,7 @@ import { redirect } from "next/navigation";
 import prisma from "../db";
 import { getTranslations } from "next-intl/server";
 import AddFriendForm from "../components/AddFriendForm";
+import FriendsList from "../components/FriendsList";
 
 const ProfilePage = async () => {
   const session = await getServerSession(authOptions);
@@ -64,8 +65,9 @@ const ProfilePage = async () => {
           </section>
         </article>
 
-        <h2>Friend list</h2>
+        <h2>Friends list</h2>
         <AddFriendForm />
+        <FriendsList />
       </section>
     </>
   );
