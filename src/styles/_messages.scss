@@ -2,39 +2,39 @@
 @use "./mixins" as *;
 
 .tipsBox {
-  padding: 1.5rem;
-  border-radius: 15px;
-  border: solid 0.5px var(--attention-border-color);
-  border-top: solid 5px var(--attention-border-color);
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  border: solid 1px var(--card-border-color);
+  border-left: solid 4px var(--attention-border-color);
   box-shadow: var(--shadow);
   opacity: 1;
   transition: opacity 0.5s ease;
   background-color: var(--tips-card-background);
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--primary-text-color);
 
+  @include desktop() {
+    width: 400px;
+    right: 2rem;
+    bottom: 2rem;
+  }
 
-    @include desktop() {
-        width: 400px;
-        right: 2rem;
-        bottom: 2rem;
-    }
-
-    .tipContent {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
+  .tipContent {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
 }
 
-  .successMessage {
-    color: green;
-    font-size: 14px;
-  }
+.successMessage {
+  color: var(--success-color);
+  font-size: 13px;
+  font-weight: 500;
+}
 
-
-  .errorMessage {
-    color: red;
-    font-size: 14px;
-    margin-top: 6px;
-  }
+.errorMessage {
+  color: var(--error-color);
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 6px;
+}

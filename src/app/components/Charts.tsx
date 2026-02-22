@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import { Chart, registerables } from "chart.js";
 import { Doughnut, Line } from "react-chartjs-2";
 import { useTranslations } from "next-intl";
+import { ThemeContext } from "@/app/contexts/ThemeContext";
 
 Chart.register(...registerables);
 
@@ -21,6 +22,10 @@ interface ChartProps {
 
 const Charts = ({ summaryData, lineChartData }: ChartProps) => {
   const { completedGoals, totalGoals } = summaryData;
+  const { trackedTheme } = useContext(ThemeContext);
+  const isDark = trackedTheme === "dark";
+  const gridColor = isDark ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.12)";
+  const tickColor = isDark ? "#64748b" : "#94a3b8";
 
   const t = useTranslations("stats.charts");
   const doughNutData = {
@@ -29,7 +34,7 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
       {
         label: `${t("goals")}`,
         data: [completedGoals, totalGoals - completedGoals],
-        backgroundColor: ["rgb(94, 214, 160)", "rgb(54, 162, 235)"],
+        backgroundColor: [isDark ? "#34d399" : "#10b981", isDark ? "#334155" : "#e2e8f0"],
         hoverOffset: 4,
       },
     ],
@@ -62,10 +67,13 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
         ticks: {
           autoSkip: true,
           maxTicksLimit: 5,
+          color: tickColor,
         },
+        grid: { color: gridColor },
         title: {
           display: true,
           text: `${t("dates")}`,
+          color: tickColor,
         },
       },
       y: {
@@ -73,10 +81,13 @@ const Charts = ({ summaryData, lineChartData }: ChartProps) => {
           autoSkip: true,
           maxTicksLimit: 10,
           stepSize: 1,
+          color: tickColor,
         },
+        grid: { color: gridColor },
         title: {
           display: true,
           text: `${t("goals")}`,
+          color: tickColor,
         },
         min: 0,
         max: 10,

@@ -1,98 +1,104 @@
 @use "./variables" as *;
 @use "./mixins.scss" as *;
 
-.registerButton, .loginButton, .submitButton, 
+.registerButton, .loginButton, .submitButton,
 .updateButton, .saveButton, .resetPasswordButton {
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     height: 40px;
     background-color: var(--primary-button-color);
-    color: var(--secondary-text-color);
+    color: #ffffff;
     font-size: $button-font-size;
     font-weight: $button-font-weight;
     cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
 
     &:hover {
         background-color: var(--primary-button-hover-color);
     }
+
+    &:active {
+        transform: scale(0.98);
+    }
 }
 
-.submitButton.margin, 
-.loginButton.margin, .registerButton.margin, 
+.submitButton.margin,
+.loginButton.margin, .registerButton.margin,
 .saveButton.margin, .resetPasswordButton.margin {
     margin-top: 8px;
 }
 
 .updateButton.width {
-    
     @include desktop() {
-        width: 120px;     
+        width: 120px;
     }
 }
 
 .logoutButton {
     padding: 1.5rem;
+    font-size: $button-font-size;
     font-weight: $button-font-weight;
     background-color: transparent;
     color: var(--primary-text-color);
     border: none;
     cursor: pointer;
- 
+
     &:hover {
-        text-decoration: underline;   
+        color: var(--primary-button-color);
     }
 }
 
-.openProgressFormButton, .actionButton, .addGoalButton, .editButton, .closeButton  {
-    
-    border-radius: 15px;
+.openProgressFormButton, .actionButton, .addGoalButton, .editButton, .closeButton {
+    border-radius: 8px;
     height: 40px;
     width: 200px;
     background-color: var(--action-button-color);
     color: var(--action-button-text-color);
-    border: solid 2px var(--action-button-border-color);
+    border: solid 1.5px var(--action-button-border-color);
     font-size: $button-font-size;
     font-weight: $button-font-weight;
     cursor: pointer;
-    
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
     &:hover {
-        opacity: 0.8;
-        border: solid 2.5px var(--primary-border-color); 
+        border-color: var(--primary-button-color);
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
     }
 }
-
 
 .actionButton.delete, .closeButton, .declineButton {
     background-color: var(--tertiary-button-color);
     color: white;
-    border: solid 2px var(--secondary-border-color);
+    border: solid 1.5px transparent;
+
+    &:hover {
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+        border-color: transparent;
+    }
 }
 
 .small {
     width: unset;
-    padding: 0rem 1rem 0rem 1rem;
+    padding: 0rem 1rem;
 
-      &:hover {
-        opacity: 0.8;
-        border: solid 2px var(--primary-border-color); 
+    &:hover {
+        border-color: var(--primary-button-color);
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
     }
 }
-
-
 
 .actionButton.disabled {
-    opacity: 0.8;
+    opacity: 0.5;
     cursor: default;
-    
+
     &:hover {
-        opacity: none;
-        border: solid 2px ver(--primary-border-color);
+        border-color: var(--action-button-border-color);
+        box-shadow: none;
     }
 }
 
-
 .langMenuButton {
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
@@ -100,19 +106,57 @@
     border: none;
     cursor: pointer;
     color: var(--primary-text-color);
+    font-size: $button-font-size;
+    font-weight: $button-font-weight;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+        background-color: var(--nav-hover-color);
+        box-shadow: none;
+        border-color: transparent;
+    }
 }
 
 .notificationsButton {
-    display: flex; 
+    position: relative;
+    display: flex;
     justify-content: center;
     align-items: center;
-    background-color: grey;
-    border: none;
-    width: 35px;
-    height: 35px;
+    background-color: transparent;
+    border: 1.5px solid var(--primary-border-color);
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    cursor: pointer; 
+    cursor: pointer;
     color: var(--primary-text-color);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+
+    &:hover {
+        border-color: var(--primary-button-color);
+        background-color: var(--secondary-button-color);
+    }
+}
+
+.notificationsCounter {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ef4444;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: $base-font-family;
+    min-width: 17px;
+    height: 17px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    line-height: 1;
+    pointer-events: none;
+    border: 2px solid var(--surface-elevated);
 }
 
 .addImageButton, .actionsMenuButton {
@@ -122,15 +166,15 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: none;
     background-color: var(--action-button-color);
-    border: solid 2px var(--primary-border-color);
+    border: solid 1.5px var(--primary-border-color);
     cursor: pointer;
     color: var(--action-button-text-color);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
 
     &:hover {
-      opacity: 0.8;
-      border: solid 2.5px var(--primary-border-color); 
+        border-color: var(--primary-button-color);
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
     }
 }
 
@@ -145,16 +189,13 @@
     border: solid 1px var(--slider-border-color);
     border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-// highlights the slider button 
-
+// highlights the slider button
 .highlight {
     background-color: var(--slider-highlight-bg);
-    box-shadow: 0 0 8px rgba(102, 187, 106, 0.6);
+    box-shadow: 0 0 8px rgba(52, 211, 153, 0.5);
     transition: background-color 0.3s ease;
-    border-color: #579f5a;
+    border-color: var(--slider-border-color);
 }
-
-
-

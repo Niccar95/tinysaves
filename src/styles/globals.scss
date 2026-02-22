@@ -10,17 +10,20 @@
   font-size: $base-font-size;
   font-weight: $base-font-weight;
   font-family: $base-font-family;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html,
 body {
   overflow-x: hidden;
   min-height: 100vh;
-    color: var(--primary-text-color);
+  color: var(--primary-text-color);
+  line-height: 1.6;
 }
 
 body {
-  display: flex;  
+  display: flex;
   flex-direction: column;
   background-color: var(--light-body-background);
 }
@@ -37,20 +40,21 @@ header {
   right: 0;
   z-index: 100;
   height: 80px;
-  box-shadow: var(--floating-shadow);
-  padding: 0rem 2rem 0rem 2rem;
+  box-shadow: var(--header-footer-shadow);
+  padding: 0 1.5rem;
 
   @include desktop() {
-   }
+    padding: 0 2rem;
+  }
 
   .logo {
-    width: 60px;
-    height: 60px;
+    width: 52px;
+    height: 52px;
 
-  @include desktop() {
-    width: 70px;
-    height: 70px;
-   }
+    @include desktop() {
+      width: 60px;
+      height: 60px;
+    }
   }
 }
 
@@ -73,13 +77,13 @@ main {
     margin-top: 80px;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding: 1rem;
+    gap: 1.5rem;
+    padding: 1.25rem 1rem;
     flex-grow: 1;
 
     @include desktop() {
-      padding: 2rem;
-
+      padding: 2rem 2.5rem;
+      gap: 2rem;
     }
   }
 }
@@ -92,17 +96,20 @@ main.fullWidth {
   }
 }
 
-h1{
+h1 {
   font-family: $heading-font-family;
   font-size: $heading-font-size;
   font-weight: $heading-font-weight;
-
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 h2 {
   font-family: $heading-font-family;
   font-weight: $secondary-heading-font-weight;
   font-size: $secondary-heading-font-size;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 h3 {
@@ -110,6 +117,11 @@ h3 {
   color: var(--tertiary-text-color);
   font-weight: $secondary-heading-font-weight;
   font-size: $tertiary-heading-font-size;
+  line-height: 1.4;
+}
+
+.dark h3 {
+  color: #94a3b8;
 }
 
 

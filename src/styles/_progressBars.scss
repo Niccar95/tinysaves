@@ -5,35 +5,48 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    border: solid 1px #b7d3b2;
-    height: 60px;
-    padding: 0.5rem;
-    border-radius: 20px;
+    border: solid 1px var(--primary-border-color);
+    height: 56px;
+    padding: 0.4rem;
+    border-radius: 14px;
+    background-color: var(--card-background);
 
     @include desktop() {
-        height: 70px;
+        height: 64px;
         width: 70%;
     }
 
     .progress {
         position: absolute;
-        background-color: blue;
         background: linear-gradient(
             90deg,
-            rgba(58, 123, 213, 1) 0%,
-            rgba(0, 210, 255, 1) 50%,
-            rgba(58, 213, 174, 1) 100%
-          );
-        left: 0.5rem;
-        top: 0.5rem;
-        bottom: 0.5rem;
-        border-radius: 20px;
+            #10b981 0%,
+            #34d399 60%,
+            #6ee7b7 100%
+        );
+        left: 0.4rem;
+        top: 0.4rem;
+        bottom: 0.4rem;
+        border-radius: 10px;
         z-index: 0;
-        transition: width 0.3s ease;
+        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     .progressInfo {
         position: static;
         z-index: 1;
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 14px;
+    }
+}
+
+.dark .progressBar {
+    .progress {
+        background: linear-gradient(
+            90deg,
+            #064e3b 0%,
+            #065f46 60%,
+            #047857 100%
+        );
     }
 }

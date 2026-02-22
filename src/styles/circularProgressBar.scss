@@ -1,12 +1,7 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
-/*
- * react-circular-progressbar styles
- * All of the styles in this file are configurable!
- */
-
- .circularProgressBarContainer {
+.circularProgressBarContainer {
     width: 80px;
     height: 80px;
 
@@ -17,64 +12,63 @@
  }
 
  .CircularProgressbar {
-    /*
-     * This fixes an issue where the CircularProgressbar svg has
-     * 0 width inside a "display: flex" container, and thus not visible.
-     */
     width: 100%;
-    /*
-     * This fixes a centering issue with CircularProgressbarWithChildren:
-     * https://github.com/kevinsqi/react-circular-progressbar/issues/94
-     */
     vertical-align: middle;
   }
-  
+
   .CircularProgressbar .CircularProgressbar-path {
-    stroke: 
-    #388e3c; 
-    stroke-linecap:round;
+    stroke: #10b981;
+    stroke-linecap: round;
     transition: stroke-dashoffset 0.5s ease 0s;
   }
-  
+
   .CircularProgressbar .CircularProgressbar-trail {
-    stroke: #d6d6d6;
-    /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
+    stroke: #e2e8f0;
     stroke-linecap: round;
   }
-  
+
   .CircularProgressbar .CircularProgressbar-text {
-    fill:  #388e3c;
+    fill: #10b981;
     font-size: 20px;
     font-weight: 500;
     dominant-baseline: middle;
     text-anchor: middle;
   }
-  
+
   .CircularProgressbar .CircularProgressbar-background {
-    fill: #d6d6d6;
+    fill: #e2e8f0;
   }
-  
-  /*
-   * Sample background styles. Use these with e.g.:
-   *
-   *   <CircularProgressbar
-   *     className="CircularProgressbar-inverted"
-   *     background
-   *     percentage={50}
-   *   />
-   */
+
   .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
-    fill:  #388e3c;
+    fill: #10b981;
   }
-  
+
   .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
     fill: #fff;
   }
-  
+
   .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
     stroke: #fff;
   }
-  
+
   .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
     stroke: transparent;
+  }
+
+  .dark {
+    .CircularProgressbar .CircularProgressbar-path {
+      stroke: #34d399;
+    }
+
+    .CircularProgressbar .CircularProgressbar-trail {
+      stroke: #334155;
+    }
+
+    .CircularProgressbar .CircularProgressbar-text {
+      fill: #34d399;
+    }
+
+    .CircularProgressbar .CircularProgressbar-background {
+      fill: #334155;
+    }
   }
