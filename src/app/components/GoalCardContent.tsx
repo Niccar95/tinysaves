@@ -1,9 +1,9 @@
 "use client";
-import { CircularProgressbar } from "react-circular-progressbar";
 
 import React from "react";
 import { Goals } from "@prisma/client";
 import { useTranslations } from "next-intl";
+import ProgressBar from "./ProgressBar";
 
 interface GoalProps {
   latestGoal: Goals;
@@ -11,21 +11,17 @@ interface GoalProps {
 
 const GoalCardContent = ({ latestGoal }: GoalProps) => {
   const t = useTranslations("latestGoal");
-  const percentage = (latestGoal.progress / latestGoal.targetAmount) * 100;
-
-  const roundedPercentage = Math.round(percentage);
 
   return (
     <>
-      <div>
-        <h2 className="latestGoalHeading">{t("recent")}</h2>
-        <h3>{latestGoal?.title}</h3>
-      </div>
-
-      <div className="circularProgressBarContainer">
-        <CircularProgressbar
-          value={roundedPercentage}
-          text={`${roundedPercentage}%`}
+      <span className="goalCardLabel">{t("recent")}</span>
+      <div className="cardMainContent">
+        <h3>{latestGoal.title}</h3>
+        <ProgressBar
+          progress={latestGoal.progress}
+          isComplete={latestGoal.isComplete}
+          targetAmount={latestGoal.targetAmount}
+          currency={latestGoal.currency}
         />
       </div>
     </>

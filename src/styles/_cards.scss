@@ -73,6 +73,7 @@
     flex-direction: column;
     gap: 2rem;
     padding: 1.5rem;
+    background: var(--card-background);
     box-shadow: var(--shadow);
     border-radius: 12px;
     border: solid 1px var(--card-border-color);
@@ -111,12 +112,48 @@
            display: flex;
            align-items: flex-end;
 
-           .milestonesCountIcon { 
-               height: 50px;
-               width: 50px;
+           .milestonesCountIcon {
+               font-size: 2.5rem;
+               color: var(--card-accent-color);
+               line-height: 1.1;
+           }
+
+           h3 {
+               margin: 0;
+               line-height: 1;
            }
         }
     }
+}
+
+.userImageWrapper--xsmall {
+  width: 40px;
+  height: 40px;
+}
+
+.dashboardFriendsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  .dashboardFriendItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .dashboardFriendName {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .dashboardFriendUsername {
+      font-size: 12px;
+      color: var(--tertiary-text-color);
+    }
+  }
 }
 
 .userImageWrapper {
@@ -172,15 +209,12 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 1.5rem;
+    padding: 1.25rem;
+    background: var(--card-background);
     box-shadow: var(--shadow);
     border: solid 1px var(--card-border-color);
     border-top: solid 4px var(--card-accent-color);
     border-radius: 12px;
-    
-    @include desktop() {
-        gap: 1.5rem;
-    }
 
     .noGoalsLabel {
         @include desktop() {
@@ -188,8 +222,43 @@
         }
     }
 
-    .latestGoalHeading {
-        margin-bottom: 10px;
+    .goalCardLabel {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--tertiary-text-color);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .cardMainContent {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .milestoneCriteriaLabel {
+            font-size: 13px;
+            color: var(--tertiary-text-color);
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .milestoneImageWrapper {
+            margin-top: 0.25rem;
+        }
+    }
+
+    .progressSection {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+
+        @include desktop() {
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+        }
     }
 }
 
@@ -201,7 +270,7 @@
     border: solid 1px var(--card-border-color);
     border-top: solid 4px var(--card-accent-color);
     border-radius: 12px;
-    background-color: var(--light-body-background);
+    background: var(--card-background);
     height: fit-content;
 
     @include desktop() {
@@ -271,6 +340,7 @@
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem;
+    background: var(--card-background);
     box-shadow: var(--shadow);
     border-radius: 12px;
     border: solid 1px var(--card-border-color);
@@ -316,6 +386,7 @@
     flex-direction: column;
     gap: 2rem;
     padding: 1.5rem;
+    background: var(--card-background);
     box-shadow: var(--shadow);
     border-radius: 12px;
     border: solid 1px var(--card-border-color);

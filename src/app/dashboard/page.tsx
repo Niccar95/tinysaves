@@ -6,6 +6,7 @@ import LatestGoalCard from "../components/LatestGoalCard";
 import Tips from "../components/Tips";
 import { redirect } from "next/navigation";
 import LatestMilestoneCard from "../components/LatestMilestoneCard";
+import DashboardFriendsCard from "../components/DashboardFriendsCard";
 import { getTranslations } from "next-intl/server";
 
 const Dashboard = async () => {
@@ -26,30 +27,33 @@ const Dashboard = async () => {
   return (
     <>
       <div className="content dashboard">
-        <section className="goalSetupSection">
-          <h1>{t("dashboard")}</h1>
-          <div className="greetingContainer">
-            <div className="userImageWrapper userImageWrapper--small">
-              <Image
-                src={displayAvatar || presetAvatar}
-                alt="User Avatar"
-                className="avatarPreview"
-                width="50"
-                height="50"
-              />
+        <h1>{t("dashboard")}</h1>
+        <div className="dashboardBody">
+          <section className="goalSetupSection">
+            <div className="greetingContainer">
+              <div className="userImageWrapper userImageWrapper--small">
+                <Image
+                  src={displayAvatar || presetAvatar}
+                  alt="User Avatar"
+                  className="avatarPreview"
+                  width="50"
+                  height="50"
+                />
+              </div>
+              {session !== null && (
+                <h2>
+                  {tm("userGreeting")} {displayName}!
+                </h2>
+              )}
             </div>
-            {session !== null && (
-              <h2>
-                {tm("userGreeting")} {displayName}!
-              </h2>
-            )}
-          </div>
-          <Tips />
-        </section>
-        <section className="overviewSection">
-          {userId && <LatestGoalCard userId={userId} />}
-          {userId && <LatestMilestoneCard userId={userId} />}
-        </section>
+            <Tips />
+          </section>
+          <section className="overviewSection">
+            {userId && <LatestGoalCard userId={userId} />}
+            {userId && <LatestMilestoneCard userId={userId} />}
+            {userId && <DashboardFriendsCard userId={userId} />}
+          </section>
+        </div>
       </div>
     </>
   );

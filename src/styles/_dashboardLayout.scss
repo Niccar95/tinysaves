@@ -3,32 +3,44 @@
 
 .content.dashboard {
 
-    @include desktop() {
-        flex-direction:row;
-        gap: 90px;
+    .dashboardBody {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        @include desktop() {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 2.5rem;
+        }
     }
+
     .goalSetupSection {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
-    
+      gap: 1.25rem;
+
+      @include desktop() {
+        flex: 0 0 300px;
+      }
+
       .greetingContainer {
-        display:flex;
+        display: flex;
         align-items: center;
         gap: 0.5rem;
       }
-  
     }
 
     .overviewSection {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.5rem;
 
-        @include desktop() {
-         display: grid;
-         grid-template-columns: repeat(2, 1fr);
-         grid-template-rows: repeat(2, 1fr);
-    }
+      @include desktop() {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
     }
 }

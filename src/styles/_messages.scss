@@ -14,9 +14,7 @@
   color: var(--primary-text-color);
 
   @include desktop() {
-    width: 400px;
-    right: 2rem;
-    bottom: 2rem;
+    width: 100%;
   }
 
   .tipContent {

@@ -40,18 +40,21 @@ const LatestMilestoneCard = ({ userId }: LatestMilestoneProps) => {
         transition={{ duration: 0.4, ease: "easeOut", delay: 0.5 }}
         className="latestCard"
       >
-        {latestMilestone && latestMilestone && (
+        {latestMilestone && (
           <>
-            <div>
-              <h2 className="latestGoalHeading">{t("recent")}</h2>
+            <span className="goalCardLabel">{t("recent")}</span>
+            <div className="cardMainContent">
               <h3>{latestMilestone.name}</h3>
+              <p className="milestoneCriteriaLabel">{latestMilestone.criteria}</p>
+              <div className="milestoneImageWrapper">
+                <Image
+                  src={latestMilestone.image}
+                  alt="milestone"
+                  width="100"
+                  height="100"
+                />
+              </div>
             </div>
-            <Image
-              src={latestMilestone.image}
-              alt="milestone"
-              width="100"
-              height="100"
-            ></Image>
           </>
         )}
 

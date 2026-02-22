@@ -104,6 +104,22 @@ h1 {
   letter-spacing: -0.02em;
 }
 
+.content h1 {
+  position: relative;
+  padding-bottom: 0.6rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2rem;
+    height: 3px;
+    background: var(--card-accent-color);
+    border-radius: 2px;
+  }
+}
+
 h2 {
   font-family: $heading-font-family;
   font-weight: $secondary-heading-font-weight;

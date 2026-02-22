@@ -3,7 +3,6 @@ import { getServerSession } from "next-auth";
 import React from "react";
 import EditButton from "../components/EditButton";
 import Image from "next/image";
-import star from "/public/star.svg";
 import { redirect } from "next/navigation";
 import prisma from "../db";
 import { getTranslations } from "next-intl/server";
@@ -58,7 +57,7 @@ const ProfilePage = async () => {
             <div>
               <h4 className="milestonesLabel">{tp("milestones")}</h4>
               <div className="milestonesIconContainer">
-                <Image src={star} alt="star" className="milestonesCountIcon" />
+                <i className="bi bi-trophy-fill milestonesCountIcon"></i>
                 <h3>{milestoneAmount}</h3>
               </div>
             </div>
