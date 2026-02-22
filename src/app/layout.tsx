@@ -19,6 +19,9 @@ import prisma from "./db";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import FriendRequests from "./components/FriendRequests";
 import { NotificationsProvider } from "./providers/NotificationsProvider";
+import Link from "next/link";
+import FooterLogo from "./components/FooterLogo";
+import ConditionalFooter from "./components/ConditionalFooter";
 
 const allMessages = { en, sv, es };
 
@@ -41,6 +44,7 @@ export default async function RootLayout({
   await ensureMilestonesExist();
 
   const t = await getTranslations("footer");
+  const tPages = await getTranslations("pages");
 
   const locale = await getLocale();
   const messages = allMessages[locale as keyof typeof allMessages] ?? en;
@@ -73,32 +77,46 @@ export default async function RootLayout({
                   <CurrencyProvider>
                     <ConditionalMain>{children}</ConditionalMain>
                   </CurrencyProvider>
-                </SidebarProvider>
-                <footer>
-                  <section className="contactSection">
-                    <h3 className="contactHeading">{t("social")}</h3>
-
-                    <div className="linkWrapper">
-                      <a
-                        className="footerLink"
-                        href="https://github.com/Niccar95"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="bi bi-github"></i>
-                      </a>
-                      <a
-                        className="footerLink"
-                        href="https://www.linkedin.com/in/nicolas-carrasco-6882402a5/"
-                        rel="noopener noreferrer"
-                      >
-                        <i className="bi bi-linkedin"></i>
-                      </a>
+                  <ConditionalFooter>
+                    <div className="footerTop">
+                      <div className="footerBrand">
+                        <FooterLogo />
+                      </div>
+                      <section className="contactSection">
+                        <span className="contactHeading">{t("social")}</span>
+                        <div className="linkWrapper">
+                          <a
+                            className="footerLink"
+                            href="https://github.com/Niccar95"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                          >
+                            <i className="bi bi-github"></i>
+                          </a>
+                          <a
+                            className="footerLink"
+                            href="https://www.linkedin.com/in/nicolas-carrasco-6882402a5/"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                          >
+                            <i className="bi bi-linkedin"></i>
+                          </a>
+                        </div>
+                      </section>
                     </div>
-                  </section>
-                  <p className="copyright">
-                    &copy; {new Date().getFullYear()} TinySaves
-                  </p>
-                </footer>
+                    <nav className="footerNav">
+                      <Link className="footerNavLink" href="/dashboard">{tPages("dashboard")}</Link>
+                      <Link className="footerNavLink" href="/goals">{tPages("myGoals")}</Link>
+                      <Link className="footerNavLink" href="/milestones">{tPages("myMilestones")}</Link>
+                      <Link className="footerNavLink" href="/stats">{tPages("myStats")}</Link>
+                      <Link className="footerNavLink" href="/profile">{tPages("myProfile")}</Link>
+                      <Link className="footerNavLink" href="/settings">{tPages("settings")}</Link>
+                    </nav>
+                    <p className="copyright">
+                      &copy; {new Date().getFullYear()} TinySaves
+                    </p>
+                  </ConditionalFooter>
+                </SidebarProvider>
               </ThemeProvider>
             </NotificationsProvider>
           </SessionProvider>
