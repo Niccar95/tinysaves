@@ -148,7 +148,8 @@ footer {
   gap: 3rem;
   padding: 4rem 1.5rem 3rem;
   background-color: var(--footer-background);
-  border-top: 1px solid var(--primary-border-color);
+  border-top: solid 1px var(--nav-menu-border-color);
+  box-shadow: var(--header-footer-shadow);
 
   @include desktop() {
     padding: 4rem 2.5rem 3rem;
